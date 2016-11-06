@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C48734041DCF093E00C9B0C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734031DCF093E00C9B0C0 /* AppDelegate.swift */; };
-		C48734061DCF093E00C9B0C0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734051DCF093E00C9B0C0 /* HomeViewController.swift */; };
 		C48734091DCF093E00C9B0C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C48734071DCF093E00C9B0C0 /* Main.storyboard */; };
 		C487340B1DCF093E00C9B0C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C487340A1DCF093E00C9B0C0 /* Assets.xcassets */; };
 		C487340E1DCF093E00C9B0C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C487340C1DCF093E00C9B0C0 /* LaunchScreen.storyboard */; };
@@ -81,12 +80,15 @@
 		C48734E61DCF240D00C9B0C0 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734E41DCF240D00C9B0C0 /* TabBar.swift */; };
 		C48734E71DCF240D00C9B0C0 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734E51DCF240D00C9B0C0 /* TabBarViewController.swift */; };
 		C48734E91DCF307600C9B0C0 /* CCPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734E81DCF307600C9B0C0 /* CCPageView.swift */; };
+		C48734EB1DCF355B00C9B0C0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734EA1DCF355B00C9B0C0 /* MainViewController.swift */; };
+		C48734EE1DCF363600C9B0C0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734ED1DCF363600C9B0C0 /* HomeViewController.swift */; };
+		C48734F21DCF3A2500C9B0C0 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734F01DCF3A2500C9B0C0 /* HomeCell.swift */; };
+		C48734F31DCF3A2500C9B0C0 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C48734F11DCF3A2500C9B0C0 /* HomeCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C48734001DCF093E00C9B0C0 /* CZYT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CZYT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48734031DCF093E00C9B0C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C48734051DCF093E00C9B0C0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C48734081DCF093E00C9B0C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C487340A1DCF093E00C9B0C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C487340D1DCF093E00C9B0C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -205,6 +207,10 @@
 		C48734E41DCF240D00C9B0C0 /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		C48734E51DCF240D00C9B0C0 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		C48734E81DCF307600C9B0C0 /* CCPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCPageView.swift; sourceTree = "<group>"; };
+		C48734EA1DCF355B00C9B0C0 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		C48734ED1DCF363600C9B0C0 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		C48734F01DCF3A2500C9B0C0 /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
+		C48734F11DCF3A2500C9B0C0 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,12 +243,11 @@
 		C48734021DCF093E00C9B0C0 /* CZYT */ = {
 			isa = PBXGroup;
 			children = (
+				C48734181DCF096E00C9B0C0 /* Depends */,
+				C48734171DCF096E00C9B0C0 /* Common */,
 				C48734151DCF096E00C9B0C0 /* Network */,
 				C48734161DCF096E00C9B0C0 /* UI */,
-				C48734171DCF096E00C9B0C0 /* Common */,
-				C48734181DCF096E00C9B0C0 /* Depends */,
 				C48734031DCF093E00C9B0C0 /* AppDelegate.swift */,
-				C48734051DCF093E00C9B0C0 /* HomeViewController.swift */,
 				C48734071DCF093E00C9B0C0 /* Main.storyboard */,
 				C48734BE1DCF0A8100C9B0C0 /* CZYT-Bridging-Header.h */,
 				C487340A1DCF093E00C9B0C0 /* Assets.xcassets */,
@@ -265,9 +270,11 @@
 		C48734161DCF096E00C9B0C0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				C48734E31DCF240D00C9B0C0 /* Common */,
-				C48734D31DCF224000C9B0C0 /* Base */,
+				C48734EC1DCF35E100C9B0C0 /* Home */,
 				C48734C31DCF0DA900C9B0C0 /* Theme */,
+				C48734D31DCF224000C9B0C0 /* Base */,
+				C48734E31DCF240D00C9B0C0 /* Common */,
+				C48734EA1DCF355B00C9B0C0 /* MainViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -537,6 +544,24 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		C48734EC1DCF35E100C9B0C0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C48734EF1DCF39F900C9B0C0 /* Cell */,
+				C48734ED1DCF363600C9B0C0 /* HomeViewController.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		C48734EF1DCF39F900C9B0C0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C48734F01DCF3A2500C9B0C0 /* HomeCell.swift */,
+				C48734F11DCF3A2500C9B0C0 /* HomeCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -599,6 +624,7 @@
 				C487340B1DCF093E00C9B0C0 /* Assets.xcassets in Resources */,
 				C48734BC1DCF0A4900C9B0C0 /* MBProgressHUD.bundle in Resources */,
 				C487349B1DCF0A2C00C9B0C0 /* MJRefresh.bundle in Resources */,
+				C48734F31DCF3A2500C9B0C0 /* HomeCell.xib in Resources */,
 				C48734091DCF093E00C9B0C0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -615,6 +641,7 @@
 				C48734541DCF0A1F00C9B0C0 /* SDWebImageDecoder.m in Sources */,
 				C487345E1DCF0A1F00C9B0C0 /* UIImageView+WebCache.m in Sources */,
 				C487349A1DCF0A2C00C9B0C0 /* MJRefreshStateHeader.m in Sources */,
+				C48734EE1DCF363600C9B0C0 /* HomeViewController.swift in Sources */,
 				C48734C11DCF0CD700C9B0C0 /* Helper.swift in Sources */,
 				C48734271DCF09B400C9B0C0 /* AFHTTPSessionManager.m in Sources */,
 				C487348F1DCF0A2C00C9B0C0 /* MJRefreshComponent.m in Sources */,
@@ -632,7 +659,6 @@
 				C48734E91DCF307600C9B0C0 /* CCPageView.swift in Sources */,
 				C487349F1DCF0A2C00C9B0C0 /* UIView+MJExtension.m in Sources */,
 				C48734551DCF0A1F00C9B0C0 /* SDWebImageDownloader.m in Sources */,
-				C48734061DCF093E00C9B0C0 /* HomeViewController.swift in Sources */,
 				C48734B21DCF0A3A00C9B0C0 /* Reflect+Property.swift in Sources */,
 				C48734531DCF0A1F00C9B0C0 /* SDWebImageCompat.m in Sources */,
 				C48734931DCF0A2C00C9B0C0 /* MJRefreshAutoNormalFooter.m in Sources */,
@@ -640,6 +666,7 @@
 				C48734BD1DCF0A4900C9B0C0 /* MBProgressHUD.m in Sources */,
 				C48734CD1DCF14BF00C9B0C0 /* Consts.swift in Sources */,
 				C48734581DCF0A1F00C9B0C0 /* SDWebImagePrefetcher.m in Sources */,
+				C48734EB1DCF355B00C9B0C0 /* MainViewController.swift in Sources */,
 				C48734C71DCF0DA900C9B0C0 /* ThemeManager.swift in Sources */,
 				C48734991DCF0A2C00C9B0C0 /* MJRefreshNormalHeader.m in Sources */,
 				C48734981DCF0A2C00C9B0C0 /* MJRefreshGifHeader.m in Sources */,
@@ -661,6 +688,7 @@
 				C48734C61DCF0DA900C9B0C0 /* Theme.swift in Sources */,
 				C48734591DCF0A1F00C9B0C0 /* UIButton+WebCache.m in Sources */,
 				C48734B11DCF0A3A00C9B0C0 /* Reflect+Other.swift in Sources */,
+				C48734F21DCF3A2500C9B0C0 /* HomeCell.swift in Sources */,
 				C48734521DCF0A1F00C9B0C0 /* SDImageCache.m in Sources */,
 				C487342B1DCF09B400C9B0C0 /* AFURLResponseSerialization.m in Sources */,
 				C48734901DCF0A2C00C9B0C0 /* MJRefreshFooter.m in Sources */,

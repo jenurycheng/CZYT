@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  MainViewController.swift
 //  CZYT
 //
 //  Created by jerry cheng on 2016/11/6.
@@ -8,16 +8,15 @@
 
 import UIKit
 
-class HomeViewController: BasePortraitViewController {
+class MainViewController: BasePortraitViewController {
     
     var tabBarViewController:TabBarViewController!
     var tabBar:TabBar!
     
-    var cartoonViewController:UIViewController!
-    var storyViewController:UIViewController!
-    var moreViewController:UIViewController!
-    var appViewController:UIViewController!
-    var shopViewController:UIViewController!
+    var homeViewController:HomeViewController!
+    var doneViewController:UIViewController!
+    var chatViewController:UIViewController!
+    var userViewController:UIViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +27,8 @@ class HomeViewController: BasePortraitViewController {
         self.initViewController()
         
         tabBarViewController = TabBarViewController()
-        tabBarViewController.viewControllers = [cartoonViewController, storyViewController,
-                                                appViewController, shopViewController]
+        tabBarViewController.viewControllers = [homeViewController, doneViewController,
+                                                chatViewController, userViewController]
         self.view.addSubview(tabBarViewController.view)
         self.addChildViewController(tabBarViewController)
         tabBarViewController.view.frame = CGRectMake(0, 0, GetSWidth(), GetSHeight()-49)
@@ -48,15 +47,14 @@ class HomeViewController: BasePortraitViewController {
     
     func initViewController()
     {
-        cartoonViewController = UIViewController()
-        cartoonViewController.title = "首页"
-        storyViewController = UIViewController()
-        storyViewController.title = "督办"
-        moreViewController = UIViewController()
-        appViewController = UIViewController()
-        appViewController.title = "会话"
-        shopViewController = UIViewController()
-        shopViewController.title = "我的"
+        homeViewController = HomeViewController()
+        homeViewController.title = "首页"
+        doneViewController = UIViewController()
+        doneViewController.title = "督办"
+        chatViewController = UIViewController()
+        chatViewController.title = "会话"
+        userViewController = UIViewController()
+        userViewController.title = "我的"
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -70,7 +68,7 @@ class HomeViewController: BasePortraitViewController {
 }
 
 //MARK: TabBarDelegate
-extension HomeViewController : TabBarDelegate
+extension MainViewController : TabBarDelegate
 {
     
     func tabBarClickedIndex(tabBar: TabBar, index: Int) {
