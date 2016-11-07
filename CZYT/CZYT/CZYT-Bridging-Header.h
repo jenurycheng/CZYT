@@ -17,5 +17,6 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "MBProgressHUD+Add.h"
 #import "MJRefresh.h"
+#import <RongIMKit/RongIMKit.h>
 
 #endif /* GiMiHelper_3_0_Bridging_Header_h */

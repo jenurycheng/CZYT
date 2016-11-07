@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         self.initNavigationBar()
+        
+        RCIM.sharedRCIM().initWithAppKey("25wehl3uwhwew")
+        
         return true
     }
     
@@ -26,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let nav = self.window?.rootViewController as! UINavigationController
         nav.navigationBar.barTintColor = ThemeManager.current().mainColor
         nav.navigationBar.tintColor = Helper.parseColor(0xa9a9adff)
+        nav.navigationBar.translucent = false
         var dic = Dictionary<String, AnyObject>()
         dic.updateValue(ThemeManager.current().navTitleColor, forKey: NSForegroundColorAttributeName)
         nav.navigationBar.titleTextAttributes = dic
