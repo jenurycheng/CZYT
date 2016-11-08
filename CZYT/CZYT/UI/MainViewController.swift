@@ -43,6 +43,20 @@ class MainViewController: BasePortraitViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let request = NetWorkHandle.NetWorkHandleApp.RequestLeaderActivity()
+        request.classify = "成都"
+        request.offset = "0"
+        request.row_count = "10"
+        NetWorkHandle.NetWorkHandleApp.getLeaderActivity(request) { (data) in
+            if data.isSuccess()
+            {
+                print(data.data)
+            }else{
+                print(data.msg)
+            }
+            
+        }
     }
     
     func initViewController()

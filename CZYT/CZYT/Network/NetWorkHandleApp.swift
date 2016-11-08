@@ -11,14 +11,16 @@ import UIKit
 extension NetWorkHandle
 {
     class NetWorkHandleApp: NSObject {
-        static var Address_GetAppHome = "/apis/rest/VideoappService/getAppIndex?"
-        
-        class RequestGetAppHome : Reflect {
-            
+        static var Address_GetUserActivity = "LeaderActivityList?"
+
+        class RequestLeaderActivity : Reflect
+        {
+            var classify:String?//省级，资阳，成都
+            var offset:String?  //0开始
+            var row_count:String?
         }
-        
-        class func getAppHome(request:RequestGetAppHome?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetAppHome, accessType: HttpRequestType.GET, param: request?.toDict(), complete: finish, useCache: true)
+        class func getLeaderActivity(request:RequestLeaderActivity?, finish:((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetUserActivity, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: true)
         }
     }
 }

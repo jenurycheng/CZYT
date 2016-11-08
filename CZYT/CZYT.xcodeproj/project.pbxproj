@@ -594,6 +594,7 @@
 				TargetAttributes = {
 					C48733FF1DCF093E00C9B0C0 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -824,6 +825,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.chester.CZYT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "./CZYT/CZYT-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -836,6 +838,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.chester.CZYT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "./CZYT/CZYT-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -858,6 +861,7 @@
 				C48734141DCF093E00C9B0C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

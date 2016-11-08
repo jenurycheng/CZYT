@@ -18,21 +18,21 @@ enum HttpRequestType : String{
 
 class HttpResponseData : NSObject
 {
-    var code:Int! = -1
+    var code:String! = "-1"
     var msg:String! = "连接超时"
     var data:AnyObject?
     
-    static var CODE_NETWORK_ERROR = -100
-    static var CODE_SERVER_ERROR = -200
-    static var CODE_NO_DATA = -2
-    static var CODE_DATA_ERROR:Int = -100
-    static var CODE_SUCCESS:Int = 200
+    static var CODE_NETWORK_ERROR = "-100"
+    static var CODE_SESSION_EXPIRE = "-8"
+    static var CODE_SERVER_ERROR = "-9"
+    static var CODE_SUCCESS:String = "0"
 
+    static var KEY_STATUS = "status"
     static var KEY_CODE = "code"
-    static var KEY_MSG = "msg"
+    static var KEY_MSG = "message"
     static var KEY_DATA = "data"
     
-    init(code:Int?, msg:String?, data:AnyObject? = nil)
+    init(code:String?, msg:String?, data:AnyObject? = nil)
     {
         super.init()
         self.code = code
@@ -52,11 +52,8 @@ class HttpResponseData : NSObject
 
 class NetWorkHandle: NSObject {
     
-//    static var ImageServer:String = "http://image.t.xgimi.com"
-//    static var ServerAddress:String = "http://api.t.xgimi.com"
-    
     static var ImageServer:String = "http://image.xgimi.com"
-    static var ServerAddress:String = "http://api.xgimi.com"
+    static var ServerAddress:String = "http://www.yumutech.cn:20080/unity/webservice/ap/"
     
     static var pathNetCache:String! = NSTemporaryDirectory() + "netCache/"
     
@@ -71,19 +68,43 @@ class NetWorkHandle: NSObject {
         return NSURL(string: ImageServer+urlString)!
     }
     
-    class func addCommonParam(inout param:NSMutableDictionary)
+//    class func addCommonParam(inout param:NSMutableDictionary)
+//    {
+//        let date = NSDate()
+//        let time = Int64(date.timeIntervalSince1970*1000)
+//        let t_ = "\(time)"
+//        param.setObject(t_, forKey: "t_")
+//        let time_p = Int((time % 10000) * 3 + 2345)
+//        let p_ = "\(time_p)"
+//        param.setObject(p_, forKey: "p_")
+//        param.setObject("2.0", forKey: "v_")
+//        param.setObject("com.xgimi.assistant", forKey: "i_")
+//        param.setObject("ios", forKey: "d_")
+//        param.setObject("9", forKey: "dv_")
+        
+//        let user = [String:AnyObject]()
+//        user["account"] = "unity"
+//        user["session"] = "1234567890"
+//    }
+    
+    class func getParam(p:[String:AnyObject]?)->NSMutableDictionary
     {
-        let date = NSDate()
-        let time = Int64(date.timeIntervalSince1970*1000)
-        let t_ = "\(time)"
-        param.setObject(t_, forKey: "t_")
-        let time_p = Int((time % 10000) * 3 + 2345)
-        let p_ = "\(time_p)"
-        param.setObject(p_, forKey: "p_")
-        param.setObject("2.0", forKey: "v_")
-        param.setObject("com.xgimi.assistant", forKey: "i_")
-        param.setObject("ios", forKey: "d_")
-        param.setObject("9", forKey: "dv_")
+        let param = NSMutableDictionary()
+        
+        var user = [String:AnyObject]()
+        user["account"] = "unity"
+        user["session"] = "1234567890"
+        
+        let userString = Helper.resultToJsonString(user)
+        param.setObject(userString, forKey: "user")
+        
+        if p != nil
+        {
+            let dataString = Helper.resultToJsonString(p)
+            param.setObject(dataString, forKey: "data")
+        }
+        
+        return param
     }
     
     class func getParamString(param:NSMutableDictionary?)->String
@@ -108,7 +129,7 @@ class NetWorkHandle: NSObject {
         
         func parseSuccess(data:AnyObject)
         {
-            
+            print(data.classForCoder)
             var dic:[String : AnyObject]? = nil
             if data.isKindOfClass(NSData) {
                 dic = try! NSJSONSerialization.JSONObjectWithData(data as! NSData, options: NSJSONReadingOptions.MutableContainers) as? [String : AnyObject]
@@ -116,13 +137,15 @@ class NetWorkHandle: NSObject {
                 dic = data as? [String : AnyObject]
             }
             
-            var code = dic![HttpResponseData.KEY_CODE] as? Int
-            var msg = dic![HttpResponseData.KEY_MSG] as? String
+            var statusDic = dic![HttpResponseData.KEY_STATUS] as? [String : AnyObject]
+            var code = statusDic![HttpResponseData.KEY_CODE] as? String
+            var msg = statusDic![HttpResponseData.KEY_MSG] as? String
+            
             let data = dic![HttpResponseData.KEY_DATA]
             
             if code == nil
             {
-                code = -1
+                code = "-1"
             }
             
             if Helper.isStringEmpty(msg)
@@ -171,43 +194,51 @@ class NetWorkHandle: NSObject {
         }
         
         let manager:AFHTTPSessionManager = AFHTTPSessionManager.managerSwift() as! AFHTTPSessionManager
-        manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
+//        manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
+//        manager.requestSerializer.setValue("text/xml", forHTTPHeaderField: "Accept")
+        manager.responseSerializer = AFXMLParserResponseSerializer()
+        let paramDic:NSMutableDictionary? = self.getParam(param)
         
-        var paramDic:NSMutableDictionary?
-        if param == nil
-        {
-            paramDic = NSMutableDictionary()
-        }else
-        {
-            paramDic = NSMutableDictionary(dictionary: param!)
-        }
-        
-        self.addCommonParam(&paramDic!)
-        
-        let paramString = "?" + self.getParamString(paramDic)
+        let paramString = self.getParamString(paramDic)
         
         CCPrint("\(ServerAddress + url+paramString)")
         
         switch accessType{
         case HttpRequestType.POST:
-            manager.POST(ServerAddress + url, parameters: paramDic, progress: { (progress) in
-                
-                }, success: { (task, result) in
-                    parseSuccess(result!)
-                    if useCache
+            manager.POST(ServerAddress + url, parameters: paramDic, success: { (task, result) in
+                parseSuccess(result!)
+                if useCache
+                {
+                    let data = try? NSJSONSerialization.dataWithJSONObject(result!, options: .PrettyPrinted)
+                    if data != nil
                     {
-                        let data = try? NSJSONSerialization.dataWithJSONObject(result!, options: .PrettyPrinted)
-                        if data != nil
-                        {
-                            //保存历史缓存
-                            NetWorkCache.addCache(url, param: param, data: data)
-                            //保存当天缓存
-                            NetWorkCache.addTodayCache(url, param: param, data: data)
-                        }
+                        //保存历史缓存
+                        NetWorkCache.addCache(url, param: param, data: data)
+                        //保存当天缓存
+                        NetWorkCache.addTodayCache(url, param: param, data: data)
                     }
+                }
                 }, failure: { (task, error) in
                     parseFailure(task, error: error)
             })
+//            manager.POST(ServerAddress + url, parameters: paramDic, progress: { (progress) in
+//                
+//                }, success: { (task, result) in
+//                    parseSuccess(result!)
+//                    if useCache
+//                    {
+//                        let data = try? NSJSONSerialization.dataWithJSONObject(result!, options: .PrettyPrinted)
+//                        if data != nil
+//                        {
+//                            //保存历史缓存
+//                            NetWorkCache.addCache(url, param: param, data: data)
+//                            //保存当天缓存
+//                            NetWorkCache.addTodayCache(url, param: param, data: data)
+//                        }
+//                    }
+//                }, failure: { (task, error) in
+//                    parseFailure(task, error: error)
+//            })
         case HttpRequestType.GET:
             manager.GET(ServerAddress + url, parameters: paramDic, progress: { (progress) in
                 
