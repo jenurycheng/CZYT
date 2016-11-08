@@ -20,7 +20,7 @@ extension NetWorkHandle
             var row_count:String?
         }
         class func getLeaderActivity(request:RequestLeaderActivity?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetUserActivity, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: true)
+            NetWorkHandle.PublicNetWorkAccess(Address_GetUserActivity, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
         }
     }
 }

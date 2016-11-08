@@ -56,7 +56,14 @@ extension HomeViewController : UICollectionViewDelegate
 {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        
+        if indexPath.section == 1 {
+            if indexPath.row == 0
+            {
+                let ac = LeaderActivityViewController()
+                let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
+                nav?.pushViewController(ac, animated: true)
+            }
+        }
     }
     
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {

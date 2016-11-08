@@ -382,6 +382,8 @@ forHTTPHeaderField:(NSString *)field;
  */
 @interface AFJSONRequestSerializer : AFHTTPRequestSerializer
 
+
++ (id)serializer_swift;
 /**
  Options for writing the request JSON data from Foundation objects. For possible values, see the `NSJSONSerialization` documentation section "NSJSONWritingOptions". `0` by default.
  */
