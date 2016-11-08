@@ -28,7 +28,7 @@ class TabBarViewController: UIViewController {
     {
         if viewControllers != nil && viewControllers?.count > index {
             let vc = viewControllers![index]
-            if !self.viewControllers!.contains(vc) {
+            if !self.childViewControllers.contains(vc) {
                 self.addChildViewController(vc)
             }
             let current = self.viewControllers![currentIndex!]

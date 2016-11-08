@@ -18,7 +18,7 @@ class HomeViewController: BasePortraitViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .Vertical
 
-        collectionView = UICollectionView(frame: CGRect(x: 0, y: 64, width: GetSWidth(), height: GetSHeight()-64-49), collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64-49), collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = ThemeManager.current().foregroundColor
