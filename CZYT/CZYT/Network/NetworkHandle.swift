@@ -95,16 +95,17 @@ class NetWorkHandle: NSObject {
         user["account"] = "unity"
         user["session"] = "1234567890"
         
-        let userString = Helper.resultToJsonString(user)
-        param.setObject(userString, forKey: "user")
+        param.setObject(user, forKey: "user")
         
         if p != nil
         {
-            let dataString = Helper.resultToJsonString(p)
-            param.setObject(dataString, forKey: "data")
+            param.setObject(p!, forKey: "data")
         }
         
-        return param
+        let paramString = Helper.resultToJsonString(param)
+        let resultDic = NSMutableDictionary(object: paramString, forKey: "req")
+        
+        return resultDic
     }
     
     class func getParamString(param:NSMutableDictionary?)->String
@@ -218,42 +219,40 @@ class NetWorkHandle: NSObject {
 //                }
 //            }).resume()
             
-            manager.requestSerializer = AFJSONRequestSerializer.serializer_swift() as! AFHTTPRequestSerializer
-            manager.requestSerializer.setValue("", forHTTPHeaderField: "")
-            manager.POST(ServerAddress + url, parameters: paramDic, success: { (task, result) in
-                parseSuccess(result!)
-                if useCache
-                {
-                    let data = try? NSJSONSerialization.dataWithJSONObject(result!, options: .PrettyPrinted)
-                    if data != nil
-                    {
-                        //保存历史缓存
-                        NetWorkCache.addCache(url, param: param, data: data)
-                        //保存当天缓存
-                        NetWorkCache.addTodayCache(url, param: param, data: data)
-                    }
-                }
-                }, failure: { (task, error) in
-                    parseFailure(task, error: error)
-            })
-//            manager.POST(ServerAddress + url, parameters: paramDic, progress: { (progress) in
-//                
-//                }, success: { (task, result) in
-//                    parseSuccess(result!)
-//                    if useCache
+//            manager.POST(ServerAddress + url, parameters: paramDic, success: { (task, result) in
+//                parseSuccess(result!)
+//                if useCache
+//                {
+//                    let data = try? NSJSONSerialization.dataWithJSONObject(result!, options: .PrettyPrinted)
+//                    if data != nil
 //                    {
-//                        let data = try? NSJSONSerialization.dataWithJSONObject(result!, options: .PrettyPrinted)
-//                        if data != nil
-//                        {
-//                            //保存历史缓存
-//                            NetWorkCache.addCache(url, param: param, data: data)
-//                            //保存当天缓存
-//                            NetWorkCache.addTodayCache(url, param: param, data: data)
-//                        }
+//                        //保存历史缓存
+//                        NetWorkCache.addCache(url, param: param, data: data)
+//                        //保存当天缓存
+//                        NetWorkCache.addTodayCache(url, param: param, data: data)
 //                    }
+//                }
 //                }, failure: { (task, error) in
 //                    parseFailure(task, error: error)
 //            })
+            manager.POST(ServerAddress + url, parameters: paramDic, progress: { (progress) in
+                
+                }, success: { (task, result) in
+                    parseSuccess(result!)
+                    if useCache
+                    {
+                        let data = try? NSJSONSerialization.dataWithJSONObject(result!, options: .PrettyPrinted)
+                        if data != nil
+                        {
+                            //保存历史缓存
+                            NetWorkCache.addCache(url, param: param, data: data)
+                            //保存当天缓存
+                            NetWorkCache.addTodayCache(url, param: param, data: data)
+                        }
+                    }
+                }, failure: { (task, error) in
+                    parseFailure(task, error: error)
+            })
 //            let request = AFJSONRequestSerializer.serializer_swift().requestWithMethod("POST", URLString: ServerAddress + url, parameters: paramDic, error: nil)
 //            manager.dataTaskWithRequest(request, completionHandler: { (res, result, error) in
 //                parseSuccess(result!)
