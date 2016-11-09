@@ -1,39 +1,37 @@
 //
-//  BaseNavViewController.swift
+//  WebViewController.swift
 //  CZYT
 //
-//  Created by jerry cheng on 2016/11/6.
+//  Created by jerry cheng on 2016/11/9.
 //  Copyright © 2016年 chester. All rights reserved.
 //
 
 import UIKit
 
-class BaseNavViewController: BaseViewController {
+class WebViewController: BasePortraitViewController {
 
-    var backItemBar:UIBarButtonItem!
-    
+    var url:String?
+    var webView:UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        webView = UIWebView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64))
+        webView.scalesPageToFit = true
+        self.view.addSubview(webView)
+        if url == nil
+        {
+            url = ""
+        }
+        let r = NSURLRequest(URL: NSURL(string: url!)!)
+        webView.loadRequest(r)
         // Do any additional setup after loading the view.
-//        backItemBar =  UIBarButtonItem(image: UIImage(named: "backbar"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(BaseNavViewController.backItemBarClicked(_:)))
-//        self.navigationItem.leftBarButtonItem = backItemBar
-    }
-    
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    func backItemBarClicked(item:UIBarButtonItem){
-        self.navigationController?.popViewControllerAnimated(true)
-    }
     
+
     /*
     // MARK: - Navigation
 

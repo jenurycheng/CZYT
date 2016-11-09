@@ -40,7 +40,7 @@ class MainViewController: BasePortraitViewController {
         self.title = "首页"
         tabBarViewController.showIndex(0)
         
-        self.connectRM()
+//        self.connectRM()
     }
     
     func connectRM()
@@ -76,20 +76,6 @@ class MainViewController: BasePortraitViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let request = NetWorkHandle.NetWorkHandleApp.RequestLeaderActivity()
-        request.classify = "省级"
-        request.offset = "0"
-        request.row_count = "10"
-        NetWorkHandle.NetWorkHandleApp.getLeaderActivity(request) { (data) in
-            if data.isSuccess()
-            {
-                print(data.data)
-            }else{
-                print(data.msg)
-            }
-            
-        }
     }
     
     func initViewController()

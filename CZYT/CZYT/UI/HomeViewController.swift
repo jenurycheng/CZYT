@@ -62,6 +62,26 @@ extension HomeViewController : UICollectionViewDelegate
                 let ac = LeaderActivityViewController()
                 let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
                 nav?.pushViewController(ac, animated: true)
+            }else if indexPath.row == 1
+            {
+                let ac = FileActivityViewController()
+                let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
+                nav?.pushViewController(ac, animated: true)
+            }else if indexPath.row == 2
+            {
+                let ac = WorkStatusActivityViewController()
+                let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
+                nav?.pushViewController(ac, animated: true)
+            }else if indexPath.row == 3
+            {
+                let ac = ProjectWorkActivityViewController()
+                let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
+                nav?.pushViewController(ac, animated: true)
+            }else if indexPath.row == 4
+            {
+                let ac = WebLinkViewController()
+                let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
+                nav?.pushViewController(ac, animated: true)
             }
         }
     }

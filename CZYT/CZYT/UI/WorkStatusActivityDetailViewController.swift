@@ -1,5 +1,5 @@
 //
-//  LeaderActivityDetailViewController.swift
+//  WorkStatusActivityDetailViewController.swift
 //  CZYT
 //
 //  Created by jerry cheng on 2016/11/8.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LeaderActivityDetailViewController: BasePortraitViewController {
+class WorkStatusActivityDetailViewController: BasePortraitViewController {
 
     var id:String = ""
     @IBOutlet weak var titleLabel:UILabel!
@@ -31,8 +31,8 @@ class LeaderActivityDetailViewController: BasePortraitViewController {
         webView.delegate = self
         webView.scalesPageToFit = true
         webView.scrollView.scrollEnabled = false
-        
         self.loadData()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -47,6 +47,7 @@ class LeaderActivityDetailViewController: BasePortraitViewController {
             NetworkErrorView.show(self.view, data: error, callback: {
                 self.loadData()
             })
+            
         }
     }
     
@@ -76,7 +77,7 @@ class LeaderActivityDetailViewController: BasePortraitViewController {
 
 }
 
-extension LeaderActivityDetailViewController : UIWebViewDelegate
+extension WorkStatusActivityDetailViewController : UIWebViewDelegate
 {
     func webViewDidFinishLoad(webView: UIWebView) {
         contentHeight.constant = webView.scrollView.contentSize.height + 70 - 64 < GetSHeight() ? GetSHeight() : webView.scrollView.contentSize.height + 70 - 64

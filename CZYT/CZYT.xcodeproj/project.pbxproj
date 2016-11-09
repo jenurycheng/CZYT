@@ -39,6 +39,23 @@
 		C436438D1DD0C1DF003C91D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C436438C1DD0C1DF003C91D8 /* UIKit.framework */; };
 		C436438F1DD0C1E6003C91D8 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C436438E1DD0C1E6003C91D8 /* Photos.framework */; };
 		C43643931DD0C6C3003C91D8 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43643921DD0C6C3003C91D8 /* ChatListViewController.swift */; };
+		C450C9591DD350600052B18E /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C9581DD350600052B18E /* ActivityModel.swift */; };
+		C450C95C1DD350BB0052B18E /* LeaderActivityDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C95B1DD350BB0052B18E /* LeaderActivityDataSource.swift */; };
+		C450C95F1DD3531D0052B18E /* UIView+HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C95E1DD3531D0052B18E /* UIView+HUD.swift */; };
+		C450C9611DD3549E0052B18E /* UIImageView+GM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C9601DD3549E0052B18E /* UIImageView+GM.swift */; };
+		C450C9631DD35CFC0052B18E /* BaseActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C9621DD35CFC0052B18E /* BaseActivityViewController.swift */; };
+		C450C9661DD360030052B18E /* FileActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C9641DD360030052B18E /* FileActivityDetailViewController.swift */; };
+		C450C9671DD360030052B18E /* FileActivityDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C450C9651DD360030052B18E /* FileActivityDetailViewController.xib */; };
+		C450C9691DD3610B0052B18E /* FileActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C9681DD3610B0052B18E /* FileActivityViewController.swift */; };
+		C450C96C1DD362630052B18E /* WorkStatusActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C96A1DD362630052B18E /* WorkStatusActivityDetailViewController.swift */; };
+		C450C96D1DD362630052B18E /* WorkStatusActivityDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C450C96B1DD362630052B18E /* WorkStatusActivityDetailViewController.xib */; };
+		C450C96F1DD362820052B18E /* WorkStatusActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C96E1DD362820052B18E /* WorkStatusActivityViewController.swift */; };
+		C450C9721DD3720C0052B18E /* ProjectWorkActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C9701DD3720C0052B18E /* ProjectWorkActivityDetailViewController.swift */; };
+		C450C9731DD3720C0052B18E /* ProjectWorkActivityDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C450C9711DD3720C0052B18E /* ProjectWorkActivityDetailViewController.xib */; };
+		C450C9751DD373030052B18E /* ProjectWorkActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C9741DD373030052B18E /* ProjectWorkActivityViewController.swift */; };
+		C450C9771DD376160052B18E /* WebLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C9761DD376160052B18E /* WebLinkViewController.swift */; };
+		C450C9791DD377CB0052B18E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C9781DD377CB0052B18E /* WebViewController.swift */; };
+		C450C97C1DD37D760052B18E /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C97B1DD37D760052B18E /* NetworkErrorView.swift */; };
 		C48734041DCF093E00C9B0C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734031DCF093E00C9B0C0 /* AppDelegate.swift */; };
 		C48734091DCF093E00C9B0C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C48734071DCF093E00C9B0C0 /* Main.storyboard */; };
 		C487340B1DCF093E00C9B0C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C487340A1DCF093E00C9B0C0 /* Assets.xcassets */; };
@@ -157,6 +174,23 @@
 		C436438C1DD0C1DF003C91D8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C436438E1DD0C1E6003C91D8 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		C43643921DD0C6C3003C91D8 /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		C450C9581DD350600052B18E /* ActivityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
+		C450C95B1DD350BB0052B18E /* LeaderActivityDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderActivityDataSource.swift; sourceTree = "<group>"; };
+		C450C95E1DD3531D0052B18E /* UIView+HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+HUD.swift"; sourceTree = "<group>"; };
+		C450C9601DD3549E0052B18E /* UIImageView+GM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+GM.swift"; sourceTree = "<group>"; };
+		C450C9621DD35CFC0052B18E /* BaseActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseActivityViewController.swift; sourceTree = "<group>"; };
+		C450C9641DD360030052B18E /* FileActivityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileActivityDetailViewController.swift; sourceTree = "<group>"; };
+		C450C9651DD360030052B18E /* FileActivityDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileActivityDetailViewController.xib; sourceTree = "<group>"; };
+		C450C9681DD3610B0052B18E /* FileActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileActivityViewController.swift; sourceTree = "<group>"; };
+		C450C96A1DD362630052B18E /* WorkStatusActivityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkStatusActivityDetailViewController.swift; sourceTree = "<group>"; };
+		C450C96B1DD362630052B18E /* WorkStatusActivityDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkStatusActivityDetailViewController.xib; sourceTree = "<group>"; };
+		C450C96E1DD362820052B18E /* WorkStatusActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkStatusActivityViewController.swift; sourceTree = "<group>"; };
+		C450C9701DD3720C0052B18E /* ProjectWorkActivityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectWorkActivityDetailViewController.swift; sourceTree = "<group>"; };
+		C450C9711DD3720C0052B18E /* ProjectWorkActivityDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectWorkActivityDetailViewController.xib; sourceTree = "<group>"; };
+		C450C9741DD373030052B18E /* ProjectWorkActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectWorkActivityViewController.swift; sourceTree = "<group>"; };
+		C450C9761DD376160052B18E /* WebLinkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebLinkViewController.swift; sourceTree = "<group>"; };
+		C450C9781DD377CB0052B18E /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		C450C97B1DD37D760052B18E /* NetworkErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
 		C48734001DCF093E00C9B0C0 /* CZYT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CZYT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48734031DCF093E00C9B0C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C48734081DCF093E00C9B0C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -378,6 +412,22 @@
 			name = Chat;
 			sourceTree = "<group>";
 		};
+		C450C9571DD3503A0052B18E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C450C9581DD350600052B18E /* ActivityModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C450C95A1DD350A60052B18E /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				C450C95B1DD350BB0052B18E /* LeaderActivityDataSource.swift */,
+			);
+			name = DataSource;
+			sourceTree = "<group>";
+		};
 		C48733F71DCF093E00C9B0C0 = {
 			isa = PBXGroup;
 			children = (
@@ -442,6 +492,8 @@
 				C48734CA1DCF14BF00C9B0C0 /* CommonFun.swift */,
 				C48734CB1DCF14BF00C9B0C0 /* Consts.swift */,
 				C48734C01DCF0CD700C9B0C0 /* Helper.swift */,
+				C450C95E1DD3531D0052B18E /* UIView+HUD.swift */,
+				C450C9601DD3549E0052B18E /* UIImageView+GM.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -697,6 +749,7 @@
 				C48734E81DCF307600C9B0C0 /* CCPageView.swift */,
 				C48734E41DCF240D00C9B0C0 /* TabBar.swift */,
 				C48734E51DCF240D00C9B0C0 /* TabBarViewController.swift */,
+				C450C97B1DD37D760052B18E /* NetworkErrorView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -723,11 +776,25 @@
 		C491E9681DD2177D005586C7 /* LeaderActivity */ = {
 			isa = PBXGroup;
 			children = (
+				C450C95A1DD350A60052B18E /* DataSource */,
+				C450C9571DD3503A0052B18E /* Model */,
+				C450C9621DD35CFC0052B18E /* BaseActivityViewController.swift */,
 				C491E9691DD21797005586C7 /* LeaderActivityViewController.swift */,
+				C450C9681DD3610B0052B18E /* FileActivityViewController.swift */,
+				C450C96E1DD362820052B18E /* WorkStatusActivityViewController.swift */,
+				C450C9741DD373030052B18E /* ProjectWorkActivityViewController.swift */,
 				C491E96B1DD217BF005586C7 /* LeaderActivityCell.swift */,
 				C491E96C1DD217BF005586C7 /* LeaderActivityCell.xib */,
 				C491E96F1DD22137005586C7 /* LeaderActivityDetailViewController.swift */,
 				C491E9701DD22137005586C7 /* LeaderActivityDetailViewController.xib */,
+				C450C9641DD360030052B18E /* FileActivityDetailViewController.swift */,
+				C450C9651DD360030052B18E /* FileActivityDetailViewController.xib */,
+				C450C96A1DD362630052B18E /* WorkStatusActivityDetailViewController.swift */,
+				C450C96B1DD362630052B18E /* WorkStatusActivityDetailViewController.xib */,
+				C450C9701DD3720C0052B18E /* ProjectWorkActivityDetailViewController.swift */,
+				C450C9711DD3720C0052B18E /* ProjectWorkActivityDetailViewController.xib */,
+				C450C9761DD376160052B18E /* WebLinkViewController.swift */,
+				C450C9781DD377CB0052B18E /* WebViewController.swift */,
 			);
 			name = LeaderActivity;
 			sourceTree = "<group>";
@@ -793,15 +860,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				C487340E1DCF093E00C9B0C0 /* LaunchScreen.storyboard in Resources */,
+				C450C96D1DD362630052B18E /* WorkStatusActivityDetailViewController.xib in Resources */,
 				C436435B1DD0C118003C91D8 /* RongCloudKit.strings in Resources */,
 				C487340B1DCF093E00C9B0C0 /* Assets.xcassets in Resources */,
 				C48734BC1DCF0A4900C9B0C0 /* MBProgressHUD.bundle in Resources */,
+				C450C9731DD3720C0052B18E /* ProjectWorkActivityDetailViewController.xib in Resources */,
 				C487349B1DCF0A2C00C9B0C0 /* MJRefresh.bundle in Resources */,
 				C436435A1DD0C118003C91D8 /* Emoji.plist in Resources */,
 				C436435F1DD0C118003C91D8 /* RongCloud.bundle in Resources */,
 				C436435D1DD0C118003C91D8 /* RCConfig.plist in Resources */,
 				C48734F31DCF3A2500C9B0C0 /* HomeCell.xib in Resources */,
 				C491E9721DD22137005586C7 /* LeaderActivityDetailViewController.xib in Resources */,
+				C450C9671DD360030052B18E /* FileActivityDetailViewController.xib in Resources */,
 				C491E96E1DD217BF005586C7 /* LeaderActivityCell.xib in Resources */,
 				C436435E1DD0C118003C91D8 /* release_notes_ios.txt in Resources */,
 				C48734091DCF093E00C9B0C0 /* Main.storyboard in Resources */,
@@ -819,12 +889,18 @@
 				C48734951DCF0A2C00C9B0C0 /* MJRefreshBackGifFooter.m in Sources */,
 				C48734541DCF0A1F00C9B0C0 /* SDWebImageDecoder.m in Sources */,
 				C487345E1DCF0A1F00C9B0C0 /* UIImageView+WebCache.m in Sources */,
+				C450C9771DD376160052B18E /* WebLinkViewController.swift in Sources */,
+				C450C9661DD360030052B18E /* FileActivityDetailViewController.swift in Sources */,
 				C487349A1DCF0A2C00C9B0C0 /* MJRefreshStateHeader.m in Sources */,
+				C450C97C1DD37D760052B18E /* NetworkErrorView.swift in Sources */,
 				C48734EE1DCF363600C9B0C0 /* HomeViewController.swift in Sources */,
+				C450C96C1DD362630052B18E /* WorkStatusActivityDetailViewController.swift in Sources */,
 				C48734C11DCF0CD700C9B0C0 /* Helper.swift in Sources */,
 				C48734271DCF09B400C9B0C0 /* AFHTTPSessionManager.m in Sources */,
 				C487348F1DCF0A2C00C9B0C0 /* MJRefreshComponent.m in Sources */,
 				C48734BB1DCF0A4900C9B0C0 /* MBProgressHUD+Add.m in Sources */,
+				C450C9751DD373030052B18E /* ProjectWorkActivityViewController.swift in Sources */,
+				C450C95F1DD3531D0052B18E /* UIView+HUD.swift in Sources */,
 				C48734561DCF0A1F00C9B0C0 /* SDWebImageDownloaderOperation.m in Sources */,
 				C48734D11DCF1E5B00C9B0C0 /* NetworkReachabilityManager.swift in Sources */,
 				C48734571DCF0A1F00C9B0C0 /* SDWebImageManager.m in Sources */,
@@ -833,6 +909,7 @@
 				C487348E1DCF0A2C00C9B0C0 /* MJRefreshBackFooter.m in Sources */,
 				C48734B41DCF0A3A00C9B0C0 /* Reflect.swift in Sources */,
 				C487342C1DCF09B400C9B0C0 /* AFURLSessionManager.m in Sources */,
+				C450C9791DD377CB0052B18E /* WebViewController.swift in Sources */,
 				C48734291DCF09B400C9B0C0 /* AFSecurityPolicy.m in Sources */,
 				C48734AD1DCF0A3A00C9B0C0 /* Reflect+ArcFile.swift in Sources */,
 				C48734E91DCF307600C9B0C0 /* CCPageView.swift in Sources */,
@@ -843,6 +920,7 @@
 				C48734931DCF0A2C00C9B0C0 /* MJRefreshAutoNormalFooter.m in Sources */,
 				C48734961DCF0A2C00C9B0C0 /* MJRefreshBackNormalFooter.m in Sources */,
 				C48734BD1DCF0A4900C9B0C0 /* MBProgressHUD.m in Sources */,
+				C450C9691DD3610B0052B18E /* FileActivityViewController.swift in Sources */,
 				C48734CD1DCF14BF00C9B0C0 /* Consts.swift in Sources */,
 				C48734581DCF0A1F00C9B0C0 /* SDWebImagePrefetcher.m in Sources */,
 				C48734EB1DCF355B00C9B0C0 /* MainViewController.swift in Sources */,
@@ -855,26 +933,31 @@
 				C48734DF1DCF224000C9B0C0 /* BaseViewController.swift in Sources */,
 				C491E9711DD22137005586C7 /* LeaderActivityDetailViewController.swift in Sources */,
 				C48734DE1DCF224000C9B0C0 /* BasePortraitViewController.swift in Sources */,
+				C450C95C1DD350BB0052B18E /* LeaderActivityDataSource.swift in Sources */,
 				C487345B1DCF0A1F00C9B0C0 /* UIImage+MultiFormat.m in Sources */,
 				C487342A1DCF09B400C9B0C0 /* AFURLRequestSerialization.m in Sources */,
 				C487349C1DCF0A2C00C9B0C0 /* MJRefreshConst.m in Sources */,
 				C43643931DD0C6C3003C91D8 /* ChatListViewController.swift in Sources */,
 				C48734DC1DCF224000C9B0C0 /* BaseNavViewController.swift in Sources */,
+				C450C9721DD3720C0052B18E /* ProjectWorkActivityDetailViewController.swift in Sources */,
 				C48734B01DCF0A3A00C9B0C0 /* Reflect+Class.swift in Sources */,
 				C48734DA1DCF224000C9B0C0 /* BaseNavHiddenPortraitViewController.swift in Sources */,
 				C48734B31DCF0A3A00C9B0C0 /* Reflect+Type.swift in Sources */,
 				C48734281DCF09B400C9B0C0 /* AFNetworkReachabilityManager.m in Sources */,
 				C48734CF1DCF176C00C9B0C0 /* NetWorkHandleApp.swift in Sources */,
+				C450C9631DD35CFC0052B18E /* BaseActivityViewController.swift in Sources */,
 				C48734DD1DCF224000C9B0C0 /* BaseOrientationNavViewController.swift in Sources */,
 				C48734C61DCF0DA900C9B0C0 /* Theme.swift in Sources */,
 				C48734591DCF0A1F00C9B0C0 /* UIButton+WebCache.m in Sources */,
 				C48734B11DCF0A3A00C9B0C0 /* Reflect+Other.swift in Sources */,
 				C48734F21DCF3A2500C9B0C0 /* HomeCell.swift in Sources */,
 				C48734521DCF0A1F00C9B0C0 /* SDImageCache.m in Sources */,
+				C450C9591DD350600052B18E /* ActivityModel.swift in Sources */,
 				C491E96D1DD217BF005586C7 /* LeaderActivityCell.swift in Sources */,
 				C487342B1DCF09B400C9B0C0 /* AFURLResponseSerialization.m in Sources */,
 				C48734901DCF0A2C00C9B0C0 /* MJRefreshFooter.m in Sources */,
 				C48734AE1DCF0A3A00C9B0C0 /* Reflect+Parse.swift in Sources */,
+				C450C9611DD3549E0052B18E /* UIImageView+GM.swift in Sources */,
 				C487349E1DCF0A2C00C9B0C0 /* UIScrollView+MJRefresh.m in Sources */,
 				C48734041DCF093E00C9B0C0 /* AppDelegate.swift in Sources */,
 				C487342F1DCF09CC00C9B0C0 /* NetworkHandle.swift in Sources */,
@@ -886,6 +969,7 @@
 				C48734941DCF0A2C00C9B0C0 /* MJRefreshAutoStateFooter.m in Sources */,
 				C48734511DCF0A1F00C9B0C0 /* NSData+ImageContentType.m in Sources */,
 				C48734921DCF0A2C00C9B0C0 /* MJRefreshAutoGifFooter.m in Sources */,
+				C450C96F1DD362820052B18E /* WorkStatusActivityViewController.swift in Sources */,
 				C48734C91DCF13A600C9B0C0 /* NetWorkCache.swift in Sources */,
 				C487345C1DCF0A1F00C9B0C0 /* UIImage+WebP.m in Sources */,
 				C48734DB1DCF224000C9B0C0 /* BaseNavHiddenViewController.swift in Sources */,

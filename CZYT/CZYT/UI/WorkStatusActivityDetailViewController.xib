@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LeaderActivityDetailViewController" customModule="CZYT" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WorkStatusActivityDetailViewController" customModule="CZYT" customModuleProvider="target">
             <connections>
                 <outlet property="contentHeight" destination="mB0-aM-TNr" id="AKt-dv-Wyw"/>
                 <outlet property="contentWidth" destination="MaA-Kf-h2R" id="gDH-PV-rcX"/>

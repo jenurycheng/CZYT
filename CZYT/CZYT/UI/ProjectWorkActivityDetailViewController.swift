@@ -1,5 +1,5 @@
 //
-//  LeaderActivityDetailViewController.swift
+//  ProjectWorkActivityDetailViewController.swift
 //  CZYT
 //
 //  Created by jerry cheng on 2016/11/8.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LeaderActivityDetailViewController: BasePortraitViewController {
+class ProjectWorkActivityDetailViewController: BasePortraitViewController {
 
     var id:String = ""
     @IBOutlet weak var titleLabel:UILabel!
@@ -39,23 +39,23 @@ class LeaderActivityDetailViewController: BasePortraitViewController {
     func loadData()
     {
         self.view.showHud()
-        dataSource.getLeaderActivityDetail(id, success: { (result) in
+        dataSource.getProjectWorkActivityDetail(id, success: { (result) in
             self.updateView()
             self.view.dismiss()
         }) { (error) in
             self.view.dismiss()
             NetworkErrorView.show(self.view, data: error, callback: {
-                self.loadData()
+                
             })
         }
     }
     
     func updateView()
     {
-        titleLabel.text = dataSource.leaderActivityDetail?.title
-        sourceLabel.text = dataSource.leaderActivityDetail?.original
-        timeLabel.text = dataSource.leaderActivityDetail?.publish_date
-        webView.loadHTMLString(dataSource.leaderActivityDetail!.content, baseURL: nil)
+        titleLabel.text = dataSource.projectWorkActivityDetail?.title
+        sourceLabel.text = dataSource.projectWorkActivityDetail?.original
+        timeLabel.text = dataSource.projectWorkActivityDetail?.publish_date
+        webView.loadHTMLString(dataSource.projectWorkActivityDetail!.content, baseURL: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,7 +76,7 @@ class LeaderActivityDetailViewController: BasePortraitViewController {
 
 }
 
-extension LeaderActivityDetailViewController : UIWebViewDelegate
+extension ProjectWorkActivityDetailViewController : UIWebViewDelegate
 {
     func webViewDidFinishLoad(webView: UIWebView) {
         contentHeight.constant = webView.scrollView.contentSize.height + 70 - 64 < GetSHeight() ? GetSHeight() : webView.scrollView.contentSize.height + 70 - 64

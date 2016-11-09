@@ -52,7 +52,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-11-08 11:27" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dyo-RZ-fmJ">
-                        <rect key="frame" x="192" y="119.5" width="150" height="20"/>
+                        <rect key="frame" x="192" y="119" width="150" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="150" id="wlK-2t-z5K"/>
                             <constraint firstAttribute="height" constant="20" id="yac-rR-F9E"/>
@@ -67,6 +67,13 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TLf-0H-LEX">
+                        <rect key="frame" x="0.0" y="148.5" width="350" height="1"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="itr-Ls-CZv"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="76J-bw-uNM" firstAttribute="bottom" secondItem="7M0-pV-65q" secondAttribute="bottom" id="3ZO-ft-BHp"/>
@@ -75,12 +82,15 @@
                     <constraint firstItem="iYg-lW-MxT" firstAttribute="leading" secondItem="OzR-0S-2CV" secondAttribute="trailing" id="Hck-2e-IMg"/>
                     <constraint firstItem="76J-bw-uNM" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="8" id="IUQ-cR-Qbs"/>
                     <constraint firstItem="Dyo-RZ-fmJ" firstAttribute="centerY" secondItem="OzR-0S-2CV" secondAttribute="centerY" id="KAE-5H-Hes"/>
+                    <constraint firstAttribute="bottom" secondItem="TLf-0H-LEX" secondAttribute="bottom" id="SJ1-YN-s25"/>
                     <constraint firstItem="7M0-pV-65q" firstAttribute="top" secondItem="HZA-Eo-Gff" secondAttribute="bottom" constant="5" id="Sfa-aW-uev"/>
+                    <constraint firstAttribute="trailing" secondItem="TLf-0H-LEX" secondAttribute="trailing" id="Tjh-51-VWJ"/>
                     <constraint firstItem="7M0-pV-65q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Umt-eU-BWD"/>
                     <constraint firstItem="iYg-lW-MxT" firstAttribute="centerY" secondItem="OzR-0S-2CV" secondAttribute="centerY" id="V3h-Fn-EHc"/>
                     <constraint firstItem="HZA-Eo-Gff" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="VNU-Qq-bYh"/>
                     <constraint firstAttribute="trailing" secondItem="HZA-Eo-Gff" secondAttribute="trailing" id="Wh1-Fq-HRe"/>
                     <constraint firstAttribute="trailing" secondItem="Dyo-RZ-fmJ" secondAttribute="trailing" constant="8" id="kbl-Ik-lqz"/>
+                    <constraint firstItem="TLf-0H-LEX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="lQu-lA-B3M"/>
                     <constraint firstItem="OzR-0S-2CV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="nnQ-Un-y2a"/>
                     <constraint firstItem="76J-bw-uNM" firstAttribute="leading" secondItem="7M0-pV-65q" secondAttribute="trailing" constant="8" id="nsp-Kn-Jh6"/>
                     <constraint firstItem="OzR-0S-2CV" firstAttribute="top" secondItem="7M0-pV-65q" secondAttribute="bottom" constant="5" id="sLO-vC-NLT"/>
@@ -93,7 +103,7 @@
                 <outlet property="timeLabel" destination="Dyo-RZ-fmJ" id="ufo-XE-VR7"/>
                 <outlet property="titleLabel" destination="HZA-Eo-Gff" id="T7f-tW-jM6"/>
             </connections>
-            <point key="canvasLocation" x="402" y="219"/>
+            <point key="canvasLocation" x="382" y="205"/>
         </tableViewCell>
     </objects>
     <resources>

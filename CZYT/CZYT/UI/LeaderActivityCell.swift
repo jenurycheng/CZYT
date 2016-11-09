@@ -20,8 +20,18 @@ class LeaderActivityCell: UITableViewCell {
         return 150
     }
     
+    func update(leader:LeaderActivity)
+    {
+        titleLabel.text = leader.title
+        posterImageView.gm_setImageWithUrlString(leader.logo_path, title: leader.title, completedBlock: nil)
+        sourceLabel.text = leader.original
+        detailLabel.text = leader.summary
+        timeLabel.text = leader.publish_date
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = .None
         // Initialization code
     }
 

@@ -28,10 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         let nav = self.window?.rootViewController as! UINavigationController
         nav.navigationBar.barTintColor = ThemeManager.current().mainColor
-        nav.navigationBar.tintColor = Helper.parseColor(0xa9a9adff)
+        nav.navigationBar.tintColor = ThemeManager.current().whiteFontColor
         nav.navigationBar.translucent = false
         var dic = Dictionary<String, AnyObject>()
-        dic.updateValue(ThemeManager.current().navTitleColor, forKey: NSForegroundColorAttributeName)
+        dic.updateValue(ThemeManager.current().whiteFontColor, forKey: NSForegroundColorAttributeName)
         nav.navigationBar.titleTextAttributes = dic
     }
 

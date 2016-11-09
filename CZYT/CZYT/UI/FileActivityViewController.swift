@@ -1,14 +1,14 @@
 //
-//  LeaderActivityViewController.swift
+//  FileActivityViewController.swift
 //  CZYT
 //
-//  Created by jerry cheng on 2016/11/8.
+//  Created by jerry cheng on 2016/11/9.
 //  Copyright © 2016年 chester. All rights reserved.
 //
 
 import UIKit
 
-class LeaderActivityViewController: BaseActivityViewController {
+class FileActivityViewController: BaseActivityViewController {
 
     var lDataSource = LeaderActivityDataSource()
     
@@ -22,25 +22,24 @@ class LeaderActivityViewController: BaseActivityViewController {
     override func loadData()
     {
         self.view.showHud()
-        lDataSource.getLeaderActivity(true, success: { (result) in
-            self.dataSource = self.lDataSource.leaderActivity
+        lDataSource.getFileActivity(true, success: { (result) in
+            self.dataSource = self.lDataSource.fileActivity
             self.tableView.mj_header.endRefreshing()
             self.tableView.reloadData()
             self.view.dismiss()
-            }) { (error) in
-                self.tableView.mj_header.endRefreshing()
-                self.view.dismiss()
-                
-                NetworkErrorView.show(self.view, data: error, callback: { 
-                    self.loadData()
-                })
+        }) { (error) in
+            self.tableView.mj_header.endRefreshing()
+            self.view.dismiss()
+            NetworkErrorView.show(self.view, data: error, callback: {
+                self.loadData()
+            })
         }
     }
     
     override func loadMore()
     {
         lDataSource.getLeaderActivity(false, success: { (result) in
-            self.dataSource = self.lDataSource.leaderActivity
+            self.dataSource = self.lDataSource.fileActivity
             self.tableView.mj_footer.endRefreshing()
             self.tableView.reloadData()
             self.view.dismiss()
@@ -49,21 +48,29 @@ class LeaderActivityViewController: BaseActivityViewController {
             self.view.dismiss()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let detail = LeaderActivityDetailViewController(nibName: "LeaderActivityDetailViewController", bundle: nil)
-        detail.id = lDataSource.leaderActivity[indexPath.row].id!
+        let detail = FileActivityDetailViewController(nibName: "FileActivityDetailViewController", bundle: nil)
+        detail.id = lDataSource.fileActivity[indexPath.row].id!
         self.navigationController?.pushViewController(detail, animated: true)
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("LeaderActivityCell") as! LeaderActivityCell
-        cell.update(lDataSource.leaderActivity[indexPath.row])
-        return cell
+    
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
+    */
+
 }

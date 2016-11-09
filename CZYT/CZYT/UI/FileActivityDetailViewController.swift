@@ -1,5 +1,5 @@
 //
-//  LeaderActivityDetailViewController.swift
+//  FileActivityDetailViewController.swift
 //  CZYT
 //
 //  Created by jerry cheng on 2016/11/8.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LeaderActivityDetailViewController: BasePortraitViewController {
+class FileActivityDetailViewController: BasePortraitViewController {
 
     var id:String = ""
     @IBOutlet weak var titleLabel:UILabel!
@@ -33,13 +33,14 @@ class LeaderActivityDetailViewController: BasePortraitViewController {
         webView.scrollView.scrollEnabled = false
         
         self.loadData()
+        
         // Do any additional setup after loading the view.
     }
     
     func loadData()
     {
         self.view.showHud()
-        dataSource.getLeaderActivityDetail(id, success: { (result) in
+        dataSource.getFileActivityDetail(id, success: { (result) in
             self.updateView()
             self.view.dismiss()
         }) { (error) in
@@ -52,10 +53,10 @@ class LeaderActivityDetailViewController: BasePortraitViewController {
     
     func updateView()
     {
-        titleLabel.text = dataSource.leaderActivityDetail?.title
-        sourceLabel.text = dataSource.leaderActivityDetail?.original
-        timeLabel.text = dataSource.leaderActivityDetail?.publish_date
-        webView.loadHTMLString(dataSource.leaderActivityDetail!.content, baseURL: nil)
+        titleLabel.text = dataSource.fileActivityDetail?.title
+        sourceLabel.text = dataSource.fileActivityDetail?.original
+        timeLabel.text = dataSource.fileActivityDetail?.publish_date
+        webView.loadHTMLString(dataSource.fileActivityDetail!.content, baseURL: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,7 +77,7 @@ class LeaderActivityDetailViewController: BasePortraitViewController {
 
 }
 
-extension LeaderActivityDetailViewController : UIWebViewDelegate
+extension FileActivityDetailViewController : UIWebViewDelegate
 {
     func webViewDidFinishLoad(webView: UIWebView) {
         contentHeight.constant = webView.scrollView.contentSize.height + 70 - 64 < GetSHeight() ? GetSHeight() : webView.scrollView.contentSize.height + 70 - 64
