@@ -29,8 +29,8 @@ class MainViewController: BasePortraitViewController {
         tabBarViewController = TabBarViewController()
         tabBarViewController.viewControllers = [homeViewController, doneViewController,
                                                 chatViewController, userViewController]
-        self.view.addSubview(tabBarViewController.view)
         self.addChildViewController(tabBarViewController)
+        self.view.addSubview(tabBarViewController.view)
         tabBarViewController.view.frame = CGRectMake(0, 0, GetSWidth(), GetSHeight()-49)
         
         tabBar = TabBar(frame: CGRectMake(0, GetSHeight() - 49 - 64, GetSWidth(), 49))

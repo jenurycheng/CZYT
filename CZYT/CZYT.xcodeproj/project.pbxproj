@@ -116,6 +116,11 @@
 		C48734EE1DCF363600C9B0C0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734ED1DCF363600C9B0C0 /* HomeViewController.swift */; };
 		C48734F21DCF3A2500C9B0C0 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734F01DCF3A2500C9B0C0 /* HomeCell.swift */; };
 		C48734F31DCF3A2500C9B0C0 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C48734F11DCF3A2500C9B0C0 /* HomeCell.xib */; };
+		C491E96A1DD21797005586C7 /* LeaderActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C491E9691DD21797005586C7 /* LeaderActivityViewController.swift */; };
+		C491E96D1DD217BF005586C7 /* LeaderActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C491E96B1DD217BF005586C7 /* LeaderActivityCell.swift */; };
+		C491E96E1DD217BF005586C7 /* LeaderActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C491E96C1DD217BF005586C7 /* LeaderActivityCell.xib */; };
+		C491E9711DD22137005586C7 /* LeaderActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C491E96F1DD22137005586C7 /* LeaderActivityDetailViewController.swift */; };
+		C491E9721DD22137005586C7 /* LeaderActivityDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C491E9701DD22137005586C7 /* LeaderActivityDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -276,6 +281,11 @@
 		C48734ED1DCF363600C9B0C0 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C48734F01DCF3A2500C9B0C0 /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		C48734F11DCF3A2500C9B0C0 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
+		C491E9691DD21797005586C7 /* LeaderActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderActivityViewController.swift; sourceTree = "<group>"; };
+		C491E96B1DD217BF005586C7 /* LeaderActivityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderActivityCell.swift; sourceTree = "<group>"; };
+		C491E96C1DD217BF005586C7 /* LeaderActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeaderActivityCell.xib; sourceTree = "<group>"; };
+		C491E96F1DD22137005586C7 /* LeaderActivityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderActivityDetailViewController.swift; sourceTree = "<group>"; };
+		C491E9701DD22137005586C7 /* LeaderActivityDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeaderActivityDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -694,6 +704,7 @@
 		C48734EC1DCF35E100C9B0C0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C491E9681DD2177D005586C7 /* LeaderActivity */,
 				C48734EF1DCF39F900C9B0C0 /* Cell */,
 				C48734ED1DCF363600C9B0C0 /* HomeViewController.swift */,
 			);
@@ -707,6 +718,18 @@
 				C48734F11DCF3A2500C9B0C0 /* HomeCell.xib */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		C491E9681DD2177D005586C7 /* LeaderActivity */ = {
+			isa = PBXGroup;
+			children = (
+				C491E9691DD21797005586C7 /* LeaderActivityViewController.swift */,
+				C491E96B1DD217BF005586C7 /* LeaderActivityCell.swift */,
+				C491E96C1DD217BF005586C7 /* LeaderActivityCell.xib */,
+				C491E96F1DD22137005586C7 /* LeaderActivityDetailViewController.swift */,
+				C491E9701DD22137005586C7 /* LeaderActivityDetailViewController.xib */,
+			);
+			name = LeaderActivity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -778,6 +801,8 @@
 				C436435F1DD0C118003C91D8 /* RongCloud.bundle in Resources */,
 				C436435D1DD0C118003C91D8 /* RCConfig.plist in Resources */,
 				C48734F31DCF3A2500C9B0C0 /* HomeCell.xib in Resources */,
+				C491E9721DD22137005586C7 /* LeaderActivityDetailViewController.xib in Resources */,
+				C491E96E1DD217BF005586C7 /* LeaderActivityCell.xib in Resources */,
 				C436435E1DD0C118003C91D8 /* release_notes_ios.txt in Resources */,
 				C48734091DCF093E00C9B0C0 /* Main.storyboard in Resources */,
 			);
@@ -828,6 +853,7 @@
 				C487345F1DCF0A1F00C9B0C0 /* UIView+WebCacheOperation.m in Sources */,
 				C48734AF1DCF0A3A00C9B0C0 /* Reflect+Convert.swift in Sources */,
 				C48734DF1DCF224000C9B0C0 /* BaseViewController.swift in Sources */,
+				C491E9711DD22137005586C7 /* LeaderActivityDetailViewController.swift in Sources */,
 				C48734DE1DCF224000C9B0C0 /* BasePortraitViewController.swift in Sources */,
 				C487345B1DCF0A1F00C9B0C0 /* UIImage+MultiFormat.m in Sources */,
 				C487342A1DCF09B400C9B0C0 /* AFURLRequestSerialization.m in Sources */,
@@ -845,6 +871,7 @@
 				C48734B11DCF0A3A00C9B0C0 /* Reflect+Other.swift in Sources */,
 				C48734F21DCF3A2500C9B0C0 /* HomeCell.swift in Sources */,
 				C48734521DCF0A1F00C9B0C0 /* SDImageCache.m in Sources */,
+				C491E96D1DD217BF005586C7 /* LeaderActivityCell.swift in Sources */,
 				C487342B1DCF09B400C9B0C0 /* AFURLResponseSerialization.m in Sources */,
 				C48734901DCF0A2C00C9B0C0 /* MJRefreshFooter.m in Sources */,
 				C48734AE1DCF0A3A00C9B0C0 /* Reflect+Parse.swift in Sources */,
@@ -862,6 +889,7 @@
 				C48734C91DCF13A600C9B0C0 /* NetWorkCache.swift in Sources */,
 				C487345C1DCF0A1F00C9B0C0 /* UIImage+WebP.m in Sources */,
 				C48734DB1DCF224000C9B0C0 /* BaseNavHiddenViewController.swift in Sources */,
+				C491E96A1DD21797005586C7 /* LeaderActivityViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -994,7 +1022,7 @@
 					"$(PROJECT_DIR)/CZYT/Depends/Rong_Cloud_iOS_IMKit_SDK_v2_7_3_stable",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.chester.CZYT;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.yumutech.unity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "./CZYT/CZYT-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
@@ -1016,7 +1044,7 @@
 					"$(PROJECT_DIR)/CZYT/Depends/Rong_Cloud_iOS_IMKit_SDK_v2_7_3_stable",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.chester.CZYT;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.yumutech.unity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "./CZYT/CZYT-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;

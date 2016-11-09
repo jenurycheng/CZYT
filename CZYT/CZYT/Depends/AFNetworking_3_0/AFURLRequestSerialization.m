@@ -1203,6 +1203,10 @@ typedef enum {
     return [self serializerWithWritingOptions:(NSJSONWritingOptions)0];
 }
 
++ (id)serializer_swift {
+    return [self serializerWithWritingOptions:(NSJSONWritingOptions)0];
+}
+
 + (instancetype)serializerWithWritingOptions:(NSJSONWritingOptions)writingOptions
 {
     AFJSONRequestSerializer *serializer = [[self alloc] init];

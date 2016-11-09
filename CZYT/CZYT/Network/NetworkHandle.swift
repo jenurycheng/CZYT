@@ -136,7 +136,7 @@ class NetWorkHandle: NSObject {
             }else{
                 dic = data as? [String : AnyObject]
             }
-            
+            print(dic)
             var statusDic = dic![HttpResponseData.KEY_STATUS] as? [String : AnyObject]
             var code = statusDic![HttpResponseData.KEY_CODE] as? String
             var msg = statusDic![HttpResponseData.KEY_MSG] as? String
@@ -194,8 +194,6 @@ class NetWorkHandle: NSObject {
         }
         
         let manager:AFHTTPSessionManager = AFHTTPSessionManager.managerSwift() as! AFHTTPSessionManager
-        manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
-//        manager.requestSerializer.setValue("text/xml", forHTTPHeaderField: "Accept")
         let paramDic:NSMutableDictionary? = self.getParam(param)
         
         let paramString = self.getParamString(paramDic)
@@ -204,6 +202,24 @@ class NetWorkHandle: NSObject {
         
         switch accessType{
         case HttpRequestType.POST:
+            
+//            let data = try! NSJSONSerialization.dataWithJSONObject(paramDic!, options: .PrettyPrinted)
+//            let req = AFJSONRequestSerializer.serializer_swift().requestWithMethod("POST", URLString: ServerAddress + url, parameters: nil, error: nil)
+//            req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//            req.setValue("application/json", forHTTPHeaderField: "Accept")
+//            req.HTTPBody = data
+//            
+//            manager.dataTaskWithRequest(req, completionHandler: { (resp, result, error) in
+//                if error == nil
+//                {
+//                    parseSuccess(result!)
+//                }else{
+//                    parseFailure(nil, error: error!)
+//                }
+//            }).resume()
+            
+            manager.requestSerializer = AFJSONRequestSerializer.serializer_swift() as! AFHTTPRequestSerializer
+            manager.requestSerializer.setValue("", forHTTPHeaderField: "")
             manager.POST(ServerAddress + url, parameters: paramDic, success: { (task, result) in
                 parseSuccess(result!)
                 if useCache
@@ -235,6 +251,18 @@ class NetWorkHandle: NSObject {
 //                            NetWorkCache.addTodayCache(url, param: param, data: data)
 //                        }
 //                    }
+//                }, failure: { (task, error) in
+//                    parseFailure(task, error: error)
+//            })
+//            let request = AFJSONRequestSerializer.serializer_swift().requestWithMethod("POST", URLString: ServerAddress + url, parameters: paramDic, error: nil)
+//            manager.dataTaskWithRequest(request, completionHandler: { (res, result, error) in
+//                parseSuccess(result!)
+//            })
+//            manager.POST(ServerAddress + url, parameters: nil, constructingBodyWithBlock: { (data) in
+//                let da = Helper.resultToJsonString(paramDic).dataUsingEncoding(NSUTF8StringEncoding)
+//                data.appendPartWithFormData(da!, name: "")
+//                }, success: { (task, result) in
+//                    parseSuccess(result!)
 //                }, failure: { (task, error) in
 //                    parseFailure(task, error: error)
 //            })
