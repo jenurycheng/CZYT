@@ -19,7 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.initNavigationBar()
         
-        RCIM.sharedRCIM().initWithAppKey("25wehl3uwhwew")
+        
+        RCIM.sharedRCIM().initWithAppKey("m7ua80gbmyydm")//server:4yqYEo2DDgWPx
+        //RCIM.sharedRCIM().initWithAppKey("25wehl3uwhwew")
+        
         
         return true
     }
