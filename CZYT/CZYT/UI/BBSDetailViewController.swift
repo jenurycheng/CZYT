@@ -34,6 +34,7 @@ class BBSDetailViewController: BasePortraitViewController {
     {
         let c = BBSCommentViewController()
         c.isComment = true
+        c.id = self.id
         self.navigationController?.pushViewController(c, animated: true)
     }
     
@@ -74,7 +75,7 @@ class BBSDetailViewController: BasePortraitViewController {
         sourceLabel.text = dataSource.bbsDetail?.original
         timeLabel.text = dataSource.bbsDetail?.publish_date
         typeLabel.text = dataSource.bbsDetail?.classify
-        commentCountBtn.setTitle("\(dataSource.bbsDetail!.comment_count)条评论", forState: .Normal)
+        commentCountBtn.setTitle("\(dataSource.bbsDetail!.comment_count!)条评论", forState: .Normal)
         if dataSource.bbsDetail?.content != nil {
             webView.loadHTMLString(dataSource.bbsDetail!.content!, baseURL: nil)
         }

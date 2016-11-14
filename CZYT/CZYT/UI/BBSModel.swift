@@ -33,3 +33,20 @@ class BBSDetail : Reflect
     var comment_count:String?
     var content:String?
 }
+
+class BBSComment : Reflect
+{
+    func getContent()->String?
+    {
+        return content == nil ? message : content
+    }
+    var exchange_id:String?
+    var comment_id:String?
+    var content:String?
+    var message:String?
+    var publish_user_id:String?
+    var publish_user_name:String?
+    var publish_date:String?
+    var receiver_user_id:String?
+    var receiver_user_name:String?
+}

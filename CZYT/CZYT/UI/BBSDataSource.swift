@@ -70,4 +70,64 @@ class BBSDataSource: NSObject {
             }
         }
     }
+    
+    var bbsComment = [BBSComment]()
+    func getBBSComment(isFirst:Bool, id:String, success:((result:[BBSComment]) -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        let request = NetWorkHandle.NetworkHandleBBS.RequestBBSCommentList()
+        request.offset = self.bbsComment.count
+        request.row_count = pageSize
+        request.exchange_id = id
+        if isFirst {
+            request.offset = 0
+        }
+        
+        NetWorkHandle.NetworkHandleBBS.getBBSCommentList(request) { (data) in
+            if data.isSuccess()
+            {
+                var rs = [BBSComment]()
+                let ar = data.data as? Array<NSDictionary>
+                if ar != nil
+                {
+                    for dic in ar!
+                    {
+                        let r = BBSComment.parse(dict: dic)
+                        rs.append(r)
+                    }
+                }
+                self.bbsComment.appendContentsOf(rs)
+                if isFirst
+                {
+                    self.bbsComment = rs
+                }
+                success(result: rs)
+            }else{
+                failure(error: data)
+            }
+        }
+    }
+    
+    func addBBSComment(id:String, content:String, userId:String, replyUserId:String?, success:((result:BBSComment) -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        let request = NetWorkHandle.NetworkHandleBBS.RequestAddBBSComment()
+        request.exchange_id = id
+        request.publish_user_id = userId
+        request.content = content
+        request.receiver_user_id = replyUserId
+        NetWorkHandle.NetworkHandleBBS.addBBSComment(request) { (data) in
+            if data.isSuccess()
+            {
+                let c = BBSComment.parse(dict: data.data as! NSDictionary)
+                success(result: c)
+            }else{
+                failure(error: data)
+            }
+        }
+    }
 }
+
+
+
+
+
+

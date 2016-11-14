@@ -170,6 +170,8 @@ class NetWorkHandle: NSObject {
         }
         
         let manager:AFHTTPSessionManager = AFHTTPSessionManager.managerSwift() as! AFHTTPSessionManager
+        manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
+        
         let paramDic:NSMutableDictionary? = self.getParam(param)
         
         let paramString = self.getParamString(paramDic)

@@ -49,7 +49,7 @@ class MainViewController: BasePortraitViewController {
     
     func userItemClicked()
     {
-        let user = UserLoginViewController()
+        let user = UserInfoViewController()
         self.navigationController?.pushViewController(user, animated: true)
     }
     

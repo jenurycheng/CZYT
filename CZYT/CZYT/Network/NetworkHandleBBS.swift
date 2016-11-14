@@ -11,8 +11,10 @@ import UIKit
 extension NetWorkHandle
 {
     class NetworkHandleBBS: NSObject {
-        static var Address_GetBBSList = "ExchangeList"
-        static var Address_GetBBSDetail = "ExchangeItem"
+        static var Address_GetBBSList = "ExchangeList?"
+        static var Address_GetBBSDetail = "ExchangeItem?"
+        static var Address_GetBBSCommentList = "ExchangeCommentList?"
+        static var Address_GetBBSAddComment = "ExchangeCommentAdd"
         
         class RequestGetBBSList : Reflect
         {
@@ -32,6 +34,29 @@ extension NetWorkHandle
         
         class func getBBSDetail(request:RequestBBSDetail?, finish:((HttpResponseData)->Void)) {
             NetWorkHandle.PublicNetWorkAccess(Address_GetBBSDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
+        
+        class RequestBBSCommentList : Reflect
+        {
+            var exchange_id:String?
+            var offset:Int?
+            var row_count:Int?
+        }
+        
+        class func getBBSCommentList(request:RequestBBSCommentList?, finish:((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetBBSCommentList, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
+        
+        class RequestAddBBSComment : Reflect
+        {
+            var exchange_id:String?
+            var content:String?
+            var publish_user_id:String?
+            var receiver_user_id:String?
+        }
+        
+        class func addBBSComment(request:RequestAddBBSComment?, finish:((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetBBSAddComment, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
         }
     }
 

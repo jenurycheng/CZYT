@@ -145,21 +145,16 @@ class UserLoginViewController: BasePortraitViewController {
     
     func nextBtnClicked()
     {
-//        if Helper.isStringEmpty(self.curTel) || telTextField.text != self.curTel {
-//            MBProgressHUD.showError("请先获取验证码", toView: self.view)
-//            return
-//        }
-        
-//        if Helper.isStringEmpty(telTextField.text) {
-//            MBProgressHUD.showError("请填写手机号", toView: self.view)
-//            return
-//        }
-//        
-//        if telTextField.text!.characters.count != 11
-//        {
-//            MBProgressHUD.showError("请填写正确的手机号码", toView: self.view)
-//            return
-//        }
+        if Helper.isStringEmpty(telTextField.text) {
+            MBProgressHUD.showError("请填写手机号", toView: self.view)
+            return
+        }
+
+        if telTextField.text!.characters.count != 11
+        {
+            MBProgressHUD.showError("请填写正确的手机号码", toView: self.view)
+            return
+        }
 
         
         if Helper.isStringEmpty(codeTextField.text) {
@@ -171,74 +166,21 @@ class UserLoginViewController: BasePortraitViewController {
         dataSource.login(telTextField.text!, code: codeTextField.text!, success: { (result) in
             self.view.dismiss()
             UserInfo.sharedInstance.update(result)
+            UserInfo.sharedInstance.isLogin = true
+            self.view.removeFromSuperview()
+            self.removeFromParentViewController()
             MBProgressHUD.showSuccess("登录成功", toView: self.view)
+            
+            self.codeTextField.text = ""
+            self.timer!.invalidate()
+            self.timer = nil
+            self.codeBtn.setTitle("获取验证码", forState: UIControlState.Normal)
+            self.codeBtn.userInteractionEnabled  = true
+            self.count = 0
             }) { (error) in
                 MBProgressHUD.showError(error.msg, toView: self.view)
                 self.view.dismiss()
         }
-        
-        
-//        let request = NetWorkHandle.NetworkHandleUser.RequestLogin()
-//        request.tel = self.curTel
-//        request.tel_area = "+86"
-//        request.validate = codeTextField.text
-//        
-//        NetWorkHandle.NetworkHandleUser.login(request) { (data) in
-//            if data.isSuccess()
-//            {
-//                CCPrint(data.data)
-//                self.view.dismiss()
-//                
-//                let  dic = data.data as! NSDictionary
-//                let userInfo = UserInfo.parse(dict: dic)
-//                UserInfo.sharedInstance.update(userInfo)
-//                UserInfo.sharedInstance.isLogin = true
-//                UserInfo.sharedInstance.isFirstLogin = true
-//                UserInfo.sharedInstance.save()
-//                if self.loginOnly
-//                {
-//                    if self.pushToVC != nil
-//                    {
-//                        let nav = self.view.window?.rootViewController as! UINavigationController
-//                        nav.pushViewController(self.pushToVC!, animated: false)
-//                    }
-//                    self.backButtonClicked()
-//                }else{
-//                    //检查是否绑定
-//                    self.view.showHud()
-//                    let request = NetWorkHandle.NetworkHandleUser.RequestIsBind()
-//                    request.uid = UserInfo.sharedInstance.uid
-//                    NetWorkHandle.NetworkHandleUser.isBind(request) { (data) in
-//                        self.view.dismiss()
-//                        if data.isSuccess()
-//                        {
-//                            if data.data as? String == ""
-//                            {
-//                                //未绑定
-//                                let bind = BindDeviceViewController()
-//                                bind.isRoot = true
-//                                bind.pushToVC = self.pushToVC
-//                                self.navigationController?.pushViewController(bind, animated: true)
-//                                
-//                            }else{
-//                                //已绑定
-//                                if self.pushToVC != nil
-//                                {
-//                                    let nav = self.view.window?.rootViewController as! UINavigationController
-//                                    nav.pushViewController(self.pushToVC!, animated: false)
-//                                }
-//                                self.backButtonClicked()
-//                            }
-//                        }else{
-//                            print(data.msg)
-//                        }
-//                    }
-//                }
-//            }else{
-//                self.view.dismiss()
-//                MBProgressHUD.showError(data.msg, toView: self.view)
-//            }
-//        }
     }
 
     override func didReceiveMemoryWarning() {
