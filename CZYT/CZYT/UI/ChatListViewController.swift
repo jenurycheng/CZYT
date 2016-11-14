@@ -13,6 +13,7 @@ class ChatListViewController: RCConversationListViewController {
         //重写显示相关的接口，必须先调用super，否则会屏蔽SDK默认的处理
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
+        self.conversationListTableView.separatorStyle = .None
         //设置需要显示哪些类型的会话
         self.setDisplayConversationTypes([RCConversationType.ConversationType_PRIVATE.rawValue,
             RCConversationType.ConversationType_DISCUSSION.rawValue,

@@ -14,14 +14,17 @@ class FileActivityViewController: BaseActivityViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "领导活动"
+        self.title = "政策文件"
         
         // Do any additional setup after loading the view.
     }
     
     override func loadData()
     {
-        self.view.showHud()
+        if self.dataSource.count == 0
+        {
+            self.view.showHud()
+        }
         lDataSource.getFileActivity(true, success: { (result) in
             self.dataSource = self.lDataSource.fileActivity
             self.tableView.mj_header.endRefreshing()

@@ -1,5 +1,5 @@
 //
-//  ProjectWorkActivityDetailViewController.swift
+//  BBSDetailViewController.swift
 //  CZYT
 //
 //  Created by jerry cheng on 2016/11/8.
@@ -8,20 +8,34 @@
 
 import UIKit
 
-class ProjectWorkActivityDetailViewController: BasePortraitViewController {
+class BBSDetailViewController: BasePortraitViewController {
 
     var id:String = ""
     @IBOutlet weak var titleLabel:UILabel!
     @IBOutlet weak var sourceLabel:UILabel!
     @IBOutlet weak var timeLabel:UILabel!
     @IBOutlet weak var typeLabel:UILabel!
-    @IBOutlet weak var accountLabel:UILabel!
     @IBOutlet weak var webView:UIWebView!
+    @IBOutlet weak var commentCountBtn:UIButton!
+    @IBOutlet weak var commentBtn:UIButton!
     
     @IBOutlet weak var contentWidth:NSLayoutConstraint!
     @IBOutlet weak var contentHeight:NSLayoutConstraint!
     
-    var dataSource = LeaderActivityDataSource()
+    var dataSource = BBSDataSource()
+    
+    @IBAction func commentCountBtnClicked()
+    {
+        let c = BBSCommentViewController()
+        self.navigationController?.pushViewController(c, animated: true)
+    }
+    
+    @IBAction func commentBtnClicked()
+    {
+        let c = BBSCommentViewController()
+        c.isComment = true
+        self.navigationController?.pushViewController(c, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +43,13 @@ class ProjectWorkActivityDetailViewController: BasePortraitViewController {
         self.timeLabel.adjustsFontSizeToFitWidth = true
         contentWidth.constant = GetSWidth()
         contentHeight.constant = GetSHeight()-64
+        commentBtn.layer.cornerRadius = commentBtn.frame.height/2
+        commentBtn.layer.masksToBounds = true
 
         webView.delegate = self
         webView.scalesPageToFit = true
         webView.scrollView.scrollEnabled = false
-        
+        webView.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.baidu.com")!))
         self.loadData()
         // Do any additional setup after loading the view.
     }
@@ -41,33 +57,28 @@ class ProjectWorkActivityDetailViewController: BasePortraitViewController {
     func loadData()
     {
         self.view.showHud()
-        dataSource.getProjectWorkActivityDetail(id, success: { (result) in
+        dataSource.getBBSDetail(id, success: { (result) in
             self.updateView()
             self.view.dismiss()
-        }) { (error) in
-            self.view.dismiss()
-            NetworkErrorView.show(self.view, data: error, callback: {
-                
-            })
+            }) { (error) in
+                self.view.dismiss()
+                NetworkErrorView.show(self.view, data: error, callback: { 
+                    self.loadData()
+                })
         }
     }
     
     func updateView()
     {
-        titleLabel.text = dataSource.projectWorkActivityDetail?.title
-        sourceLabel.text = dataSource.projectWorkActivityDetail?.original
-        timeLabel.text = dataSource.projectWorkActivityDetail?.publish_date
-        typeLabel.text = dataSource.projectWorkActivityDetail?.type
-        var account = "0"
-        if !Helper.isStringEmpty(dataSource.projectWorkActivityDetail?.amount) {
-            account = dataSource.projectWorkActivityDetail!.amount!
+        titleLabel.text = dataSource.bbsDetail?.title
+        sourceLabel.text = dataSource.bbsDetail?.original
+        timeLabel.text = dataSource.bbsDetail?.publish_date
+        typeLabel.text = dataSource.bbsDetail?.classify
+        commentCountBtn.setTitle("\(dataSource.bbsDetail!.comment_count)条评论", forState: .Normal)
+        if dataSource.bbsDetail?.content != nil {
+            webView.loadHTMLString(dataSource.bbsDetail!.content!, baseURL: nil)
         }
-        let attribute = NSMutableAttributedString()
-        attribute.appendAttributeString("项目金额：", color: ThemeManager.current().darkGrayFontColor, font: UIFont.systemFontOfSize(12))
-        attribute.appendAttributeString("\(account)元", color: UIColor.redColor(), font: UIFont.systemFontOfSize(15))
         
-        accountLabel.attributedText = attribute
-        webView.loadHTMLString(dataSource.projectWorkActivityDetail!.content, baseURL: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -88,9 +99,14 @@ class ProjectWorkActivityDetailViewController: BasePortraitViewController {
 
 }
 
-extension ProjectWorkActivityDetailViewController : UIWebViewDelegate
+extension BBSDetailViewController : UIWebViewDelegate
 {
     func webViewDidFinishLoad(webView: UIWebView) {
         contentHeight.constant = webView.scrollView.contentSize.height + 70 - 64 < GetSHeight() ? GetSHeight() : webView.scrollView.contentSize.height + 70 - 64
+    }
+    
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        contentHeight.constant = webView.scrollView.contentSize.height + 70 - 64 < GetSHeight() ? GetSHeight() : webView.scrollView.contentSize.height + 70 - 64
+        return true
     }
 }

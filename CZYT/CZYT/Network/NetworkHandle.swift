@@ -52,7 +52,6 @@ class HttpResponseData : NSObject
 
 class NetWorkHandle: NSObject {
     
-    static var ImageServer:String = "http://image.xgimi.com"
     static var ServerAddress:String = "http://www.yumutech.cn:20080/unity/webservice/ap/"
     
     static var pathNetCache:String! = NSTemporaryDirectory() + "netCache/"
@@ -63,37 +62,13 @@ class NetWorkHandle: NSObject {
         var data:NSDictionary?
     }
     
-    class func getImageUrl(urlString:String!)->NSURL
-    {
-        return NSURL(string: ImageServer+urlString)!
-    }
-    
-//    class func addCommonParam(inout param:NSMutableDictionary)
-//    {
-//        let date = NSDate()
-//        let time = Int64(date.timeIntervalSince1970*1000)
-//        let t_ = "\(time)"
-//        param.setObject(t_, forKey: "t_")
-//        let time_p = Int((time % 10000) * 3 + 2345)
-//        let p_ = "\(time_p)"
-//        param.setObject(p_, forKey: "p_")
-//        param.setObject("2.0", forKey: "v_")
-//        param.setObject("com.xgimi.assistant", forKey: "i_")
-//        param.setObject("ios", forKey: "d_")
-//        param.setObject("9", forKey: "dv_")
-        
-//        let user = [String:AnyObject]()
-//        user["account"] = "unity"
-//        user["session"] = "1234567890"
-//    }
-    
     class func getParam(p:[String:AnyObject]?)->NSMutableDictionary
     {
         let param = NSMutableDictionary()
         
         var user = [String:AnyObject]()
-        user["account"] = "unity"
-        user["session"] = "1234567890"
+        user["account"] = UserInfo.sharedInstance.mobile
+        user["session"] = UserInfo.sharedInstance.session
         
         param.setObject(user, forKey: "user")
         
@@ -203,38 +178,6 @@ class NetWorkHandle: NSObject {
         
         switch accessType{
         case HttpRequestType.POST:
-            
-//            let data = try! NSJSONSerialization.dataWithJSONObject(paramDic!, options: .PrettyPrinted)
-//            let req = AFJSONRequestSerializer.serializer_swift().requestWithMethod("POST", URLString: ServerAddress + url, parameters: nil, error: nil)
-//            req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//            req.setValue("application/json", forHTTPHeaderField: "Accept")
-//            req.HTTPBody = data
-//            
-//            manager.dataTaskWithRequest(req, completionHandler: { (resp, result, error) in
-//                if error == nil
-//                {
-//                    parseSuccess(result!)
-//                }else{
-//                    parseFailure(nil, error: error!)
-//                }
-//            }).resume()
-            
-//            manager.POST(ServerAddress + url, parameters: paramDic, success: { (task, result) in
-//                parseSuccess(result!)
-//                if useCache
-//                {
-//                    let data = try? NSJSONSerialization.dataWithJSONObject(result!, options: .PrettyPrinted)
-//                    if data != nil
-//                    {
-//                        //保存历史缓存
-//                        NetWorkCache.addCache(url, param: param, data: data)
-//                        //保存当天缓存
-//                        NetWorkCache.addTodayCache(url, param: param, data: data)
-//                    }
-//                }
-//                }, failure: { (task, error) in
-//                    parseFailure(task, error: error)
-//            })
             manager.POST(ServerAddress + url, parameters: paramDic, progress: { (progress) in
                 
                 }, success: { (task, result) in
@@ -253,18 +196,6 @@ class NetWorkHandle: NSObject {
                 }, failure: { (task, error) in
                     parseFailure(task, error: error)
             })
-//            let request = AFJSONRequestSerializer.serializer_swift().requestWithMethod("POST", URLString: ServerAddress + url, parameters: paramDic, error: nil)
-//            manager.dataTaskWithRequest(request, completionHandler: { (res, result, error) in
-//                parseSuccess(result!)
-//            })
-//            manager.POST(ServerAddress + url, parameters: nil, constructingBodyWithBlock: { (data) in
-//                let da = Helper.resultToJsonString(paramDic).dataUsingEncoding(NSUTF8StringEncoding)
-//                data.appendPartWithFormData(da!, name: "")
-//                }, success: { (task, result) in
-//                    parseSuccess(result!)
-//                }, failure: { (task, error) in
-//                    parseFailure(task, error: error)
-//            })
         case HttpRequestType.GET:
             manager.GET(ServerAddress + url, parameters: paramDic, progress: { (progress) in
                 

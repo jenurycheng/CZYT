@@ -14,14 +14,17 @@ class WorkStatusActivityViewController: BaseActivityViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "领导活动"
+        self.title = "工作状态"
         
         // Do any additional setup after loading the view.
     }
     
     override func loadData()
     {
-        self.view.showHud()
+        if self.dataSource.count == 0
+        {
+            self.view.showHud()
+        }
         lDataSource.getWorkStatusActivity(true, success: { (result) in
             self.dataSource = self.lDataSource.workStatusActivity
             self.tableView.mj_header.endRefreshing()
