@@ -94,7 +94,16 @@ class BBSCommentViewController: BasePortraitViewController {
     func showInput()
     {
         KeyboardInputView.shareInstance().show { (text) in
+            self.comment(text)
+        }
+    }
+    
+    func comment(text:String)
+    {
+        self.dataSource.addBBSComment(self.id!, content: text, userId: UserInfo.sharedInstance.id!, replyUserId: self.toId, success: { (result) in
             
+            }) { (error) in
+                
         }
     }
 

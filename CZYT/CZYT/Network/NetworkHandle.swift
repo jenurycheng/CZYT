@@ -105,14 +105,13 @@ class NetWorkHandle: NSObject {
         
         func parseSuccess(data:AnyObject)
         {
-            print(data.classForCoder)
             var dic:[String : AnyObject]? = nil
             if data.isKindOfClass(NSData) {
                 dic = try! NSJSONSerialization.JSONObjectWithData(data as! NSData, options: NSJSONReadingOptions.MutableContainers) as? [String : AnyObject]
             }else{
                 dic = data as? [String : AnyObject]
             }
-            print(dic)
+            print(Helper.resultToJsonString(dic))
             var statusDic = dic![HttpResponseData.KEY_STATUS] as? [String : AnyObject]
             var code = statusDic![HttpResponseData.KEY_CODE] as? String
             var msg = statusDic![HttpResponseData.KEY_MSG] as? String

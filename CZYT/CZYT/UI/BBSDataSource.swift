@@ -113,7 +113,7 @@ class BBSDataSource: NSObject {
         request.exchange_id = id
         request.publish_user_id = userId
         request.content = content
-        request.receiver_user_id = replyUserId
+        request.receiver_user_id = replyUserId == nil ? "" : replyUserId
         NetWorkHandle.NetworkHandleBBS.addBBSComment(request) { (data) in
             if data.isSuccess()
             {

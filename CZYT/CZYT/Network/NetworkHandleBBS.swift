@@ -14,7 +14,7 @@ extension NetWorkHandle
         static var Address_GetBBSList = "ExchangeList?"
         static var Address_GetBBSDetail = "ExchangeItem?"
         static var Address_GetBBSCommentList = "ExchangeCommentList?"
-        static var Address_GetBBSAddComment = "ExchangeCommentAdd"
+        static var Address_GetBBSAddComment = "ExchangeCommentAdd?"
         
         class RequestGetBBSList : Reflect
         {
