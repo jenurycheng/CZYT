@@ -354,7 +354,7 @@ class Helper: NSObject {
     class func resultToJsonString(result:Any?)->String
     {
         let data = try? NSJSONSerialization.dataWithJSONObject(result as! AnyObject, options: NSJSONWritingOptions.PrettyPrinted)
-        let string = String(data: data!, encoding: NSUTF8StringEncoding)
+        var string = String(data: data!, encoding: NSUTF8StringEncoding)
         return string!
     }
     

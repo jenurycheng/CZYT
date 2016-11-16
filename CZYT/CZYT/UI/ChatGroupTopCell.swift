@@ -12,7 +12,9 @@ class ChatGroupTopCell: UITableViewCell {
 
     @IBAction func addGroupBtnClicked()
     {
-        
+        let create = CreateGroupViewController(nibName: "CreateGroupViewController", bundle: nil)
+        let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
+        nav?.pushViewController(create, animated: true)
     }
     
     @IBAction func bbsBtnClicked()

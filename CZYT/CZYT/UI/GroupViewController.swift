@@ -10,6 +10,8 @@ import UIKit
 
 class GroupViewController: BasePortraitViewController {
 
+    var dataSource = ChatDataSource()
+    
     var tableView:UITableView!
     var addGroupBtn:UIButton!
     var bbsBtn:UIButton!
@@ -22,7 +24,18 @@ class GroupViewController: BasePortraitViewController {
         self.view.addSubview(tableView)
         tableView.registerNib(UINib(nibName: "ChatGroupCell", bundle: nil), forCellReuseIdentifier: "ChatGroupCell")
         tableView.registerNib(UINib(nibName: "ChatGroupTopCell", bundle: nil), forCellReuseIdentifier: "ChatGroupTopCell")
+        
+        self.loadData()
         // Do any additional setup after loading the view.
+    }
+    
+    func loadData()
+    {
+        dataSource.queryUserGroup(UserInfo.sharedInstance.id!, success: { (result) in
+            self.tableView.reloadData()
+            }) { (error) in
+                
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,11 +77,15 @@ extension GroupViewController : UITableViewDelegate, UITableViewDataSource
         {
             return 1
         }
-        return 10
+        return dataSource.group.count
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        let chat = RCConversationViewController()
+        chat.conversationType = RCConversationType.ConversationType_GROUP
+        chat.targetId = dataSource.group[indexPath.row].groupId
+        chat.title = dataSource.group[indexPath.row].groupName
+        self.navigationController?.pushViewController(chat, animated: true)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -88,6 +105,7 @@ extension GroupViewController : UITableViewDelegate, UITableViewDataSource
             let cell = tableView.dequeueReusableCellWithIdentifier("ChatGroupCell") as! ChatGroupCell
             cell.selectionStyle = .None
             cell.accessoryType = .DisclosureIndicator
+            cell.update(dataSource.group[indexPath.row])
             return cell
         }
     }

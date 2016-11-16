@@ -27,6 +27,7 @@ class BBSDetailViewController: BasePortraitViewController {
     @IBAction func commentCountBtnClicked()
     {
         let c = BBSCommentViewController()
+        c.id = self.id
         self.navigationController?.pushViewController(c, animated: true)
     }
     

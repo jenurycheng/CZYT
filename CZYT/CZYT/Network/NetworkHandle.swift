@@ -67,7 +67,7 @@ class NetWorkHandle: NSObject {
         let param = NSMutableDictionary()
         
         var user = [String:AnyObject]()
-        user["account"] = UserInfo.sharedInstance.mobile
+        user["account"] = UserInfo.sharedInstance.id
         user["session"] = UserInfo.sharedInstance.session
         
         param.setObject(user, forKey: "user")

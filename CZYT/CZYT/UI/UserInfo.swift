@@ -66,6 +66,8 @@ class UserInfo: Reflect {
     var gender:String?
     var mobile:String = ""
     var session:String = ""
+    var dept_id:String?
+    var dept_name:String?
     
     var USER_DEFAULT_USERNAME = "USER_DEFAULT_USERNAME"
     var USER_DEFAULT_PASSWORD = "USER_DEFAULT_PASSWORD"

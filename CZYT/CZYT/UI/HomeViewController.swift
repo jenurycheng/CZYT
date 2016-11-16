@@ -94,8 +94,13 @@ extension HomeViewController : UICollectionViewDelegate
                 
             }else if indexPath.row == 6
             {
-                let ac = ChatViewController()
                 let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
+                if !UserInfo.sharedInstance.isLogin {
+                    let user = UserInfoViewController()
+                    nav?.pushViewController(user, animated: true)
+                    return
+                }
+                let ac = ChatViewController()
                 nav?.pushViewController(ac, animated: true)
             }
         }

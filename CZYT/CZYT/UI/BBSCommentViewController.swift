@@ -100,10 +100,16 @@ class BBSCommentViewController: BasePortraitViewController {
     
     func comment(text:String)
     {
+        self.view.showHud()
         self.dataSource.addBBSComment(self.id!, content: text, userId: UserInfo.sharedInstance.id!, replyUserId: self.toId, success: { (result) in
+            self.view.dismiss()
+            KeyboardInputView.shareInstance().inputTextView.text = ""
+            KeyboardInputView.shareInstance().hide()
+            MBProgressHUD.showMessag("评论成功", toView: self.view, showTimeSec: 1)
             
+            self.loadData()
             }) { (error) in
-                
+            self.view.dismiss()
         }
     }
 

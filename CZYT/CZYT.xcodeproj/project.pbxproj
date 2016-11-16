@@ -30,6 +30,9 @@
 		C4190C791DD778D200B38A7A /* BBSCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4190C771DD778D200B38A7A /* BBSCommentCell.swift */; };
 		C4190C7A1DD778D200B38A7A /* BBSCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4190C781DD778D200B38A7A /* BBSCommentCell.xib */; };
 		C4190C7D1DD77CBC00B38A7A /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4190C7C1DD77CBC00B38A7A /* KeyboardInputView.swift */; };
+		C43005911DDB3C5600AC6077 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43005901DDB3C5600AC6077 /* ChatModel.swift */; };
+		C43005951DDB5ABA00AC6077 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43005931DDB5ABA00AC6077 /* CreateGroupViewController.swift */; };
+		C43005961DDB5ABA00AC6077 /* CreateGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43005941DDB5ABA00AC6077 /* CreateGroupViewController.xib */; };
 		C436435A1DD0C118003C91D8 /* Emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = C43643501DD0C118003C91D8 /* Emoji.plist */; };
 		C436435B1DD0C118003C91D8 /* RongCloudKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = C43643511DD0C118003C91D8 /* RongCloudKit.strings */; };
 		C436435C1DD0C118003C91D8 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C43643531DD0C118003C91D8 /* libopencore-amrnb.a */; };
@@ -198,6 +201,9 @@
 		C4190C771DD778D200B38A7A /* BBSCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSCommentCell.swift; sourceTree = "<group>"; };
 		C4190C781DD778D200B38A7A /* BBSCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSCommentCell.xib; sourceTree = "<group>"; };
 		C4190C7C1DD77CBC00B38A7A /* KeyboardInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardInputView.swift; sourceTree = "<group>"; };
+		C43005901DDB3C5600AC6077 /* ChatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		C43005931DDB5ABA00AC6077 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
+		C43005941DDB5ABA00AC6077 /* CreateGroupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGroupViewController.xib; sourceTree = "<group>"; };
 		C43643501DD0C118003C91D8 /* Emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Emoji.plist; sourceTree = "<group>"; };
 		C43643521DD0C118003C91D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RongCloudKit.strings; sourceTree = "<group>"; };
 		C43643531DD0C118003C91D8 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
@@ -430,7 +436,6 @@
 		C4190C4A1DD6F47500B38A7A /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
-				C4190C4E1DD6F6FF00B38A7A /* UserInfo.swift */,
 				C4190C4B1DD6F48300B38A7A /* UserDataSource.swift */,
 			);
 			name = DataSource;
@@ -488,6 +493,22 @@
 			name = Cell;
 			sourceTree = "<group>";
 		};
+		C430058F1DDB3C2A00AC6077 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C43005901DDB3C5600AC6077 /* ChatModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C43005921DDB466900AC6077 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C4190C4E1DD6F6FF00B38A7A /* UserInfo.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		C436434F1DD0C118003C91D8 /* Rong_Cloud_iOS_IMKit_SDK_v2_7_3_stable */ = {
 			isa = PBXGroup;
 			children = (
@@ -536,12 +557,15 @@
 		C43643911DD0C688003C91D8 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				C430058F1DDB3C2A00AC6077 /* Model */,
 				C47CEB801DD9F6670078DA21 /* DataSource */,
 				C4190C631DD7335C00B38A7A /* Cell */,
 				C4190C5B1DD6FEDD00B38A7A /* ChatViewController.swift */,
 				C43643921DD0C6C3003C91D8 /* ChatListViewController.swift */,
 				C4190C5F1DD7046300B38A7A /* ContactViewController.swift */,
 				C4190C611DD7046B00B38A7A /* GroupViewController.swift */,
+				C43005931DDB5ABA00AC6077 /* CreateGroupViewController.swift */,
+				C43005941DDB5ABA00AC6077 /* CreateGroupViewController.xib */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -979,6 +1003,7 @@
 		C4BC6A581DD4B96C00DA19B2 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				C43005921DDB466900AC6077 /* Model */,
 				C4190C4A1DD6F47500B38A7A /* DataSource */,
 				C4BC6A591DD4B97600DA19B2 /* UserLoginViewController.swift */,
 				C4BC6A5B1DD4BB0A00DA19B2 /* UserNotLoginViewController.swift */,
@@ -1060,6 +1085,7 @@
 				C487349B1DCF0A2C00C9B0C0 /* MJRefresh.bundle in Resources */,
 				C436435A1DD0C118003C91D8 /* Emoji.plist in Resources */,
 				C436435F1DD0C118003C91D8 /* RongCloud.bundle in Resources */,
+				C43005961DDB5ABA00AC6077 /* CreateGroupViewController.xib in Resources */,
 				C436435D1DD0C118003C91D8 /* RCConfig.plist in Resources */,
 				C4190C671DD733A800B38A7A /* ChatGroupCell.xib in Resources */,
 				C4190C7A1DD778D200B38A7A /* BBSCommentCell.xib in Resources */,
@@ -1162,12 +1188,14 @@
 				C4190C6F1DD7664900B38A7A /* BBSCell.swift in Sources */,
 				C4BC6A571DD4AFEF00DA19B2 /* NSMutableAttributedString+Utils.swift in Sources */,
 				C48734281DCF09B400C9B0C0 /* AFNetworkReachabilityManager.m in Sources */,
+				C43005911DDB3C5600AC6077 /* ChatModel.swift in Sources */,
 				C48734CF1DCF176C00C9B0C0 /* NetWorkHandleApp.swift in Sources */,
 				C4190C761DD7788E00B38A7A /* BBSCommentViewController.swift in Sources */,
 				C47CEB861DDA0F820078DA21 /* NetWorkHandleTask.swift in Sources */,
 				C450C9631DD35CFC0052B18E /* BaseActivityViewController.swift in Sources */,
 				C48734DD1DCF224000C9B0C0 /* BaseOrientationNavViewController.swift in Sources */,
 				C4190C551DD6FBEC00B38A7A /* BBSViewController.swift in Sources */,
+				C43005951DDB5ABA00AC6077 /* CreateGroupViewController.swift in Sources */,
 				C48734C61DCF0DA900C9B0C0 /* Theme.swift in Sources */,
 				C48734591DCF0A1F00C9B0C0 /* UIButton+WebCache.m in Sources */,
 				C48734B11DCF0A3A00C9B0C0 /* Reflect+Other.swift in Sources */,

@@ -13,7 +13,7 @@ class ChatListViewController: RCConversationListViewController {
         //重写显示相关的接口，必须先调用super，否则会屏蔽SDK默认的处理
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
-        self.conversationListTableView.separatorStyle = .None
+        self.conversationListTableView.separatorStyle = .SingleLine
         //设置需要显示哪些类型的会话
         self.setDisplayConversationTypes([RCConversationType.ConversationType_PRIVATE.rawValue,
             RCConversationType.ConversationType_DISCUSSION.rawValue,
@@ -30,7 +30,15 @@ class ChatListViewController: RCConversationListViewController {
     override func onSelectedTableRow(conversationModelType: RCConversationModelType, conversationModel model: RCConversationModel!, atIndexPath indexPath: NSIndexPath!) {
         //打开会话界面
         let chat = RCConversationViewController(conversationType: model.conversationType, targetId: model.targetId)
-        chat.title = "想显示的会话标题"
+        chat.title = model.conversationTitle
         self.navigationController?.pushViewController(chat, animated: true)
+    }
+    
+    override func rcConversationListTableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> RCConversationBaseCell! {
+        let cell = super.rcConversationListTableView(tableView, cellForRowAtIndexPath: indexPath)
+        let height = self.rcConversationListTableView(tableView, heightForRowAtIndexPath: indexPath)
+        let line = GetLineView(CGRect(x: 0, y: height-1, width: GetSWidth(), height: 1))
+        cell.addSubview(line)
+        return cell
     }
 }

@@ -60,6 +60,7 @@ class UserInfoViewController: UIViewController {
                 if !Helper.isStringEmpty(UserInfo.sharedInstance.logo_path) {
                     self.headerBtn.sd_setImageWithURL(NSURL(string: UserInfo.sharedInstance.logo_path!), forState: .Normal, placeholderImage: UIImage(named: "user_header_default"))
                 }
+                self.navigationController?.popViewControllerAnimated(true)
             }
         }
     }

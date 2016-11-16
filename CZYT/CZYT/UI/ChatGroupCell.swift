@@ -10,9 +10,17 @@ import UIKit
 
 class ChatGroupCell: UITableViewCell {
 
+    @IBOutlet weak var headerImageView:UIImageView!
+    @IBOutlet weak var titleLabel:UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    func update(g:Group)
+    {
+        titleLabel.text = g.groupName
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

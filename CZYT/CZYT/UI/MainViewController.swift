@@ -44,7 +44,23 @@ class MainViewController: BasePortraitViewController {
         self.title = "首页"
         tabBarViewController.showIndex(0)
         
-        self.connectRM()
+//        self.connectRM()
+        
+        UserInfo.sharedInstance.addObserver(self, forKeyPath: "isLogin", options: .New, context: nil)
+    }
+    
+    deinit{
+        UserInfo.sharedInstance.removeObserver(self, forKeyPath: "isLogin")
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath != nil && keyPath == "isLogin"
+        {
+            if UserInfo.sharedInstance.isLogin
+            {
+                self.connectRM()
+            }
+        }
     }
     
     func userItemClicked()
@@ -57,31 +73,17 @@ class MainViewController: BasePortraitViewController {
     {
 //        +3i9YLmms0Vlo0WOqjkCmKu+rk3pHfBlLiZxdaWPzBpQh3owd4R7ha1AGJnuiVEzlWkFIf3uN/4mt6oaneb7Bw==  chester1
 //        0TMdTxQX/vZlQTjG+6L7CaT/b2VGEz/XbOGONo0T2ZxYwbEFFXCsYVzsr1vWOjnggmm8vAmwCIunNQOmx70hlbcRJu5mXoUj  chester
-//        RCIM.sharedRCIM().connectWithToken("+3i9YLmms0Vlo0WOqjkCmKu+rk3pHfBlLiZxdaWPzBpQh3owd4R7ha1AGJnuiVEzlWkFIf3uN/4mt6oaneb7Bw==",
-//                                           success: { (userId) -> Void in
-//                                            print("登陆成功。当前登录的用户ID：\(userId)")
-//                                            
-//                                            //新建一个聊天会话View Controller对象
-//                                            let chat = RCConversationViewController()
-//                                            //设置会话的类型，如单聊、讨论组、群聊、聊天室、客服、公众服务会话等
-//                                            chat.conversationType = RCConversationType.ConversationType_PRIVATE
-//                                            //设置会话的目标会话ID。（单聊、客服、公众服务会话为对方的ID，讨论组、群聊、聊天室为会话的ID）
-//                                            chat.targetId = "chester1"
-//                                            //设置聊天会话界面要显示的标题
-//                                            chat.title = "想显示的会话标题"
-//                                            //显示聊天会话界面
-//                                            dispatch_async(dispatch_get_main_queue(), { 
-//                                                self.navigationController?.pushViewController(chat, animated: true)
-//                                            })
-//                                            
-//            }, error: { (status) -> Void in
-//                print("登陆的错误码为:\(status.rawValue)")
-//            }, tokenIncorrect: {
-//                //token过期或者不正确。
-//                //如果设置了token有效期并且token过期，请重新请求您的服务器获取新的token
-//                //如果没有设置token有效期却提示token错误，请检查您客户端和服务器的appkey是否匹配，还有检查您获取token的流程。
-//                print("token错误")
-//        })
+        RCIM.sharedRCIM().connectWithToken(UserInfo.sharedInstance.token,
+                                           success: { (userId) -> Void in
+                                            print("登陆成功。当前登录的用户ID：\(userId)")
+            }, error: { (status) -> Void in
+                print("登陆的错误码为:\(status.rawValue)")
+            }, tokenIncorrect: {
+                //token过期或者不正确。
+                //如果设置了token有效期并且token过期，请重新请求您的服务器获取新的token
+                //如果没有设置token有效期却提示token错误，请检查您客户端和服务器的appkey是否匹配，还有检查您获取token的流程。
+                print("token错误")
+        })
     }
     
     override func viewWillAppear(animated: Bool) {

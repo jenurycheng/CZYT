@@ -40,6 +40,7 @@ class UserLoginViewController: BasePortraitViewController {
         codeTextField = UITextField(frame: CGRectMake(0, 0, telView.frame.size.width-80, 40))
         codeTextField.placeholder = "验证码"
         codeTextField.delegate = self
+        codeTextField.text = "1234"
         codeTextField.keyboardType = .NumberPad
         codeTextField.font = UIFont.systemFontOfSize(14)
         codeTextField.addTarget(codeTextField, action: #selector(UITextField.resignFirstResponder), forControlEvents: UIControlEvents.EditingDidEndOnExit)
@@ -169,10 +170,10 @@ class UserLoginViewController: BasePortraitViewController {
             UserInfo.sharedInstance.isLogin = true
             self.view.removeFromSuperview()
             self.removeFromParentViewController()
-            MBProgressHUD.showSuccess("登录成功", toView: self.view)
+            MBProgressHUD.showSuccess("登录成功", toView: self.view.window)
             
             self.codeTextField.text = ""
-            self.timer!.invalidate()
+            self.timer?.invalidate()
             self.timer = nil
             self.codeBtn.setTitle("获取验证码", forState: UIControlState.Normal)
             self.codeBtn.userInteractionEnabled  = true

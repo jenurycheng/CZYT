@@ -41,6 +41,10 @@
                     <constraint firstAttribute="trailingMargin" secondItem="fjY-iT-E8W" secondAttribute="trailing" constant="2" id="vPP-HW-Wds"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="headerImageView" destination="Ym7-aI-vmY" id="1cE-cD-irS"/>
+                <outlet property="titleLabel" destination="fjY-iT-E8W" id="lDF-qO-Twg"/>
+            </connections>
             <point key="canvasLocation" x="252" y="186.5"/>
         </tableViewCell>
     </objects>
