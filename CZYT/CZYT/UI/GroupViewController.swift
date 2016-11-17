@@ -86,6 +86,12 @@ extension GroupViewController : UITableViewDelegate, UITableViewDataSource
         chat.targetId = dataSource.group[indexPath.row].groupId
         chat.title = dataSource.group[indexPath.row].groupName
         self.navigationController?.pushViewController(chat, animated: true)
+        
+        dataSource.queryGroupUser(dataSource.group[indexPath.row].groupId!, success: { (result) in
+            
+            }) { (error) in
+                
+        }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

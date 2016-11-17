@@ -14,7 +14,7 @@ extension NetWorkHandle
         static var Address_CreateGroup = "GroupCreate?"
         static var Address_DestoryGroup = "GroupDismiss?"
         static var Address_JoinGroup = "GroupJoin?"
-        static var Address_QueryGroupUser = "GroupQueryUser?"
+        static var Address_QueryGroupUser = "QueryUserList?"
         static var Address_QuitGroup = "GroupQuit?"
         static var Address_UpdateGroup = "GroupRefresh?"
         static var Address_QueryUserGroup = "QueryGroupList?"
