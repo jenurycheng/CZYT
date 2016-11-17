@@ -14,7 +14,7 @@ extension NetWorkHandle
         static var Address_CreateGroup = "GroupCreate?"
         static var Address_DestoryGroup = "GroupDismiss?"
         static var Address_JoinGroup = "GroupJoin?"
-        static var Address_QueryGroupUser = "QueryUserList?"
+        static var Address_QueryGroupDetail = "QueryUserList?"
         static var Address_QuitGroup = "GroupQuit?"
         static var Address_UpdateGroup = "GroupRefresh?"
         static var Address_QueryUserGroup = "QueryGroupList?"
@@ -50,13 +50,13 @@ extension NetWorkHandle
             NetWorkHandle.PublicNetWorkAccess(Address_JoinGroup, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
         }
         
-        class RequestQueryGroupUser : Reflect
+        class RequestQueryGroupDetail : Reflect
         {
             var groupId:String?
         }
         
-        class func queryGroupUser(request:RequestQueryGroupUser?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_QueryGroupUser, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func queryGroupDetail(request:RequestQueryGroupDetail?, finish:((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_QueryGroupDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
         }
         
         class RequestQueryUserGroup : Reflect

@@ -21,7 +21,7 @@ extension UIImageView
         self.sd_setImageWithURL(url, placeholderImage: loadImage) { (image, error, type, url) in
             
             if nil != error {
-                let image = Helper.imageWithString(title, size: self.frame.size)
+                let image = Helper.imageWithString("", size: self.frame.size)
                 self.image = image
             }
             if completedBlock != nil
@@ -37,7 +37,7 @@ extension UIImageView
         {
             self.gm_setImageWithURL(NSURL(string: urlString!), title: title, completedBlock: completedBlock)
         }else{
-            let image = Helper.imageWithString(title, size: self.frame.size)
+            let image = Helper.imageWithString("", size: self.frame.size)
             self.image = image
         }
     }

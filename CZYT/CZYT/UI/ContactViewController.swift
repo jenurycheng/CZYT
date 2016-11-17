@@ -38,7 +38,7 @@ class ContactViewController: BasePortraitViewController {
     
     func btnClicked()
     {
-        let chat = RCConversationViewController()
+        let chat = PrivateConversationViewController()
         chat.conversationType = RCConversationType.ConversationType_PRIVATE
         chat.targetId = "3"
         chat.title = "h"

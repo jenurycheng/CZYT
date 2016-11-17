@@ -33,7 +33,9 @@ class UserInfo: Reflect {
             case "isLogin":
                 if isLogin
                 {
-                    
+                    ChatDataSource.sharedInstance.queryUserGroup(UserInfo.sharedInstance.id!, success: { (result) in
+                    }) { (error) in
+                    }
                 }else{
                     
                 }

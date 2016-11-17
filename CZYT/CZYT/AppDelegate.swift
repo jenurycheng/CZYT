@@ -59,8 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 
 extension AppDelegate : RCIMUserInfoDataSource, RCIMGroupInfoDataSource
@@ -77,7 +75,11 @@ extension AppDelegate : RCIMUserInfoDataSource, RCIMGroupInfoDataSource
     }
     
     func getGroupInfoWithGroupId(groupId: String!, completion: ((RCGroup!) -> Void)!) {
-        
+        let g = ChatDataSource.sharedInstance.getGroup(groupId)
+        if g != nil {
+            let rg = RCGroup(groupId: g?.groupId, groupName: g?.groupName, portraitUri: "")
+            completion(rg)
+        }
     }
 }
 
