@@ -14,6 +14,8 @@ class ProjectWorkActivityDetailViewController: BasePortraitViewController {
     @IBOutlet weak var titleLabel:UILabel!
     @IBOutlet weak var sourceLabel:UILabel!
     @IBOutlet weak var timeLabel:UILabel!
+    @IBOutlet weak var typeLabel:UILabel!
+    @IBOutlet weak var accountLabel:UILabel!
     @IBOutlet weak var webView:UIWebView!
     
     @IBOutlet weak var contentWidth:NSLayoutConstraint!
@@ -55,6 +57,16 @@ class ProjectWorkActivityDetailViewController: BasePortraitViewController {
         titleLabel.text = dataSource.projectWorkActivityDetail?.title
         sourceLabel.text = dataSource.projectWorkActivityDetail?.original
         timeLabel.text = dataSource.projectWorkActivityDetail?.publish_date
+        typeLabel.text = dataSource.projectWorkActivityDetail?.type
+        var account = "0"
+        if !Helper.isStringEmpty(dataSource.projectWorkActivityDetail?.amount) {
+            account = dataSource.projectWorkActivityDetail!.amount!
+        }
+        let attribute = NSMutableAttributedString()
+        attribute.appendAttributeString("项目金额：", color: ThemeManager.current().darkGrayFontColor, font: UIFont.systemFontOfSize(12))
+        attribute.appendAttributeString("\(account)元", color: UIColor.redColor(), font: UIFont.systemFontOfSize(15))
+        
+        accountLabel.attributedText = attribute
         webView.loadHTMLString(dataSource.projectWorkActivityDetail!.content, baseURL: nil)
     }
 

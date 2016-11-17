@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TabBarViewController: UIViewController {
+class TabBarViewController: BasePortraitViewController {
 
     var viewControllers:Array<UIViewController>?
     var currentIndex:Int?
@@ -28,13 +28,15 @@ class TabBarViewController: UIViewController {
     {
         if viewControllers != nil && viewControllers?.count > index {
             let vc = viewControllers![index]
-            let v = self.childViewControllers.count
             if !self.childViewControllers.contains(vc) {
                 self.addChildViewController(vc)
             }
-            let current = self.viewControllers![currentIndex!]
-            current.view.removeFromSuperview()
-            current.removeFromParentViewController()
+            if currentIndex != nil
+            {
+                let current = self.viewControllers![currentIndex!]
+                current.view.removeFromSuperview()
+                current.removeFromParentViewController()
+            }
             self.view.addSubview(vc.view)
             
             currentIndex = index

@@ -16,6 +16,8 @@ class LeaderActivity: Reflect {
     var publish_date:String?
     var logo_path:String?
     var original:String?
+    var type:String?
+    var amount:String?
 }
 
 class LeaderActivityDetail: Reflect {
@@ -27,6 +29,8 @@ class LeaderActivityDetail: Reflect {
     var logo_path:String?
     var original:String?
     var content:String = ""
+    var type:String?
+    var amount:String?
 }
 
 class WebLink : Reflect

@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -21,8 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         RCIM.sharedRCIM().initWithAppKey("m7ua80gbmyydm")//server:4yqYEo2DDgWPx
-        //RCIM.sharedRCIM().initWithAppKey("25wehl3uwhwew")
-        
+//        RCIM.sharedRCIM().initWithAppKey("25wehl3uwhwew")
+        RCIM.sharedRCIM().userInfoDataSource = self
+        RCIM.sharedRCIM().groupInfoDataSource = self
         
         return true
     }
@@ -61,5 +61,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+extension AppDelegate : RCIMUserInfoDataSource, RCIMGroupInfoDataSource
+{
+    func getUserInfoWithUserId(userId: String!, completion: ((RCUserInfo!) -> Void)!) {
+        if userId == "3" {
+            let info = RCUserInfo(userId: userId, name: "霍长江", portrait: "")
+            completion(info)
+        }
+        else{
+            let info = RCUserInfo(userId: userId, name: "待实现", portrait: "")
+            completion(info)
+        }
+    }
+    
+    func getGroupInfoWithGroupId(groupId: String!, completion: ((RCGroup!) -> Void)!) {
+        
+    }
 }
 

@@ -21,7 +21,7 @@
                             <constraint firstAttribute="height" constant="20" id="jui-7p-Ivv"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test" translatesAutoresizingMaskIntoConstraints="NO" id="7M0-pV-65q">
@@ -48,7 +48,7 @@
                             <constraint firstAttribute="width" constant="150" id="TcC-zo-x6u"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="1" green="0.5531231499" blue="0.22006900060000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-11-08 11:27" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dyo-RZ-fmJ">
@@ -69,7 +69,7 @@
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TLf-0H-LEX">
                         <rect key="frame" x="0.0" y="148.5" width="350" height="1"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="itr-Ls-CZv"/>
                         </constraints>
@@ -103,7 +103,7 @@
                 <outlet property="timeLabel" destination="Dyo-RZ-fmJ" id="ufo-XE-VR7"/>
                 <outlet property="titleLabel" destination="HZA-Eo-Gff" id="T7f-tW-jM6"/>
             </connections>
-            <point key="canvasLocation" x="382" y="205"/>
+            <point key="canvasLocation" x="327" y="278"/>
         </tableViewCell>
     </objects>
     <resources>

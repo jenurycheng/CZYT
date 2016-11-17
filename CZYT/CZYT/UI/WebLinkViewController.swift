@@ -14,10 +14,13 @@ class WebLinkViewController: BasePortraitViewController {
     var dataSource = LeaderActivityDataSource()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "友情链接"
+        self.view.backgroundColor = ThemeManager.current().backgroundColor
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64))
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorStyle = .None
+        tableView.backgroundColor = UIColor.clearColor()
         self.view.addSubview(tableView)
         
         self.view.showHud()
@@ -59,6 +62,8 @@ extension WebLinkViewController : UITableViewDelegate, UITableViewDataSource
         cell.textLabel?.font = UIFont.systemFontOfSize(15)
         cell.textLabel?.text = dataSource.webLinks[indexPath.row].title
         cell.accessoryType = .DisclosureIndicator
+        let line = GetLineView(CGRect(x: 10, y: 49, width: GetSWidth(), height: 1))
+        cell.addSubview(line)
         return cell
     }
 }

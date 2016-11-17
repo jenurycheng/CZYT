@@ -12,13 +12,14 @@ class HomeViewController: BasePortraitViewController {
 
     var collectionView:UICollectionView!
     var pageView:CCPageView!
+    var dataSource = LeaderActivityDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .Vertical
 
-        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64-49), collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64), collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = ThemeManager.current().foregroundColor
@@ -30,6 +31,12 @@ class HomeViewController: BasePortraitViewController {
         pageView.delegate = self
         pageView.pageControl.backgroundColor = ThemeManager.current().backgroundColor
         pageView.pageControl.pageIndicatorTintColor = ThemeManager.current().mainColor
+        
+        dataSource.getLeaderActivity(true, success: { (result) in
+            self.pageView.loadData()
+            }) { (error) in
+                
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -82,6 +89,19 @@ extension HomeViewController : UICollectionViewDelegate
                 let ac = WebLinkViewController()
                 let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
                 nav?.pushViewController(ac, animated: true)
+            }else if indexPath.row == 5
+            {
+                
+            }else if indexPath.row == 6
+            {
+                let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
+                if !UserInfo.sharedInstance.isLogin {
+                    let user = UserInfoViewController()
+                    nav?.pushViewController(user, animated: true)
+                    return
+                }
+                let ac = ChatViewController()
+                nav?.pushViewController(ac, animated: true)
             }
         }
     }
@@ -115,7 +135,7 @@ extension HomeViewController : UICollectionViewDataSource
             return 1
         }else if section == 1   //已安装应用，最多显示4个
         {
-            return 5
+            return 7
         }
         return 0
     }
@@ -129,8 +149,8 @@ extension HomeViewController : UICollectionViewDataSource
         } else
         {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
-            let images = ["user_header_default", "user_header_default", "user_header_default", "user_header_default", "user_header_default"]
-            let names = ["领导活动", "政策文件", "工作状态", "项目工作", "友情链接"]
+            let images = ["user_header_default", "user_header_default", "user_header_default", "user_header_default", "user_header_default", "user_header_default", "user_header_default"]
+            let names = ["领导活动", "政策文件", "工作状态", "项目工作", "友情链接", "督查督办", "互动交流"]
             cell.iconImageView.image = UIImage(named: images[indexPath.row])
             cell.nameLabel.text = names[indexPath.row]
             return cell
@@ -156,7 +176,7 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets
     {
         if section == 1 {
-            return UIEdgeInsetsMake(20, 20, 20, 20)
+            return UIEdgeInsetsMake(10, 20, 10, 20)
         }
         return UIEdgeInsetsMake(0, 0, 0, 0)
     }
@@ -198,7 +218,7 @@ extension HomeViewController : CCPageViewDelegate
 {
     func pageCountForPageView(page:CCPageView)->Int
     {
-        return 5
+        return dataSource.leaderActivity.count
     }
     
     func pageViewForIndex(page:CCPageView, index:Int)->UIView
@@ -208,7 +228,7 @@ extension HomeViewController : CCPageViewDelegate
         imgView.image = UIImage(named: "test")
         view.addSubview(imgView)
         let label = UILabel(frame: CGRect(x: 0, y: page.frame.height-20-30, width: page.frame.width, height: 30))
-        label.text = "文本描述信息"
+        label.text = dataSource.leaderActivity[index].title
         label.backgroundColor = Helper.parseColor(0x00000077)
         label.font = UIFont.systemFontOfSize(15)
         label.textColor = ThemeManager.current().whiteFontColor
@@ -221,12 +241,16 @@ extension HomeViewController : CCPageViewDelegate
 //                imgView.image = image
 //            }
 //        }
+        imgView.gm_setImageWithUrlString(dataSource.leaderActivity[index].logo_path, title: dataSource.leaderActivity[index].title, completedBlock: nil)
         
         return view
     }
     
     func pageClickedAtIndex(page:CCPageView, index:Int)
     {
-        
+        let detail = LeaderActivityDetailViewController(nibName: "LeaderActivityDetailViewController", bundle: nil)
+        detail.id = dataSource.leaderActivity[index].id!
+        let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
+        nav?.pushViewController(detail, animated: true)
     }
 }

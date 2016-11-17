@@ -73,8 +73,8 @@ class LeaderActivityDataSource: NSObject {
     func getFileActivity(isFirst:Bool, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestFileActivity()
-        request.classify = "中央"
-        request.offset = "\(self.leaderActivity.count)"
+        request.classify = ""
+        request.offset = "\(self.fileActivity.count)"
         request.row_count = "\(pageSize)"
         if isFirst {
             request.offset = "0"
@@ -132,8 +132,8 @@ class LeaderActivityDataSource: NSObject {
     func getWorkStatusActivity(isFirst:Bool, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestWorkStatusActivity()
-        request.classify = "县区"
-        request.offset = "\(self.leaderActivity.count)"
+        request.classify = ""
+        request.offset = "\(self.workStatusActivity.count)"
         request.row_count = "\(pageSize)"
         if isFirst {
             request.offset = "0"
@@ -191,8 +191,8 @@ class LeaderActivityDataSource: NSObject {
     func getProjectWorkActivity(isFirst:Bool, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestProjectWorkActivity()
-        request.classify = "资阳"
-        request.offset = "\(self.leaderActivity.count)"
+        request.classify = ""
+        request.offset = "\(self.projectWorkActivity.count)"
         request.row_count = "\(pageSize)"
         if isFirst {
             request.offset = "0"

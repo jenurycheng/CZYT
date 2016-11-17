@@ -21,7 +21,10 @@ class LeaderActivityViewController: BaseActivityViewController {
     
     override func loadData()
     {
-        self.view.showHud()
+        if self.dataSource.count == 0
+        {
+            self.view.showHud()
+        }
         lDataSource.getLeaderActivity(true, success: { (result) in
             self.dataSource = self.lDataSource.leaderActivity
             self.tableView.mj_header.endRefreshing()

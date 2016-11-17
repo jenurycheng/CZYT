@@ -20,6 +20,7 @@ class HomeCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        nameLabel.textColor = ThemeManager.current().darkGrayFontColor
         // Initialization code
     }
 
