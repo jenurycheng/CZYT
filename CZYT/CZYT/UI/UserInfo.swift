@@ -54,6 +54,8 @@ class UserInfo: Reflect {
         self.gender = user.gender
         self.mobile = user.mobile
         self.session = user.session
+        self.dept_id = user.dept_id
+        self.dept_name = user.dept_name
     }
     dynamic var isLogin:Bool = false
     

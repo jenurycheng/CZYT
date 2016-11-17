@@ -15,23 +15,24 @@ class ContactViewController: BasePortraitViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        
-//        dataSource.getDepartmentList({ (result) in
-//            
-//            }) { (error) in
-//                
-//        }
-//        dataSource.getContactList("3", success: { (result) in
-//            
-//            }) { (error) in
-//                
-//        }
+        
+        dataSource.getDepartmentList({ (result) in
+            
+            }) { (error) in
+                
+        }
+        dataSource.getContactList("3", success: { (result) in
+            
+            }) { (error) in
+                
+        }
         
         let btn = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
-        btn.setTitle("霍长江", forState: .Normal)
+        btn.setTitle("h", forState: .Normal)
         btn.backgroundColor = ThemeManager.current().mainColor
         btn.addTarget(self, action: #selector(ContactViewController.btnClicked), forControlEvents: .TouchUpInside)
         self.view.addSubview(btn)
+        
         // Do any additional setup after loading the view.
     }
     
@@ -40,7 +41,7 @@ class ContactViewController: BasePortraitViewController {
         let chat = RCConversationViewController()
         chat.conversationType = RCConversationType.ConversationType_PRIVATE
         chat.targetId = "3"
-        chat.title = "霍长江"
+        chat.title = "h"
         self.navigationController?.pushViewController(chat, animated: true)
     }
 
