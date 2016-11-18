@@ -10,30 +10,40 @@ import UIKit
 
 class ContactViewController: BasePortraitViewController {
 
-    var dataSource = ChatDataSource()
-    var tableView:UITableView!
+    var contactDataSource = ContactDataSource.sharedInstance
+    
+    var sideView:CCSideView!
+    var departmentView:DepartmentListView!
+    var contactView:ContactListView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataSource.getDepartmentList({ (result) in
-            
-            }) { (error) in
-                
-        }
-        dataSource.getContactList("3", success: { (result) in
-            
-            }) { (error) in
-                
-        }
+        departmentView = DepartmentListView(frame: self.view.bounds)
+        departmentView.delegate = self
+        contactView = ContactListView(frame: self.view.bounds)
         
-        let btn = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
-        btn.setTitle("h", forState: .Normal)
-        btn.backgroundColor = ThemeManager.current().mainColor
-        btn.addTarget(self, action: #selector(ContactViewController.btnClicked), forControlEvents: .TouchUpInside)
-        self.view.addSubview(btn)
-        
+        sideView = CCSideView(frame: self.view.bounds, leftView: departmentView, contentView: contactView)
+        self.view.addSubview(sideView)
+        self.getData()
         // Do any additional setup after loading the view.
+    }
+    
+    func getData()
+    {
+        self.view.showHud()
+        contactDataSource.getDepartmentList({ (result) in
+            self.contactDataSource.getContactList(UserInfo.sharedInstance.dept_id!, success: { (result) in
+                DepartmentTree.sharedInstance().update(UserInfo.sharedInstance.dept_id!)
+                self.departmentView.update()
+                self.contactView.update(UserInfo.sharedInstance.dept_id!)
+                self.view.dismiss()
+            }) { (error) in
+                self.view.dismiss()
+            }
+        }) { (error) in
+            self.view.dismiss()
+        }
     }
     
     func btnClicked()
@@ -49,16 +59,13 @@ class ContactViewController: BasePortraitViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+extension ContactViewController : DepartmentListViewDelegate
+{
+    func departmentSelected(depart: Department) {
+        sideView.hide()
+        contactView.update(depart.dept_id!)
     }
-    */
-
 }

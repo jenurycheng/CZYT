@@ -12,7 +12,7 @@ class BasePortraitViewController: BaseNavViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.frame = UIScreen.mainScreen().bounds
+        self.view.frame = CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64)
         // Do any additional setup after loading the view.
     }
 

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C41243921DDF20CC0005058C /* ContactDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41243911DDF20CC0005058C /* ContactDataSource.swift */; };
+		C41243941DDF42ED0005058C /* CCSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41243931DDF42ED0005058C /* CCSideView.swift */; };
+		C41243961DDF4A540005058C /* DepartmentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41243951DDF4A540005058C /* DepartmentListView.swift */; };
+		C41243981DDF4A6B0005058C /* ContactListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41243971DDF4A6A0005058C /* ContactListView.swift */; };
 		C4190C491DD6F27B00B38A7A /* NetworkHandleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4190C481DD6F27B00B38A7A /* NetworkHandleUser.swift */; };
 		C4190C4C1DD6F48300B38A7A /* UserDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4190C4B1DD6F48300B38A7A /* UserDataSource.swift */; };
 		C4190C4F1DD6F6FF00B38A7A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4190C4E1DD6F6FF00B38A7A /* UserInfo.swift */; };
@@ -185,6 +189,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C41243911DDF20CC0005058C /* ContactDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDataSource.swift; sourceTree = "<group>"; };
+		C41243931DDF42ED0005058C /* CCSideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCSideView.swift; sourceTree = "<group>"; };
+		C41243951DDF4A540005058C /* DepartmentListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentListView.swift; sourceTree = "<group>"; };
+		C41243971DDF4A6A0005058C /* ContactListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactListView.swift; sourceTree = "<group>"; };
 		C4190C481DD6F27B00B38A7A /* NetworkHandleUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHandleUser.swift; sourceTree = "<group>"; };
 		C4190C4B1DD6F48300B38A7A /* UserDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataSource.swift; sourceTree = "<group>"; };
 		C4190C4E1DD6F6FF00B38A7A /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -587,6 +595,8 @@
 				C4C783A81DDDCEC800B50693 /* GroupDetailViewController.swift */,
 				C4C783AF1DDDD2A200B50693 /* GroupConversationViewController.swift */,
 				C4C783B11DDDD5CC00B50693 /* PrivateConversationViewController.swift */,
+				C41243951DDF4A540005058C /* DepartmentListView.swift */,
+				C41243971DDF4A6A0005058C /* ContactListView.swift */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -611,6 +621,7 @@
 			isa = PBXGroup;
 			children = (
 				C47CEB831DDA016E0078DA21 /* ChatDataSource.swift */,
+				C41243911DDF20CC0005058C /* ContactDataSource.swift */,
 			);
 			name = DataSource;
 			sourceTree = "<group>";
@@ -962,6 +973,7 @@
 				C48734E51DCF240D00C9B0C0 /* TabBarViewController.swift */,
 				C450C97B1DD37D760052B18E /* NetworkErrorView.swift */,
 				C4190C7C1DD77CBC00B38A7A /* KeyboardInputView.swift */,
+				C41243931DDF42ED0005058C /* CCSideView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1165,6 +1177,7 @@
 				C487349D1DCF0A2C00C9B0C0 /* UIScrollView+MJExtension.m in Sources */,
 				C487348E1DCF0A2C00C9B0C0 /* MJRefreshBackFooter.m in Sources */,
 				C48734B41DCF0A3A00C9B0C0 /* Reflect.swift in Sources */,
+				C41243941DDF42ED0005058C /* CCSideView.swift in Sources */,
 				C4190C491DD6F27B00B38A7A /* NetworkHandleUser.swift in Sources */,
 				C4190C601DD7046300B38A7A /* ContactViewController.swift in Sources */,
 				C487342C1DCF09B400C9B0C0 /* AFURLSessionManager.m in Sources */,
@@ -1230,6 +1243,9 @@
 				C48734F21DCF3A2500C9B0C0 /* HomeCell.swift in Sources */,
 				C48734521DCF0A1F00C9B0C0 /* SDImageCache.m in Sources */,
 				C450C9591DD350600052B18E /* ActivityModel.swift in Sources */,
+				C41243981DDF4A6B0005058C /* ContactListView.swift in Sources */,
+				C41243921DDF20CC0005058C /* ContactDataSource.swift in Sources */,
+				C41243961DDF4A540005058C /* DepartmentListView.swift in Sources */,
 				C4190C731DD76DD700B38A7A /* BBSDetailViewController.swift in Sources */,
 				C491E96D1DD217BF005586C7 /* LeaderActivityCell.swift in Sources */,
 				C487342B1DCF09B400C9B0C0 /* AFURLResponseSerialization.m in Sources */,
