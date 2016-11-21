@@ -1,18 +1,18 @@
 //
-//  BasePortraitViewController.swift
+//  PrivateConversationViewController.swift
 //  CZYT
 //
-//  Created by jerry cheng on 2016/11/6.
+//  Created by jerry cheng on 2016/11/17.
 //  Copyright © 2016年 chester. All rights reserved.
 //
 
 import UIKit
 
-class BasePortraitViewController: BaseNavViewController {
+class PrivateConversationViewController: RCConversationViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.frame = CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64)
+
         // Do any additional setup after loading the view.
     }
 
@@ -28,15 +28,4 @@ class BasePortraitViewController: BaseNavViewController {
     override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
         return UIInterfaceOrientation.Portrait
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

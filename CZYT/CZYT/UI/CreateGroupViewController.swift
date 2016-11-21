@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateGroupViewController: UIViewController {
+class CreateGroupViewController: BasePortraitViewController {
 
     var dataSource = ChatDataSource()
     

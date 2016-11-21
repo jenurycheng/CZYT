@@ -24,3 +24,23 @@ class Group : Reflect
     var create_user_logo_path:String?
     var create_date:String?
 }
+
+class GroupDetail : Reflect
+{
+    var create_date:String?
+    var create_user_logo_path:String?
+    var create_user_id:String?
+    var create_user_name:String?
+    var groupName:String?
+    var create_user_mobile:String?
+    var groupId:String?
+    var users:[GroupUser]?
+}
+
+class GroupUser : Reflect
+{
+    var user_logo_path:String?
+    var user_mobile:String?
+    var userId:String?
+    var user_name:String?
+}

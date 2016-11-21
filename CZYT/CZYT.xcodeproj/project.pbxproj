@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C41243921DDF20CC0005058C /* ContactDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41243911DDF20CC0005058C /* ContactDataSource.swift */; };
+		C41243941DDF42ED0005058C /* CCSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41243931DDF42ED0005058C /* CCSideView.swift */; };
+		C41243961DDF4A540005058C /* DepartmentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41243951DDF4A540005058C /* DepartmentListView.swift */; };
+		C41243981DDF4A6B0005058C /* ContactListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41243971DDF4A6A0005058C /* ContactListView.swift */; };
 		C4190C491DD6F27B00B38A7A /* NetworkHandleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4190C481DD6F27B00B38A7A /* NetworkHandleUser.swift */; };
 		C4190C4C1DD6F48300B38A7A /* UserDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4190C4B1DD6F48300B38A7A /* UserDataSource.swift */; };
 		C4190C4F1DD6F6FF00B38A7A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4190C4E1DD6F6FF00B38A7A /* UserInfo.swift */; };
@@ -175,9 +179,20 @@
 		C4BC6A5A1DD4B97600DA19B2 /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC6A591DD4B97600DA19B2 /* UserLoginViewController.swift */; };
 		C4BC6A5D1DD4BB0A00DA19B2 /* UserNotLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC6A5B1DD4BB0A00DA19B2 /* UserNotLoginViewController.swift */; };
 		C4BC6A5E1DD4BB0A00DA19B2 /* UserNotLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BC6A5C1DD4BB0A00DA19B2 /* UserNotLoginViewController.xib */; };
+		C4C783A91DDDCEC800B50693 /* GroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C783A81DDDCEC800B50693 /* GroupDetailViewController.swift */; };
+		C4C783AD1DDDD0FD00B50693 /* GroupUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C783AB1DDDD0FD00B50693 /* GroupUserCell.swift */; };
+		C4C783AE1DDDD0FD00B50693 /* GroupUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C783AC1DDDD0FD00B50693 /* GroupUserCell.xib */; };
+		C4C783B01DDDD2A200B50693 /* GroupConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C783AF1DDDD2A200B50693 /* GroupConversationViewController.swift */; };
+		C4C783B21DDDD5CC00B50693 /* PrivateConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C783B11DDDD5CC00B50693 /* PrivateConversationViewController.swift */; };
+		C4C783B51DDDE26E00B50693 /* GroupLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C783B31DDDE26E00B50693 /* GroupLineCell.swift */; };
+		C4C783B61DDDE26E00B50693 /* GroupLineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C783B41DDDE26E00B50693 /* GroupLineCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C41243911DDF20CC0005058C /* ContactDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDataSource.swift; sourceTree = "<group>"; };
+		C41243931DDF42ED0005058C /* CCSideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCSideView.swift; sourceTree = "<group>"; };
+		C41243951DDF4A540005058C /* DepartmentListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentListView.swift; sourceTree = "<group>"; };
+		C41243971DDF4A6A0005058C /* ContactListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactListView.swift; sourceTree = "<group>"; };
 		C4190C481DD6F27B00B38A7A /* NetworkHandleUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHandleUser.swift; sourceTree = "<group>"; };
 		C4190C4B1DD6F48300B38A7A /* UserDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataSource.swift; sourceTree = "<group>"; };
 		C4190C4E1DD6F6FF00B38A7A /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -394,6 +409,13 @@
 		C4BC6A591DD4B97600DA19B2 /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
 		C4BC6A5B1DD4BB0A00DA19B2 /* UserNotLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotLoginViewController.swift; sourceTree = "<group>"; };
 		C4BC6A5C1DD4BB0A00DA19B2 /* UserNotLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserNotLoginViewController.xib; sourceTree = "<group>"; };
+		C4C783A81DDDCEC800B50693 /* GroupDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDetailViewController.swift; sourceTree = "<group>"; };
+		C4C783AB1DDDD0FD00B50693 /* GroupUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupUserCell.swift; sourceTree = "<group>"; };
+		C4C783AC1DDDD0FD00B50693 /* GroupUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupUserCell.xib; sourceTree = "<group>"; };
+		C4C783AF1DDDD2A200B50693 /* GroupConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupConversationViewController.swift; sourceTree = "<group>"; };
+		C4C783B11DDDD5CC00B50693 /* PrivateConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateConversationViewController.swift; sourceTree = "<group>"; };
+		C4C783B31DDDE26E00B50693 /* GroupLineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupLineCell.swift; sourceTree = "<group>"; };
+		C4C783B41DDDE26E00B50693 /* GroupLineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupLineCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -478,6 +500,10 @@
 				C4190C651DD733A800B38A7A /* ChatGroupCell.xib */,
 				C4190C681DD7387D00B38A7A /* ChatGroupTopCell.swift */,
 				C4190C691DD7387D00B38A7A /* ChatGroupTopCell.xib */,
+				C4C783AB1DDDD0FD00B50693 /* GroupUserCell.swift */,
+				C4C783AC1DDDD0FD00B50693 /* GroupUserCell.xib */,
+				C4C783B31DDDE26E00B50693 /* GroupLineCell.swift */,
+				C4C783B41DDDE26E00B50693 /* GroupLineCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -566,6 +592,11 @@
 				C4190C611DD7046B00B38A7A /* GroupViewController.swift */,
 				C43005931DDB5ABA00AC6077 /* CreateGroupViewController.swift */,
 				C43005941DDB5ABA00AC6077 /* CreateGroupViewController.xib */,
+				C4C783A81DDDCEC800B50693 /* GroupDetailViewController.swift */,
+				C4C783AF1DDDD2A200B50693 /* GroupConversationViewController.swift */,
+				C4C783B11DDDD5CC00B50693 /* PrivateConversationViewController.swift */,
+				C41243951DDF4A540005058C /* DepartmentListView.swift */,
+				C41243971DDF4A6A0005058C /* ContactListView.swift */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -590,6 +621,7 @@
 			isa = PBXGroup;
 			children = (
 				C47CEB831DDA016E0078DA21 /* ChatDataSource.swift */,
+				C41243911DDF20CC0005058C /* ContactDataSource.swift */,
 			);
 			name = DataSource;
 			sourceTree = "<group>";
@@ -941,6 +973,7 @@
 				C48734E51DCF240D00C9B0C0 /* TabBarViewController.swift */,
 				C450C97B1DD37D760052B18E /* NetworkErrorView.swift */,
 				C4190C7C1DD77CBC00B38A7A /* KeyboardInputView.swift */,
+				C41243931DDF42ED0005058C /* CCSideView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1092,9 +1125,11 @@
 				C4190C671DD733A800B38A7A /* ChatGroupCell.xib in Resources */,
 				C4190C7A1DD778D200B38A7A /* BBSCommentCell.xib in Resources */,
 				C4190C741DD76DD700B38A7A /* BBSDetailViewController.xib in Resources */,
+				C4C783AE1DDDD0FD00B50693 /* GroupUserCell.xib in Resources */,
 				C48734F31DCF3A2500C9B0C0 /* HomeCell.xib in Resources */,
 				C491E9721DD22137005586C7 /* LeaderActivityDetailViewController.xib in Resources */,
 				C450C9671DD360030052B18E /* FileActivityDetailViewController.xib in Resources */,
+				C4C783B61DDDE26E00B50693 /* GroupLineCell.xib in Resources */,
 				C4BC6A541DD4A89800DA19B2 /* ProjectWorkCell.xib in Resources */,
 				C491E96E1DD217BF005586C7 /* LeaderActivityCell.xib in Resources */,
 				C436435E1DD0C118003C91D8 /* release_notes_ios.txt in Resources */,
@@ -1113,6 +1148,7 @@
 			files = (
 				C487345D1DCF0A1F00C9B0C0 /* UIImageView+HighlightedWebCache.m in Sources */,
 				C47CEB7D1DD9D5EE0078DA21 /* UserInfoViewController.swift in Sources */,
+				C4C783B01DDDD2A200B50693 /* GroupConversationViewController.swift in Sources */,
 				C48734951DCF0A2C00C9B0C0 /* MJRefreshBackGifFooter.m in Sources */,
 				C4190C511DD6FB3100B38A7A /* NetworkHandleBBS.swift in Sources */,
 				C47CEB841DDA016E0078DA21 /* ChatDataSource.swift in Sources */,
@@ -1131,6 +1167,7 @@
 				C48734271DCF09B400C9B0C0 /* AFHTTPSessionManager.m in Sources */,
 				C487348F1DCF0A2C00C9B0C0 /* MJRefreshComponent.m in Sources */,
 				C48734BB1DCF0A4900C9B0C0 /* MBProgressHUD+Add.m in Sources */,
+				C4C783B21DDDD5CC00B50693 /* PrivateConversationViewController.swift in Sources */,
 				C4190C571DD6FBFE00B38A7A /* BBSDataSource.swift in Sources */,
 				C450C9751DD373030052B18E /* ProjectWorkActivityViewController.swift in Sources */,
 				C450C95F1DD3531D0052B18E /* UIView+HUD.swift in Sources */,
@@ -1142,6 +1179,7 @@
 				C487349D1DCF0A2C00C9B0C0 /* UIScrollView+MJExtension.m in Sources */,
 				C487348E1DCF0A2C00C9B0C0 /* MJRefreshBackFooter.m in Sources */,
 				C48734B41DCF0A3A00C9B0C0 /* Reflect.swift in Sources */,
+				C41243941DDF42ED0005058C /* CCSideView.swift in Sources */,
 				C4190C491DD6F27B00B38A7A /* NetworkHandleUser.swift in Sources */,
 				C4190C601DD7046300B38A7A /* ContactViewController.swift in Sources */,
 				C487342C1DCF09B400C9B0C0 /* AFURLSessionManager.m in Sources */,
@@ -1151,6 +1189,7 @@
 				C4190C791DD778D200B38A7A /* BBSCommentCell.swift in Sources */,
 				C48734E91DCF307600C9B0C0 /* CCPageView.swift in Sources */,
 				C487349F1DCF0A2C00C9B0C0 /* UIView+MJExtension.m in Sources */,
+				C4C783AD1DDDD0FD00B50693 /* GroupUserCell.swift in Sources */,
 				C48734551DCF0A1F00C9B0C0 /* SDWebImageDownloader.m in Sources */,
 				C4BC6A5D1DD4BB0A00DA19B2 /* UserNotLoginViewController.swift in Sources */,
 				C48734B21DCF0A3A00C9B0C0 /* Reflect+Property.swift in Sources */,
@@ -1176,6 +1215,7 @@
 				C48734DE1DCF224000C9B0C0 /* BasePortraitViewController.swift in Sources */,
 				C450C95C1DD350BB0052B18E /* LeaderActivityDataSource.swift in Sources */,
 				C4190C6A1DD7387D00B38A7A /* ChatGroupTopCell.swift in Sources */,
+				C4C783A91DDDCEC800B50693 /* GroupDetailViewController.swift in Sources */,
 				C487345B1DCF0A1F00C9B0C0 /* UIImage+MultiFormat.m in Sources */,
 				C487342A1DCF09B400C9B0C0 /* AFURLRequestSerialization.m in Sources */,
 				C487349C1DCF0A2C00C9B0C0 /* MJRefreshConst.m in Sources */,
@@ -1192,6 +1232,7 @@
 				C48734281DCF09B400C9B0C0 /* AFNetworkReachabilityManager.m in Sources */,
 				C43005911DDB3C5600AC6077 /* ChatModel.swift in Sources */,
 				C48734CF1DCF176C00C9B0C0 /* NetWorkHandleApp.swift in Sources */,
+				C4C783B51DDDE26E00B50693 /* GroupLineCell.swift in Sources */,
 				C4190C761DD7788E00B38A7A /* BBSCommentViewController.swift in Sources */,
 				C47CEB861DDA0F820078DA21 /* NetWorkHandleTask.swift in Sources */,
 				C450C9631DD35CFC0052B18E /* BaseActivityViewController.swift in Sources */,
@@ -1204,6 +1245,9 @@
 				C48734F21DCF3A2500C9B0C0 /* HomeCell.swift in Sources */,
 				C48734521DCF0A1F00C9B0C0 /* SDImageCache.m in Sources */,
 				C450C9591DD350600052B18E /* ActivityModel.swift in Sources */,
+				C41243981DDF4A6B0005058C /* ContactListView.swift in Sources */,
+				C41243921DDF20CC0005058C /* ContactDataSource.swift in Sources */,
+				C41243961DDF4A540005058C /* DepartmentListView.swift in Sources */,
 				C4190C731DD76DD700B38A7A /* BBSDetailViewController.swift in Sources */,
 				C491E96D1DD217BF005586C7 /* LeaderActivityCell.swift in Sources */,
 				C487342B1DCF09B400C9B0C0 /* AFURLResponseSerialization.m in Sources */,

@@ -10,7 +10,7 @@ import UIKit
 
 class GroupViewController: BasePortraitViewController {
 
-    var dataSource = ChatDataSource()
+    var dataSource = ChatDataSource.sharedInstance
     
     var tableView:UITableView!
     var addGroupBtn:UIButton!
@@ -25,6 +25,11 @@ class GroupViewController: BasePortraitViewController {
         tableView.registerNib(UINib(nibName: "ChatGroupCell", bundle: nil), forCellReuseIdentifier: "ChatGroupCell")
         tableView.registerNib(UINib(nibName: "ChatGroupTopCell", bundle: nil), forCellReuseIdentifier: "ChatGroupTopCell")
         
+        unowned let weakSelf = self
+        tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { 
+            weakSelf.loadData()
+        })
+        
         self.loadData()
         // Do any additional setup after loading the view.
     }
@@ -33,8 +38,9 @@ class GroupViewController: BasePortraitViewController {
     {
         dataSource.queryUserGroup(UserInfo.sharedInstance.id!, success: { (result) in
             self.tableView.reloadData()
+            self.tableView.mj_header.endRefreshing()
             }) { (error) in
-                
+            self.tableView.mj_header.endRefreshing()
         }
     }
 
@@ -81,16 +87,13 @@ extension GroupViewController : UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let chat = RCConversationViewController()
-        chat.conversationType = RCConversationType.ConversationType_GROUP
-        chat.targetId = dataSource.group[indexPath.row].groupId
-        chat.title = dataSource.group[indexPath.row].groupName
-        self.navigationController?.pushViewController(chat, animated: true)
-        
-        dataSource.queryGroupUser(dataSource.group[indexPath.row].groupId!, success: { (result) in
-            
-            }) { (error) in
-                
+        if indexPath.section == 1
+        {
+            let chat = GroupConversationViewController()
+            chat.conversationType = RCConversationType.ConversationType_GROUP
+            chat.targetId = dataSource.group[indexPath.row].groupId
+            chat.title = dataSource.group[indexPath.row].groupName
+            self.navigationController?.pushViewController(chat, animated: true)
         }
     }
     

@@ -10,6 +10,14 @@ import UIKit
 
 class ChatDataSource: NSObject {
     
+    class var sharedInstance : ChatDataSource
+    {
+        struct Instance{
+            static let instance:ChatDataSource = ChatDataSource()
+        }
+        return Instance.instance
+    }
+    
     func createGroup(userIds:[String], groupName:String, success:((result:String) -> Void), failure:((error:HttpResponseData)->Void))
     {
         var ids = ""
@@ -72,16 +80,26 @@ class ChatDataSource: NSObject {
         }
     }
     
-    func queryGroupUser(groupId:String, success:((result:String) -> Void), failure:((error:HttpResponseData)->Void))
+    var groupDetail:GroupDetail?
+    func queryGroupDetail(groupId:String, success:((result:GroupDetail) -> Void), failure:((error:HttpResponseData)->Void))
     {
-        let r = NetWorkHandle.NetWorkHandleChat.RequestQueryGroupUser()
-        r.groupId = groupId
-        NetWorkHandle.NetWorkHandleChat.queryGroupUser(r) { (data) in
+        let request = NetWorkHandle.NetWorkHandleChat.RequestQueryGroupDetail()
+        request.groupId = groupId
+        NetWorkHandle.NetWorkHandleChat.queryGroupDetail(request) { (data) in
             if data.isSuccess()
             {
-                
+                let r = data.data as? NSDictionary
+                if r != nil
+                {
+                    let u = GroupDetail.parse(dict: data.data as! NSDictionary)
+                    self.groupDetail = u
+                    success(result: u)
+                }
+                else{
+                    failure(error: data)
+                }
             }else{
-                
+                failure(error: data)
             }
         }
     }
@@ -110,6 +128,18 @@ class ChatDataSource: NSObject {
                 failure(error: data)
             }
         }
+    }
+    
+    func getGroup(id:String)->Group?
+    {
+        for g in group
+        {
+            if g.groupId == id
+            {
+                return g
+            }
+        }
+        return nil
     }
     
     func quitGroup(userIds:[String], groupId:String, success:((result:String) -> Void), failure:((error:HttpResponseData)->Void))
@@ -143,57 +173,6 @@ class ChatDataSource: NSObject {
             if data.isSuccess()
             {
                 success(result: data.msg)
-            }else{
-                failure(error: data)
-            }
-        }
-    }
-    
-    var department = [Department]()
-    func getDepartmentList(success:((result:[Department]) -> Void), failure:((error:HttpResponseData)->Void))
-    {
-        let request = NetWorkHandle.NetWorkHandleUser.RequestGetDepartmentList()
-        NetWorkHandle.NetWorkHandleUser.getDepartmentList(request) { (data) in
-            if data.isSuccess()
-            {
-                let r = data.data as? Array<NSDictionary>
-                var array = [Department]()
-                if r != nil
-                {
-                    for dic in r!
-                    {
-                        let d = Department.parse(dict: dic)
-                        array.append(d)
-                    }
-                }
-                self.department = array
-                success(result: array)
-            }else{
-                failure(error: data)
-            }
-        }
-    }
-    
-    var contact = [UserInfo]()
-    func getContactList(groupId:String, success:((result:[UserInfo]) -> Void), failure:((error:HttpResponseData)->Void))
-    {
-        let request = NetWorkHandle.NetWorkHandleUser.RequestGetContactList()
-        request.dept_id = groupId
-        NetWorkHandle.NetWorkHandleUser.getContactList(request) { (data) in
-            if data.isSuccess()
-            {
-                var array = [UserInfo]()
-                let r = data.data as? Array<NSDictionary>
-                if r != nil
-                {
-                    for dic in r!
-                    {
-                        let u = UserInfo.parse(dict: dic)
-                        array.append(u)
-                    }
-                }
-                self.contact = array
-                success(result: array)
             }else{
                 failure(error: data)
             }

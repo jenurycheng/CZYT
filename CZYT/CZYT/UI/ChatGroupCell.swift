@@ -22,6 +22,20 @@ class ChatGroupCell: UITableViewCell {
     {
         titleLabel.text = g.groupName
     }
+    
+    func updateUserInfo(u:UserInfo)
+    {
+        let name = u.nickname == nil ? "" : u.nickname!
+        titleLabel.text = name
+        
+        if u.id == UserInfo.sharedInstance.id
+        {
+            titleLabel.text = name + "(我自己)"
+            self.accessoryType = .None
+        }else{
+            self.accessoryType = .DisclosureIndicator
+        }
+    }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

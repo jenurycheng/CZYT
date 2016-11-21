@@ -1,19 +1,32 @@
 //
-//  BasePortraitViewController.swift
+//  GroupConversationViewController.swift
 //  CZYT
 //
-//  Created by jerry cheng on 2016/11/6.
+//  Created by jerry cheng on 2016/11/17.
 //  Copyright © 2016年 chester. All rights reserved.
 //
 
 import UIKit
 
-class BasePortraitViewController: BaseNavViewController {
+class GroupConversationViewController: RCConversationViewController {
 
     override func viewDidLoad() {
+
         super.viewDidLoad()
-        self.view.frame = CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64)
+    
+        if conversationType == RCConversationType.ConversationType_GROUP
+        {
+            let groupItem = UIBarButtonItem(barButtonSystemItem: .Organize, target: self, action: #selector(GroupConversationViewController.groupItemClicked))
+            self.navigationItem.rightBarButtonItem = groupItem
+        }
         // Do any additional setup after loading the view.
+    }
+    
+    func groupItemClicked()
+    {
+        let detail = GroupDetailViewController()
+        detail.groupId = self.targetId
+        self.navigationController?.pushViewController(detail, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,6 +41,7 @@ class BasePortraitViewController: BaseNavViewController {
     override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
         return UIInterfaceOrientation.Portrait
     }
+    
 
     /*
     // MARK: - Navigation
