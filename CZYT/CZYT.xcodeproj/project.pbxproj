@@ -1046,7 +1046,9 @@
 				TargetAttributes = {
 					C48733FF1DCF093E00C9B0C0 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 26JVMY8BXV;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1347,6 +1349,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 26JVMY8BXV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CZYT/Depends/Rong_Cloud_iOS_IMKit_SDK_v2_7_3_stable",
@@ -1360,6 +1363,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.yumutech.unity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5b4a0436-2165-4357-9bc1-981ef591ec74";
+				PROVISIONING_PROFILE_SPECIFIER = chengziyiti;
 				SWIFT_OBJC_BRIDGING_HEADER = "./CZYT/CZYT-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
 			};
@@ -1369,6 +1374,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 26JVMY8BXV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CZYT/Depends/Rong_Cloud_iOS_IMKit_SDK_v2_7_3_stable",
@@ -1382,6 +1388,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.yumutech.unity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5b4a0436-2165-4357-9bc1-981ef591ec74";
+				PROVISIONING_PROFILE_SPECIFIER = chengziyiti;
 				SWIFT_OBJC_BRIDGING_HEADER = "./CZYT/CZYT-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
 			};
