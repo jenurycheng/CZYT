@@ -1283,6 +1283,7 @@
 				TargetAttributes = {
 					C48733FF1DCF093E00C9B0C0 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 26JVMY8BXV;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.Push = {
