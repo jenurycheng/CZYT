@@ -27,12 +27,14 @@ class GroupUserCell: UICollectionViewCell {
     
     func updateToAddBtn()
     {
-        headerImageView.image = UIImage(named: "user_header_default")
+        headerImageView.image = UIImage(named: "add")
         nameLabel.text = "添加成员"
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        headerImageView.layer.cornerRadius = 5
+        headerImageView.layer.masksToBounds = true
         // Initialization code
     }
 

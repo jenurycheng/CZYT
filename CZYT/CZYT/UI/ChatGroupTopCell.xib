@@ -28,7 +28,7 @@
                                     <action selector="addGroupBtnClicked" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gcq-M8-y9b"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新建群组" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMf-ei-8yT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新建讨论组" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMf-ei-8yT">
                                 <rect key="frame" x="20" y="90" width="100" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="sYC-hn-yZ4"/>

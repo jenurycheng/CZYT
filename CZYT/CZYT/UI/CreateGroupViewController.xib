@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateGroupViewController" customModule="CZYT" customModuleProvider="target">
             <connections>
+                <outlet property="createBtn" destination="gPY-5d-JG9" id="z1v-EG-VXr"/>
                 <outlet property="nameTextField" destination="MSg-4h-lif" id="CMx-S6-RXy"/>
                 <outlet property="tableView" destination="6Jm-23-MOh" id="Hye-sy-brM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -17,28 +18,43 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入名称" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MSg-4h-lif">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Jm-23-MOh">
+                    <rect key="frame" x="0.0" y="70" width="320" height="448"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPY-5d-JG9">
+                    <rect key="frame" x="10" y="523" width="300" height="40"/>
+                    <color key="backgroundColor" red="0.1764705882" green="0.52941176469999995" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="创建讨论组">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="create" destination="-1" eventType="touchUpInside" id="wgE-MI-m3o"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入讨论组名称" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MSg-4h-lif">
                     <rect key="frame" x="8" y="20" width="304" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Leb-Tz-6S2"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Jm-23-MOh">
-                    <rect key="frame" x="0.0" y="70" width="320" height="498"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </tableView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="6Jm-23-MOh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0sm-cx-h34"/>
                 <constraint firstItem="MSg-4h-lif" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="2ar-bD-gGy"/>
                 <constraint firstAttribute="trailing" secondItem="MSg-4h-lif" secondAttribute="trailing" constant="8" id="6uZ-wI-10a"/>
                 <constraint firstItem="6Jm-23-MOh" firstAttribute="top" secondItem="MSg-4h-lif" secondAttribute="bottom" constant="20" id="Mu9-x7-SIH"/>
+                <constraint firstAttribute="trailing" secondItem="gPY-5d-JG9" secondAttribute="trailing" constant="10" id="NGB-In-CBU"/>
+                <constraint firstItem="gPY-5d-JG9" firstAttribute="top" secondItem="6Jm-23-MOh" secondAttribute="bottom" constant="5" id="NUI-22-wqb"/>
+                <constraint firstItem="gPY-5d-JG9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="OTG-mD-BNM"/>
                 <constraint firstAttribute="trailing" secondItem="6Jm-23-MOh" secondAttribute="trailing" id="TJG-7m-T2m"/>
+                <constraint firstAttribute="bottom" secondItem="gPY-5d-JG9" secondAttribute="bottom" constant="5" id="k9t-dX-MLg"/>
                 <constraint firstItem="MSg-4h-lif" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="qrF-aF-Za6"/>
-                <constraint firstAttribute="bottom" secondItem="6Jm-23-MOh" secondAttribute="bottom" id="v7w-Cu-bEX"/>
+                <constraint firstAttribute="bottom" secondItem="6Jm-23-MOh" secondAttribute="bottom" constant="50" id="v7w-Cu-bEX"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="199" y="153"/>

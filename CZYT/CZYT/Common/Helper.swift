@@ -86,7 +86,7 @@ class Helper: NSObject {
 
     static func imageToBase64(image:UIImage)->String
     {
-        let imageData:NSData = UIImageJPEGRepresentation(image, 1)!
+        let imageData:NSData = UIImageJPEGRepresentation(image, 0.9)!
         return imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithCarriageReturn)
     }
     

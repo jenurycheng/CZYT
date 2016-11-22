@@ -19,9 +19,9 @@ class ContactViewController: BasePortraitViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        departmentView = DepartmentListView(frame: self.view.bounds)
+        departmentView = DepartmentListView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64))
         departmentView.delegate = self
-        contactView = ContactListView(frame: self.view.bounds)
+        contactView = ContactListView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64))
         
         sideView = CCSideView(frame: self.view.bounds, leftView: departmentView, contentView: contactView)
         self.view.addSubview(sideView)
@@ -31,7 +31,10 @@ class ContactViewController: BasePortraitViewController {
     
     func getData()
     {
-        self.view.showHud()
+        if contactDataSource.department.count == 0 || contactDataSource.contact.count == 0
+        {
+            self.view.showHud()
+        }
         contactDataSource.getDepartmentList({ (result) in
             self.contactDataSource.getContactList(UserInfo.sharedInstance.dept_id!, success: { (result) in
                 DepartmentTree.sharedInstance().update(UserInfo.sharedInstance.dept_id!)

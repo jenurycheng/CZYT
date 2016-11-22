@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddGroupUserViewController" customModule="CZYT" customModuleProvider="target">
+            <connections>
+                <outlet property="okBtn" destination="kKg-ii-6Wq" id="7en-Pc-jbp"/>
+                <outlet property="tableView" destination="6sg-sj-TsV" id="db4-Ci-qc5"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6sg-sj-TsV">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKg-ii-6Wq">
+                    <rect key="frame" x="10" y="523" width="300" height="40"/>
+                    <color key="backgroundColor" red="0.1764705882" green="0.52941176469999995" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="添加">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="okBtnClicked" destination="-1" eventType="touchUpInside" id="5tV-Ub-Oxy"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="kKg-ii-6Wq" firstAttribute="top" secondItem="6sg-sj-TsV" secondAttribute="bottom" constant="5" id="3NH-Tm-DYD"/>
+                <constraint firstAttribute="trailing" secondItem="6sg-sj-TsV" secondAttribute="trailing" id="Cb6-GN-1iZ"/>
+                <constraint firstAttribute="trailing" secondItem="kKg-ii-6Wq" secondAttribute="trailing" constant="10" id="Mxb-Bv-ubv"/>
+                <constraint firstItem="kKg-ii-6Wq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="NcQ-Dx-vCV"/>
+                <constraint firstItem="6sg-sj-TsV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="QEu-F1-gh8"/>
+                <constraint firstAttribute="bottom" secondItem="kKg-ii-6Wq" secondAttribute="bottom" constant="5" id="T2C-fR-TVW"/>
+                <constraint firstAttribute="bottom" secondItem="6sg-sj-TsV" secondAttribute="bottom" constant="50" id="dfk-xD-drB"/>
+                <constraint firstItem="6sg-sj-TsV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nwr-Dd-dEH"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="207" y="137"/>
+        </view>
+    </objects>
+</document>

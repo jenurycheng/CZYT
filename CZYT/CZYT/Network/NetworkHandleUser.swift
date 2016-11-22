@@ -15,6 +15,7 @@ extension NetWorkHandle {
         static var Address_GetToken = "UserToken?"
         static var Address_GetDepartmentList = "DeptList?"
         static var Address_GetContactList = "UserList?"
+        static var Address_GetUserDetail = "UserItem"
         
         class RequestUserValidCode : Reflect
         {
@@ -58,6 +59,15 @@ extension NetWorkHandle {
         
         class func getContactList(request:RequestGetContactList?, finish:((HttpResponseData)->Void)) {
             NetWorkHandle.PublicNetWorkAccess(Address_GetContactList, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
+        
+        class RequestGetUserDetail : Reflect
+        {
+            var id:String?
+        }
+        
+        class func getUserDetail(request:RequestGetUserDetail?, finish:((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetUserDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
         }
     }
 }

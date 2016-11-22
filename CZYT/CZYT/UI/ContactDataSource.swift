@@ -68,6 +68,18 @@ class ContactDataSource: NSObject {
         return users
     }
     
+    func getUserInfo(id:String)->UserInfo?
+    {
+        for u in contact
+        {
+            if u.id == id
+            {
+                return u
+            }
+        }
+        return nil
+    }
+    
     var contact = [UserInfo]()
     func getContactList(groupId:String, success:((result:[UserInfo]) -> Void), failure:((error:HttpResponseData)->Void))
     {

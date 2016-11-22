@@ -25,6 +25,10 @@ class HomeViewController: BasePortraitViewController {
         collectionView.backgroundColor = ThemeManager.current().foregroundColor
         collectionView.registerNib(UINib(nibName: "HomeCell", bundle: nil), forCellWithReuseIdentifier: "HomeCell")
         collectionView.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "UICollectionViewCell")
+        unowned let weakSelf = self
+        collectionView.mj_header = MJRefreshNormalHeader(refreshingBlock: { 
+            weakSelf.getHomeData()
+        })
         self.view.addSubview(collectionView)
         
         pageView = CCPageView(frame: CGRectMake(0, 0, GetSWidth(), CCPageView.viewHeight()))
@@ -32,12 +36,30 @@ class HomeViewController: BasePortraitViewController {
         pageView.pageControl.backgroundColor = ThemeManager.current().backgroundColor
         pageView.pageControl.pageIndicatorTintColor = ThemeManager.current().mainColor
         
+        self.getHomeData()
+        // Do any additional setup after loading the view.
+    }
+    
+    func getHomeData()
+    {
         dataSource.getLeaderActivity(true, success: { (result) in
             self.pageView.loadData()
-            }) { (error) in
-                
+            self.collectionView.mj_header.endRefreshing()
+        }) { (error) in
+            
         }
-        // Do any additional setup after loading the view.
+    }
+    
+    func getUnreadMsg()
+    {
+        dispatch_async(dispatch_get_global_queue(0, 0)) { 
+            let a = [RCConversationType.ConversationType_PRIVATE.rawValue as AnyObject, RCConversationType.ConversationType_GROUP.rawValue as AnyObject]
+            let count = RCIMClient.sharedRCIMClient().getUnreadCount(a)
+            dispatch_async(dispatch_get_main_queue(), { 
+                CCPrint("未读消息:\(count)")
+            })
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,40 +85,41 @@ extension HomeViewController : UICollectionViewDelegate
 {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
+        let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
         if indexPath.section == 1 {
             if indexPath.row == 0
             {
                 let ac = LeaderActivityViewController()
-                let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
                 nav?.pushViewController(ac, animated: true)
             }else if indexPath.row == 1
             {
                 let ac = FileActivityViewController()
-                let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
                 nav?.pushViewController(ac, animated: true)
             }else if indexPath.row == 2
             {
                 let ac = WorkStatusActivityViewController()
-                let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
                 nav?.pushViewController(ac, animated: true)
             }else if indexPath.row == 3
             {
                 let ac = ProjectWorkActivityViewController()
-                let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
                 nav?.pushViewController(ac, animated: true)
             }else if indexPath.row == 4
             {
                 let ac = WebLinkViewController()
-                let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
                 nav?.pushViewController(ac, animated: true)
             }else if indexPath.row == 5
             {
-                
+                if !UserInfo.sharedInstance.isLogin {
+                    let user = UserInfoViewController(nibName: "UserInfoViewController", bundle: nil)
+                    nav?.pushViewController(user, animated: true)
+                    return
+                }
+                let task = TaskViewController()
+                nav?.pushViewController(task, animated: true)
             }else if indexPath.row == 6
             {
-                let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
                 if !UserInfo.sharedInstance.isLogin {
-                    let user = UserInfoViewController()
+                    let user = UserInfoViewController(nibName: "UserInfoViewController", bundle: nil)
                     nav?.pushViewController(user, animated: true)
                     return
                 }
