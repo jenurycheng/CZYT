@@ -9,7 +9,7 @@
 import UIKit
 
 class LeaderActivityDataSource: NSObject {
-    var pageSize = 10
+    var pageSize = 5
     var leaderActivity = [LeaderActivity]()
     func getLeaderActivity(isFirst:Bool, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
     {

@@ -21,7 +21,7 @@ extension UIView
             return
         }
         
-        let bgHud = UIView(frame: CGRectMake(self.frame.size.width/2-50, self.frame.size.height/2-50, 100, 100))
+        let bgHud = UIView(frame: CGRectMake(self.frame.size.width/2-50, self.frame.size.height/2-100, 100, 100))
         if showBlackBg
         {
             bgHud.backgroundColor = UIColor(white: 0, alpha: 0.8)

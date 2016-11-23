@@ -23,7 +23,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="资阳成都交流群" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjY-iT-E8W">
-                        <rect key="frame" x="88" y="24.5" width="222" height="30"/>
+                        <rect key="frame" x="88" y="24.5" width="174" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="8h3-Lm-qfW"/>
                         </constraints>
@@ -31,17 +31,27 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_not_selected" translatesAutoresizingMaskIntoConstraints="NO" id="86d-h8-Wwm">
+                        <rect key="frame" x="280" y="20" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="xV5-Xc-t2U"/>
+                            <constraint firstAttribute="height" constant="40" id="yNH-bR-d0A"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="fjY-iT-E8W" firstAttribute="leading" secondItem="Ym7-aI-vmY" secondAttribute="trailing" constant="10" id="ADG-vT-grc"/>
+                    <constraint firstItem="86d-h8-Wwm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="KUr-Ff-z31"/>
                     <constraint firstAttribute="bottom" secondItem="Ym7-aI-vmY" secondAttribute="bottom" constant="5" id="Q1Z-8l-Cow"/>
                     <constraint firstItem="Ym7-aI-vmY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="X5e-6p-L6H"/>
                     <constraint firstItem="fjY-iT-E8W" firstAttribute="centerY" secondItem="Ym7-aI-vmY" secondAttribute="centerY" id="Yfz-wL-FJ3"/>
                     <constraint firstItem="Ym7-aI-vmY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="guY-GU-twu"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="fjY-iT-E8W" secondAttribute="trailing" constant="2" id="vPP-HW-Wds"/>
+                    <constraint firstAttribute="trailing" secondItem="86d-h8-Wwm" secondAttribute="trailing" id="l4Q-8C-VOc"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="fjY-iT-E8W" secondAttribute="trailing" constant="50" id="vPP-HW-Wds"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="checkedImageView" destination="86d-h8-Wwm" id="k6K-20-1Vv"/>
                 <outlet property="headerImageView" destination="Ym7-aI-vmY" id="1cE-cD-irS"/>
                 <outlet property="titleLabel" destination="fjY-iT-E8W" id="lDF-qO-Twg"/>
             </connections>
@@ -50,5 +60,6 @@
     </objects>
     <resources>
         <image name="user_header_default" width="116" height="116"/>
+        <image name="user_not_selected" width="12" height="12"/>
     </resources>
 </document>

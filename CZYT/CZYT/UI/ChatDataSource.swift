@@ -10,6 +10,8 @@ import UIKit
 
 class ChatDataSource: NSObject {
     
+    static var NOTIFICATION_QUIT_GROUP = "NOTIFICATION_QUIT_GROUP"
+    
     class var sharedInstance : ChatDataSource
     {
         struct Instance{

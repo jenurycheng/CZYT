@@ -18,7 +18,7 @@ class ChatViewController: TabBarViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.clipsToBounds = true
         self.title = "消息"
         
         backItemBar =  UIBarButtonItem(image: UIImage(named: "backbar"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(BaseNavViewController.backItemBarClicked(_:)))
@@ -38,7 +38,26 @@ class ChatViewController: TabBarViewController {
         self.viewControllers = [chatListVC!, contactVC!, groupVC!]
         
         self.showIndex(0)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.quitGroup), name: ChatDataSource.NOTIFICATION_QUIT_GROUP, object: nil)
         // Do any additional setup after loading the view.
+    }
+    
+    func quitGroup(notify:NSNotification)
+    {
+        if notify.userInfo != nil
+        {
+            let id = notify.userInfo!["id"] as? String
+            chatListVC?.removeCell(id)
+        }
+        if self.navigationController!.viewControllers.contains(self) {
+            self.navigationController?.popToViewController(self, animated: true)
+        }
+    }
+    
+    deinit
+    {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: ChatDataSource.NOTIFICATION_QUIT_GROUP, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,13 +73,13 @@ extension ChatViewController : CCTabTitleViewDelegate
     }
     
     func titleForPosition(pos: NSInteger) -> String! {
-        return  ["消息", "联系人", "群组"][pos]
+        return  ["消息", "联系人", "讨论组"][pos]
     }
     
     func titleViewIndexDidSelected(titleView: CCTabTitleView, index: Int) {
         self.showIndex(index)
         tabTitleView.updateLine(CGFloat(index)/3)
         
-        self.title = ["消息", "联系人", "群组"][index]
+        self.title = ["消息", "联系人", "讨论组"][index]
     }
 }

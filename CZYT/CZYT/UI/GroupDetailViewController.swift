@@ -29,11 +29,9 @@ class GroupDetailViewController: BasePortraitViewController {
         collectionView.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "UICollectionViewCell")
         collectionView.registerClass(UICollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "UICollectionReusableView")
         
-        self.getGroupUser()
-        
         deleteBtn = UIButton(frame: CGRect(x: 10, y: 20, width: GetSWidth()-20, height: 40))
         deleteBtn.backgroundColor = UIColor.redColor()
-        deleteBtn.setTitle("退出群组", forState: .Normal)
+        deleteBtn.setTitle("退出讨论组", forState: .Normal)
         deleteBtn.layer.cornerRadius = 5
         deleteBtn.layer.masksToBounds = true
         deleteBtn.addTarget(self, action: #selector(GroupDetailViewController.deleteBtnClicked), forControlEvents: .TouchUpInside)
@@ -45,16 +43,29 @@ class GroupDetailViewController: BasePortraitViewController {
         if UserInfo.sharedInstance.id == self.dataSource.groupDetail?.create_user_id {
             dataSource.destoryGroup(UserInfo.sharedInstance.id!, groupId: self.groupId!, success: { (result) in
                 MBProgressHUD.showMessag("解散成功", toView: self.view.window, showTimeSec: 1)
+                self.quitSuccess()
                 }, failure: { (error) in
                     MBProgressHUD.showMessag(error.msg, toView: self.view.window, showTimeSec: 1)
             })
         }else{
             dataSource.quitGroup([UserInfo.sharedInstance.id!], groupId: self.groupId!, success: { (result) in
                 MBProgressHUD.showMessag("退出成功", toView: self.view.window, showTimeSec: 1)
+                self.quitSuccess()
                 }, failure: { (error) in
                     MBProgressHUD.showMessag(error.msg, toView: self.view.window, showTimeSec: 1)
             })
         }
+    }
+    
+    func quitSuccess()
+    {
+        let notify = NSNotification(name: ChatDataSource.NOTIFICATION_QUIT_GROUP, object: nil, userInfo: ["id":self.groupId!])
+        NSNotificationCenter.defaultCenter().postNotification(notify)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.getGroupUser()
     }
     
     func getGroupUser()
@@ -65,7 +76,7 @@ class GroupDetailViewController: BasePortraitViewController {
                 self.title = self.dataSource.groupDetail?.groupName
                 if self.dataSource.groupDetail?.create_user_id == UserInfo.sharedInstance.id
                 {
-                    self.deleteBtn.setTitle("解散群组", forState: .Normal)
+                    self.deleteBtn.setTitle("解散讨论组", forState: .Normal)
                 }
             }) { (error) in
                 
@@ -97,7 +108,13 @@ extension GroupDetailViewController : UICollectionViewDelegate
                     self.navigationController?.pushViewController(chat, animated: true)
                 }
             }
-            
+            else{
+                if dataSource.groupDetail != nil {
+                    let add = AddGroupUserViewController(nibName: "AddGroupUserViewController", bundle: nil)
+                    add.detail = dataSource.groupDetail
+                    self.navigationController?.pushViewController(add, animated: true)
+                }
+            }
         }
     }
 }

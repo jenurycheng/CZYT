@@ -15,7 +15,10 @@ extension NetWorkHandle
         
         static var Address_PublishTask = "PublishTask?"
         static var Address_MyPublishTask = "ShowMyPublishedTask?"
-        static var Address_TaskDetail = "ShowTaskDetail"
+        static var Address_MyTask = "ShowMyTask"
+        static var Address_TaskDetail = "ShowTaskDetail?"
+        static var Address_AcceptTask = "AcceptTask?"
+        static var Address_FinishTask = "FinishTask?"
         
         class RequestPublishTask : Reflect
         {
@@ -30,10 +33,20 @@ extension NetWorkHandle
             NetWorkHandle.PublicNetWorkAccess(Address_PublishTask, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
         }
         
+        class RequestMyTask : Reflect
+        {
+            var offset:String?
+            var row_count:String?
+        }
+        
+        class func getMyTask(request:RequestMyTask?, finish:((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_MyTask, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
+        
         class RequestMyPublishTask : Reflect
         {
-            var offset:Int?
-            var row_count:Int?
+            var offset:String?
+            var row_count:String?
         }
         
         class func getMyPublishTask(request:RequestMyPublishTask?, finish:((HttpResponseData)->Void)) {
@@ -46,6 +59,32 @@ extension NetWorkHandle
         }
         class func getTaskDetail(request:RequestTaskDetail?, finish:((HttpResponseData)->Void)) {
             NetWorkHandle.PublicNetWorkAccess(Address_TaskDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
+        
+        class RequestAcceptTask : Reflect
+        {
+            var task_id:String?
+        }
+        
+        class func acceptTask(request:RequestAcceptTask?, finish:((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_AcceptTask, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
+        
+        class RequestFinishTaskPhoto : Reflect
+        {
+            var photo_suffix:String?
+            var photo_content:String?
+        }
+        
+        class RequestFinishTask : Reflect
+        {
+            var task_id:String?
+            var task_comment:String?
+            var photos = [RequestFinishTaskPhoto]()
+        }
+        
+        class func finishTask(request:RequestFinishTask?, finish:((HttpResponseData)->Void)) {
+        NetWorkHandle.PublicNetWorkAccess(Address_FinishTask, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
         }
     }
     

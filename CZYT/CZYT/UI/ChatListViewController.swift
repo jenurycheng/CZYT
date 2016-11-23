@@ -11,6 +11,7 @@ import UIKit
 class ChatListViewController: RCConversationListViewController {
     override func viewDidLoad() {
         //重写显示相关的接口，必须先调用super，否则会屏蔽SDK默认的处理
+        self.view.frame = CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64)
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
         self.conversationListTableView.separatorStyle = .SingleLine
@@ -41,14 +42,15 @@ class ChatListViewController: RCConversationListViewController {
             chat.title = model.conversationTitle
             self.navigationController?.pushViewController(chat, animated: true)
         }
-        
     }
     
-//    override func rcConversationListTableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> RCConversationBaseCell! {
-//        let cell = super.rcConversationListTableView(tableView, cellForRowAtIndexPath: indexPath)
-//        let height = self.rcConversationListTableView(tableView, heightForRowAtIndexPath: indexPath)
-//        let line = GetLineView(CGRect(x: 0, y: height-1, width: GetSWidth(), height: 1))
-//        cell.addSubview(line)
-//        return cell
-//    }
+    func removeCell(id:String?)
+    {
+        if Helper.isStringEmpty(id)
+        {
+            return
+        }
+        RCIMClient.sharedRCIMClient().removeConversation(.ConversationType_GROUP, targetId: id)
+        self.refreshConversationTableViewIfNeeded()
+    }
 }

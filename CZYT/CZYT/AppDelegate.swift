@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         self.initNavigationBar()
+        self.initRemoteNotify()
         
         
         RCIM.sharedRCIM().initWithAppKey("m7ua80gbmyydm")//server:4yqYEo2DDgWPx
@@ -24,18 +26,109 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         RCIM.sharedRCIM().userInfoDataSource = self
         RCIM.sharedRCIM().groupInfoDataSource = self
         
+        if launchOptions != nil {
+            self.dealPushMessage(launchOptions!)
+        }
+        
+//        PHPhotoLibrary.requestAuthorization({ (status:PHAuthorizationStatus) -> Void in
+//            if (status == PHAuthorizationStatus.Denied) {
+//                print("用户拒绝当前应用访问相册,我们需要提醒用户打开访问开关");
+//            }else if (status == PHAuthorizationStatus.Restricted){
+//                print("家长控制,不允许访问");
+//            }else if (status == PHAuthorizationStatus.NotDetermined){
+//                print("用户还没有做出选择");
+//            }
+//            else if (status == PHAuthorizationStatus.Authorized){
+//                print("用户允许当前应用访问相册");
+//            }
+//        })
+        
         return true
     }
     
     func initNavigationBar()
     {
-        let nav = self.window?.rootViewController as! UINavigationController
-        nav.navigationBar.barTintColor = ThemeManager.current().mainColor
-        nav.navigationBar.tintColor = ThemeManager.current().whiteFontColor
-        nav.navigationBar.translucent = false
+//        let nav = self.window?.rootViewController as! UINavigationController
+//        nav.navigationBar.barTintColor = ThemeManager.current().mainColor
+//        nav.navigationBar.tintColor = ThemeManager.current().whiteFontColor
+//        nav.navigationBar.translucent = false
+//        var dic = Dictionary<String, AnyObject>()
+//        dic.updateValue(ThemeManager.current().whiteFontColor, forKey: NSForegroundColorAttributeName)
+//        nav.navigationBar.titleTextAttributes = dic
+        
+        let bar = UINavigationBar.appearance()
+        bar.barTintColor = ThemeManager.current().mainColor
+        bar.tintColor = ThemeManager.current().whiteFontColor
+        bar.translucent = false
         var dic = Dictionary<String, AnyObject>()
         dic.updateValue(ThemeManager.current().whiteFontColor, forKey: NSForegroundColorAttributeName)
-        nav.navigationBar.titleTextAttributes = dic
+        bar.titleTextAttributes = dic
+    }
+    
+    func initRemoteNotify(){
+        
+        if UIApplication.sharedApplication().respondsToSelector(#selector(UIApplication.registerUserNotificationSettings(_:)))
+        {
+            let action1 = UIMutableUserNotificationAction()
+            action1.identifier = "action1_identifier"
+            action1.title = "Accept"
+            action1.activationMode = UIUserNotificationActivationMode.Foreground
+            
+            let action2 = UIMutableUserNotificationAction()
+            action2.identifier = "action2_identifier"
+            action2.title = "Reject"
+            action2.activationMode = UIUserNotificationActivationMode.Background
+            action2.authenticationRequired = true
+            action2.destructive = true
+            
+            let categorys = UIMutableUserNotificationCategory()
+            categorys.identifier = "category1"
+            categorys.setActions([action1, action2], forContext: UIUserNotificationActionContext.Default)
+            
+            let userSettings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: NSSet(object: categorys) as? Set<UIUserNotificationCategory>)
+            UMessage.registerRemoteNotificationAndUserNotificationSettings(userSettings)
+            
+        }
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        UMessage.registerDeviceToken(deviceToken)
+        
+        
+        var tokenStr = deviceToken.description
+        tokenStr = tokenStr.replacingOccurrencesOfString("<", withString: "").replacingOccurrencesOfString(">", withString: "").replacingOccurrencesOfString(" ", withString: "")
+        
+        CCPrint("deviceToken=======%@", tokenStr)
+        
+        RCIMClient.sharedRCIMClient().setDeviceToken(tokenStr)
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        CCPrint(error.description)
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        UMessage.didReceiveRemoteNotification(userInfo)
+        CCPrint(userInfo)
+        
+        self.dealPushMessage(userInfo, isLaunch: false)
+    }
+    
+    func dealPushMessage(userInfo: [NSObject : AnyObject], isLaunch:Bool = true)
+    {
+        var pushServiceData:[NSObject : AnyObject]?
+        if isLaunch
+        {
+            pushServiceData = RCIMClient.sharedRCIMClient().getPushExtraFromLaunchOptions(userInfo)
+        }else{
+            pushServiceData = RCIMClient.sharedRCIMClient().getPushExtraFromRemoteNotification(userInfo)
+        }
+        CCPrint(userInfo)
+        if pushServiceData != nil{
+            CCPrint("融云推送消息");
+        }else{
+            CCPrint("普通推送消息");
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -64,13 +157,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate : RCIMUserInfoDataSource, RCIMGroupInfoDataSource
 {
     func getUserInfoWithUserId(userId: String!, completion: ((RCUserInfo!) -> Void)!) {
-        if userId == "3" {
-            let info = RCUserInfo(userId: userId, name: "霍长江", portrait: "")
+        UserDataSource().getUserDetail(userId, success: { (result) in
+            let info = RCUserInfo(userId: result.id, name: result.nickname, portrait: result.logo_path)
             completion(info)
-        }
-        else{
-            let info = RCUserInfo(userId: userId, name: "待实现", portrait: "")
-            completion(info)
+            }) { (error) in
         }
     }
     
@@ -79,6 +169,13 @@ extension AppDelegate : RCIMUserInfoDataSource, RCIMGroupInfoDataSource
         if g != nil {
             let rg = RCGroup(groupId: g?.groupId, groupName: g?.groupName, portraitUri: "")
             completion(rg)
+        }
+        
+        ChatDataSource().queryGroupDetail(groupId, success: { (result) in
+            let rg = RCGroup(groupId: result.groupId, groupName: result.groupName, portraitUri: "")
+            completion(rg)
+            }) { (error) in
+                
         }
     }
 }

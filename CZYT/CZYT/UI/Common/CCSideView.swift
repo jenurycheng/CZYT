@@ -65,7 +65,7 @@ class CCSideView: UIView {
             {
                 UIView.animateWithDuration(0.1, animations: {
                     var frame = self.leftView.frame
-                    frame.origin.x = -frame.width/2 + x/2
+                    frame.origin.x = x/self.leftWidth * self.leftView.frame.width/2 - self.leftView.frame.width/2
                     if frame.origin.x >= -frame.width/2 && frame.origin.x <= 0
                     {
                         self.leftView.frame = frame

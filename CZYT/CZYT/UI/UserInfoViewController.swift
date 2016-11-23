@@ -32,8 +32,14 @@ class UserInfoViewController: UIViewController {
         if !UserInfo.sharedInstance.isLogin {
             loginViewController = UserLoginViewController()
             self.addChildViewController(loginViewController!)
+            loginViewController!.view.frame = self.view.frame
             self.view.addSubview(loginViewController!.view)
             self.title = "登录"
+        }else{
+            self.nameLabel.text = UserInfo.sharedInstance.nickname
+            if !Helper.isStringEmpty(UserInfo.sharedInstance.logo_path) {
+                self.headerBtn.sd_setImageWithURL(NSURL(string: UserInfo.sharedInstance.logo_path!), forState: .Normal, placeholderImage: UIImage(named: "user_header_default"))
+            }
         }
         
         UserInfo.sharedInstance.addObserver(self, forKeyPath: "isLogin", options: .New, context: nil)
@@ -78,7 +84,19 @@ extension UserInfoViewController : UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        if indexPath.row == 0
+        {
+            self.view.window?.showHud()
+            SDImageCache.sharedImageCache().clearMemory()
+            SDImageCache.sharedImageCache().cleanDisk()
+            SDImageCache.sharedImageCache().clearDiskOnCompletion({ () -> Void in
+                dispatch_async(dispatch_get_global_queue(0, 0), {
+                    NetWorkCache.clearCache()
+                })
+                self.tableView.reloadData()
+                self.view.window?.dismiss()
+            })
+        }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -92,8 +110,16 @@ extension UserInfoViewController : UITableViewDelegate, UITableViewDataSource
         cell.textLabel?.textColor = ThemeManager.current().darkGrayFontColor
         let line = GetLineView(CGRect(x: 0, y: 49, width: GetSWidth(), height: 1))
         cell.addSubview(line)
-        cell.accessoryType = .DisclosureIndicator
         cell.selectionStyle = .None
+        
+        if indexPath.row == 0
+        {
+            let cache:Double = Double(String(format: "%.1f", Double(SDImageCache.sharedImageCache().getSize())/1024.0/1024.0))!
+            cell.detailTextLabel?.text = "\(cache)MB"
+            cell.detailTextLabel?.textColor = ThemeManager.current().grayFontColor
+            cell.detailTextLabel?.font = UIFont.systemFontOfSize(13)
+        }
+        
         return cell
     }
 }

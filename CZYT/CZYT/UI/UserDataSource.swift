@@ -47,4 +47,42 @@ class UserDataSource: NSObject {
             }
         }
     }
+    
+    func getUserDetail(id:String, success:((result:UserInfo) -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        let request = NetWorkHandle.NetWorkHandleUser.RequestGetUserDetail()
+        request.id = id
+        NetWorkHandle.NetWorkHandleUser.getUserDetail(request) { (data) in
+            if data.isSuccess()
+            {
+                if data.data as? NSDictionary != nil
+                {
+                    let ui = UserInfo.parse(dict: data.data  as! NSDictionary)
+                    success(result: ui)
+                }else{
+                
+                }
+            }else{
+                
+            }
+        }
+    }
+    
+    func getToken(success:((result:String) -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        NetWorkHandle.NetWorkHandleUser.getToken(nil) { (data) in
+            if data.isSuccess()
+            {
+                if data.data as? NSDictionary != nil
+                {
+                    let token = (data.data as! NSDictionary).objectForKey("token") as! String
+                    success(result: token)
+                }else{
+                    failure(error: data)
+                }
+            }else{
+                failure(error: data)
+            }
+        }
+    }
 }

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SubmitTaskViewController" customModule="CZYT" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="Tss-Gv-Jew" id="sRQ-pd-S2t"/>
+                <outlet property="contentTextView" destination="73O-99-48C" id="jnD-4l-KMx"/>
+                <outlet property="okBtn" destination="KFv-Ik-aHM" id="ZIg-cU-uPL"/>
+                <outlet property="uploadLabel" destination="z9e-8A-jm1" id="WHD-Xa-iiw"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W00-kZ-dm9">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="我完成任务" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="73O-99-48C">
+                            <rect key="frame" x="8" y="8" width="304" height="134"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="73O-99-48C" secondAttribute="bottom" constant="8" id="BY6-m3-R1M"/>
+                        <constraint firstAttribute="trailing" secondItem="73O-99-48C" secondAttribute="trailing" constant="8" id="CkI-3b-bYJ"/>
+                        <constraint firstAttribute="height" constant="150" id="VdF-1Z-ZtM"/>
+                        <constraint firstItem="73O-99-48C" firstAttribute="leading" secondItem="W00-kZ-dm9" secondAttribute="leading" constant="8" id="bQ8-HI-9Ii"/>
+                        <constraint firstItem="73O-99-48C" firstAttribute="top" secondItem="W00-kZ-dm9" secondAttribute="top" constant="8" id="koX-iP-PDE"/>
+                    </constraints>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Tss-Gv-Jew">
+                    <rect key="frame" x="0.0" y="180" width="320" height="338"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IEP-G7-3m6">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFv-Ik-aHM">
+                    <rect key="frame" x="10" y="523" width="300" height="40"/>
+                    <color key="backgroundColor" red="0.1764705882" green="0.52941176469999995" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="提交">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="okBtnClicked" destination="-1" eventType="touchUpInside" id="vkv-fe-WdO"/>
+                    </connections>
+                </button>
+                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传照片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9e-8A-jm1">
+                    <rect key="frame" x="8" y="155" width="304" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="KFv-Ik-aHM" secondAttribute="bottom" constant="5" id="9ua-jV-jSQ"/>
+                <constraint firstAttribute="trailing" secondItem="Tss-Gv-Jew" secondAttribute="trailing" id="AMl-2T-mM9"/>
+                <constraint firstAttribute="bottom" secondItem="Tss-Gv-Jew" secondAttribute="bottom" constant="50" id="Lea-JL-12l"/>
+                <constraint firstItem="Tss-Gv-Jew" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="MXJ-9R-Xre"/>
+                <constraint firstAttribute="trailing" secondItem="W00-kZ-dm9" secondAttribute="trailing" id="Nr1-hN-fFv"/>
+                <constraint firstItem="KFv-Ik-aHM" firstAttribute="top" secondItem="Tss-Gv-Jew" secondAttribute="bottom" constant="5" id="O4F-L7-9nY"/>
+                <constraint firstItem="W00-kZ-dm9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TNq-0Y-Jg7"/>
+                <constraint firstItem="Tss-Gv-Jew" firstAttribute="top" secondItem="W00-kZ-dm9" secondAttribute="bottom" constant="30" id="UGn-jH-NZz"/>
+                <constraint firstItem="Tss-Gv-Jew" firstAttribute="top" secondItem="z9e-8A-jm1" secondAttribute="bottom" constant="5" id="Y9E-yT-fkG"/>
+                <constraint firstItem="KFv-Ik-aHM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="a7Z-u8-r1q"/>
+                <constraint firstAttribute="trailing" secondItem="KFv-Ik-aHM" secondAttribute="trailing" constant="10" id="aK1-wC-HIf"/>
+                <constraint firstItem="z9e-8A-jm1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="hqP-uN-6bT"/>
+                <constraint firstItem="z9e-8A-jm1" firstAttribute="top" secondItem="W00-kZ-dm9" secondAttribute="bottom" constant="5" id="smi-qw-3dk"/>
+                <constraint firstItem="W00-kZ-dm9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xQj-3H-yJe"/>
+                <constraint firstAttribute="trailing" secondItem="z9e-8A-jm1" secondAttribute="trailing" constant="8" id="ycg-IJ-GCb"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="99" y="37"/>
+        </view>
+    </objects>
+</document>
