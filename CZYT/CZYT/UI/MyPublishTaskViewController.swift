@@ -13,8 +13,12 @@ class MyPublishTaskViewController: BasePortraitViewController {
     var dataSource = TaskDataSource()
     var tableView:UITableView!
     
+    static var shouldReload = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        MyPublishTaskViewController.shouldReload = true
         
         self.view.backgroundColor = ThemeManager.current().foregroundColor
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64))
@@ -35,7 +39,11 @@ class MyPublishTaskViewController: BasePortraitViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+        if MyPublishTaskViewController.shouldReload == true
+        {
+            super.viewWillAppear(animated)
+            MyPublishTaskViewController.shouldReload = false
+        }
         self.loadData()
     }
     
@@ -48,6 +56,7 @@ class MyPublishTaskViewController: BasePortraitViewController {
         dataSource.getMyPublishTask(true, success: { (result) in
             self.tableView.reloadData()
             self.tableView.mj_header.endRefreshing()
+            self.tableView.mj_footer.endRefreshing()
             self.view.dismiss()
             }) { (error) in
                 self.view.dismiss()
@@ -60,6 +69,10 @@ class MyPublishTaskViewController: BasePortraitViewController {
         dataSource.getMyPublishTask(false, success: { (result) in
             self.tableView.reloadData()
             self.tableView.mj_footer.endRefreshing()
+            if result.count == 0
+            {
+                self.tableView.mj_footer.endRefreshingWithNoMoreData()
+            }
             }) { (error) in
              self.tableView.mj_footer.endRefreshing()
         }

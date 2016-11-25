@@ -65,10 +65,10 @@ class GroupDetailViewController: BasePortraitViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.getGroupUser()
+        self.getGroupDetail()
     }
     
-    func getGroupUser()
+    func getGroupDetail()
     {
         if groupId != nil {
             dataSource.queryGroupDetail(groupId!, success: { (result) in
@@ -115,7 +115,54 @@ extension GroupDetailViewController : UICollectionViewDelegate
                     self.navigationController?.pushViewController(add, animated: true)
                 }
             }
+        }else if indexPath.section == 1
+        {
+            if indexPath.row == 0
+            {
+                let alert = UIAlertView(title: "", message: "输入讨论组名称", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+                alert.alertViewStyle = UIAlertViewStyle.PlainTextInput
+                let nameTextField = alert.textFieldAtIndex(0)
+                nameTextField?.delegate = self
+                nameTextField?.tag = 100
+                nameTextField?.placeholder = "请输入讨论组名称"
+                nameTextField?.text = dataSource.groupDetail?.groupName
+                
+                alert.show()
+            }
         }
+    }
+}
+
+extension GroupDetailViewController : UIAlertViewDelegate
+{
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if buttonIndex == 1
+        {
+            let text = alertView.textFieldAtIndex(0)?.text
+            if !Helper.isStringEmpty(text) {
+                dataSource.updateGroup(self.dataSource.groupDetail!.groupId!, groupName: text!, success: { (result) in
+                    MBProgressHUD.showSuccess("修改成功", toView: self.view)
+                    self.getGroupDetail()
+                    }, failure: { (error) in
+                        MBProgressHUD.showError(error.msg, toView: self.view)
+                })
+            }else{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 0.5)), dispatch_get_main_queue(), {
+                    MBProgressHUD.showError("名称不能为空", toView: self.view)
+                })
+                
+            }
+        }
+    }
+}
+
+extension GroupDetailViewController : UITextFieldDelegate
+{
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if textField.text?.characters.count > 20 && !Helper.isStringEmpty(string) {
+            return false
+        }
+        return true
     }
 }
 

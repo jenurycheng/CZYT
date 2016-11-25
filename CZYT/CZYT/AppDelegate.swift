@@ -17,33 +17,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        self.initThird()
+        
         self.initNavigationBar()
         self.initRemoteNotify()
-        
-        
-        RCIM.sharedRCIM().initWithAppKey("m7ua80gbmyydm")//server:4yqYEo2DDgWPx
-//        RCIM.sharedRCIM().initWithAppKey("25wehl3uwhwew")
-        RCIM.sharedRCIM().userInfoDataSource = self
-        RCIM.sharedRCIM().groupInfoDataSource = self
-        
+
         if launchOptions != nil {
             self.dealPushMessage(launchOptions!)
         }
         
-//        PHPhotoLibrary.requestAuthorization({ (status:PHAuthorizationStatus) -> Void in
-//            if (status == PHAuthorizationStatus.Denied) {
-//                print("用户拒绝当前应用访问相册,我们需要提醒用户打开访问开关");
-//            }else if (status == PHAuthorizationStatus.Restricted){
-//                print("家长控制,不允许访问");
-//            }else if (status == PHAuthorizationStatus.NotDetermined){
-//                print("用户还没有做出选择");
-//            }
-//            else if (status == PHAuthorizationStatus.Authorized){
-//                print("用户允许当前应用访问相册");
-//            }
-//        })
-        
         return true
+    }
+    
+    func initThird()
+    {
+        //消息推送
+        UMessage.startWithAppkey(Consts.umengAppKey, launchOptions: nil)
+        UMessage.setLogEnabled(true)
+        UMessage.setAutoAlert(false)
+        
+        RCIM.sharedRCIM().initWithAppKey(Consts.RCIMAppKey)//server:4yqYEo2DDgWPx
+        //        RCIM.sharedRCIM().initWithAppKey("25wehl3uwhwew")
+        RCIM.sharedRCIM().userInfoDataSource = self
+        RCIM.sharedRCIM().groupInfoDataSource = self
     }
     
     func initNavigationBar()
@@ -99,8 +95,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tokenStr = tokenStr.replacingOccurrencesOfString("<", withString: "").replacingOccurrencesOfString(">", withString: "").replacingOccurrencesOfString(" ", withString: "")
         
         CCPrint("deviceToken=======%@", tokenStr)
-        
+        Consts.DeviceToken = tokenStr
         RCIMClient.sharedRCIMClient().setDeviceToken(tokenStr)
+        
+        if UserInfo.sharedInstance.isLogin
+        {
+            UserDataSource().updateUserToken(tokenStr, success: { (result) in
+                
+                }, failure: { (error) in
+                    
+            })
+        }
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
@@ -126,9 +131,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CCPrint(userInfo)
         if pushServiceData != nil{
             CCPrint("融云推送消息");
+            
         }else{
             CCPrint("普通推送消息");
         }
+        let alert = UIAlertView(title: "", message: userInfo.description, delegate: nil, cancelButtonTitle: "Cancel")
+        alert.show()
     }
 
     func applicationWillResignActive(application: UIApplication) {

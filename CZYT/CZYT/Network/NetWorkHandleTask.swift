@@ -19,6 +19,7 @@ extension NetWorkHandle
         static var Address_TaskDetail = "ShowTaskDetail?"
         static var Address_AcceptTask = "AcceptTask?"
         static var Address_FinishTask = "FinishTask?"
+        static var Address_AssignTask = "AssignTask"
         
         class RequestPublishTask : Reflect
         {
@@ -84,7 +85,18 @@ extension NetWorkHandle
         }
         
         class func finishTask(request:RequestFinishTask?, finish:((HttpResponseData)->Void)) {
-        NetWorkHandle.PublicNetWorkAccess(Address_FinishTask, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+            NetWorkHandle.PublicNetWorkAccess(Address_FinishTask, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
+        
+        class RequestAssignTask : Reflect
+        {
+            var task_id:String?
+            var director:String?
+            var supporter:String?
+        }
+        class func assignTask(request: RequestAssignTask?, finish:((HttpResponseData)->Void))
+        {
+            NetWorkHandle.PublicNetWorkAccess(Address_AssignTask, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
         }
     }
     

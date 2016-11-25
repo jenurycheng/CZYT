@@ -121,38 +121,45 @@ class DepartmentTree : NSObject
     
     func update(id:String)
     {
-        DepartmentTree.allSubDepartment.removeAll()
+        DepartmentTree.allSubTree.removeAll()
         DepartmentTree.single = DepartmentTree(id: id)
     }
     
     static let rootDepartmentID = "1"
-    static var allSubDepartment = [Department]()
+    static var allSubTree = [DepartmentTree]()
     
     var id:String = DepartmentTree.rootDepartmentID
+    var level = 0
     var department:Department?
-    var users:[UserInfo]?
-    var subDepartment:[DepartmentTree]?
+    var users = [UserInfo]()
+    var subDepartment = [Department]()
     
     override init() {
         super.init()
     }
     
-    init(id:String) {
+    init(id:String, level:Int = 0) {
         super.init()
         self.id = id
+        self.level = level
+        
         self.initDepartment()
     }
     
     func initDepartment()
     {
         department = ContactDataSource.sharedInstance.getDepartment(id)
-        DepartmentTree.allSubDepartment.append(department!)
+        if department == nil
+        {
+            return
+        }
+        DepartmentTree.allSubTree.append(self)
         
         for user in ContactDataSource.sharedInstance.contact
         {
             if user.dept_id == id
             {
-                self.users?.append(user)
+                self.users.append(user)
             }
         }
         
@@ -160,8 +167,10 @@ class DepartmentTree : NSObject
         {
             if depart.dept_parent_id == id && !Helper.isStringEmpty(depart.dept_id)
             {
-                DepartmentTree.allSubDepartment.append(depart)
-                self.subDepartment?.append(DepartmentTree(id: depart.dept_id!))
+                
+                let tree = DepartmentTree(id: depart.dept_id!, level: self.level + 1)
+                self.users.appendContentsOf(tree.users)
+                self.subDepartment.append(depart)
             }
         }
     }

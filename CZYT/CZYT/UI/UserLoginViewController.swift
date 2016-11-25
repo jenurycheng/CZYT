@@ -10,6 +10,8 @@ import UIKit
 
 class UserLoginViewController: BasePortraitViewController {
     
+    var pushToVC:UIViewController?
+    
     var telTextField:UITextField!
     var codeTextField:UITextField!
     var codeBtn:UIButton!
@@ -72,6 +74,10 @@ class UserLoginViewController: BasePortraitViewController {
         self.view.addSubview(nextBtn)
         
         self.telTextField.becomeFirstResponder()
+    }
+    
+    override func backItemBarClicked(item: UIBarButtonItem) {
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func getInputView(frame:CGRect)->UIView
@@ -168,8 +174,9 @@ class UserLoginViewController: BasePortraitViewController {
             self.view.dismiss()
             UserInfo.sharedInstance.update(result)
             UserInfo.sharedInstance.isLogin = true
-            self.view.removeFromSuperview()
-            self.removeFromParentViewController()
+            
+            self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+            
             MBProgressHUD.showSuccess("登录成功", toView: self.view.window)
             
             self.codeTextField.text = ""
@@ -178,6 +185,12 @@ class UserLoginViewController: BasePortraitViewController {
             self.codeBtn.setTitle("获取验证码", forState: UIControlState.Normal)
             self.codeBtn.userInteractionEnabled  = true
             self.count = 0
+            
+            if self.pushToVC != nil
+            {
+                let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
+                nav?.pushViewController(self.pushToVC!, animated: false)
+            }
             }) { (error) in
                 MBProgressHUD.showError(error.msg, toView: self.view)
                 self.view.dismiss()

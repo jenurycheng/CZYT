@@ -167,10 +167,11 @@ class ChatDataSource: NSObject {
         }
     }
     
-    func updateGroup(groupId:String, success:((result:String) -> Void), failure:((error:HttpResponseData)->Void))
+    func updateGroup(groupId:String, groupName:String, success:((result:String) -> Void), failure:((error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleChat.RequestUpdateGroup()
         request.groupId = groupId
+        request.groupName = groupName
         NetWorkHandle.NetWorkHandleChat.updateGroup(request) { (data) in
             if data.isSuccess()
             {

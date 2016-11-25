@@ -9,12 +9,12 @@
 import UIKit
 
 class LeaderActivityDataSource: NSObject {
-    var pageSize = 5
+    var pageSize = 10
     var leaderActivity = [LeaderActivity]()
-    func getLeaderActivity(isFirst:Bool, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getLeaderActivity(isFirst:Bool, classify:String, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestLeaderActivity()
-        request.classify = "省级"
+        request.classify = classify
         request.offset = "\(self.leaderActivity.count)"
         request.row_count = "\(pageSize)"
         if isFirst {
@@ -70,10 +70,10 @@ class LeaderActivityDataSource: NSObject {
     }
     
     var fileActivity = [LeaderActivity]()
-    func getFileActivity(isFirst:Bool, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getFileActivity(isFirst:Bool, classify:String, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestFileActivity()
-        request.classify = ""
+        request.classify = classify
         request.offset = "\(self.fileActivity.count)"
         request.row_count = "\(pageSize)"
         if isFirst {
@@ -129,10 +129,10 @@ class LeaderActivityDataSource: NSObject {
     }
     
     var workStatusActivity = [LeaderActivity]()
-    func getWorkStatusActivity(isFirst:Bool, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getWorkStatusActivity(isFirst:Bool, classify:String, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestWorkStatusActivity()
-        request.classify = ""
+        request.classify = classify
         request.offset = "\(self.workStatusActivity.count)"
         request.row_count = "\(pageSize)"
         if isFirst {
@@ -188,10 +188,10 @@ class LeaderActivityDataSource: NSObject {
     }
     
     var projectWorkActivity = [LeaderActivity]()
-    func getProjectWorkActivity(isFirst:Bool, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getProjectWorkActivity(isFirst:Bool, classify:String, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestProjectWorkActivity()
-        request.classify = ""
+        request.classify = classify
         request.offset = "\(self.projectWorkActivity.count)"
         request.row_count = "\(pageSize)"
         if isFirst {

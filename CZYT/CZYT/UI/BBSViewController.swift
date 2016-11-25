@@ -45,6 +45,7 @@ class BBSViewController: BasePortraitViewController {
         dataSource.getBBSList(true, success: { (result) in
             self.tableView.reloadData()
             self.tableView.mj_header.endRefreshing()
+            self.tableView.mj_footer.endRefreshing()
             self.view.dismiss()
             }) { (error) in
                 self.tableView.mj_header.endRefreshing()
@@ -57,6 +58,10 @@ class BBSViewController: BasePortraitViewController {
         dataSource.getBBSList(false, success: { (result) in
             self.tableView.reloadData()
             self.tableView.mj_footer.endRefreshing()
+            if result.count == 0
+            {
+                self.tableView.mj_footer.endRefreshingWithNoMoreData()
+            }
         }) { (error) in
             self.tableView.mj_footer.endRefreshing()
         }

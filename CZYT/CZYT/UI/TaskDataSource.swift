@@ -160,4 +160,20 @@ class TaskDataSource: NSObject {
             }
         }
     }
+    
+    func assignTask(task:PublishTask, success:((result:String) -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        let request = NetWorkHandle.NetWorkHandleTask.RequestAssignTask()
+        request.task_id = task.taskId
+        request.director = task.director
+        request.supporter = task.director
+        NetWorkHandle.NetWorkHandleTask.assignTask(request) { (data) in
+            if data.isSuccess()
+            {
+                success(result: data.msg)
+            }else{
+                failure(error: data)
+            }
+        }
+    }
 }

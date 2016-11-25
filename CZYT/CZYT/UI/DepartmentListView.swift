@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DepartmentListViewDelegate : NSObjectProtocol {
-    func departmentSelected(depart:Department)
+    func departmentTreeSelected(depart:DepartmentTree)
 }
 
 class DepartmentListView: UIView {
@@ -36,6 +36,7 @@ class DepartmentListView: UIView {
         tableView = UITableView(frame: self.bounds)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .None
         self.addSubview(tableView)
     }
 }
@@ -43,22 +44,39 @@ class DepartmentListView: UIView {
 extension DepartmentListView : UITableViewDataSource, UITableViewDelegate
 {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DepartmentTree.allSubDepartment.count
+        return DepartmentTree.allSubTree.count
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if delegate != nil {
-            delegate?.departmentSelected(DepartmentTree.allSubDepartment[indexPath.row])
+            delegate?.departmentTreeSelected(DepartmentTree.allSubTree[indexPath.row])
         }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 50
+        return 40
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = DepartmentTree.allSubDepartment[indexPath.row].dept_name
+        let tree = DepartmentTree.allSubTree[indexPath.row]
+        
+        let nameLabel = UILabel(frame: CGRect(x: 5 + 20 * CGFloat(tree.level), y: 0, width: self.frame.width, height: 40))
+        nameLabel.font = UIFont.systemFontOfSize(14)
+        nameLabel.textColor = ThemeManager.current().darkGrayFontColor
+        nameLabel.text = tree.department?.dept_name
+        cell.addSubview(nameLabel)
+        
+        let numLabel = UILabel(frame: CGRect(x: CCSideView.LeftWidth-50, y: 0, width: 40, height: 40))
+        numLabel.font = UIFont.systemFontOfSize(13)
+        numLabel.textAlignment = .Right
+        numLabel.textColor = ThemeManager.current().grayFontColor
+        numLabel.text = "\(tree.users.count)"
+        cell.addSubview(numLabel)
+        
+        let line = GetLineView(CGRect(x: 5, y: 39, width: GetSWidth()-5, height: 1))
+        cell.addSubview(line)
+        
         return cell
     }
 }

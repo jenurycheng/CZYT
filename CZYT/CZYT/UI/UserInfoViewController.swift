@@ -8,13 +8,14 @@
 
 import UIKit
 
-class UserInfoViewController: UIViewController {
+class UserInfoViewController: BasePortraitViewController {
 
     @IBOutlet weak var tableView:UITableView!
     @IBOutlet weak var headerBtn:UIButton!
     @IBOutlet weak var logoutBtn:UIButton!
     @IBOutlet weak var nameLabel:UILabel!
     
+    var pushToVC:UIViewController?
     var loginViewController:UserLoginViewController?
     
     override func viewDidLoad() {
@@ -29,18 +30,19 @@ class UserInfoViewController: UIViewController {
         logoutBtn.layer.masksToBounds = true
         logoutBtn.titleLabel?.font = UIFont.systemFontOfSize(17)
         
-        if !UserInfo.sharedInstance.isLogin {
-            loginViewController = UserLoginViewController()
-            self.addChildViewController(loginViewController!)
-            loginViewController!.view.frame = self.view.frame
-            self.view.addSubview(loginViewController!.view)
-            self.title = "登录"
-        }else{
+//        if !UserInfo.sharedInstance.isLogin {
+//            loginViewController = UserLoginViewController()
+//            loginViewController?.pushToVC = pushToVC
+//            self.addChildViewController(loginViewController!)
+//            loginViewController!.view.frame = self.view.frame
+//            self.view.addSubview(loginViewController!.view)
+//            self.title = "登录"
+//        }else{
             self.nameLabel.text = UserInfo.sharedInstance.nickname
             if !Helper.isStringEmpty(UserInfo.sharedInstance.logo_path) {
                 self.headerBtn.sd_setImageWithURL(NSURL(string: UserInfo.sharedInstance.logo_path!), forState: .Normal, placeholderImage: UIImage(named: "user_header_default"))
             }
-        }
+//        }
         
         UserInfo.sharedInstance.addObserver(self, forKeyPath: "isLogin", options: .New, context: nil)
         // Do any additional setup after loading the view.
@@ -132,6 +134,7 @@ extension UserInfoViewController : UIAlertViewDelegate
             UserInfo.sharedInstance.isLogin = false
             if loginViewController == nil {
                 loginViewController = UserLoginViewController()
+                loginViewController?.pushToVC = pushToVC
             }
             self.addChildViewController(loginViewController!)
             self.view.addSubview(loginViewController!.view)

@@ -63,8 +63,15 @@ class MainViewController: BasePortraitViewController {
     
     func userItemClicked()
     {
-        let user = UserInfoViewController(nibName: "UserInfoViewController", bundle: nil)
-        self.navigationController?.pushViewController(user, animated: true)
+        if !UserInfo.sharedInstance.isLogin {
+            let user = UserLoginViewController()
+            user.pushToVC = UserInfoViewController(nibName: "UserInfoViewController", bundle: nil)
+            let newNav = UINavigationController(rootViewController: user)
+            self.navigationController?.presentViewController(newNav, animated: true, completion: nil)
+            return
+        }
+        let task = UserInfoViewController(nibName: "UserInfoViewController", bundle: nil)
+        self.navigationController?.pushViewController(task, animated: true)
     }
     
     func connectRM()

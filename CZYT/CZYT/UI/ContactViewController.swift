@@ -26,6 +26,10 @@ class ContactViewController: BasePortraitViewController {
         sideView = CCSideView(frame: self.view.bounds, leftView: departmentView, contentView: contactView)
         self.view.addSubview(sideView)
         self.getData()
+        
+        DepartmentTree.sharedInstance().update(DepartmentTree.rootDepartmentID)
+        self.departmentView.update()
+        self.contactView.update(DepartmentTree.sharedInstance())
         // Do any additional setup after loading the view.
     }
     
@@ -37,9 +41,9 @@ class ContactViewController: BasePortraitViewController {
         }
         contactDataSource.getDepartmentList({ (result) in
             self.contactDataSource.getContactList(UserInfo.sharedInstance.dept_id!, success: { (result) in
-                DepartmentTree.sharedInstance().update(UserInfo.sharedInstance.dept_id!)
+                DepartmentTree.sharedInstance().update(DepartmentTree.rootDepartmentID)
                 self.departmentView.update()
-                self.contactView.update(UserInfo.sharedInstance.dept_id!)
+                self.contactView.update(DepartmentTree.sharedInstance())
                 self.view.dismiss()
             }) { (error) in
                 self.view.dismiss()
@@ -67,8 +71,8 @@ class ContactViewController: BasePortraitViewController {
 
 extension ContactViewController : DepartmentListViewDelegate
 {
-    func departmentSelected(depart: Department) {
+    func departmentTreeSelected(depart: DepartmentTree) {
         sideView.hide()
-        contactView.update(depart.dept_id!)
+        contactView.update(depart)
     }
 }

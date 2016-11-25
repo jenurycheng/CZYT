@@ -42,7 +42,7 @@ class HomeViewController: BasePortraitViewController {
     
     func getHomeData()
     {
-        dataSource.getLeaderActivity(true, success: { (result) in
+        dataSource.getLeaderActivity(true, classify: "省级", success: { (result) in
             self.pageView.loadData()
             self.collectionView.mj_header.endRefreshing()
         }) { (error) in
@@ -110,8 +110,10 @@ extension HomeViewController : UICollectionViewDelegate
             }else if indexPath.row == 5
             {
                 if !UserInfo.sharedInstance.isLogin {
-                    let user = UserInfoViewController(nibName: "UserInfoViewController", bundle: nil)
-                    nav?.pushViewController(user, animated: true)
+                    let user = UserLoginViewController()
+                    user.pushToVC = TaskViewController()
+                    let newNav = UINavigationController(rootViewController: user)
+                    nav?.presentViewController(newNav, animated: true, completion: nil)
                     return
                 }
                 let task = TaskViewController()
@@ -119,8 +121,11 @@ extension HomeViewController : UICollectionViewDelegate
             }else if indexPath.row == 6
             {
                 if !UserInfo.sharedInstance.isLogin {
-                    let user = UserInfoViewController(nibName: "UserInfoViewController", bundle: nil)
-                    nav?.pushViewController(user, animated: true)
+                    let user = UserLoginViewController()
+                    user.pushToVC = ChatViewController()
+                    let newNav = UINavigationController(rootViewController: user)
+                    nav?.presentViewController(newNav, animated: true, completion: nil)
+                    
                     return
                 }
                 let ac = ChatViewController()

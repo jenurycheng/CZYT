@@ -10,6 +10,7 @@ import UIKit
 
 class PublishTask : NSObject
 {
+    var taskId:String?
     var task_title:String?
     var task_content:String?
     var task_end_date:String?//yyyy-MM-dd

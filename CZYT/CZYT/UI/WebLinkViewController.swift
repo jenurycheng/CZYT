@@ -58,7 +58,7 @@ extension WebLinkViewController : UITableViewDelegate, UITableViewDataSource
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .Value1, reuseIdentifier: nil)
-        cell.imageView?.image = UIImage(named: "star")
+//        cell.imageView?.image = UIImage(named: "star")
         cell.textLabel?.font = UIFont.systemFontOfSize(15)
         cell.textLabel?.text = dataSource.webLinks[indexPath.row].title
         cell.accessoryType = .DisclosureIndicator

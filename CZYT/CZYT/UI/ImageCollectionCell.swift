@@ -44,4 +44,9 @@ class ImageCollectionCell: UICollectionViewCell {
         imageView.image = r
     }
     
+    func updatePhoto(photo:TaskPhoto)
+    {
+        imageView.gm_setImageWithUrlString(photo.photo_thumbnail_path, title: "", completedBlock: nil)
+    }
+    
 }

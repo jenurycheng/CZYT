@@ -10,7 +10,7 @@ import UIKit
 
 class CCSideView: UIView {
 
-    var leftWidth = GetSWidth() * 0.7
+    static let LeftWidth = GetSWidth() * 0.7
     var isShow = false
     var leftView:UIView!
     var contentView:UIView!
@@ -65,7 +65,7 @@ class CCSideView: UIView {
             {
                 UIView.animateWithDuration(0.1, animations: {
                     var frame = self.leftView.frame
-                    frame.origin.x = x/self.leftWidth * self.leftView.frame.width/2 - self.leftView.frame.width/2
+                    frame.origin.x = x/CCSideView.LeftWidth * self.leftView.frame.width/2 - self.leftView.frame.width/2
                     if frame.origin.x >= -frame.width/2 && frame.origin.x <= 0
                     {
                         self.leftView.frame = frame
@@ -78,13 +78,13 @@ class CCSideView: UIView {
                         self.contentView.frame = frame
                     }
                     
-                    self.blackView.alpha = 0.2 * frame.origin.x/self.leftWidth
+                    self.blackView.alpha = 0.2 * frame.origin.x/CCSideView.LeftWidth
                 })
             }
             
         }else if pan.state == .Ended
         {
-            if self.contentView.frame.origin.x > leftWidth/3
+            if self.contentView.frame.origin.x > CCSideView.LeftWidth/3
             {
                 self.show()
             }else{
@@ -103,7 +103,7 @@ class CCSideView: UIView {
             self.leftView.frame = frame
             
             frame = self.contentView.frame
-            frame.origin.x = self.leftWidth
+            frame.origin.x = CCSideView.LeftWidth
             self.contentView.frame = frame
             
             self.blackView.alpha = 0.2

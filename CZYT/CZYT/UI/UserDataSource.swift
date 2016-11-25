@@ -85,4 +85,18 @@ class UserDataSource: NSObject {
             }
         }
     }
+    
+    func updateUserToken(token:String, success:((result:String) -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        let request = NetWorkHandle.NetWorkHandleUser.RequestUpdatePushToken()
+        request.device_token = token
+        NetWorkHandle.NetWorkHandleUser.updatePushToken(request) { (data) in
+            if data.isSuccess()
+            {
+                success(result: data.msg)
+            }else{
+                failure(error: data)
+            }
+        }
+    }
 }

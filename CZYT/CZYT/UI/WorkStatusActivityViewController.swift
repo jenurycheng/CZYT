@@ -16,6 +16,8 @@ class WorkStatusActivityViewController: BaseActivityViewController {
         super.viewDidLoad()
         self.title = "工作状态"
         
+        self.setCondition(["县区", "开发区", "市级部门"])
+        
         // Do any additional setup after loading the view.
     }
     
@@ -25,9 +27,10 @@ class WorkStatusActivityViewController: BaseActivityViewController {
         {
             self.view.showHud()
         }
-        lDataSource.getWorkStatusActivity(true, success: { (result) in
+        lDataSource.getWorkStatusActivity(true, classify: classify, success: { (result) in
             self.dataSource = self.lDataSource.workStatusActivity
             self.tableView.mj_header.endRefreshing()
+            self.tableView.mj_footer.endRefreshing()
             self.tableView.reloadData()
             self.view.dismiss()
         }) { (error) in
@@ -41,11 +44,14 @@ class WorkStatusActivityViewController: BaseActivityViewController {
     
     override func loadMore()
     {
-        lDataSource.getWorkStatusActivity(false, success: { (result) in
+        lDataSource.getWorkStatusActivity(false, classify: classify, success: { (result) in
             self.dataSource = self.lDataSource.workStatusActivity
             self.tableView.mj_footer.endRefreshing()
             self.tableView.reloadData()
-            self.view.dismiss()
+            if result.count == 0
+            {
+                self.tableView.mj_footer.endRefreshingWithNoMoreData()
+            }
         }) { (error) in
             self.tableView.mj_footer.endRefreshing()
             self.view.dismiss()

@@ -20,6 +20,12 @@ class GroupConversationViewController: RCConversationViewController {
             self.navigationItem.rightBarButtonItem = groupItem
         }
         // Do any additional setup after loading the view.
+        let backItemBar =  UIBarButtonItem(image: UIImage(named: "backbar"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(BaseNavViewController.backItemBarClicked(_:)))
+        self.navigationItem.leftBarButtonItem = backItemBar
+    }
+    
+    func backItemBarClicked(item:UIBarButtonItem){
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     func groupItemClicked()

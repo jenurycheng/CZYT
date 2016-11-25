@@ -15,7 +15,7 @@ class FileActivityViewController: BaseActivityViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "政策文件"
-        
+        self.setCondition(["中央", "四川", "成都", "资阳", "县区", "部门"])
         // Do any additional setup after loading the view.
     }
     
@@ -25,9 +25,10 @@ class FileActivityViewController: BaseActivityViewController {
         {
             self.view.showHud()
         }
-        lDataSource.getFileActivity(true, success: { (result) in
+        lDataSource.getFileActivity(true, classify: classify, success: { (result) in
             self.dataSource = self.lDataSource.fileActivity
             self.tableView.mj_header.endRefreshing()
+            self.tableView.mj_footer.endRefreshing()
             self.tableView.reloadData()
             self.view.dismiss()
         }) { (error) in
@@ -41,11 +42,14 @@ class FileActivityViewController: BaseActivityViewController {
     
     override func loadMore()
     {
-        lDataSource.getLeaderActivity(false, success: { (result) in
+        lDataSource.getLeaderActivity(false, classify: classify, success: { (result) in
             self.dataSource = self.lDataSource.fileActivity
             self.tableView.mj_footer.endRefreshing()
             self.tableView.reloadData()
-            self.view.dismiss()
+            if result.count == 0
+            {
+                self.tableView.mj_footer.endRefreshingWithNoMoreData()
+            }
         }) { (error) in
             self.tableView.mj_footer.endRefreshing()
             self.view.dismiss()

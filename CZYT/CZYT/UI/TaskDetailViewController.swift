@@ -21,7 +21,7 @@ class TaskDetailViewController: UIViewController {
     @IBOutlet weak var contentHeight:NSLayoutConstraint!
     
     var okBtn:UIButton!
-    var publishBtn:UIButton!
+    var assignBtn:UIButton!
     
     var dataSource = TaskDataSource()
     override func viewDidLoad() {
@@ -42,15 +42,15 @@ class TaskDetailViewController: UIViewController {
         okBtn.hidden = true
         okBtn.addTarget(self, action: #selector(TaskDetailViewController.okBtnClicked), forControlEvents: .TouchUpInside)
         
-        publishBtn = UIButton(frame: CGRect(x: 10, y: 5, width: GetSWidth()-20, height: 40))
-        publishBtn.backgroundColor = ThemeManager.current().mainColor
-        publishBtn.layer.cornerRadius = 5
-        publishBtn.layer.masksToBounds = true
-        publishBtn.setTitle("指派", forState: .Normal)
-        publishBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        btnView.addSubview(publishBtn)
-        publishBtn.hidden = true
-        publishBtn.addTarget(self, action: #selector(TaskDetailViewController.publishBtnClicked), forControlEvents: .TouchUpInside)
+        assignBtn = UIButton(frame: CGRect(x: 10, y: 5, width: GetSWidth()-20, height: 40))
+        assignBtn.backgroundColor = ThemeManager.current().mainColor
+        assignBtn.layer.cornerRadius = 5
+        assignBtn.layer.masksToBounds = true
+        assignBtn.setTitle("指派", forState: .Normal)
+        assignBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        btnView.addSubview(assignBtn)
+        assignBtn.hidden = true
+        assignBtn.addTarget(self, action: #selector(TaskDetailViewController.assignBtnClicked), forControlEvents: .TouchUpInside)
         
         // Do any additional setup after loading the view.
     }
@@ -85,13 +85,16 @@ class TaskDetailViewController: UIViewController {
             self.view.showHud()
             dataSource.acceptTask(self.id!, success: { (result) in
                 MBProgressHUD.showSuccess("接受成功", toView: self.view.window)
+                MyTaskViewController.shouldReload = true
                 self.navigationController?.popViewControllerAnimated(true)
                 }, failure: { (error) in
                     MBProgressHUD.showSuccess(error.msg, toView: self.view.window)
             })
         }else if dataSource.taskDetail!.task_status! == "finished"//已完成
         {
-            
+            let res = TaskResultViewController(nibName: "TaskResultViewController", bundle: nil)
+            res.taskDetail = dataSource.taskDetail
+            self.navigationController?.pushViewController(res, animated: true)
         }else if dataSource.taskDetail!.task_status! == "accepted"//已接受
         {
             let sub = SubmitTaskViewController(nibName: "SubmitTaskViewController", bundle: nil)
@@ -99,10 +102,46 @@ class TaskDetailViewController: UIViewController {
             self.navigationController?.pushViewController(sub, animated: true)
         }
     }
-    
-    func publishBtnClicked()
+    var selectedIds = [String]()
+    func assignBtnClicked()
     {
+        if dataSource.taskDetail == nil
+        {
+            return
+        }
         
+        let s = SelectContactViewController()
+        unowned let weakSelf = self
+        s.addCallback({ (selectedIds) in
+            
+            weakSelf.selectedIds.removeAll()
+            weakSelf.selectedIds.appendContentsOf(selectedIds)
+            
+            weakSelf.assign()
+        })
+        self.navigationController?.pushViewController(s, animated: true)
+    }
+    
+    func assign()
+    {
+        let task = PublishTask()
+        task.taskId = self.id!
+        task.director = selectedIds[0]
+        if selectedIds.count > 1
+        {
+            task.supporter = selectedIds[1]
+        }else{
+            task.supporter = ""
+        }
+        
+        self.view.showHud()
+        dataSource.assignTask(task, success: { (result) in
+            MBProgressHUD.showSuccess("指派成功", toView: self.view)
+            self.view.dismiss()
+            }, failure: { (error) in
+                MBProgressHUD.showError(error.msg, toView: self.view)
+                self.view.dismiss()
+        })
     }
     
     func updateView()
@@ -119,21 +158,22 @@ class TaskDetailViewController: UIViewController {
         if dataSource.taskDetail!.task_status! == "responsing"//待接受
         {
             okBtn.setTitle("接受", forState: .Normal)
-            self.showBtn(true, showPublishBtn: false)
+            self.showBtn(true, showPublishBtn: true)
         }else if dataSource.taskDetail!.task_status! == "finished"//已完成
         {
-            self.showBtn(false, showPublishBtn: false)
+            okBtn.setTitle("查看", forState: .Normal)
+            self.showBtn(true, showPublishBtn: false)
         }else if dataSource.taskDetail!.task_status! == "accepted"//已接受
         {
             okBtn.setTitle("提交", forState: .Normal)
-            self.showBtn(true, showPublishBtn: true)
+            self.showBtn(true, showPublishBtn: false)
         }
     }
     
     func showBtn(showOkBtn:Bool, showPublishBtn:Bool)
     {
         okBtn.hidden = !showOkBtn
-        publishBtn.hidden = !showPublishBtn
+        assignBtn.hidden = !showPublishBtn
         
         if showOkBtn
         {
@@ -141,7 +181,7 @@ class TaskDetailViewController: UIViewController {
             if showPublishBtn
             {
                 okBtn.frame = CGRect(x: 10, y: 5, width: (GetSWidth()-30)/2, height: 40)
-                publishBtn.frame = CGRect(x: GetSWidth()/2 + 5, y: 5, width: (GetSWidth()-30)/2, height: 40)
+                assignBtn.frame = CGRect(x: GetSWidth()/2 + 5, y: 5, width: (GetSWidth()-30)/2, height: 40)
             }
         }
     }

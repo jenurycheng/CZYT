@@ -29,7 +29,7 @@ class CreateGroupViewController: BasePortraitViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.registerNib(UINib(nibName: "ChatGroupCell", bundle: nil), forCellReuseIdentifier: "ChatGroupCell")
+        tableView.registerNib(UINib(nibName: "ContactCell", bundle: nil), forCellReuseIdentifier: "ContactCell")
         
         nameTextField.addTarget(self, action: #selector(CreateGroupViewController.endEdit), forControlEvents: .EditingDidEndOnExit)
         
@@ -93,7 +93,7 @@ extension CreateGroupViewController : UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ChatGroupCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ContactCell
         let id = dataSource.contact[indexPath.row].id!
         //如果是自己不取消
         if selectedIds.contains(id) {
@@ -109,11 +109,11 @@ extension CreateGroupViewController : UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return ChatGroupCell.cellHeight()
+        return ContactCell.cellHeight()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ChatGroupCell") as! ChatGroupCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell") as! ContactCell
         cell.updateUserInfo(dataSource.contact[indexPath.row])
         cell.selectionStyle = .None
         cell.setChecked(selectedIds.contains(dataSource.contact[indexPath.row].id!))

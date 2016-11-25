@@ -100,6 +100,8 @@ class PublishTaskViewController: BasePortraitViewController {
         self.view.showHud()
         dataSource.publishTask(task, success: { (result) in
             self.view.dismiss()
+            MyTaskViewController.shouldReload = true
+            MyPublishTaskViewController.shouldReload = true
             MBProgressHUD.showSuccess("发布成功", toView: self.view.window)
             self.navigationController?.popViewControllerAnimated(true)
             }) { (error) in
@@ -121,6 +123,7 @@ extension PublishTaskViewController : UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.view.endEditing(true)
         if indexPath.row == 0
         {
             let s = SelectContactViewController()
@@ -134,26 +137,30 @@ extension PublishTaskViewController : UITableViewDataSource, UITableViewDelegate
                 let cell = tableView.cellForRowAtIndexPath(indexPath)
                 var name = ""
                 
-                for id in selectedIds
+                if selectedIds.count > 0
                 {
-                    let u = ContactDataSource.sharedInstance.getUserInfo(id)
+                    let u = ContactDataSource.sharedInstance.getUserInfo(selectedIds[0])
                     let n = u == nil ? "" : u!.nickname!
-                    name = name + n + ","
-                    weakSelf.selectedIds.append(id)
+                    name = "主办人:" + n
                 }
-                if name.characters.count > 0
+                
+                if selectedIds.count > 1
                 {
-                    name = name.substringToIndex(name.endIndex.advancedBy(-1))
+                    let u = ContactDataSource.sharedInstance.getUserInfo(selectedIds[1])
+                    let n = u == nil ? "" : u!.nickname!
+                    name = name + "，协办人:" + n
                 }
+                
+                weakSelf.selectedIds.appendContentsOf(selectedIds)
                 
                 cell?.detailTextLabel?.text = name
             })
             self.navigationController?.pushViewController(s, animated: true)
         }else if indexPath.row == 1{
             unowned let weakSelf = self
-            DatePickerDialog().show("选择截止日期", datePickerMode: UIDatePickerMode.DateAndTime) { (date) in
+            DatePickerDialog().show("选择截止日期", datePickerMode: UIDatePickerMode.Date) { (date) in
                 let formmater = NSDateFormatter()
-                formmater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                formmater.dateFormat = "yyyy-MM-dd"
                 let d = formmater.stringFromDate(date)
                 let cell = weakSelf.tableView.cellForRowAtIndexPath(indexPath)
                 cell?.detailTextLabel?.text = d

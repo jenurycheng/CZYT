@@ -16,8 +16,8 @@ class BaseNavViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-//        backItemBar =  UIBarButtonItem(image: UIImage(named: "backbar"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(BaseNavViewController.backItemBarClicked(_:)))
-//        self.navigationItem.leftBarButtonItem = backItemBar
+        backItemBar =  UIBarButtonItem(image: UIImage(named: "backbar"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(BaseNavViewController.backItemBarClicked(_:)))
+        self.navigationItem.leftBarButtonItem = backItemBar
     }
     
     

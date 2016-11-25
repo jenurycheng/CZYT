@@ -12,7 +12,7 @@ class ContactListView: UIView {
 
     var searchBar:UISearchBar!
     
-    var originalDataSource = ContactDataSource.sharedInstance.getUser(UserInfo.sharedInstance.dept_id!)
+    var originalDataSource = [UserInfo]()
     var dataSource = [UserInfo]()
     var tableView:UITableView!
     override init(frame: CGRect) {
@@ -20,9 +20,9 @@ class ContactListView: UIView {
         self.initView()
     }
     
-    func update(departId:String)
+    func update(tree:DepartmentTree)
     {
-        originalDataSource = ContactDataSource.sharedInstance.getUser(departId)
+        originalDataSource = tree.users
         self.loadDataSource()
     }
     
@@ -60,7 +60,7 @@ class ContactListView: UIView {
         tableView = UITableView(frame: CGRect(x: 0, y: 40, width: self.frame.width, height: self.frame.height-40))
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.registerNib(UINib(nibName: "ChatGroupCell", bundle: nil), forCellReuseIdentifier: "ChatGroupCell")
+        tableView.registerNib(UINib(nibName: "ContactCell", bundle: nil), forCellReuseIdentifier: "ContactCell")
         self.addSubview(tableView)
     }
 }
@@ -85,11 +85,11 @@ extension ContactListView : UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return ChatGroupCell.cellHeight()
+        return ContactCell.cellHeight()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ChatGroupCell") as! ChatGroupCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell") as! ContactCell
         cell.updateUserInfo(dataSource[indexPath.row])
         cell.selectionStyle = .None
         cell.accessoryType = .DisclosureIndicator

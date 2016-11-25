@@ -23,7 +23,7 @@
                                     <constraint firstAttribute="height" constant="60" id="qBo-aB-ZoG"/>
                                     <constraint firstAttribute="width" constant="60" id="u6p-SM-Uok"/>
                                 </constraints>
-                                <state key="normal" image="user_header_default"/>
+                                <state key="normal" backgroundImage="add"/>
                                 <connections>
                                     <action selector="addGroupBtnClicked" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gcq-M8-y9b"/>
                                 </connections>
@@ -94,6 +94,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="add" width="24" height="24"/>
         <image name="user_header_default" width="116" height="116"/>
     </resources>
 </document>

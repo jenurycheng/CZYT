@@ -15,6 +15,8 @@ class ProjectWorkActivityViewController: BaseActivityViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "项目工作"
+        self.setCondition(["资阳", "县区", "开发区"])
+        
         tableView.registerNib(UINib(nibName: "ProjectWorkCell", bundle: nil), forCellReuseIdentifier: "ProjectWorkCell")
         // Do any additional setup after loading the view.
     }
@@ -25,9 +27,10 @@ class ProjectWorkActivityViewController: BaseActivityViewController {
         {
             self.view.showHud()
         }
-        lDataSource.getProjectWorkActivity(true, success: { (result) in
+        lDataSource.getProjectWorkActivity(true, classify: classify, success: { (result) in
             self.dataSource = self.lDataSource.projectWorkActivity
             self.tableView.mj_header.endRefreshing()
+            self.tableView.mj_footer.endRefreshing()
             self.tableView.reloadData()
             self.view.dismiss()
         }) { (error) in
@@ -41,11 +44,14 @@ class ProjectWorkActivityViewController: BaseActivityViewController {
     
     override func loadMore()
     {
-        lDataSource.getProjectWorkActivity(false, success: { (result) in
+        lDataSource.getProjectWorkActivity(false, classify: classify, success: { (result) in
             self.dataSource = self.lDataSource.projectWorkActivity
             self.tableView.mj_footer.endRefreshing()
             self.tableView.reloadData()
-            self.view.dismiss()
+            if result.count == 0
+            {
+                self.tableView.mj_footer.endRefreshingWithNoMoreData()
+            }
         }) { (error) in
             self.tableView.mj_footer.endRefreshing()
             self.view.dismiss()

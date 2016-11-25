@@ -33,9 +33,11 @@ class UserInfo: Reflect {
             case "isLogin":
                 if isLogin
                 {
-//                    ChatDataSource.sharedInstance.queryUserGroup(UserInfo.sharedInstance.id!, success: { (result) in
-//                    }) { (error) in
-//                    }
+                    UserDataSource().updateUserToken(Consts.DeviceToken, success: { (result) in
+                        
+                        }, failure: { (error) in
+                            
+                    })
                 }else{
                     RCIMClient.sharedRCIMClient().disconnect(false)
                 }

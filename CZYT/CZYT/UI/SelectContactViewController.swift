@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectContactViewController: UIViewController {
+class SelectContactViewController: BasePortraitViewController {
     
     var callback:((selectedIds:[String])->Void)?
     
@@ -28,12 +28,13 @@ class SelectContactViewController: UIViewController {
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-50))
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.registerNib(UINib(nibName: "ChatGroupCell", bundle: nil), forCellReuseIdentifier: "ChatGroupCell")
+        tableView.registerNib(UINib(nibName: "ContactCell", bundle: nil), forCellReuseIdentifier: "ContactCell")
         self.view.addSubview(tableView)
         
         okBtn = UIButton(frame: CGRect(x: 10, y: GetSHeight()-64-45, width: GetSWidth()-20, height: 40))
         okBtn.backgroundColor = ThemeManager.current().mainColor
         okBtn.setTitle("确定", forState: .Normal)
+        okBtn.titleLabel?.font = UIFont.systemFontOfSize(14)
         okBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         okBtn.layer.cornerRadius = 5
         okBtn.layer.masksToBounds = true
@@ -80,6 +81,11 @@ class SelectContactViewController: UIViewController {
     
     func okBtnClicked()
     {
+        if selectedIds.count == 0
+        {
+            MBProgressHUD.showMessag("至少选择一位主办人", toView: self.view, showTimeSec: 1)
+            return
+        }
         if callback != nil
         {
             callback!(selectedIds:selectedIds)
@@ -100,24 +106,56 @@ extension SelectContactViewController : UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ChatGroupCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ContactCell
         let id = contact[indexPath.row].id!
         
         if selectedIds.contains(id) {
             cell.setChecked(false)
             selectedIds.removeAtIndex(selectedIds.indexOf(id)!)
         }else{
+            if selectedIds.count > 1
+            {
+                MBProgressHUD.showMessag("最多选择一个主办人和协办人", toView: self.view, showTimeSec: 1)
+                return
+            }
             cell.setChecked(true)
             selectedIds.append(id)
+        }
+        
+        self.updateBtn()
+    }
+    
+    func updateBtn()
+    {
+        var name = ""
+        
+        if selectedIds.count > 0
+        {
+            let u = ContactDataSource.sharedInstance.getUserInfo(selectedIds[0])
+            let n = u == nil ? "" : u!.nickname!
+            name = "主办人:" + n
+        }
+        
+        if selectedIds.count > 1
+        {
+            let u = ContactDataSource.sharedInstance.getUserInfo(selectedIds[1])
+            let n = u == nil ? "" : u!.nickname!
+            name = name + "，协办人:" + n
+        }
+        if !Helper.isStringEmpty(name)
+        {
+            okBtn.setTitle("确定(\(name))", forState: .Normal)
+        }else{
+            okBtn.setTitle("确定", forState: .Normal)
         }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return ChatGroupCell.cellHeight()
+        return ContactCell.cellHeight()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ChatGroupCell") as! ChatGroupCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell") as! ContactCell
         cell.updateUserInfo(contact[indexPath.row])
         cell.selectionStyle = .None
         let id = contact[indexPath.row].id!

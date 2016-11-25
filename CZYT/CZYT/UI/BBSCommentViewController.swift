@@ -64,6 +64,7 @@ class BBSCommentViewController: BasePortraitViewController {
             self.view.dismiss()
             self.tableView.reloadData()
             self.tableView.mj_header.endRefreshing()
+            self.tableView.mj_footer.endRefreshing()
             }) { (error) in
                 self.view.dismiss()
                 self.tableView.mj_header.endRefreshing()
@@ -78,6 +79,10 @@ class BBSCommentViewController: BasePortraitViewController {
         dataSource.getBBSComment(false, id: id!, success: { (result) in
             self.tableView.reloadData()
             self.tableView.mj_footer.endRefreshing()
+            if result.count == 0
+            {
+                self.tableView.mj_footer.endRefreshingWithNoMoreData()
+            }
             }) { (error) in
                 self.tableView.mj_footer.endRefreshing()
         }

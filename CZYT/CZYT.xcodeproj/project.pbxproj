@@ -66,6 +66,10 @@
 		C4190C791DD778D200B38A7A /* BBSCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4190C771DD778D200B38A7A /* BBSCommentCell.swift */; };
 		C4190C7A1DD778D200B38A7A /* BBSCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4190C781DD778D200B38A7A /* BBSCommentCell.xib */; };
 		C4190C7D1DD77CBC00B38A7A /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4190C7C1DD77CBC00B38A7A /* KeyboardInputView.swift */; };
+		C419A9741DE5EC3600E4DFD5 /* TaskResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C419A9721DE5EC3600E4DFD5 /* TaskResultViewController.swift */; };
+		C419A9751DE5EC3600E4DFD5 /* TaskResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C419A9731DE5EC3600E4DFD5 /* TaskResultViewController.xib */; };
+		C419A9781DE5ECC300E4DFD5 /* TaskResultTopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C419A9761DE5ECC300E4DFD5 /* TaskResultTopCell.swift */; };
+		C419A9791DE5ECC300E4DFD5 /* TaskResultTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C419A9771DE5ECC300E4DFD5 /* TaskResultTopCell.xib */; };
 		C42028321DE314C5005E134B /* MyTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42028311DE314C5005E134B /* MyTaskViewController.swift */; };
 		C42028341DE314D4005E134B /* MyPublishTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42028331DE314D4005E134B /* MyPublishTaskViewController.swift */; };
 		C42028381DE31808005E134B /* MyTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42028361DE31808005E134B /* MyTaskCell.swift */; };
@@ -109,6 +113,8 @@
 		C436438D1DD0C1DF003C91D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C436438C1DD0C1DF003C91D8 /* UIKit.framework */; };
 		C436438F1DD0C1E6003C91D8 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C436438E1DD0C1E6003C91D8 /* Photos.framework */; };
 		C43643931DD0C6C3003C91D8 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43643921DD0C6C3003C91D8 /* ChatListViewController.swift */; };
+		C43707FB1DE891F5005AFD4B /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43707F91DE891F5005AFD4B /* ContactCell.swift */; };
+		C43707FC1DE891F5005AFD4B /* ContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43707FA1DE891F5005AFD4B /* ContactCell.xib */; };
 		C450C9591DD350600052B18E /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C9581DD350600052B18E /* ActivityModel.swift */; };
 		C450C95C1DD350BB0052B18E /* LeaderActivityDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C95B1DD350BB0052B18E /* LeaderActivityDataSource.swift */; };
 		C450C95F1DD3531D0052B18E /* UIView+HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C95E1DD3531D0052B18E /* UIView+HUD.swift */; };
@@ -306,6 +312,10 @@
 		C4190C771DD778D200B38A7A /* BBSCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSCommentCell.swift; sourceTree = "<group>"; };
 		C4190C781DD778D200B38A7A /* BBSCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSCommentCell.xib; sourceTree = "<group>"; };
 		C4190C7C1DD77CBC00B38A7A /* KeyboardInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardInputView.swift; sourceTree = "<group>"; };
+		C419A9721DE5EC3600E4DFD5 /* TaskResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskResultViewController.swift; sourceTree = "<group>"; };
+		C419A9731DE5EC3600E4DFD5 /* TaskResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskResultViewController.xib; sourceTree = "<group>"; };
+		C419A9761DE5ECC300E4DFD5 /* TaskResultTopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskResultTopCell.swift; sourceTree = "<group>"; };
+		C419A9771DE5ECC300E4DFD5 /* TaskResultTopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskResultTopCell.xib; sourceTree = "<group>"; };
 		C42028311DE314C5005E134B /* MyTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTaskViewController.swift; sourceTree = "<group>"; };
 		C42028331DE314D4005E134B /* MyPublishTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPublishTaskViewController.swift; sourceTree = "<group>"; };
 		C42028361DE31808005E134B /* MyTaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTaskCell.swift; sourceTree = "<group>"; };
@@ -350,6 +360,8 @@
 		C436438C1DD0C1DF003C91D8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C436438E1DD0C1E6003C91D8 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		C43643921DD0C6C3003C91D8 /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		C43707F91DE891F5005AFD4B /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		C43707FA1DE891F5005AFD4B /* ContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactCell.xib; sourceTree = "<group>"; };
 		C450C9581DD350600052B18E /* ActivityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		C450C95B1DD350BB0052B18E /* LeaderActivityDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderActivityDataSource.swift; sourceTree = "<group>"; };
 		C450C95E1DD3531D0052B18E /* UIView+HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+HUD.swift"; sourceTree = "<group>"; };
@@ -671,6 +683,8 @@
 		C4190C631DD7335C00B38A7A /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				C43707F91DE891F5005AFD4B /* ContactCell.swift */,
+				C43707FA1DE891F5005AFD4B /* ContactCell.xib */,
 				C4190C641DD733A800B38A7A /* ChatGroupCell.swift */,
 				C4190C651DD733A800B38A7A /* ChatGroupCell.xib */,
 				C4190C681DD7387D00B38A7A /* ChatGroupTopCell.swift */,
@@ -701,6 +715,8 @@
 				C42028371DE31808005E134B /* MyTaskCell.xib */,
 				C40B0BAC1DE4834B001F966E /* ImageCollectionCell.swift */,
 				C40B0BAD1DE4834B001F966E /* ImageCollectionCell.xib */,
+				C419A9761DE5ECC300E4DFD5 /* TaskResultTopCell.swift */,
+				C419A9771DE5ECC300E4DFD5 /* TaskResultTopCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -830,6 +846,8 @@
 				C40B0B631DE46ADF001F966E /* TaskDetailViewController.xib */,
 				C40B0BA71DE47FA3001F966E /* SubmitTaskViewController.swift */,
 				C40B0BA81DE47FA3001F966E /* SubmitTaskViewController.xib */,
+				C419A9721DE5EC3600E4DFD5 /* TaskResultViewController.swift */,
+				C419A9731DE5EC3600E4DFD5 /* TaskResultViewController.xib */,
 			);
 			name = Task;
 			sourceTree = "<group>";
@@ -897,6 +915,7 @@
 				C4190C521DD6FBCF00B38A7A /* BBS */,
 				C4BC6A581DD4B96C00DA19B2 /* User */,
 				C43643911DD0C688003C91D8 /* Chat */,
+				C491E9681DD2177D005586C7 /* LeaderActivity */,
 				C48734EC1DCF35E100C9B0C0 /* Home */,
 				C48734C31DCF0DA900C9B0C0 /* Theme */,
 				C48734D31DCF224000C9B0C0 /* Base */,
@@ -1185,7 +1204,6 @@
 		C48734EC1DCF35E100C9B0C0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				C491E9681DD2177D005586C7 /* LeaderActivity */,
 				C48734EF1DCF39F900C9B0C0 /* Cell */,
 				C48734ED1DCF363600C9B0C0 /* HomeViewController.swift */,
 			);
@@ -1322,6 +1340,7 @@
 				C4BC6A5E1DD4BB0A00DA19B2 /* UserNotLoginViewController.xib in Resources */,
 				C450C96D1DD362630052B18E /* WorkStatusActivityDetailViewController.xib in Resources */,
 				C40B0B651DE46ADF001F966E /* TaskDetailViewController.xib in Resources */,
+				C419A9791DE5ECC300E4DFD5 /* TaskResultTopCell.xib in Resources */,
 				C40B0B9D1DE47F5A001F966E /* imageResources.xcassets in Resources */,
 				C436435B1DD0C118003C91D8 /* RongCloudKit.strings in Resources */,
 				C40B0BAA1DE47FA3001F966E /* SubmitTaskViewController.xib in Resources */,
@@ -1341,6 +1360,7 @@
 				C4190C671DD733A800B38A7A /* ChatGroupCell.xib in Resources */,
 				C4190C7A1DD778D200B38A7A /* BBSCommentCell.xib in Resources */,
 				C4138C661DE17F38004964B0 /* AddGroupUserViewController.xib in Resources */,
+				C43707FC1DE891F5005AFD4B /* ContactCell.xib in Resources */,
 				C4190C741DD76DD700B38A7A /* BBSDetailViewController.xib in Resources */,
 				C4C783AE1DDDD0FD00B50693 /* GroupUserCell.xib in Resources */,
 				C48734F31DCF3A2500C9B0C0 /* HomeCell.xib in Resources */,
@@ -1351,6 +1371,7 @@
 				C491E96E1DD217BF005586C7 /* LeaderActivityCell.xib in Resources */,
 				C436435E1DD0C118003C91D8 /* release_notes_ios.txt in Resources */,
 				C47CEB7E1DD9D5EE0078DA21 /* UserInfoViewController.xib in Resources */,
+				C419A9751DE5EC3600E4DFD5 /* TaskResultViewController.xib in Resources */,
 				C42028391DE31808005E134B /* MyTaskCell.xib in Resources */,
 				C48734091DCF093E00C9B0C0 /* Main.storyboard in Resources */,
 				C4190C701DD7664900B38A7A /* BBSCell.xib in Resources */,
@@ -1475,6 +1496,7 @@
 				C450C9631DD35CFC0052B18E /* BaseActivityViewController.swift in Sources */,
 				C48734DD1DCF224000C9B0C0 /* BaseOrientationNavViewController.swift in Sources */,
 				C4190C551DD6FBEC00B38A7A /* BBSViewController.swift in Sources */,
+				C43707FB1DE891F5005AFD4B /* ContactCell.swift in Sources */,
 				C43005951DDB5ABA00AC6077 /* CreateGroupViewController.swift in Sources */,
 				C48734C61DCF0DA900C9B0C0 /* Theme.swift in Sources */,
 				C48734591DCF0A1F00C9B0C0 /* UIButton+WebCache.m in Sources */,
@@ -1496,8 +1518,10 @@
 				C40B0B991DE47F5A001F966E /* NSURL+DNIMagePickerUrlEqual.m in Sources */,
 				C450C9611DD3549E0052B18E /* UIImageView+GM.swift in Sources */,
 				C487349E1DCF0A2C00C9B0C0 /* UIScrollView+MJRefresh.m in Sources */,
+				C419A9781DE5ECC300E4DFD5 /* TaskResultTopCell.swift in Sources */,
 				C4138C6E1DE1EC34004964B0 /* TaskDataSource.swift in Sources */,
 				C4190C621DD7046B00B38A7A /* GroupViewController.swift in Sources */,
+				C419A9741DE5EC3600E4DFD5 /* TaskResultViewController.swift in Sources */,
 				C40B0BA61DE47F5A001F966E /* JKPromptView.m in Sources */,
 				C4138C651DE17F38004964B0 /* AddGroupUserViewController.swift in Sources */,
 				C48734041DCF093E00C9B0C0 /* AppDelegate.swift in Sources */,
@@ -1649,7 +1673,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: chao chen (385H963A8V)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CZYT/Depends/Rong_Cloud_iOS_IMKit_SDK_v2_7_3_stable",
@@ -1665,7 +1689,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.yumutech.unity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5b4a0436-2165-4357-9bc1-981ef591ec74";
+				PROVISIONING_PROFILE = "fbd2de73-cf15-4ff8-93b8-d16117638c4d";
 				SWIFT_OBJC_BRIDGING_HEADER = "./CZYT/CZYT-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
 			};
@@ -1675,7 +1699,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: chao chen (385H963A8V)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CZYT/Depends/Rong_Cloud_iOS_IMKit_SDK_v2_7_3_stable",
@@ -1691,7 +1715,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.yumutech.unity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5b4a0436-2165-4357-9bc1-981ef591ec74";
+				PROVISIONING_PROFILE = "fbd2de73-cf15-4ff8-93b8-d16117638c4d";
 				SWIFT_OBJC_BRIDGING_HEADER = "./CZYT/CZYT-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
 			};

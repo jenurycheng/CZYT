@@ -10,11 +10,14 @@ import UIKit
 
 class MyTaskViewController: BasePortraitViewController {
 
+    static var shouldReload = true
     var dataSource = TaskDataSource()
     var tableView:UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        MyTaskViewController.shouldReload = true
         
         self.view.backgroundColor = ThemeManager.current().foregroundColor
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64))
@@ -36,7 +39,12 @@ class MyTaskViewController: BasePortraitViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.loadData()
+        
+        if MyTaskViewController.shouldReload == true
+        {
+            self.loadData()
+            MyTaskViewController.shouldReload = false
+        }
     }
     
     func loadData()
@@ -49,6 +57,7 @@ class MyTaskViewController: BasePortraitViewController {
             self.view.dismiss()
             self.tableView.reloadData()
             self.tableView.mj_header.endRefreshing()
+            self.tableView.mj_footer.endRefreshing()
             }) { (error) in
                 self.view.dismiss()
                 self.tableView.mj_header.endRefreshing()
@@ -60,6 +69,10 @@ class MyTaskViewController: BasePortraitViewController {
         dataSource.getMyTask(false, success: { (result) in
             self.tableView.reloadData()
             self.tableView.mj_footer.endRefreshing()
+            if result.count == 0
+            {
+                self.tableView.mj_footer.endRefreshingWithNoMoreData()
+            }
             }) { (error) in
             self.tableView.mj_footer.endRefreshing()
         }

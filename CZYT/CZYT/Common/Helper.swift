@@ -203,6 +203,21 @@ class Helper: NSObject {
         return f.stringFromDate(date)
     }
     
+    static func formatDateString(dateString:String, fromFormat:String, toFormat:String)->String
+    {
+        
+        let f = NSDateFormatter()
+        f.dateFormat = fromFormat
+        let date = f.dateFromString(dateString)
+        f.dateFormat = toFormat
+        if date != nil
+        {
+            return f.stringFromDate(date!)
+        }else{
+            return ""
+        }
+    }
+    
     static func resizeImage(image:UIImage, toSize:CGSize)->UIImage
     {
         var size = toSize

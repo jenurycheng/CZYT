@@ -15,7 +15,7 @@ class LeaderActivityViewController: BaseActivityViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "领导活动"
-        
+        self.setCondition(["省级", "成都", "资阳"])
         // Do any additional setup after loading the view.
     }
     
@@ -25,9 +25,10 @@ class LeaderActivityViewController: BaseActivityViewController {
         {
             self.view.showHud()
         }
-        lDataSource.getLeaderActivity(true, success: { (result) in
+        lDataSource.getLeaderActivity(true, classify: classify, success: { (result) in
             self.dataSource = self.lDataSource.leaderActivity
             self.tableView.mj_header.endRefreshing()
+            self.tableView.mj_footer.endRefreshing()
             self.tableView.reloadData()
             self.view.dismiss()
             }) { (error) in
@@ -42,11 +43,14 @@ class LeaderActivityViewController: BaseActivityViewController {
     
     override func loadMore()
     {
-        lDataSource.getLeaderActivity(false, success: { (result) in
+        lDataSource.getLeaderActivity(false, classify: classify, success: { (result) in
             self.dataSource = self.lDataSource.leaderActivity
             self.tableView.mj_footer.endRefreshing()
             self.tableView.reloadData()
-            self.view.dismiss()
+            if result.count == 0
+            {
+                self.tableView.mj_footer.endRefreshingWithNoMoreData()
+            }
         }) { (error) in
             self.tableView.mj_footer.endRefreshing()
             self.view.dismiss()

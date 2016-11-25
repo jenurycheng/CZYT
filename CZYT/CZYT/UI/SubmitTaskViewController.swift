@@ -56,7 +56,7 @@ class SubmitTaskViewController: BasePortraitViewController {
     {
         let hub = MBProgressHUD.showMessag("提交中", toView: self.view)
         let text = contentTextView.text == nil ? "" : contentTextView.text!
-        dataSource.finishTask(self.id!, text: text, photos: images, success: { (result) in
+        dataSource.finishTask(self.id!, text: text, photos: [UIImage(named:"user_header_bg")!], success: { (result) in
             hub.hide(false)
             MBProgressHUD.showSuccess("提交成功", toView: self.view.window)
             }) { (error) in

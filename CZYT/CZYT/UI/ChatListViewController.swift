@@ -15,6 +15,7 @@ class ChatListViewController: RCConversationListViewController {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
         self.conversationListTableView.separatorStyle = .SingleLine
+        
         //设置需要显示哪些类型的会话
         self.setDisplayConversationTypes([RCConversationType.ConversationType_PRIVATE.rawValue,
             RCConversationType.ConversationType_DISCUSSION.rawValue,
@@ -32,13 +33,11 @@ class ChatListViewController: RCConversationListViewController {
         //打开会话界面
         if model.conversationType == .ConversationType_GROUP {
             
-            let chat = GroupConversationViewController()
-            chat.conversationType = model.conversationType
-            chat.targetId = model.targetId
+            let chat = GroupConversationViewController(conversationType: model.conversationType, targetId: model.targetId)
             chat.title = model.conversationTitle
             self.navigationController?.pushViewController(chat, animated: true)
         }else if model.conversationType == .ConversationType_PRIVATE{
-            let chat = RCConversationViewController(conversationType: model.conversationType, targetId: model.targetId)
+            let chat = PrivateConversationViewController(conversationType: model.conversationType, targetId: model.targetId)
             chat.title = model.conversationTitle
             self.navigationController?.pushViewController(chat, animated: true)
         }
@@ -52,5 +51,23 @@ class ChatListViewController: RCConversationListViewController {
         }
         RCIMClient.sharedRCIMClient().removeConversation(.ConversationType_GROUP, targetId: id)
         self.refreshConversationTableViewIfNeeded()
+    }
+    
+    override func didDeleteConversationCell(model: RCConversationModel!) {
+        super.didDeleteConversationCell(model)
+        if self.conversationListDataSource.count == 0 {
+            self.conversationListTableView.separatorStyle = .None
+        }else{
+            self.conversationListTableView.separatorStyle = .SingleLine
+        }
+    }
+    
+    override func willReloadTableData(dataSource: NSMutableArray!) -> NSMutableArray! {
+        if dataSource.count == 0 {
+            self.conversationListTableView.separatorStyle = .None
+        }else{
+            self.conversationListTableView.separatorStyle = .SingleLine
+        }
+        return super.willReloadTableData(dataSource)
     }
 }

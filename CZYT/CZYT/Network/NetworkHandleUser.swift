@@ -16,6 +16,7 @@ extension NetWorkHandle {
         static var Address_GetDepartmentList = "DeptList?"
         static var Address_GetContactList = "UserList?"
         static var Address_GetUserDetail = "UserItem"
+        static var Address_UpdatePushToken = "DeviceToken"
         
         class RequestUserValidCode : Reflect
         {
@@ -68,6 +69,16 @@ extension NetWorkHandle {
         
         class func getUserDetail(request:RequestGetUserDetail?, finish:((HttpResponseData)->Void)) {
             NetWorkHandle.PublicNetWorkAccess(Address_GetUserDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
+        
+        class RequestUpdatePushToken : Reflect
+        {
+            var device_token_type:String = "IOS"
+            var device_token:String?
+        }
+        
+        class func updatePushToken(request:RequestUpdatePushToken?, finish:((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_UpdatePushToken, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
         }
     }
 }
