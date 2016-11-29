@@ -12,6 +12,26 @@ class Department: Reflect {
     var dept_id:String?
     var dept_parent_id:String?
     var dept_name:String?
+    
+    func isMyLevel()->Bool
+    {
+        var id = self.dept_id
+        while id != DepartmentTree.rootDepartmentID{
+            if id == UserInfo.sharedInstance.dept_id
+            {
+                return true
+            }
+            for d in ContactDataSource.sharedInstance.department
+            {
+                if d.dept_id == id
+                {
+                    id = d.dept_parent_id
+                    break
+                }
+            }
+        }
+        return false
+    }
 }
 
 class Group : Reflect

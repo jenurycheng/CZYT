@@ -153,6 +153,7 @@ class DepartmentTree : NSObject
         {
             return
         }
+       
         DepartmentTree.allSubTree.append(self)
         
         for user in ContactDataSource.sharedInstance.contact

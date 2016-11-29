@@ -22,6 +22,8 @@ class GroupConversationViewController: RCConversationViewController {
         // Do any additional setup after loading the view.
         let backItemBar =  UIBarButtonItem(image: UIImage(named: "backbar"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(BaseNavViewController.backItemBarClicked(_:)))
         self.navigationItem.leftBarButtonItem = backItemBar
+        
+        self.chatSessionInputBarControl.pluginBoardView.removeItemAtIndex(2)
     }
     
     func backItemBarClicked(item:UIBarButtonItem){

@@ -26,6 +26,7 @@ class ContactListView: UIView {
     var originalDataSource = [UserInfo]()
     var dataSource = [UserInfo]()
     var tableView:UITableView!
+    var tree:DepartmentTree?
     init(frame: CGRect, selectMode:Bool = false) {
         super.init(frame: frame)
         self.selectMode = selectMode
@@ -42,6 +43,7 @@ class ContactListView: UIView {
     
     func update(tree:DepartmentTree)
     {
+        self.tree = tree
         originalDataSource = tree.users
         self.loadDataSource()
     }
@@ -146,13 +148,17 @@ extension ContactListView : UITableViewDataSource, UITableViewDelegate
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell") as! ContactCell
         cell.clipsToBounds = true
         let user = dataSource[indexPath.row]
-        cell.updateUserInfo(user)
+        let showMobile = self.tree!.department!.isMyLevel()
+        cell.updateUserInfo(user, showMobile: showMobile)
         cell.selectionStyle = .None
         cell.accessoryType = .DisclosureIndicator
+    
         if selectMode == true
         {
             cell.accessoryType = .None
+            cell.setChecked(selectedIds.contains(user.id!))
         }
+        
         return cell
     }
     

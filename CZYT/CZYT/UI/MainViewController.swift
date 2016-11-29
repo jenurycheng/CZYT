@@ -35,7 +35,7 @@ class MainViewController: BasePortraitViewController {
         {
             let nav = self.navigationController
             let user = UserLoginViewController()
-            user.pushToVC = UserInfoViewController(nibName: "UserInfoViewController", bundle: nil)
+//            user.pushToVC = UserInfoViewController(nibName: "UserInfoViewController", bundle: nil)
             let newNav = UINavigationController(rootViewController: user)
             nav?.presentViewController(newNav, animated: true, completion: {
             })

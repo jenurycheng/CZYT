@@ -15,12 +15,25 @@ class LeaderActivityViewController: BaseActivityViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "领导活动"
-        self.setCondition(["省级", "成都", "资阳"])
         // Do any additional setup after loading the view.
     }
     
     override func loadData()
     {
+        if self.conditions.count == 0
+        {
+            lDataSource.getModelType(LeaderActivityDataSource.Type_LeaderActivity, success: { (result) in
+                var array = [String]()
+                for r in result
+                {
+                    array.append(r.value!)
+                }
+                self.setCondition(array)
+            }) { (error) in
+                
+            }
+        }
+        
         if self.dataSource.count == 0
         {
             self.view.showHud()

@@ -20,6 +20,12 @@ class LeaderActivity: Reflect {
     var amount:String?
 }
 
+class LeaderType : Reflect
+{
+    var key:String?
+    var value:String?
+}
+
 class LeaderActivityDetail: Reflect {
     var summary:String?
     var id:String?

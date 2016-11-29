@@ -15,7 +15,6 @@ class ProjectWorkActivityViewController: BaseActivityViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "项目工作"
-        self.setCondition(["资阳", "县区", "开发区"])
         
         tableView.registerNib(UINib(nibName: "ProjectWorkCell", bundle: nil), forCellReuseIdentifier: "ProjectWorkCell")
         // Do any additional setup after loading the view.
@@ -23,6 +22,20 @@ class ProjectWorkActivityViewController: BaseActivityViewController {
     
     override func loadData()
     {
+        if self.conditions.count == 0
+        {
+            lDataSource.getModelType(LeaderActivityDataSource.Type_ProjectWork, success: { (result) in
+                var array = [String]()
+                for r in result
+                {
+                    array.append(r.value!)
+                }
+                self.setCondition(array)
+            }) { (error) in
+                
+            }
+        }
+        
         if self.dataSource.count == 0
         {
             self.view.showHud()

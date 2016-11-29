@@ -9,7 +9,42 @@
 import UIKit
 
 class LeaderActivityDataSource: NSObject {
+    
+    static let Type_LeaderActivity = "LeaderActivity"
+    static let Type_PolicyFile = "PolicyFile"
+    static let Type_WorkStatus = "WorkStatus"
+    static let Type_ProjectWork = "ProjectWork"
+    static let Type_BBSList = "Exchange"
+    
     var pageSize = 10
+    
+    func getModelType(type:String, success:((result:[LeaderType]) -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        let request = NetWorkHandle.NetWorkHandleApp.RequestModuleType()
+        request.classify = type
+        
+        NetWorkHandle.NetWorkHandleApp.getModuleType(request) { (data) in
+            if data.isSuccess()
+            {
+                var rs = [LeaderType]()
+                let ar = data.data as? Array<NSDictionary>
+                if ar != nil
+                {
+                    for dic in ar!
+                    {
+                        let r = LeaderType.parse(dict: dic)
+                        rs.append(r)
+                    }
+                }
+                
+                success(result: rs)
+            }else{
+                failure(error: data)
+            }
+        }
+    }
+    
+    
     var leaderActivity = [LeaderActivity]()
     func getLeaderActivity(isFirst:Bool, classify:String, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
     {

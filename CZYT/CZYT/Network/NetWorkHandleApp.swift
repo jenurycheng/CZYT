@@ -24,6 +24,7 @@ extension NetWorkHandle
         static var Address_GetProjectWorkActivityDetail = "ProjectWorkItem"
         
         static var Address_GetWebLink = "LinkList"
+        static var Address_GetModuleType = "ModuleClassifyList"
 
         class RequestLeaderActivity : Reflect
         {
@@ -108,6 +109,15 @@ extension NetWorkHandle
         
         class func getWebLink(request:RequestWebLink?, finish:((HttpResponseData)->Void)) {
             NetWorkHandle.PublicNetWorkAccess(Address_GetWebLink, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
+        
+        class RequestModuleType : Reflect
+        {
+            var classify:String?//LeaderActivity,PolicyFile,WorkStatus,ProjectWork,Exchange
+        }
+        
+        class func getModuleType(request:RequestModuleType?, finish:((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetModuleType, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: true)
         }
     }
 }

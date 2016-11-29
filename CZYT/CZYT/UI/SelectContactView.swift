@@ -10,6 +10,7 @@ import UIKit
 
 class SelectContactView: UIView {
     
+    var departmentID:String?
     var selectMode = false
     
     var dataSource = ContactDataSource.sharedInstance
@@ -19,11 +20,11 @@ class SelectContactView: UIView {
     var departmentView:DepartmentListView!
     var contactView:ContactListView!
     
-    init(frame: CGRect, selectMode:Bool = false) {
+    init(frame: CGRect, selectMode:Bool = false, departmentID:String = DepartmentTree.rootDepartmentID) {
         super.init(frame: frame)
         self.selectMode = selectMode
+        self.departmentID = departmentID
         self.initView()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,7 +50,7 @@ class SelectContactView: UIView {
             self.showHud()
         }
         dataSource.getDepartmentList({ (result) in
-            self.dataSource.getContactList(UserInfo.sharedInstance.dept_id!, success: { (result) in
+            self.dataSource.getContactList(self.departmentID!, success: { (result) in
                 DepartmentTree.sharedInstance().update(DepartmentTree.rootDepartmentID)
                 self.departmentView.update()
                 self.contactView.update(DepartmentTree.sharedInstance())

@@ -15,12 +15,25 @@ class FileActivityViewController: BaseActivityViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "政策文件"
-        self.setCondition(["中央", "四川", "成都", "资阳", "县区", "部门"])
         // Do any additional setup after loading the view.
     }
     
     override func loadData()
     {
+        if self.conditions.count == 0
+        {
+            lDataSource.getModelType(LeaderActivityDataSource.Type_PolicyFile, success: { (result) in
+                var array = [String]()
+                for r in result
+                {
+                    array.append(r.value!)
+                }
+                self.setCondition(array)
+            }) { (error) in
+                
+            }
+        }
+        
         if self.dataSource.count == 0
         {
             self.view.showHud()

@@ -16,13 +16,25 @@ class WorkStatusActivityViewController: BaseActivityViewController {
         super.viewDidLoad()
         self.title = "工作状态"
         
-        self.setCondition(["县区", "开发区", "市级部门"])
-        
         // Do any additional setup after loading the view.
     }
     
     override func loadData()
     {
+        if self.conditions.count == 0
+        {
+            lDataSource.getModelType(LeaderActivityDataSource.Type_WorkStatus, success: { (result) in
+                var array = [String]()
+                for r in result
+                {
+                    array.append(r.value!)
+                }
+                self.setCondition(array)
+            }) { (error) in
+                
+            }
+        }
+        
         if self.dataSource.count == 0
         {
             self.view.showHud()

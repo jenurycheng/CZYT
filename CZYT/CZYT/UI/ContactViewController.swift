@@ -40,7 +40,7 @@ class ContactViewController: BasePortraitViewController {
             self.view.showHud()
         }
         contactDataSource.getDepartmentList({ (result) in
-            self.contactDataSource.getContactList(UserInfo.sharedInstance.dept_id!, success: { (result) in
+            self.contactDataSource.getContactList(DepartmentTree.rootDepartmentID, success: { (result) in
                 DepartmentTree.sharedInstance().update(DepartmentTree.rootDepartmentID)
                 self.departmentView.update()
                 self.contactView.update(DepartmentTree.sharedInstance())

@@ -15,6 +15,8 @@ class ContactCell: UITableViewCell {
     @IBOutlet weak var phoneLabel:UILabel!
     @IBOutlet weak var checkedImageView:UIImageView!
     
+    @IBOutlet weak var nameHeight:NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         checkedImageView.hidden = true
@@ -43,11 +45,13 @@ class ContactCell: UITableViewCell {
         }
     }
 
-    func updateUserInfo(u:UserInfo)
+    func updateUserInfo(u:UserInfo, showMobile:Bool = true)
     {
         let name = u.nickname == nil ? "" : u.nickname!
         titleLabel.text = name
-        phoneLabel.text = u.mobile
+        phoneLabel.text = showMobile ? u.mobile : ""
+        nameHeight.constant = showMobile ? 30 : 40
+        
         if u.id == UserInfo.sharedInstance.id
         {
             titleLabel.text = name + "(我自己)"
