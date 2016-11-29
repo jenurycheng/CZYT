@@ -20,6 +20,8 @@
 #import "UMessage.h"
 #import "DNImagePickerController.h"
 #import "DNAsset.h"
+#import "MJPhotoBrowser.h"
+#import "MJPhoto.h"
 #import <RongIMKit/RongIMKit.h>
 
 #endif /* GiMiHelper_3_0_Bridging_Header_h */

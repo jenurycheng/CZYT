@@ -25,11 +25,36 @@ class MyTaskCell: UITableViewCell {
     func updateMy(task:Task)
     {
         self.update(task)
+        
+        if !Helper.isStringEmpty(task.task_assigner_user_name)
+        {
+            let name = task.task_assigner_user_name == nil ? "" : task.task_assigner_user_name!
+            publishManLabel.text = "指派人: " + name
+        }else{
+            let name = task.task_publish_user_name == nil ? "" : task.task_publish_user_name!
+            publishManLabel.text = "发布人: " + name
+        }
     }
     
     func updatePublish(task:Task)
     {
         self.update(task)
+        
+        var name = "发布给: "
+        if task.assignees != nil
+        {
+            if task.assignees!.count > 0
+            {
+                let n = task.assignees![0].assignee_user_name == nil ? "" : task.assignees![0].assignee_user_name!
+                name = name  + n
+            }
+            if task.assignees?.count > 1
+            {
+                let n = task.assignees![1].assignee_user_name == nil ? "" : task.assignees![1].assignee_user_name!
+                name = name + ", " + n
+            }
+        }
+        publishManLabel.text = name
     }
     
     func update(task:Task)
@@ -37,11 +62,30 @@ class MyTaskCell: UITableViewCell {
         titleLabel.text = task.task_title
         contentLabel.text = task.task_content
         statusLabel.text = task.task_status_name
-//        publishTimeLabel.text = task.task_
         
-        if task.task_end_date != nil
+        if task.task_publish_date != nil
         {
-            timeLabel.text = "截止时间:" + Helper.formatDateString(task.task_end_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
+            publishTimeLabel.text = "指派时间:" + Helper.formatDateString(task.task_publish_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
+        }
+
+        if task.task_status! == "responsing"//待接受
+        {
+            if task.task_end_date != nil
+            {
+                timeLabel.text = "截止时间:" + Helper.formatDateString(task.task_end_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
+            }
+        }else if task.task_status! == "finished"//已完成
+        {
+            if task.task_finish_date != nil
+            {
+                timeLabel.text = "完成时间:" + Helper.formatDateString(task.task_finish_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
+            }
+        }else if task.task_status! == "accepted"//已接受
+        {
+            if task.task_accept_date != nil
+            {
+                timeLabel.text = "接受时间:" + Helper.formatDateString(task.task_accept_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
+            }
         }
     }
 

@@ -53,6 +53,7 @@ class HttpResponseData : NSObject
 class NetWorkHandle: NSObject {
     
     static var ServerAddress:String = "http://www.yumutech.cn:20080/unity/webservice/ap/"
+//    static var ServerAddress:String = "http://222.18.162.136:8080/unity/webservice/ap/"
     
     static var pathNetCache:String! = NSTemporaryDirectory() + "netCache/"
     
@@ -173,9 +174,9 @@ class NetWorkHandle: NSObject {
         
         let paramDic:NSMutableDictionary? = self.getParam(param)
         
-        let paramString = self.getParamString(paramDic)
+//        let paramString = self.getParamString(paramDic)
         
-        CCPrint("\(ServerAddress + url+paramString)")
+//        CCPrint("\(ServerAddress + url+paramString)")
         
         switch accessType{
         case HttpRequestType.POST:

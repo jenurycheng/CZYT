@@ -86,7 +86,7 @@ class Helper: NSObject {
 
     static func imageToBase64(image:UIImage)->String
     {
-        let imageData:NSData = UIImageJPEGRepresentation(image, 0.9)!
+        let imageData:NSData = UIImageJPEGRepresentation(image, 0.7)!
         return imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithCarriageReturn)
     }
     
@@ -369,7 +369,7 @@ class Helper: NSObject {
     class func resultToJsonString(result:Any?)->String
     {
         let data = try? NSJSONSerialization.dataWithJSONObject(result as! AnyObject, options: NSJSONWritingOptions.PrettyPrinted)
-        var string = String(data: data!, encoding: NSUTF8StringEncoding)
+        let string = String(data: data!, encoding: NSUTF8StringEncoding)
         return string!
     }
     

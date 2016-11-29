@@ -31,6 +31,32 @@ class Task: Reflect {
     var task_finish_user_id:String?
     var task_finish_user_name:String?
     var task_finish_date:String?
+    
+    var task_publish_user_id:String?
+    var task_publish_user_name:String?
+    var task_publish_date:String?
+    
+    var task_assigner_user_id:String?
+    var task_assigner_user_name:String?
+    var task_assigner_user_mobile:String?
+    var task_assign_date:String?
+    
+    var assignees:[TaskAssign]?
+}
+
+class TaskAssign : Reflect
+{
+    var assigner_user_id:String?
+    var assigner_user_name:String?
+    var assigner_user_mobile:String?
+    
+    var assignee_user_id:String?
+    var assignee_user_name:String?
+    var assignee_user_mobile:String?
+    
+    var assignee_user_type:String?
+    var assign_date:String?
+    
 }
 
 class TaskDetail : Reflect
@@ -47,6 +73,13 @@ class TaskDetail : Reflect
     var task_finish_user_id:String?
     var task_finish_user_name:String?
     var task_finish_date:String?
+    
+    var task_publish_user_id:String?
+    var task_publish_user_name:String?
+    var task_publish_date:String?
+    
+    var assign:[TaskAssign]?
+    
     var task_comment:TaskResult?
 }
 

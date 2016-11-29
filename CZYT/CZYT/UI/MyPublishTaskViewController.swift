@@ -91,12 +91,16 @@ extension MyPublishTaskViewController : UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        let detail = TaskDetailViewController(nibName: "TaskDetailViewController", bundle: nil)
+        detail.id = dataSource.publishTask[indexPath.row].task_id
+        detail.isMyTask = false
+        self.navigationController?.pushViewController(detail, animated: true)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MyTaskCell") as! MyTaskCell
-        cell.update(dataSource.publishTask[indexPath.row])
+        cell.selectionStyle = .None
+        cell.updatePublish(dataSource.publishTask[indexPath.row])
         return cell
     }
 }

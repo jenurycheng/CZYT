@@ -75,11 +75,11 @@ class BBSDataSource: NSObject {
     func getBBSComment(isFirst:Bool, id:String, success:((result:[BBSComment]) -> Void), failure:((error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetworkHandleBBS.RequestBBSCommentList()
-        request.offset = self.bbsComment.count
-        request.row_count = pageSize
+        request.offset = "\(self.bbsComment.count)"
+        request.row_count = "\(pageSize)"
         request.exchange_id = id
         if isFirst {
-            request.offset = 0
+            request.offset = "0"
         }
         
         NetWorkHandle.NetworkHandleBBS.getBBSCommentList(request) { (data) in

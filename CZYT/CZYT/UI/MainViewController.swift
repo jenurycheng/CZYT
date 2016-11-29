@@ -18,8 +18,28 @@ class MainViewController: BasePortraitViewController {
     var chatViewController:ChatListViewController!
     var userViewController:UIViewController!
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        UserInfo.sharedInstance.addObserver(self, forKeyPath: "isLogin", options: .New, context: nil)
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        UserInfo.sharedInstance.addObserver(self, forKeyPath: "isLogin", options: .New, context: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if !UserInfo.sharedInstance.isLogin
+        {
+            let nav = self.navigationController
+            let user = UserLoginViewController()
+            user.pushToVC = UserInfoViewController(nibName: "UserInfoViewController", bundle: nil)
+            let newNav = UINavigationController(rootViewController: user)
+            nav?.presentViewController(newNav, animated: true, completion: {
+            })
+        }
         
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = nil
@@ -41,10 +61,8 @@ class MainViewController: BasePortraitViewController {
         let userItem = UIBarButtonItem(image: UIImage(named: "home_user"), style: .Plain, target: self, action: #selector(MainViewController.userItemClicked))
         self.navigationItem.rightBarButtonItem = userItem
         
-        self.title = "首页"
+        self.title = "成资一体化"
         tabBarViewController.showIndex(0)
-    
-        UserInfo.sharedInstance.addObserver(self, forKeyPath: "isLogin", options: .New, context: nil)
     }
     
     deinit{
@@ -104,7 +122,7 @@ class MainViewController: BasePortraitViewController {
     func initViewController()
     {
         homeViewController = HomeViewController()
-        homeViewController.title = "首页"
+        homeViewController.title = "成资一体化"
         doneViewController = UIViewController()
         doneViewController.title = "督办"
         chatViewController = ChatListViewController()
@@ -129,6 +147,6 @@ extension MainViewController : TabBarDelegate
     
     func tabBarClickedIndex(tabBar: TabBar, index: Int) {
         tabBarViewController.showIndex(index)
-        self.title = ["首页", "督办", "会话", "我的"][index]
+        self.title = ["成资一体化", "督办", "会话", "我的"][index]
     }
 }

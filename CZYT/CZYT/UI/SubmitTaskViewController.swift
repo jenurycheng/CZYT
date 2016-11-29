@@ -24,6 +24,7 @@ class SubmitTaskViewController: BasePortraitViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "提交任务"
         okBtn.backgroundColor = ThemeManager.current().mainColor
         okBtn.layer.cornerRadius = 5
         okBtn.layer.masksToBounds = true
@@ -56,11 +57,13 @@ class SubmitTaskViewController: BasePortraitViewController {
     {
         let hub = MBProgressHUD.showMessag("提交中", toView: self.view)
         let text = contentTextView.text == nil ? "" : contentTextView.text!
-        dataSource.finishTask(self.id!, text: text, photos: [UIImage(named:"user_header_bg")!], success: { (result) in
+        dataSource.finishTask(self.id!, text: text, photos: images, success: { (result) in
             hub.hide(false)
             MBProgressHUD.showSuccess("提交成功", toView: self.view.window)
+            self.navigationController?.popViewControllerAnimated(true)
             }) { (error) in
-              MBProgressHUD.showError(error.msg, toView: self.view)
+                MBProgressHUD.showError(error.msg, toView: self.view)
+                hub.hide(false)
         }
     }
 

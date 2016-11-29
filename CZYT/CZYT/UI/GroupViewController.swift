@@ -74,7 +74,7 @@ extension GroupViewController : UITableViewDelegate, UITableViewDataSource
             let v = UIView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: 20))
             v.backgroundColor = ThemeManager.current().backgroundColor
             let label = UILabel(frame: CGRect(x: 10, y: 0, width: GetSWidth()-10, height: 20))
-            label.text = "我加入的群"
+            label.text = "我加入的讨论组"
             label.font = UIFont.systemFontOfSize(12)
             label.textColor = ThemeManager.current().grayFontColor
             v.addSubview(label)

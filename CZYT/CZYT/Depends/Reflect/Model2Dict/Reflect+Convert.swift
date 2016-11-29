@@ -25,8 +25,18 @@ extension Reflect{
                     dict[name] = (value as? Reflect)?.toDict()
                     
                 }else{
-                    
-                    dict[name] = "\(value)".replacingOccurrencesOfString("Optional(", withString: "").replacingOccurrencesOfString(")", withString: "").replacingOccurrencesOfString("\"", withString: "")
+                    var str = String(value)
+                    if str.contain(subStr: "Optional(")
+                    {
+                        str = str.substringFromIndex(str.startIndex.advancedBy(10))
+                        if str.characters.count > 1
+                        {
+                            str = str.substringToIndex(str.endIndex.advancedBy(-2))
+                        }else{
+                            str = str.substringToIndex(str.endIndex.advancedBy(-1))
+                        }
+                    }
+                    dict[name] = str
                 }
                 
             }else{
@@ -54,8 +64,19 @@ extension Reflect{
                     }
                     
                 }else{
-                    
-                    dict[name] = "\(value)".replacingOccurrencesOfString("Optional(", withString: "").replacingOccurrencesOfString(")", withString: "").replacingOccurrencesOfString("\"", withString: "")
+                    var str = String(value)
+                    if str.contain(subStr: "Optional(")
+                    {
+                        str = str.substringFromIndex(str.startIndex.advancedBy(10))
+                        if str.characters.count > 1
+                        {
+                            str = str.substringToIndex(str.endIndex.advancedBy(-2))
+                        }else{
+                            str = str.substringToIndex(str.endIndex.advancedBy(-1))
+                        }
+                    }
+                    dict[name] = str
+//                    dict[name] = "\(value)".replacingOccurrencesOfString("Optional(", withString: "").replacingOccurrencesOfString(")", withString: "").replacingOccurrencesOfString("\"", withString: "")
                 }
             }
             

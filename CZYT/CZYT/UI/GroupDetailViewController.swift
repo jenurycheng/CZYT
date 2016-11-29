@@ -214,7 +214,7 @@ extension GroupDetailViewController : UICollectionViewDataSource
             
             if indexPath.row == 0
             {
-                cell.nameLabel.text = "群名称"
+                cell.nameLabel.text = "讨论组名称"
                 cell.detailLabel.text = dataSource.groupDetail?.groupName
                 cell.backgroundColor = ThemeManager.current().foregroundColor
             }

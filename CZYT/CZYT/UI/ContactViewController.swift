@@ -52,15 +52,6 @@ class ContactViewController: BasePortraitViewController {
             self.view.dismiss()
         }
     }
-    
-    func btnClicked()
-    {
-        let chat = PrivateConversationViewController()
-        chat.conversationType = RCConversationType.ConversationType_PRIVATE
-        chat.targetId = "3"
-        chat.title = "h"
-        self.navigationController?.pushViewController(chat, animated: true)
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

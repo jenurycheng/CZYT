@@ -33,6 +33,8 @@ class CCSideView: UIView {
     
     func initView()
     {
+        self.clipsToBounds = true
+        
         self.addSubview(leftView!)
         self.addSubview(contentView!)
         contentView.layer.shadowOffset = CGSize(width: -4, height: -2)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskResultViewController: UIViewController {
+class TaskResultViewController: BasePortraitViewController {
 
     var taskDetail:TaskDetail?
     @IBOutlet weak var collectionView:UICollectionView!
@@ -16,8 +16,10 @@ class TaskResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.backgroundColor = ThemeManager.current().foregroundColor
         self.title = "提交结果"
         
+        collectionView.frame = CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight() * 10)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.registerNib(UINib(nibName: "TaskResultTopCell", bundle: nil), forCellWithReuseIdentifier: "TaskResultTopCell")
@@ -39,7 +41,21 @@ extension TaskResultViewController : UICollectionViewDelegate
 {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        
+        let photoArray = NSMutableArray()
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ImageCollectionCell
+        for i in 0 ..< self.taskDetail!.task_comment!.photos!.count
+        {
+            let photo = MJPhoto()
+            photo.url = NSURL(string: self.taskDetail!.task_comment!.photos![i].photo_path!)
+            photo.srcImageView = cell.imageView
+            photo.image = cell.imageView.image
+            photoArray.addObject(photo)
+        }
+        let browser = MJPhotoBrowser()
+        browser.showPushBtn = false
+        browser.currentPhotoIndex = UInt(indexPath.row)
+        browser.photos = photoArray as [AnyObject]
+        browser.show()
     }
 }
 
@@ -125,7 +141,7 @@ extension TaskResultViewController : UICollectionViewDelegateFlowLayout
     {
         if section == 1
         {
-            return CGSize(width: GetSWidth(), height: 10)
+            return CGSize(width: GetSWidth(), height: 1)
         }
         return CGSizeZero
     }

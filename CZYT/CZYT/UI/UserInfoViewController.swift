@@ -10,41 +10,39 @@ import UIKit
 
 class UserInfoViewController: BasePortraitViewController {
 
-    @IBOutlet weak var tableView:UITableView!
-    @IBOutlet weak var headerBtn:UIButton!
-    @IBOutlet weak var logoutBtn:UIButton!
-    @IBOutlet weak var nameLabel:UILabel!
+    @IBOutlet weak var tableView:UITableView?
+    @IBOutlet weak var headerBtn:UIButton?
+    @IBOutlet weak var logoutBtn:UIButton?
+    @IBOutlet weak var nameLabel:UILabel?
     
     var pushToVC:UIViewController?
     var loginViewController:UserLoginViewController?
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        UserInfo.sharedInstance.addObserver(self, forKeyPath: "isLogin", options: .New, context: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title  = "个人信息"
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .None
+        tableView!.delegate = self
+        tableView!.dataSource = self
+        tableView!.separatorStyle = .None
         
-        logoutBtn.layer.cornerRadius = 5
-        logoutBtn.layer.masksToBounds = true
-        logoutBtn.titleLabel?.font = UIFont.systemFontOfSize(17)
+        logoutBtn!.layer.cornerRadius = 5
+        logoutBtn!.layer.masksToBounds = true
+        logoutBtn!.titleLabel?.font = UIFont.systemFontOfSize(17)
         
-//        if !UserInfo.sharedInstance.isLogin {
-//            loginViewController = UserLoginViewController()
-//            loginViewController?.pushToVC = pushToVC
-//            self.addChildViewController(loginViewController!)
-//            loginViewController!.view.frame = self.view.frame
-//            self.view.addSubview(loginViewController!.view)
-//            self.title = "登录"
-//        }else{
-            self.nameLabel.text = UserInfo.sharedInstance.nickname
-            if !Helper.isStringEmpty(UserInfo.sharedInstance.logo_path) {
-                self.headerBtn.sd_setImageWithURL(NSURL(string: UserInfo.sharedInstance.logo_path!), forState: .Normal, placeholderImage: UIImage(named: "user_header_default"))
-            }
-//        }
-        
-        UserInfo.sharedInstance.addObserver(self, forKeyPath: "isLogin", options: .New, context: nil)
+        self.nameLabel!.text = UserInfo.sharedInstance.nickname
+        if !Helper.isStringEmpty(UserInfo.sharedInstance.logo_path) {
+            self.headerBtn!.sd_setImageWithURL(NSURL(string: UserInfo.sharedInstance.logo_path!), forState: .Normal, placeholderImage: UIImage(named: "user_header_default"))
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -64,9 +62,9 @@ class UserInfoViewController: BasePortraitViewController {
         if keyPath == "isLogin" {
             if UserInfo.sharedInstance.isLogin {
                 self.title = "个人信息"
-                self.nameLabel.text = UserInfo.sharedInstance.nickname
+                self.nameLabel?.text = UserInfo.sharedInstance.nickname
                 if !Helper.isStringEmpty(UserInfo.sharedInstance.logo_path) {
-                    self.headerBtn.sd_setImageWithURL(NSURL(string: UserInfo.sharedInstance.logo_path!), forState: .Normal, placeholderImage: UIImage(named: "user_header_default"))
+                    self.headerBtn?.sd_setImageWithURL(NSURL(string: UserInfo.sharedInstance.logo_path!), forState: .Normal, placeholderImage: UIImage(named: "user_header_default"))
                 }
                 self.navigationController?.popViewControllerAnimated(true)
             }
@@ -95,7 +93,7 @@ extension UserInfoViewController : UITableViewDelegate, UITableViewDataSource
                 dispatch_async(dispatch_get_global_queue(0, 0), {
                     NetWorkCache.clearCache()
                 })
-                self.tableView.reloadData()
+                self.tableView!.reloadData()
                 self.view.window?.dismiss()
             })
         }
@@ -118,6 +116,10 @@ extension UserInfoViewController : UITableViewDelegate, UITableViewDataSource
         {
             let cache:Double = Double(String(format: "%.1f", Double(SDImageCache.sharedImageCache().getSize())/1024.0/1024.0))!
             cell.detailTextLabel?.text = "\(cache)MB"
+            cell.detailTextLabel?.textColor = ThemeManager.current().grayFontColor
+            cell.detailTextLabel?.font = UIFont.systemFontOfSize(13)
+        }else{
+            cell.detailTextLabel?.text = "V" + (NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as! String)
             cell.detailTextLabel?.textColor = ThemeManager.current().grayFontColor
             cell.detailTextLabel?.font = UIFont.systemFontOfSize(13)
         }

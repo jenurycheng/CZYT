@@ -91,13 +91,6 @@ extension MyTaskViewController : UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let image1 = UIImage(named: "test")
-//        let image2 = UIImage(named: "user_header_bg")
-//        dataSource.finishTask(dataSource.myTask[indexPath.row].task_id!, text: "我完成了任务", photos: [image1!, image2!], success: { (result) in
-//            MBProgressHUD.showMessag("成功", toView: self.view, showTimeSec: 1)
-//            }) { (error) in
-//                MBProgressHUD.showMessag(error.msg, toView: self.view, showTimeSec: 1)
-//        }
         let detail = TaskDetailViewController(nibName: "TaskDetailViewController", bundle: nil)
         detail.id = dataSource.myTask[indexPath.row].task_id
         self.navigationController?.pushViewController(detail, animated: true)
@@ -105,7 +98,8 @@ extension MyTaskViewController : UITableViewDelegate, UITableViewDataSource
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MyTaskCell") as! MyTaskCell
-        cell.update(dataSource.myTask[indexPath.row])
+        cell.selectionStyle = .None
+        cell.updateMy(dataSource.myTask[indexPath.row])
         return cell
     }
 }

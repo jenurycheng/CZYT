@@ -16,7 +16,8 @@ class BaseActivityViewController: BasePortraitViewController {
     var cityBtn:UIButton!
     var countryBtn:UIButton!
     var classify = ""
-    
+    var conditionBar:ConditionBar!
+    var conditions = [String]()
     var dataSource = [LeaderActivity]()
     
     override func viewDidLoad() {
@@ -26,7 +27,9 @@ class BaseActivityViewController: BasePortraitViewController {
         conditionView = UIView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: 40))
         conditionView.backgroundColor = ThemeManager.current().backgroundColor
         self.view.addSubview(conditionView)
-        
+        conditionBar = ConditionBar(frame: conditionView.bounds)
+        conditionBar.delegate = self
+        conditionView.addSubview(conditionBar)
         
         tableView = UITableView(frame: CGRect(x: 0, y: 40, width: GetSWidth(), height: GetSHeight()-64-40))
         tableView.dataSource = self
@@ -49,20 +52,8 @@ class BaseActivityViewController: BasePortraitViewController {
     var btns = [UIButton]()
     func setCondition(conditions:[String])
     {
-        let width = (GetSWidth()-5)/CGFloat(conditions.count)
-        for i in 0 ..< conditions.count
-        {
-            let btn = UIButton(frame: CGRect(x: width*CGFloat(i) + 5, y: 5, width: width-5, height: 30))
-            btn.setTitle(conditions[i], forState: .Normal)
-            btn.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
-            btn.setTitleColor(UIColor.whiteColor(), forState: .Selected)
-            btn.setBackgroundImage(Helper.imageWithColor(UIColor.whiteColor(), size: CGSizeMake(10, 10)), forState: .Normal)
-            btn.setBackgroundImage(Helper.imageWithColor(ThemeManager.current().mainColor, size: CGSizeMake(10, 10)), forState: .Selected)
-            btn.titleLabel?.font = UIFont.systemFontOfSize(14)
-            conditionView.addSubview(btn)
-            btn.addTarget(self, action: #selector(BaseActivityViewController.btnClicked(_:)), forControlEvents: .TouchUpInside)
-            btns.append(btn)
-        }
+        self.conditions = conditions
+        self.conditionBar.loadView()
     }
     
     func btnClicked(btn:UIButton)
@@ -92,6 +83,35 @@ class BaseActivityViewController: BasePortraitViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+}
+
+extension BaseActivityViewController : ConditionBarDelegate
+{
+    func titleForConditionBar(conditionBar:ConditionBar)->String
+    {
+        return "全部"
+    }
+    
+    func textsForConditionBar(conditionBar:ConditionBar)->[String]
+    {
+        return self.conditions
+    }
+    
+    func selectedIndexForConditionBar(conditionBar:ConditionBar)->Int    //返回－1:全部
+    {
+        return -1
+    }
+    
+    func didSelectedConditionBar(conditionBar:ConditionBar, index:Int)
+    {
+        if index == -1
+        {
+            self.classify = ""
+        }else{
+            self.classify = self.conditions[index]
+        }
+        self.loadData()
     }
 }
 

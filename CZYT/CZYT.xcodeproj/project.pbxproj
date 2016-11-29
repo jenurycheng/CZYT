@@ -78,6 +78,7 @@
 		C420283D1DE33132005E134B /* PublishTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C420283B1DE33132005E134B /* PublishTaskViewController.xib */; };
 		C420283F1DE344F0005E134B /* SelectContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C420283E1DE344F0005E134B /* SelectContactViewController.swift */; };
 		C42028421DE34DA5005E134B /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42028411DE34DA5005E134B /* DatePickerDialog.swift */; };
+		C4292BBB1DE9691400A18B5A /* SelectContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4292BBA1DE9691400A18B5A /* SelectContactView.swift */; };
 		C43005911DDB3C5600AC6077 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43005901DDB3C5600AC6077 /* ChatModel.swift */; };
 		C43005951DDB5ABA00AC6077 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43005931DDB5ABA00AC6077 /* CreateGroupViewController.swift */; };
 		C43005961DDB5ABA00AC6077 /* CreateGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43005941DDB5ABA00AC6077 /* CreateGroupViewController.xib */; };
@@ -137,6 +138,7 @@
 		C47CEB821DD9F6860078DA21 /* NetWorkHandleChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47CEB811DD9F6860078DA21 /* NetWorkHandleChat.swift */; };
 		C47CEB841DDA016E0078DA21 /* ChatDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47CEB831DDA016E0078DA21 /* ChatDataSource.swift */; };
 		C47CEB861DDA0F820078DA21 /* NetWorkHandleTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47CEB851DDA0F820078DA21 /* NetWorkHandleTask.swift */; };
+		C482F0801DE9F2A700B9342A /* ConditionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482F07F1DE9F2A700B9342A /* ConditionBar.swift */; };
 		C48734041DCF093E00C9B0C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734031DCF093E00C9B0C0 /* AppDelegate.swift */; };
 		C48734091DCF093E00C9B0C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C48734071DCF093E00C9B0C0 /* Main.storyboard */; };
 		C487340B1DCF093E00C9B0C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C487340A1DCF093E00C9B0C0 /* Assets.xcassets */; };
@@ -232,6 +234,13 @@
 		C4C783B21DDDD5CC00B50693 /* PrivateConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C783B11DDDD5CC00B50693 /* PrivateConversationViewController.swift */; };
 		C4C783B51DDDE26E00B50693 /* GroupLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C783B31DDDE26E00B50693 /* GroupLineCell.swift */; };
 		C4C783B61DDDE26E00B50693 /* GroupLineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C783B41DDDE26E00B50693 /* GroupLineCell.xib */; };
+		C4E669D11DEC82D800DD35EC /* MJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E669C51DEC82D800DD35EC /* MJPhoto.m */; };
+		C4E669D21DEC82D800DD35EC /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C4E669C61DEC82D800DD35EC /* MJPhotoBrowser.bundle */; };
+		C4E669D31DEC82D800DD35EC /* MJPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E669C81DEC82D800DD35EC /* MJPhotoBrowser.m */; };
+		C4E669D41DEC82D800DD35EC /* MJPhotoLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E669CA1DEC82D800DD35EC /* MJPhotoLoadingView.m */; };
+		C4E669D51DEC82D800DD35EC /* MJPhotoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E669CC1DEC82D800DD35EC /* MJPhotoProgressView.m */; };
+		C4E669D61DEC82D800DD35EC /* MJPhotoToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E669CE1DEC82D800DD35EC /* MJPhotoToolbar.m */; };
+		C4E669D71DEC82D800DD35EC /* MJPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E669D01DEC82D800DD35EC /* MJPhotoView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -324,6 +333,7 @@
 		C420283B1DE33132005E134B /* PublishTaskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishTaskViewController.xib; sourceTree = "<group>"; };
 		C420283E1DE344F0005E134B /* SelectContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectContactViewController.swift; sourceTree = "<group>"; };
 		C42028411DE34DA5005E134B /* DatePickerDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerDialog.swift; sourceTree = "<group>"; };
+		C4292BBA1DE9691400A18B5A /* SelectContactView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectContactView.swift; sourceTree = "<group>"; };
 		C43005901DDB3C5600AC6077 /* ChatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		C43005931DDB5ABA00AC6077 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		C43005941DDB5ABA00AC6077 /* CreateGroupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGroupViewController.xib; sourceTree = "<group>"; };
@@ -384,6 +394,7 @@
 		C47CEB811DD9F6860078DA21 /* NetWorkHandleChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkHandleChat.swift; sourceTree = "<group>"; };
 		C47CEB831DDA016E0078DA21 /* ChatDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDataSource.swift; sourceTree = "<group>"; };
 		C47CEB851DDA0F820078DA21 /* NetWorkHandleTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkHandleTask.swift; sourceTree = "<group>"; };
+		C482F07F1DE9F2A700B9342A /* ConditionBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionBar.swift; sourceTree = "<group>"; };
 		C48734001DCF093E00C9B0C0 /* CZYT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CZYT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48734031DCF093E00C9B0C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C48734081DCF093E00C9B0C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -526,6 +537,19 @@
 		C4C783B11DDDD5CC00B50693 /* PrivateConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateConversationViewController.swift; sourceTree = "<group>"; };
 		C4C783B31DDDE26E00B50693 /* GroupLineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupLineCell.swift; sourceTree = "<group>"; };
 		C4C783B41DDDE26E00B50693 /* GroupLineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupLineCell.xib; sourceTree = "<group>"; };
+		C4E669C41DEC82D800DD35EC /* MJPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhoto.h; sourceTree = "<group>"; };
+		C4E669C51DEC82D800DD35EC /* MJPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhoto.m; sourceTree = "<group>"; };
+		C4E669C61DEC82D800DD35EC /* MJPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJPhotoBrowser.bundle; sourceTree = "<group>"; };
+		C4E669C71DEC82D800DD35EC /* MJPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoBrowser.h; sourceTree = "<group>"; };
+		C4E669C81DEC82D800DD35EC /* MJPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoBrowser.m; sourceTree = "<group>"; };
+		C4E669C91DEC82D800DD35EC /* MJPhotoLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoLoadingView.h; sourceTree = "<group>"; };
+		C4E669CA1DEC82D800DD35EC /* MJPhotoLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoLoadingView.m; sourceTree = "<group>"; };
+		C4E669CB1DEC82D800DD35EC /* MJPhotoProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoProgressView.h; sourceTree = "<group>"; };
+		C4E669CC1DEC82D800DD35EC /* MJPhotoProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoProgressView.m; sourceTree = "<group>"; };
+		C4E669CD1DEC82D800DD35EC /* MJPhotoToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoToolbar.h; sourceTree = "<group>"; };
+		C4E669CE1DEC82D800DD35EC /* MJPhotoToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoToolbar.m; sourceTree = "<group>"; };
+		C4E669CF1DEC82D800DD35EC /* MJPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoView.h; sourceTree = "<group>"; };
+		C4E669D01DEC82D800DD35EC /* MJPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -848,6 +872,7 @@
 				C40B0BA81DE47FA3001F966E /* SubmitTaskViewController.xib */,
 				C419A9721DE5EC3600E4DFD5 /* TaskResultViewController.swift */,
 				C419A9731DE5EC3600E4DFD5 /* TaskResultViewController.xib */,
+				C4292BBA1DE9691400A18B5A /* SelectContactView.swift */,
 			);
 			name = Task;
 			sourceTree = "<group>";
@@ -942,6 +967,7 @@
 		C48734181DCF096E00C9B0C0 /* Depends */ = {
 			isa = PBXGroup;
 			children = (
+				C4E669C31DEC82D800DD35EC /* MJPhotoBrowser */,
 				C40B0B671DE47F5A001F966E /* DNImagePicker */,
 				C4138C681DE1A79C004964B0 /* UMessage_Sdk_1.2.6 */,
 				C436434F1DD0C118003C91D8 /* Rong_Cloud_iOS_IMKit_SDK_v2_7_3_stable */,
@@ -1197,6 +1223,7 @@
 				C4190C7C1DD77CBC00B38A7A /* KeyboardInputView.swift */,
 				C41243931DDF42ED0005058C /* CCSideView.swift */,
 				C42028411DE34DA5005E134B /* DatePickerDialog.swift */,
+				C482F07F1DE9F2A700B9342A /* ConditionBar.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1269,6 +1296,26 @@
 			name = User;
 			sourceTree = "<group>";
 		};
+		C4E669C31DEC82D800DD35EC /* MJPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				C4E669C41DEC82D800DD35EC /* MJPhoto.h */,
+				C4E669C51DEC82D800DD35EC /* MJPhoto.m */,
+				C4E669C61DEC82D800DD35EC /* MJPhotoBrowser.bundle */,
+				C4E669C71DEC82D800DD35EC /* MJPhotoBrowser.h */,
+				C4E669C81DEC82D800DD35EC /* MJPhotoBrowser.m */,
+				C4E669C91DEC82D800DD35EC /* MJPhotoLoadingView.h */,
+				C4E669CA1DEC82D800DD35EC /* MJPhotoLoadingView.m */,
+				C4E669CB1DEC82D800DD35EC /* MJPhotoProgressView.h */,
+				C4E669CC1DEC82D800DD35EC /* MJPhotoProgressView.m */,
+				C4E669CD1DEC82D800DD35EC /* MJPhotoToolbar.h */,
+				C4E669CE1DEC82D800DD35EC /* MJPhotoToolbar.m */,
+				C4E669CF1DEC82D800DD35EC /* MJPhotoView.h */,
+				C4E669D01DEC82D800DD35EC /* MJPhotoView.m */,
+			);
+			path = MJPhotoBrowser;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1301,7 +1348,6 @@
 				TargetAttributes = {
 					C48733FF1DCF093E00C9B0C0 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 26JVMY8BXV;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -1359,6 +1405,7 @@
 				C436435D1DD0C118003C91D8 /* RCConfig.plist in Resources */,
 				C4190C671DD733A800B38A7A /* ChatGroupCell.xib in Resources */,
 				C4190C7A1DD778D200B38A7A /* BBSCommentCell.xib in Resources */,
+				C4E669D21DEC82D800DD35EC /* MJPhotoBrowser.bundle in Resources */,
 				C4138C661DE17F38004964B0 /* AddGroupUserViewController.xib in Resources */,
 				C43707FC1DE891F5005AFD4B /* ContactCell.xib in Resources */,
 				C4190C741DD76DD700B38A7A /* BBSDetailViewController.xib in Resources */,
@@ -1389,6 +1436,7 @@
 				C47CEB7D1DD9D5EE0078DA21 /* UserInfoViewController.swift in Sources */,
 				C4C783B01DDDD2A200B50693 /* GroupConversationViewController.swift in Sources */,
 				C48734951DCF0A2C00C9B0C0 /* MJRefreshBackGifFooter.m in Sources */,
+				C4E669D31DEC82D800DD35EC /* MJPhotoBrowser.m in Sources */,
 				C4190C511DD6FB3100B38A7A /* NetworkHandleBBS.swift in Sources */,
 				C47CEB841DDA016E0078DA21 /* ChatDataSource.swift in Sources */,
 				C48734541DCF0A1F00C9B0C0 /* SDWebImageDecoder.m in Sources */,
@@ -1411,6 +1459,7 @@
 				C4C783B21DDDD5CC00B50693 /* PrivateConversationViewController.swift in Sources */,
 				C4190C571DD6FBFE00B38A7A /* BBSDataSource.swift in Sources */,
 				C450C9751DD373030052B18E /* ProjectWorkActivityViewController.swift in Sources */,
+				C4E669D61DEC82D800DD35EC /* MJPhotoToolbar.m in Sources */,
 				C450C95F1DD3531D0052B18E /* UIView+HUD.swift in Sources */,
 				C40B0B9F1DE47F5A001F966E /* DNAssetsViewCell.m in Sources */,
 				C4BC6A531DD4A89800DA19B2 /* ProjectWorkCell.swift in Sources */,
@@ -1425,6 +1474,7 @@
 				C42028341DE314D4005E134B /* MyPublishTaskViewController.swift in Sources */,
 				C48734B41DCF0A3A00C9B0C0 /* Reflect.swift in Sources */,
 				C41243941DDF42ED0005058C /* CCSideView.swift in Sources */,
+				C4E669D51DEC82D800DD35EC /* MJPhotoProgressView.m in Sources */,
 				C4190C491DD6F27B00B38A7A /* NetworkHandleUser.swift in Sources */,
 				C4190C601DD7046300B38A7A /* ContactViewController.swift in Sources */,
 				C4138C731DE1F580004964B0 /* TaskViewController.swift in Sources */,
@@ -1458,9 +1508,11 @@
 				C48734981DCF0A2C00C9B0C0 /* MJRefreshGifHeader.m in Sources */,
 				C48734CC1DCF14BF00C9B0C0 /* CommonFun.swift in Sources */,
 				C487345F1DCF0A1F00C9B0C0 /* UIView+WebCacheOperation.m in Sources */,
+				C482F0801DE9F2A700B9342A /* ConditionBar.swift in Sources */,
 				C40B0B951DE47F5A001F966E /* DNImagePickerController.m in Sources */,
 				C4190C4C1DD6F48300B38A7A /* UserDataSource.swift in Sources */,
 				C48734AF1DCF0A3A00C9B0C0 /* Reflect+Convert.swift in Sources */,
+				C4E669D71DEC82D800DD35EC /* MJPhotoView.m in Sources */,
 				C40B0BA91DE47FA3001F966E /* SubmitTaskViewController.swift in Sources */,
 				C48734DF1DCF224000C9B0C0 /* BaseViewController.swift in Sources */,
 				C491E9711DD22137005586C7 /* LeaderActivityDetailViewController.swift in Sources */,
@@ -1487,9 +1539,11 @@
 				C4BC6A571DD4AFEF00DA19B2 /* NSMutableAttributedString+Utils.swift in Sources */,
 				C48734281DCF09B400C9B0C0 /* AFNetworkReachabilityManager.m in Sources */,
 				C43005911DDB3C5600AC6077 /* ChatModel.swift in Sources */,
+				C4E669D41DEC82D800DD35EC /* MJPhotoLoadingView.m in Sources */,
 				C48734CF1DCF176C00C9B0C0 /* NetWorkHandleApp.swift in Sources */,
 				C4C783B51DDDE26E00B50693 /* GroupLineCell.swift in Sources */,
 				C420283F1DE344F0005E134B /* SelectContactViewController.swift in Sources */,
+				C4E669D11DEC82D800DD35EC /* MJPhoto.m in Sources */,
 				C4190C761DD7788E00B38A7A /* BBSCommentViewController.swift in Sources */,
 				C42028381DE31808005E134B /* MyTaskCell.swift in Sources */,
 				C47CEB861DDA0F820078DA21 /* NetWorkHandleTask.swift in Sources */,
@@ -1543,6 +1597,7 @@
 				C47CEB821DD9F6860078DA21 /* NetWorkHandleChat.swift in Sources */,
 				C491E96A1DD21797005586C7 /* LeaderActivityViewController.swift in Sources */,
 				C40B0B921DE47F5A001F966E /* DNAlbumTableViewController.m in Sources */,
+				C4292BBB1DE9691400A18B5A /* SelectContactView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1673,7 +1728,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: chao chen (385H963A8V)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CZYT/Depends/Rong_Cloud_iOS_IMKit_SDK_v2_7_3_stable",
@@ -1689,7 +1744,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.yumutech.unity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fbd2de73-cf15-4ff8-93b8-d16117638c4d";
+				PROVISIONING_PROFILE = "a2002c04-dffd-452d-b33e-5d79846afb98";
 				SWIFT_OBJC_BRIDGING_HEADER = "./CZYT/CZYT-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
 			};
@@ -1699,7 +1754,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: chao chen (385H963A8V)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CZYT/Depends/Rong_Cloud_iOS_IMKit_SDK_v2_7_3_stable",
@@ -1715,7 +1770,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.yumutech.unity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fbd2de73-cf15-4ff8-93b8-d16117638c4d";
+				PROVISIONING_PROFILE = "a2002c04-dffd-452d-b33e-5d79846afb98";
 				SWIFT_OBJC_BRIDGING_HEADER = "./CZYT/CZYT-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
 			};

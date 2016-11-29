@@ -8,16 +8,36 @@
 
 import UIKit
 
+protocol ContentListViewDelegate : NSObjectProtocol {
+    func contentListSelectedIdsChanged()
+}
+
 class ContactListView: UIView {
 
+    var showMySelf = false  //是否显示自己
+    var showMaxCountText:String = "超过人数"    //选择人数超过指定人数时提示信息
+    var maxSelectCount = 100000     //最大选择人数
+    var selectMode = false      //选择模式
+    var selectedIds = [String]()
+    
+    var delegate:ContentListViewDelegate?
     var searchBar:UISearchBar!
     
     var originalDataSource = [UserInfo]()
     var dataSource = [UserInfo]()
     var tableView:UITableView!
-    override init(frame: CGRect) {
+    init(frame: CGRect, selectMode:Bool = false) {
         super.init(frame: frame)
+        self.selectMode = selectMode
         self.initView()
+    }
+    
+    var hiddenIds = [String]()
+    func updateHiddenIds(hiddenIds:[String])
+    {
+        self.hiddenIds.removeAll()
+        self.hiddenIds.appendContentsOf(hiddenIds)
+        self.tableView.reloadData()
     }
     
     func update(tree:DepartmentTree)
@@ -71,11 +91,38 @@ extension ContactListView : UITableViewDataSource, UITableViewDelegate
         return dataSource.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if dataSource[indexPath.row].id == UserInfo.sharedInstance.id
+    func scrollViewDidScrollToTop(scrollView: UIScrollView) {
+        if searchBar.isFirstResponder()
         {
+            searchBar.resignFirstResponder()
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let user = dataSource[indexPath.row]
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ContactCell
+        if selectMode == true
+        {
+            cell.accessoryType = .None
+            if selectedIds.contains(user.id!)
+            {
+                cell.setChecked(false)
+                selectedIds.removeAtIndex(selectedIds.indexOf(user.id!)!)
+            }else{
+                if selectedIds.count >= maxSelectCount
+                {
+                    MBProgressHUD.showMessag(self.showMaxCountText, toView: self, showTimeSec: 1)
+                }else{
+                    cell.setChecked(true)
+                    selectedIds.append(user.id!)
+                }
+            }
+            if delegate != nil {
+                delegate?.contentListSelectedIdsChanged()
+            }
             return
         }
+        
         let chat = PrivateConversationViewController()
         chat.conversationType = RCConversationType.ConversationType_PRIVATE
         chat.targetId = dataSource[indexPath.row].id
@@ -85,14 +132,27 @@ extension ContactListView : UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        let user = dataSource[indexPath.row]
+        if !showMySelf && user.id == UserInfo.sharedInstance.id || hiddenIds.contains(user.id!)
+        {
+            return 0
+        }
+        
         return ContactCell.cellHeight()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell") as! ContactCell
-        cell.updateUserInfo(dataSource[indexPath.row])
+        cell.clipsToBounds = true
+        let user = dataSource[indexPath.row]
+        cell.updateUserInfo(user)
         cell.selectionStyle = .None
         cell.accessoryType = .DisclosureIndicator
+        if selectMode == true
+        {
+            cell.accessoryType = .None
+        }
         return cell
     }
     

@@ -20,7 +20,7 @@ class TaskResultTopCell: UICollectionViewCell {
             return CGSize(width: GetSWidth(), height: 60)
         }
         let height = Helper.getTextSize(content!, font: UIFont.systemFontOfSize(14), size: CGSize(width: GetSWidth()-20, height: CGFloat.max)).height
-        return CGSize(width: GetSWidth(), height: 60 + height + 20 + 10)
+        return CGSize(width: GetSWidth(), height: 60 + height + 20 + 10 + 20)
     }
     
     func update(result:TaskDetail)

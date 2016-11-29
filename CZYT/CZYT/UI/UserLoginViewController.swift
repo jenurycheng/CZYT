@@ -17,6 +17,8 @@ class UserLoginViewController: BasePortraitViewController {
     var codeBtn:UIButton!
     var nextBtn:UIButton!
     var timer:NSTimer?
+    var logoImageView:UIImageView!
+    var nameLabel:UILabel!
     
     var dataSource = UserDataSource()
     
@@ -26,11 +28,24 @@ class UserLoginViewController: BasePortraitViewController {
         self.title = "登录"
         self.view.backgroundColor = ThemeManager.current().foregroundColor
         
-        let telView = self.getInputView(CGRectMake(30, 50, GetSWidth()-60, 40))
+        logoImageView = UIImageView(frame: CGRect(x: GetSWidth()/2-40, y: 40, width: 80, height: 80))
+        logoImageView.image = UIImage(named: "user_header_default")
+        logoImageView.layer.cornerRadius = logoImageView.frame.width/2
+        logoImageView.layer.masksToBounds = true
+        self.view.addSubview(logoImageView)
+        
+        nameLabel = UILabel(frame: CGRect(x: 0, y: logoImageView.frame.origin.y + logoImageView.frame.height + 10, width: GetSWidth(), height: 20))
+        nameLabel.text = "成资一体化"
+        nameLabel.textColor = ThemeManager.current().mainColor
+        nameLabel.textAlignment = .Center
+        self.view.addSubview(nameLabel)
+        
+        let telView = self.getInputView(CGRectMake(30, nameLabel.frame.origin.y + nameLabel.frame.height + 10, GetSWidth()-60, 40))
         self.view.addSubview(telView)
         telTextField = UITextField(frame: CGRectMake(0, 0, telView.frame.size.width, 40))
         telTextField.placeholder = "手机号"
         telTextField.delegate = self
+//        telTextField.text = "18215595271"
         telTextField.text = "13880184987"
         telTextField.keyboardType = .NumberPad
         telTextField.font = UIFont.systemFontOfSize(14)
@@ -74,6 +89,16 @@ class UserLoginViewController: BasePortraitViewController {
         self.view.addSubview(nextBtn)
         
         self.telTextField.becomeFirstResponder()
+        
+        self.navigationItem.leftBarButtonItem = nil
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UserLoginViewController.tapped))
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    func tapped()
+    {
+        self.view.endEditing(true)
     }
     
     override func backItemBarClicked(item: UIBarButtonItem) {

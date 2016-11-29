@@ -39,8 +39,8 @@ extension NetWorkHandle
         class RequestBBSCommentList : Reflect
         {
             var exchange_id:String?
-            var offset:Int?
-            var row_count:Int?
+            var offset:String?
+            var row_count:String?
         }
         
         class func getBBSCommentList(request:RequestBBSCommentList?, finish:((HttpResponseData)->Void)) {
@@ -50,7 +50,7 @@ extension NetWorkHandle
         class RequestAddBBSComment : Reflect
         {
             var exchange_id:String?
-            var content:String?
+            var content:String = ""
             var publish_user_id:String?
             var receiver_user_id:String?
         }

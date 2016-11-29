@@ -166,7 +166,7 @@ class TaskDataSource: NSObject {
         let request = NetWorkHandle.NetWorkHandleTask.RequestAssignTask()
         request.task_id = task.taskId
         request.director = task.director
-        request.supporter = task.director
+        request.supporter = task.supporter
         NetWorkHandle.NetWorkHandleTask.assignTask(request) { (data) in
             if data.isSuccess()
             {

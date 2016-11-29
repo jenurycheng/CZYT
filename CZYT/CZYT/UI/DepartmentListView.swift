@@ -72,7 +72,7 @@ extension DepartmentListView : UITableViewDataSource, UITableViewDelegate
         numLabel.textAlignment = .Right
         numLabel.textColor = ThemeManager.current().grayFontColor
         numLabel.text = "\(tree.users.count)"
-        cell.addSubview(numLabel)
+//        cell.addSubview(numLabel)
         
         let line = GetLineView(CGRect(x: 5, y: 39, width: GetSWidth()-5, height: 1))
         cell.addSubview(line)

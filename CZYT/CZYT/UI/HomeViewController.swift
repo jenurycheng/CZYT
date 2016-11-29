@@ -246,7 +246,7 @@ extension HomeViewController : CCPageViewDelegate
 {
     func pageCountForPageView(page:CCPageView)->Int
     {
-        return dataSource.leaderActivity.count
+        return dataSource.leaderActivity.count > 3 ? 3 : dataSource.leaderActivity.count
     }
     
     func pageViewForIndex(page:CCPageView, index:Int)->UIView
@@ -261,14 +261,6 @@ extension HomeViewController : CCPageViewDelegate
         label.font = UIFont.systemFontOfSize(15)
         label.textColor = ThemeManager.current().whiteFontColor
         view.addSubview(label)
-//        let url = dataSource.appHome!.ad![index].image
-//        let loadImage = Helper.imageWithLoading(page.frame.size)
-//        imgView.gm_setImageWithURL(NetWorkHandle.getImageUrl(url), placeholderImage: loadImage) { (img:UIImage!, err:NSError!, type:SDImageCacheType, url:NSURL!) -> Void in
-//            if nil != err {
-//                let image = Helper.imageWithString(self.dataSource.appHome!.ad![index].title, size:imgView.frame.size)
-//                imgView.image = image
-//            }
-//        }
         imgView.gm_setImageWithUrlString(dataSource.leaderActivity[index].logo_path, title: dataSource.leaderActivity[index].title, completedBlock: nil)
         
         return view
