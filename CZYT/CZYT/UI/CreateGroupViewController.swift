@@ -80,6 +80,15 @@ extension CreateGroupViewController : UIAlertViewDelegate
                     self.view.dismiss()
                     MBProgressHUD.showMessag("创建成功", toView: self.view.window, showTimeSec: 1)
                     self.navigationController?.popViewControllerAnimated(true)
+                    
+                    let msg = RCTextMessage()
+                    msg.content = "我创建了讨论组"
+                    let name = UserInfo.sharedInstance.nickname == nil ? "" : UserInfo.sharedInstance.nickname!
+                    RCIM.sharedRCIM().sendMessage(RCConversationType.ConversationType_GROUP, targetId: result.groupId, content: msg, pushContent: "\(name)邀请你加入了讨论组", pushData: "\(UserInfo.sharedInstance.nickname!)邀请你加入了讨论组", success: { (code) in
+                        
+                        }, error: { (errorCode, code) in
+                            
+                    })
                 }) { (error) in
                     self.view.dismiss()
                     MBProgressHUD.showMessag(error.msg, toView: self.view, showTimeSec: 1)

@@ -109,7 +109,7 @@ extension SubmitTaskViewController : UICollectionViewDataSource
             cell.updateView(images[indexPath.row])
             cell.deleteBtn.hidden = false
         }else{
-            cell.updateView(UIImage(named: "add")!)
+            cell.updateView(UIImage(named: "add_photo")!)
             cell.deleteBtn.hidden = true
         }
         

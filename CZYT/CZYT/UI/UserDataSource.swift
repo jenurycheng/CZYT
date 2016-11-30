@@ -99,4 +99,20 @@ class UserDataSource: NSObject {
             }
         }
     }
+    
+    func updateUserPhoto(image:UIImage, success:((result:UserInfo) -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        let request = NetWorkHandle.NetWorkHandleUser.RequestUpdateUserPhoto()
+        request.photo_suffix = ".jpg"
+        request.photo_content = Helper.imageToBase64(image)
+        NetWorkHandle.NetWorkHandleUser.updateUserPhoto(request) { (data) in
+            if data.isSuccess()
+            {
+                let user = UserInfo.parse(dict: data.data as! NSDictionary)
+                success(result: user)
+            }else{
+                failure(error: data)
+            }
+        }
+    }
 }

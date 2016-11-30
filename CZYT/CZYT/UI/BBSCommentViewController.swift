@@ -40,8 +40,7 @@ class BBSCommentViewController: BasePortraitViewController {
         commentBtn = UIButton(frame: CGRect(x: GetSWidth()-10-50, y: GetSHeight()-64-20-50, width: 50, height: 50))
         commentBtn.layer.cornerRadius = commentBtn.frame.height/2
         commentBtn.layer.masksToBounds = true
-        commentBtn.backgroundColor = ThemeManager.current().mainColor
-        commentBtn.setTitle("写评论", forState: .Normal)
+        commentBtn.setImage(UIImage(named: "comment_add"), forState: .Normal)
         commentBtn.titleLabel?.font = UIFont.systemFontOfSize(15)
         commentBtn.addTarget(self, action: #selector(BBSCommentViewController.commentBtnClicked), forControlEvents: .TouchUpInside)
         self.view.addSubview(commentBtn)

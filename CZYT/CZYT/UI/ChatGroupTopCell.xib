@@ -23,7 +23,8 @@
                                     <constraint firstAttribute="height" constant="60" id="qBo-aB-ZoG"/>
                                     <constraint firstAttribute="width" constant="60" id="u6p-SM-Uok"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="add"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                                <state key="normal" image="group_add"/>
                                 <connections>
                                     <action selector="addGroupBtnClicked" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gcq-M8-y9b"/>
                                 </connections>
@@ -55,7 +56,8 @@
                                     <constraint firstAttribute="width" constant="60" id="MQZ-kg-qVG"/>
                                     <constraint firstAttribute="height" constant="60" id="fFJ-fH-p50"/>
                                 </constraints>
-                                <state key="normal" image="user_header_default"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="10"/>
+                                <state key="normal" image="chat_bbs"/>
                                 <connections>
                                     <action selector="bbsBtnClicked" destination="KGk-i7-Jjw" eventType="touchUpInside" id="c98-7k-QvD"/>
                                 </connections>
@@ -94,7 +96,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="add" width="24" height="24"/>
-        <image name="user_header_default" width="116" height="116"/>
+        <image name="chat_bbs" width="192" height="141"/>
+        <image name="group_add" width="198" height="117"/>
     </resources>
 </document>

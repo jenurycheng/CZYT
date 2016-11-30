@@ -28,7 +28,7 @@ class TaskResultTopCell: UICollectionViewCell {
         let name = result.task_comment?.taskcomment_user_name == nil ? "" : result.task_comment!.taskcomment_user_name!
         userLabel.text = "完成者: " + name
         
-        timeLabel.text = result.task_finish_date
+        timeLabel.text = "提交时间: " + Helper.formatDateString(result.task_finish_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat: "yyyy-MM-dd")
         
         contentLabel.text = result.task_comment?.taskcomment_content
     }

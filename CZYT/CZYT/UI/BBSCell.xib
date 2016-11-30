@@ -101,8 +101,8 @@
                             <constraint firstAttribute="width" constant="50" id="ZIT-jP-ACa"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
-                        <state key="normal" title="30" image="star">
+                        <inset key="imageEdgeInsets" minX="0.0" minY="3" maxX="5" maxY="0.0"/>
+                        <state key="normal" title="30" image="comments">
                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
@@ -114,7 +114,7 @@
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
-                        <state key="normal" title="20" image="star">
+                        <state key="normal" title="20" image="scans">
                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
@@ -158,11 +158,12 @@
                 <outlet property="titleLabel" destination="HZA-Eo-Gff" id="T7f-tW-jM6"/>
                 <outlet property="typeLabel" destination="iYg-lW-MxT" id="o0Z-0u-aZy"/>
             </connections>
-            <point key="canvasLocation" x="153" y="153"/>
+            <point key="canvasLocation" x="99" y="147"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="star" width="18" height="17"/>
+        <image name="comments" width="15" height="15"/>
+        <image name="scans" width="15" height="10"/>
         <image name="test" width="200" height="126"/>
     </resources>
 </document>

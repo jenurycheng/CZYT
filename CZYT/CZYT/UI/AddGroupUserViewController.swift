@@ -49,7 +49,7 @@ class AddGroupUserViewController: BasePortraitViewController {
     @IBAction func okBtnClicked()
     {
         apiDataSource.joinGroup(selectContactView.contactView.selectedIds, groupId: self.detail!.groupId!, groupName: self.detail!.groupName!, success: { (result) in
-            MBProgressHUD.showMessag("邀请成功", toView: self.view.window, showTimeSec: 1)
+            MBProgressHUD.showMessag("添加成功", toView: self.view.window, showTimeSec: 1)
             self.navigationController?.popViewControllerAnimated(true)
             }) { (error) in
                 MBProgressHUD.showMessag(error.msg, toView: self.view, showTimeSec: 1)

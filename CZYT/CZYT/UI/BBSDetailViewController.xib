@@ -59,8 +59,8 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jv1-sD-0QQ">
-                                            <rect key="frame" x="38" y="72" width="150" height="14.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jv1-sD-0QQ">
+                                            <rect key="frame" x="38" y="79.5" width="150" height="0.0"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="150" id="Oy4-wS-Zt0"/>
                                             </constraints>
@@ -163,14 +163,14 @@
                         <constraint firstItem="526-XD-U3r" firstAttribute="top" secondItem="Z9x-d2-fe5" secondAttribute="top" id="xUd-pN-MJN"/>
                     </constraints>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6R4-zT-9h9">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6R4-zT-9h9">
                     <rect key="frame" x="260" y="498" width="50" height="50"/>
-                    <color key="backgroundColor" red="0.1764705882" green="0.52941176469999995" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="NXd-ph-eko"/>
                         <constraint firstAttribute="height" constant="50" id="vxX-7s-535"/>
                     </constraints>
-                    <state key="normal" title="写评论">
+                    <state key="normal" image="comment_add">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -192,6 +192,7 @@
         </view>
     </objects>
     <resources>
+        <image name="comment_add" width="198" height="198"/>
         <image name="star" width="18" height="17"/>
     </resources>
 </document>

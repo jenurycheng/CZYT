@@ -221,6 +221,7 @@
 		C491E96E1DD217BF005586C7 /* LeaderActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C491E96C1DD217BF005586C7 /* LeaderActivityCell.xib */; };
 		C491E9711DD22137005586C7 /* LeaderActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C491E96F1DD22137005586C7 /* LeaderActivityDetailViewController.swift */; };
 		C491E9721DD22137005586C7 /* LeaderActivityDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C491E9701DD22137005586C7 /* LeaderActivityDetailViewController.xib */; };
+		C4B491571DEEFA65002376BA /* ImagePickerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B491561DEEFA65002376BA /* ImagePickerHelper.swift */; };
 		C4BC6A531DD4A89800DA19B2 /* ProjectWorkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC6A511DD4A89800DA19B2 /* ProjectWorkCell.swift */; };
 		C4BC6A541DD4A89800DA19B2 /* ProjectWorkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BC6A521DD4A89800DA19B2 /* ProjectWorkCell.xib */; };
 		C4BC6A571DD4AFEF00DA19B2 /* NSMutableAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC6A561DD4AFEF00DA19B2 /* NSMutableAttributedString+Utils.swift */; };
@@ -524,6 +525,7 @@
 		C491E96C1DD217BF005586C7 /* LeaderActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeaderActivityCell.xib; sourceTree = "<group>"; };
 		C491E96F1DD22137005586C7 /* LeaderActivityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderActivityDetailViewController.swift; sourceTree = "<group>"; };
 		C491E9701DD22137005586C7 /* LeaderActivityDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeaderActivityDetailViewController.xib; sourceTree = "<group>"; };
+		C4B491561DEEFA65002376BA /* ImagePickerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerHelper.swift; sourceTree = "<group>"; };
 		C4BC6A511DD4A89800DA19B2 /* ProjectWorkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectWorkCell.swift; sourceTree = "<group>"; };
 		C4BC6A521DD4A89800DA19B2 /* ProjectWorkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectWorkCell.xib; sourceTree = "<group>"; };
 		C4BC6A561DD4AFEF00DA19B2 /* NSMutableAttributedString+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Utils.swift"; sourceTree = "<group>"; };
@@ -1224,6 +1226,7 @@
 				C41243931DDF42ED0005058C /* CCSideView.swift */,
 				C42028411DE34DA5005E134B /* DatePickerDialog.swift */,
 				C482F07F1DE9F2A700B9342A /* ConditionBar.swift */,
+				C4B491561DEEFA65002376BA /* ImagePickerHelper.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1477,6 +1480,7 @@
 				C4E669D51DEC82D800DD35EC /* MJPhotoProgressView.m in Sources */,
 				C4190C491DD6F27B00B38A7A /* NetworkHandleUser.swift in Sources */,
 				C4190C601DD7046300B38A7A /* ContactViewController.swift in Sources */,
+				C4B491571DEEFA65002376BA /* ImagePickerHelper.swift in Sources */,
 				C4138C731DE1F580004964B0 /* TaskViewController.swift in Sources */,
 				C40B0B931DE47F5A001F966E /* DNAsset.m in Sources */,
 				C487342C1DCF09B400C9B0C0 /* AFURLSessionManager.m in Sources */,
@@ -1728,6 +1732,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1754,6 +1759,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

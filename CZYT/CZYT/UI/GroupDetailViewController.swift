@@ -119,7 +119,7 @@ extension GroupDetailViewController : UICollectionViewDelegate
         {
             if indexPath.row == 0
             {
-                let alert = UIAlertView(title: "", message: "输入讨论组名称", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+                let alert = UIAlertView(title: "", message: "修改讨论组名称", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
                 alert.alertViewStyle = UIAlertViewStyle.PlainTextInput
                 let nameTextField = alert.textFieldAtIndex(0)
                 nameTextField?.delegate = self
@@ -142,6 +142,8 @@ extension GroupDetailViewController : UIAlertViewDelegate
             if !Helper.isStringEmpty(text) {
                 dataSource.updateGroup(self.dataSource.groupDetail!.groupId!, groupName: text!, success: { (result) in
                     MBProgressHUD.showSuccess("修改成功", toView: self.view)
+                    let group = RCGroup(groupId: self.groupId, groupName: text!, portraitUri: "")
+                    RCIM.sharedRCIM().refreshGroupInfoCache(group, withGroupId: self.groupId)
                     self.getGroupDetail()
                     }, failure: { (error) in
                         MBProgressHUD.showError(error.msg, toView: self.view)

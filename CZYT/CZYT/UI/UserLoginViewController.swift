@@ -29,7 +29,7 @@ class UserLoginViewController: BasePortraitViewController {
         self.view.backgroundColor = ThemeManager.current().foregroundColor
         
         logoImageView = UIImageView(frame: CGRect(x: GetSWidth()/2-40, y: 40, width: 80, height: 80))
-        logoImageView.image = UIImage(named: "user_header_default")
+        logoImageView.image = UIImage(named: "app_icon")
         logoImageView.layer.cornerRadius = logoImageView.frame.width/2
         logoImageView.layer.masksToBounds = true
         self.view.addSubview(logoImageView)
@@ -46,7 +46,7 @@ class UserLoginViewController: BasePortraitViewController {
         telTextField.placeholder = "手机号"
         telTextField.delegate = self
 //        telTextField.text = "18215595271"
-        telTextField.text = "13880184987"
+//        telTextField.text = "13880184987"
         telTextField.keyboardType = .NumberPad
         telTextField.font = UIFont.systemFontOfSize(14)
         telTextField.addTarget(telTextField, action: #selector(UITextField.resignFirstResponder), forControlEvents: UIControlEvents.EditingDidEndOnExit)
@@ -57,7 +57,7 @@ class UserLoginViewController: BasePortraitViewController {
         codeTextField = UITextField(frame: CGRectMake(0, 0, telView.frame.size.width-80, 40))
         codeTextField.placeholder = "验证码"
         codeTextField.delegate = self
-        codeTextField.text = "1234"
+//        codeTextField.text = "1234"
         codeTextField.keyboardType = .NumberPad
         codeTextField.font = UIFont.systemFontOfSize(14)
         codeTextField.addTarget(codeTextField, action: #selector(UITextField.resignFirstResponder), forControlEvents: UIControlEvents.EditingDidEndOnExit)
@@ -202,7 +202,10 @@ class UserLoginViewController: BasePortraitViewController {
             
             self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
             
-            MBProgressHUD.showSuccess("登录成功", toView: self.view.window)
+            if !UserInfo.sharedInstance.isLogin
+            {
+                MBProgressHUD.showSuccess("登录成功", toView: self.view.window)
+            }
             
             self.codeTextField.text = ""
             self.timer?.invalidate()

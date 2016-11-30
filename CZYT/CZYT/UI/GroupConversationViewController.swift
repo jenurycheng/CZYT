@@ -16,7 +16,7 @@ class GroupConversationViewController: RCConversationViewController {
     
         if conversationType == RCConversationType.ConversationType_GROUP
         {
-            let groupItem = UIBarButtonItem(barButtonSystemItem: .Organize, target: self, action: #selector(GroupConversationViewController.groupItemClicked))
+            let groupItem = UIBarButtonItem(image: UIImage(named: "group_detail"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(GroupConversationViewController.groupItemClicked))
             self.navigationItem.rightBarButtonItem = groupItem
         }
         // Do any additional setup after loading the view.
@@ -24,6 +24,30 @@ class GroupConversationViewController: RCConversationViewController {
         self.navigationItem.leftBarButtonItem = backItemBar
         
         self.chatSessionInputBarControl.pluginBoardView.removeItemAtIndex(2)
+    }
+    
+    override func didTapCellPortrait(userId: String!) {
+        if userId == UserInfo.sharedInstance.id
+        {
+            return
+        }
+        let chat = PrivateConversationViewController(conversationType: .ConversationType_PRIVATE, targetId: userId)
+        UserDataSource().getUserDetail(userId, success: { (result) in
+            chat.title = result.nickname
+        }) { (error) in
+        }
+        self.navigationController?.pushViewController(chat, animated: true)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.targetId != nil {
+            ChatDataSource().queryGroupDetail(self.targetId!, success: { (result) in
+                self.title = result.groupName
+            }) { (error) in
+                
+            }
+        }
     }
     
     func backItemBarClicked(item:UIBarButtonItem){

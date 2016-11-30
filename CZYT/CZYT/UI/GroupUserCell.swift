@@ -16,7 +16,7 @@ class GroupUserCell: UICollectionViewCell {
     class func cellSize()->CGSize
     {
         let width = (GetSWidth() - 50)/4
-        return CGSize(width: width, height: width+30)
+        return CGSize(width: width, height: 70+30)
     }
     
     func update(user:GroupUser)
@@ -27,7 +27,7 @@ class GroupUserCell: UICollectionViewCell {
     
     func updateToAddBtn()
     {
-        headerImageView.image = UIImage(named: "add")
+        headerImageView.image = UIImage(named: "group_add_user")
         nameLabel.text = "添加成员"
     }
     

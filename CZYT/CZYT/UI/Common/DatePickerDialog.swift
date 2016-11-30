@@ -96,7 +96,7 @@ class DatePickerDialog: UIView {
         }
         
         self.frame = CGRectMake(0, 0, self.frame.width, self.frame.size.height)
-        UIApplication.sharedApplication().windows.first!.addSubview(self)
+        UIApplication.sharedApplication().keyWindow!.addSubview(self)
         
         UIView.animateWithDuration(
             0.2,

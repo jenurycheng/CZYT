@@ -17,6 +17,8 @@ class UserInfoViewController: BasePortraitViewController {
     
     var pushToVC:UIViewController?
     var loginViewController:UserLoginViewController?
+    var dataSource = UserDataSource()
+    
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -39,11 +41,45 @@ class UserInfoViewController: BasePortraitViewController {
         logoutBtn!.layer.masksToBounds = true
         logoutBtn!.titleLabel?.font = UIFont.systemFontOfSize(17)
         
+        headerBtn!.layer.cornerRadius = 35
+        headerBtn!.layer.masksToBounds = true
+        
+        self.updateInfo()
+        // Do any additional setup after loading the view.
+    }
+    
+    func updateInfo()
+    {
         self.nameLabel!.text = UserInfo.sharedInstance.nickname
         if !Helper.isStringEmpty(UserInfo.sharedInstance.logo_path) {
             self.headerBtn!.sd_setImageWithURL(NSURL(string: UserInfo.sharedInstance.logo_path!), forState: .Normal, placeholderImage: UIImage(named: "user_header_default"))
         }
-        // Do any additional setup after loading the view.
+    }
+    
+    var imagePicker:ImagePickerHelper?
+    @IBAction func headerBtnClicked()
+    {
+        if imagePicker == nil
+        {
+            imagePicker = ImagePickerHelper()
+        }
+        
+        unowned let weakSelf = self
+        imagePicker?.show(self, callback: { (images) in
+            if images.count == 0
+            {
+                return
+            }
+            let image = images[0] as! UIImage
+            weakSelf.dataSource.updateUserPhoto(image, success: { (result) in
+                UserInfo.sharedInstance.logo_path = result.logo_path
+                let info = RCUserInfo(userId: UserInfo.sharedInstance.id, name: UserInfo.sharedInstance.nickname, portrait: result.logo_path)
+                RCIM.sharedRCIM().refreshUserInfoCache(info, withUserId: UserInfo.sharedInstance.id)
+                weakSelf.updateInfo()
+                }, failure: { (error) in
+                    MBProgressHUD.showError(error.msg, toView: self.view)
+            })
+        })
     }
     
     deinit

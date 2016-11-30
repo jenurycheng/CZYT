@@ -41,6 +41,10 @@ class SelectContactView: UIView {
         self.addSubview(sideView)
         
         self.getData()
+        
+        DepartmentTree.sharedInstance().update(departmentID!)
+        self.departmentView.update()
+        self.contactView.update(DepartmentTree.sharedInstance())
         // Do any additional setup after loading the view.
     }
     

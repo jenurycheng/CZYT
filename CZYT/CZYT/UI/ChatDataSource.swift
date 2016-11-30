@@ -20,7 +20,7 @@ class ChatDataSource: NSObject {
         return Instance.instance
     }
     
-    func createGroup(userIds:[String], groupName:String, success:((result:String) -> Void), failure:((error:HttpResponseData)->Void))
+    func createGroup(userIds:[String], groupName:String, success:((result:GroupDetail) -> Void), failure:((error:HttpResponseData)->Void))
     {
         var ids = ""
         for i in userIds
@@ -36,7 +36,8 @@ class ChatDataSource: NSObject {
         NetWorkHandle.NetWorkHandleChat.createGroup(request) { (data) in
             if data.isSuccess()
             {
-                success(result: data.msg)
+                let d = GroupDetail.parse(dict: data.data as! NSDictionary)
+                success(result: d)
             }else{
                 failure(error: data)
             }

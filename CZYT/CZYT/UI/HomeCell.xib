@@ -23,17 +23,19 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_header_default" translatesAutoresizingMaskIntoConstraints="NO" id="jpG-iR-hJK">
-                        <rect key="frame" x="10" y="10" width="70" height="64"/>
+                        <rect key="frame" x="20" y="24" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="AHT-ts-ky9"/>
+                            <constraint firstAttribute="width" constant="50" id="a9G-Uy-oNd"/>
+                        </constraints>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="jpG-iR-hJK" secondAttribute="trailing" constant="10" id="L6m-rF-5AO"/>
+                <constraint firstItem="jpG-iR-hJK" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="JtJ-pT-pIE"/>
                 <constraint firstAttribute="bottom" secondItem="CYR-or-Tgj" secondAttribute="bottom" id="TRL-xR-SXV"/>
                 <constraint firstAttribute="trailing" secondItem="CYR-or-Tgj" secondAttribute="trailing" id="TTv-QM-ip9"/>
-                <constraint firstItem="jpG-iR-hJK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="fX8-8d-f26"/>
-                <constraint firstItem="jpG-iR-hJK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="fiK-DQ-YdP"/>
                 <constraint firstItem="CYR-or-Tgj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ih7-yg-C8f"/>
                 <constraint firstItem="CYR-or-Tgj" firstAttribute="top" secondItem="jpG-iR-hJK" secondAttribute="bottom" constant="10" id="r7A-eB-dXj"/>
             </constraints>

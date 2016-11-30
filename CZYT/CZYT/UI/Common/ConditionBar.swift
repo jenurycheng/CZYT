@@ -20,7 +20,7 @@ class ConditionBar: UIView {
 
     static func barHeight()->CGFloat
     {
-        return Helper.scale(172)
+        return 40
     }
     
     var titleBtn:UIButton!

@@ -24,7 +24,7 @@ class BaseActivityViewController: BasePortraitViewController {
         super.viewDidLoad()
         self.title = "领导活动"
         
-        conditionView = UIView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: 40))
+        conditionView = UIView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: ConditionBar.barHeight()))
         conditionView.backgroundColor = ThemeManager.current().backgroundColor
         self.view.addSubview(conditionView)
         conditionBar = ConditionBar(frame: conditionView.bounds)

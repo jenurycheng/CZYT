@@ -105,10 +105,6 @@ extension HomeViewController : UICollectionViewDelegate
                 nav?.pushViewController(ac, animated: true)
             }else if indexPath.row == 4
             {
-                let ac = WebLinkViewController()
-                nav?.pushViewController(ac, animated: true)
-            }else if indexPath.row == 5
-            {
                 if !UserInfo.sharedInstance.isLogin {
                     let user = UserLoginViewController()
                     user.pushToVC = TaskViewController()
@@ -118,7 +114,7 @@ extension HomeViewController : UICollectionViewDelegate
                 }
                 let task = TaskViewController()
                 nav?.pushViewController(task, animated: true)
-            }else if indexPath.row == 6
+            }else if indexPath.row == 5
             {
                 if !UserInfo.sharedInstance.isLogin {
                     let user = UserLoginViewController()
@@ -129,6 +125,10 @@ extension HomeViewController : UICollectionViewDelegate
                     return
                 }
                 let ac = ChatViewController()
+                nav?.pushViewController(ac, animated: true)
+            }else if indexPath.row == 6
+            {
+                let ac = WebLinkViewController()
                 nav?.pushViewController(ac, animated: true)
             }
         }
@@ -177,8 +177,8 @@ extension HomeViewController : UICollectionViewDataSource
         } else
         {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
-            let images = ["user_header_default", "user_header_default", "user_header_default", "user_header_default", "user_header_default", "user_header_default", "user_header_default"]
-            let names = ["领导活动", "政策文件", "工作状态", "项目工作", "友情链接", "督查督办", "互动交流"]
+            let images = ["home_leader", "home_file", "home_status", "home_project", "home_task", "home_chat", "home_link"]
+            let names = ["领导活动", "政策文件", "工作状态", "项目工作", "督查督办", "互动交流", "友情链接"]
             cell.iconImageView.image = UIImage(named: images[indexPath.row])
             cell.nameLabel.text = names[indexPath.row]
             return cell

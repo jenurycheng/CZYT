@@ -16,6 +16,8 @@ class CCSideView: UIView {
     var contentView:UIView!
     var blackView:UIView!
     
+    var openBtn:UIButton!
+    
     var panGesture:UIPanGestureRecognizer!
     var tapGesture:UITapGestureRecognizer!
     
@@ -49,6 +51,25 @@ class CCSideView: UIView {
         self.addGestureRecognizer(panGesture)
         
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(CCSideView.hide))
+        
+        let openView = UIView(frame: CGRect(x: 0, y: contentView.frame.height/2-32.5, width: 45, height: 65))
+        openView.clipsToBounds = true
+        contentView.addSubview(openView)
+        
+        openBtn = UIButton(frame: CGRect(x: -12, y: 0, width: openView.frame.width, height: openView.frame.height))
+        openBtn.setBackgroundImage(UIImage(named: "side_open"), forState: .Normal)
+        openView.addSubview(openBtn)
+        openBtn.addTarget(self, action: #selector(CCSideView.openBtnClicked), forControlEvents: .TouchUpInside)
+    }
+    
+    func openBtnClicked()
+    {
+        if self.isShow
+        {
+            self.hide()
+        }else{
+            self.show()
+        }
     }
     
     func pan(pan:UIPanGestureRecognizer)
@@ -98,6 +119,7 @@ class CCSideView: UIView {
     
     func show()
     {
+        contentView.addSubview(blackView)
         contentView.addGestureRecognizer(tapGesture)
         UIView.animateWithDuration(0.2, animations: {
             var frame = self.leftView.frame
@@ -111,6 +133,7 @@ class CCSideView: UIView {
             self.blackView.alpha = 0.2
             }) { (b) in
                 self.isShow = true
+                self.openBtn.setBackgroundImage(UIImage(named: "side_close"), forState: .Normal)
         }
     }
     
@@ -130,6 +153,7 @@ class CCSideView: UIView {
         }) { (b) in
             self.isShow = false
             self.blackView.removeFromSuperview()
+            self.openBtn.setBackgroundImage(UIImage(named: "side_open"), forState: .Normal)
         }
     }
 }
