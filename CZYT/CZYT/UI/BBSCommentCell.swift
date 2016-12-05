@@ -25,6 +25,9 @@ class BBSCommentCell: UITableViewCell {
         timeLabel.textColor = ThemeManager.current().grayFontColor
         
         self.selectionStyle = .None
+        
+        headerBtn.layer.cornerRadius = 15
+        headerBtn.layer.masksToBounds = true
         // Initialization code
     }
     
@@ -40,6 +43,11 @@ class BBSCommentCell: UITableViewCell {
         
         contentLabel.text = c.content
         timeLabel.text = c.publish_date
+        
+        if !Helper.isStringEmpty(c.publish_user_logo_path)
+        {
+            headerBtn.sd_setBackgroundImageWithURL(NSURL(string: c.publish_user_logo_path!), forState: .Normal, placeholderImage: UIImage(named: "user_header_default"))
+        }
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

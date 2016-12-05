@@ -39,7 +39,7 @@ class WorkStatusActivityDetailViewController: BasePortraitViewController {
     func loadData()
     {
         self.view.showHud()
-        dataSource.getLeaderActivityDetail(id, success: { (result) in
+        dataSource.getWorkStatusActivityDetail(id, success: { (result) in
             self.updateView()
             self.view.dismiss()
         }) { (error) in
@@ -53,10 +53,10 @@ class WorkStatusActivityDetailViewController: BasePortraitViewController {
     
     func updateView()
     {
-        titleLabel.text = dataSource.leaderActivityDetail?.title
-        sourceLabel.text = dataSource.leaderActivityDetail?.original
-        timeLabel.text = dataSource.leaderActivityDetail?.publish_date
-        webView.loadHTMLString(dataSource.leaderActivityDetail!.content, baseURL: nil)
+        titleLabel.text = dataSource.workStatusActivityDetail?.title
+        sourceLabel.text = dataSource.workStatusActivityDetail?.original
+        timeLabel.text = dataSource.workStatusActivityDetail?.publish_date
+        webView.loadHTMLString(dataSource.workStatusActivityDetail!.content, baseURL: nil)
     }
 
     override func didReceiveMemoryWarning() {

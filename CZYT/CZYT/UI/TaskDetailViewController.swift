@@ -165,9 +165,9 @@ class TaskDetailViewController: BasePortraitViewController {
         if isMyTask
         {
             let name = dataSource.taskDetail?.task_publish_user_name == nil ? "" : dataSource.taskDetail!.task_publish_user_name!
-            publishManLabel.text = "发布人: " + name
+            publishManLabel.text = "指派人: " + name
         }else{
-            var name = "发布给: "
+            var name = "指派给: "
             if dataSource.taskDetail?.assign != nil
             {
                 if dataSource.taskDetail!.assign!.count > 0
@@ -186,7 +186,8 @@ class TaskDetailViewController: BasePortraitViewController {
         
         if dataSource.taskDetail?.task_publish_date != nil
         {
-            publishTimeLabel.text = "发布时间:" + Helper.formatDateString(dataSource.taskDetail!.task_publish_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
+            publishTimeLabel.text = "指派时间:" + dataSource.taskDetail!.task_publish_date!
+            //publishTimeLabel.text = "指派时间:" + Helper.formatDateString(dataSource.taskDetail!.task_publish_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
         }
         if dataSource.taskDetail?.task_status != nil
         {
@@ -200,21 +201,30 @@ class TaskDetailViewController: BasePortraitViewController {
                 self.showBtn(true, showPublishBtn: true)
             }else if dataSource.taskDetail!.task_status! == "finished"//已完成
             {
-                if dataSource.taskDetail?.task_finish_date != nil
+//                if dataSource.taskDetail?.task_finish_date != nil
+//                {
+//                    timeLabel.text = "完成时间:" + Helper.formatDateString(dataSource.taskDetail!.task_finish_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
+//                }
+                if dataSource.taskDetail?.task_end_date != nil
                 {
-                    timeLabel.text = "完成时间:" + Helper.formatDateString(dataSource.taskDetail!.task_finish_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
+                    timeLabel.text = "截止时间:" + Helper.formatDateString(dataSource.taskDetail!.task_end_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
                 }
                 okBtn.setTitle("查看", forState: .Normal)
                 self.showBtn(false, showPublishBtn: false)
                 self.showResult()
             }else if dataSource.taskDetail!.task_status! == "accepted"//已接受
             {
-                if dataSource.taskDetail?.task_accept_date != nil
+//                if dataSource.taskDetail?.task_accept_date != nil
+//                {
+//                    timeLabel.text = "接受时间:" + Helper.formatDateString(dataSource.taskDetail!.task_accept_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
+//                }
+                if dataSource.taskDetail?.task_end_date != nil
                 {
-                    timeLabel.text = "接受时间:" + Helper.formatDateString(dataSource.taskDetail!.task_accept_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
+                    timeLabel.text = "截止时间:" + Helper.formatDateString(dataSource.taskDetail!.task_end_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
                 }
                 okBtn.setTitle("提交", forState: .Normal)
                 self.showBtn(true, showPublishBtn: false)
+                self.showResult()
             }
         }
         
@@ -248,8 +258,8 @@ class TaskDetailViewController: BasePortraitViewController {
             
             re.view.alpha = 1
             re.view.frame = CGRect(x: 0, y: self.topHeight.constant + textHeight+20, width: GetSWidth(), height: re.collectionView.contentSize.height)
-            
-            self.contentHeight.constant = self.topHeight.constant + textHeight + re.collectionView.contentSize.height + 20 + 50
+            print(re.collectionView.contentSize.height)
+            self.contentHeight.constant = self.topHeight.constant + textHeight + re.collectionView.contentSize.height + 20 + 50 + 100
             self.view.layoutIfNeeded()
         }
     }

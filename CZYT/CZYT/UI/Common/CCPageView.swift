@@ -18,7 +18,7 @@ import UIKit
 class CCPageView: UIView, UIGestureRecognizerDelegate {
 
     static func viewHeight()->CGFloat{
-        return GetSWidth() * 3.0/7.0 + 20
+        return GetSWidth() * 4/7.0 + 20
 //        return Helper.scale(545) 7:3
     }
 

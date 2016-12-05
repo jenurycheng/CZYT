@@ -23,6 +23,7 @@ class MyTaskViewController: BasePortraitViewController {
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64))
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .None
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.registerNib(UINib(nibName: "MyTaskCell", bundle: nil), forCellReuseIdentifier: "MyTaskCell")

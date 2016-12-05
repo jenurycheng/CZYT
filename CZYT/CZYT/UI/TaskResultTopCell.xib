@@ -14,9 +14,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="296" height="202"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提交者：霍长江" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4E-dy-3gn">
-                        <rect key="frame" x="10" y="60" width="150" height="14.5"/>
+                        <rect key="frame" x="10" y="60" width="120" height="14.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="150" id="0io-wu-U52"/>
+                            <constraint firstAttribute="width" constant="120" id="0io-wu-U52"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="1" green="0.5531231499" blue="0.22006900060000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -32,9 +32,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-10-10 09:09:10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T04-Nq-Le4">
-                        <rect key="frame" x="138" y="60" width="150" height="14.5"/>
+                        <rect key="frame" x="108" y="60" width="180" height="14.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="150" id="hS4-W5-Lny"/>
+                            <constraint firstAttribute="width" constant="180" id="hS4-W5-Lny"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -87,6 +87,7 @@
             <connections>
                 <outlet property="contentLabel" destination="pHU-UV-GyF" id="Qzl-U7-fyA"/>
                 <outlet property="timeLabel" destination="T04-Nq-Le4" id="fpD-IE-BhS"/>
+                <outlet property="titleLabel" destination="Aym-xO-ASb" id="3T8-IO-TQV"/>
                 <outlet property="userLabel" destination="Q4E-dy-3gn" id="q46-im-42H"/>
             </connections>
             <point key="canvasLocation" x="238" y="329"/>

@@ -48,11 +48,11 @@
     CGFloat btnWidth = self.bounds.size.height;
     _saveImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _saveImageBtn.frame = CGRectMake(20, 0, btnWidth, btnWidth);
-    _saveImageBtn.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+//    _saveImageBtn.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     [_saveImageBtn setImage:[UIImage imageNamed:@"MJPhotoBrowser.bundle/save_icon.png"] forState:UIControlStateNormal];
     [_saveImageBtn setImage:[UIImage imageNamed:@"MJPhotoBrowser.bundle/save_icon_highlighted.png"] forState:UIControlStateHighlighted];
     [_saveImageBtn addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
-//    [self addSubview:_saveImageBtn];
+    [self addSubview:_saveImageBtn];
 }
 
 - (void)saveImage
@@ -66,13 +66,13 @@
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
 {
     if (error) {
-//        [MBProgressHUD showSuccess:NSLocalizedString(@"save_failure", @"")toView:nil];
+        [MBProgressHUD showSuccess:@"保存失败，请检查是否开启相册权限" toView:nil];
 //        [MBProgressHUD showSuccess:CCLOCALIZEDSTRING(@"save_failure", YES) toView:nil];
     } else {
         MJPhoto *photo = _photos[_currentPhotoIndex];
         photo.save = YES;
         _saveImageBtn.enabled = NO;
-//        [MBProgressHUD showSuccess:NSLocalizedString(@"save_ok ", @"")toView:nil];
+        [MBProgressHUD showSuccess:@"保存成功" toView:nil];
 //        [MBProgressHUD showSuccess:CCLOCALIZEDSTRING(@"save_ok", YES) toView:nil];
     }
 }

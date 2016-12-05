@@ -47,6 +47,7 @@ class BBSComment : Reflect
     var publish_user_id:String?
     var publish_user_name:String?
     var publish_date:String?
+    var publish_user_logo_path:String?
     var receiver_user_id:String?
     var receiver_user_name:String?
 }

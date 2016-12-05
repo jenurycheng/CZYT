@@ -60,7 +60,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="111" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOA-lT-Hcj">
-                                            <rect key="frame" x="8" y="70" width="152" height="30"/>
+                                            <rect key="frame" x="8" y="70" width="124" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="Iqi-J8-Ht6"/>
                                             </constraints>
@@ -69,7 +69,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1010" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1P-jC-mcp">
-                                            <rect key="frame" x="160" y="70" width="152" height="30"/>
+                                            <rect key="frame" x="132" y="70" width="180" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="Se4-8q-0fs"/>
                                             </constraints>
@@ -78,8 +78,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发布时间" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSg-EC-clq">
-                                            <rect key="frame" x="160" y="40" width="152" height="30"/>
+                                            <rect key="frame" x="132" y="40" width="180" height="30"/>
                                             <constraints>
+                                                <constraint firstAttribute="width" constant="180" id="8DW-VF-Zqf"/>
                                                 <constraint firstAttribute="height" constant="30" id="pOn-SB-nB4"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -87,7 +88,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发布人:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egn-pF-ymE">
-                                            <rect key="frame" x="8" y="40" width="152" height="30"/>
+                                            <rect key="frame" x="8" y="40" width="124" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="cx1-dV-boX"/>
                                             </constraints>
@@ -119,8 +120,6 @@
                                         <constraint firstItem="egn-pF-ymE" firstAttribute="leading" secondItem="emV-kb-GbD" secondAttribute="leading" constant="8" id="oDo-xk-tLp"/>
                                         <constraint firstItem="JSg-EC-clq" firstAttribute="top" secondItem="vPA-Ld-Ibf" secondAttribute="bottom" id="qxH-jd-oDc"/>
                                         <constraint firstItem="MAR-QA-Nf0" firstAttribute="leading" secondItem="emV-kb-GbD" secondAttribute="leading" id="uBc-ea-2ir"/>
-                                        <constraint firstItem="I1P-jC-mcp" firstAttribute="width" secondItem="egn-pF-ymE" secondAttribute="width" id="xJj-Wn-xN6"/>
-                                        <constraint firstItem="JSg-EC-clq" firstAttribute="width" secondItem="egn-pF-ymE" secondAttribute="width" id="xo1-R0-ojs"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10e-lZ-ysT">

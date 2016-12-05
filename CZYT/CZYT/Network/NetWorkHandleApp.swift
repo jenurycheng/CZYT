@@ -25,6 +25,8 @@ extension NetWorkHandle
         
         static var Address_GetWebLink = "LinkList"
         static var Address_GetModuleType = "ModuleClassifyList"
+        
+        static var Address_CheckAppUpdate = "CheckLatestVersion"
 
         class RequestLeaderActivity : Reflect
         {
@@ -118,6 +120,15 @@ extension NetWorkHandle
         
         class func getModuleType(request:RequestModuleType?, finish:((HttpResponseData)->Void)) {
             NetWorkHandle.PublicNetWorkAccess(Address_GetModuleType, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: true)
+        }
+        
+        class RequestCheckAppUpdate : Reflect
+        {
+            var os:String = "IOS"
+        }
+        
+        class func checkAppUpdate(request:RequestCheckAppUpdate?, finish:((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_CheckAppUpdate, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: true)
         }
     }
 }

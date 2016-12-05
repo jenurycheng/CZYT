@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="cNR-Qq-KsF">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="cNR-Qq-KsF">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="brd-iB-r0x">
                         <size key="itemSize" width="50" height="50"/>
@@ -27,6 +27,12 @@
                 </collectionView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="cNR-Qq-KsF" secondAttribute="trailing" id="3Oe-ez-KIZ"/>
+                <constraint firstItem="cNR-Qq-KsF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="OsD-jG-qac"/>
+                <constraint firstItem="cNR-Qq-KsF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eoy-WA-z3V"/>
+                <constraint firstAttribute="bottom" secondItem="cNR-Qq-KsF" secondAttribute="bottom" id="kpz-5f-i6T"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="194" y="255"/>
         </view>

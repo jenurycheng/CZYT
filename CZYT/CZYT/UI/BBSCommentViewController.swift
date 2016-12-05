@@ -104,6 +104,11 @@ class BBSCommentViewController: BasePortraitViewController {
     
     func comment(text:String)
     {
+        if Helper.isStringEmpty(text)
+        {
+            MBProgressHUD.showMessag("内容不能为空", toView: self.view.window, showTimeSec: 1)
+            return
+        }
         self.view.showHud()
         self.dataSource.addBBSComment(self.id!, content: text, userId: UserInfo.sharedInstance.id!, replyUserId: self.toId, success: { (result) in
             self.view.dismiss()

@@ -211,7 +211,7 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat
     {
-        return 10
+        return 5
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat
@@ -254,6 +254,7 @@ extension HomeViewController : CCPageViewDelegate
         let view = UIView(frame: pageView.bounds)
         let imgView = UIImageView(frame: CGRect(x: 0, y: 0, width: page.frame.width, height: page.frame.height-20))
         imgView.image = UIImage(named: "test")
+        imgView.clipsToBounds = true
         view.addSubview(imgView)
         let label = UILabel(frame: CGRect(x: 0, y: page.frame.height-20-30, width: page.frame.width, height: 30))
         label.text = dataSource.leaderActivity[index].title

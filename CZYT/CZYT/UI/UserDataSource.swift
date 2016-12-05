@@ -115,4 +115,30 @@ class UserDataSource: NSObject {
             }
         }
     }
+    
+    var updateUrl:String?
+    func checkAppUpdate(success:((needUpdate:Bool, msg:String, url:String?) -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        let request = NetWorkHandle.NetWorkHandleApp.RequestCheckAppUpdate()
+        NetWorkHandle.NetWorkHandleApp.checkAppUpdate(request) { (data) in
+            if data.isSuccess()
+            {
+                let dic = data.data as? NSDictionary
+                if dic != nil
+                {
+                    let v = dic!["bh"] as? String
+                    let url = dic!["url"] as? String
+                    let msg = dic!["remarks"] as? String == nil ? "" : dic!["remarks"] as! String
+                    let cv = (NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as! String)
+                    let need = v > cv ? true : false
+                    self.updateUrl = url
+                    success(needUpdate: need, msg: msg, url: url)
+                }else{
+                    failure(error: data)
+                }
+            }else{
+                failure(error: data)
+            }
+        }
+    }
 }

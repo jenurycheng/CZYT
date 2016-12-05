@@ -21,7 +21,7 @@ class SelectContactViewController: BasePortraitViewController {
         super.viewDidLoad()
         self.title = "指派员工"
         
-        selectContactView = SelectContactView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64-45), selectMode:true, departmentID: UserInfo.sharedInstance.dept_id!)
+        selectContactView = SelectContactView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64-45), selectMode:true, departmentID: DepartmentTree.rootDepartmentID)
         selectContactView.contactView.maxSelectCount = 2
         selectContactView.contactView.showMaxCountText = "最多可以选择一个主办人和协办人"
         self.view.addSubview(selectContactView)

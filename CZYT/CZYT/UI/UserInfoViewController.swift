@@ -132,6 +132,21 @@ extension UserInfoViewController : UITableViewDelegate, UITableViewDataSource
                 self.tableView!.reloadData()
                 self.view.window?.dismiss()
             })
+        }else if indexPath.row == 1
+        {
+            dataSource.checkAppUpdate({ (needUpdate, msg, url) in
+                if needUpdate && url != nil
+                {
+                    let alert = UIAlertView(title: "发现新版本", message: msg, delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+                    alert.tag = 100
+                    alert.show()
+                }else{
+                    let alert = UIAlertView(title: "当前为最新版本", message: "", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+                    alert.show()
+                }
+                }, failure: { (error) in
+                    
+            })
         }
     }
     
@@ -167,15 +182,28 @@ extension UserInfoViewController : UITableViewDelegate, UITableViewDataSource
 extension UserInfoViewController : UIAlertViewDelegate
 {
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        if buttonIndex == 1
+        if alertView.tag == 100
         {
-            UserInfo.sharedInstance.isLogin = false
-            if loginViewController == nil {
-                loginViewController = UserLoginViewController()
-                loginViewController?.pushToVC = pushToVC
+            if buttonIndex == 1
+            {
+                UIApplication.sharedApplication().openURL(NSURL(string: dataSource.updateUrl!)!)
             }
-            self.addChildViewController(loginViewController!)
-            self.view.addSubview(loginViewController!.view)
+        }else{
+            if buttonIndex == 1
+            {
+                UserInfo.sharedInstance.isLogin = false
+                if loginViewController == nil {
+                    loginViewController = UserLoginViewController()
+                }
+                if !UserInfo.sharedInstance.isLogin
+                {
+                    let nav = self.navigationController
+                    let newNav = UINavigationController(rootViewController: loginViewController!)
+                    nav?.presentViewController(newNav, animated: true, completion: {
+                    })
+                }
+            }
         }
+        
     }
 }

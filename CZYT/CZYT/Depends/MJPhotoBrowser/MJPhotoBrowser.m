@@ -99,7 +99,7 @@
 - (void)createToolbar
 {
     CGFloat barHeight = 64;
-    CGFloat barY = 22; //self.view.frame.size.height - barHeight;
+    CGFloat barY = self.view.frame.size.height - 20 - barHeight;
     _toolbar = [[MJPhotoToolbar alloc] init];
     _toolbar.frame = CGRectMake(0, barY, self.view.frame.size.width, barHeight);
     _toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
@@ -109,7 +109,7 @@
     _bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - barHeight-30, self.view.frame.size.width, barHeight)];
 //    _bottomBar.backgroundColor = [UIColor blackColor];
 //    _bottomBar.alpha = 1;
-    [self.view addSubview:_bottomBar];
+//    [self.view addSubview:_bottomBar];
     
     _uploadBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, barHeight, barHeight)];
     _uploadBtn.center = CGPointMake(_bottomBar.frame.size.width-barHeight/2 - 10, _bottomBar.frame.size.height/2);

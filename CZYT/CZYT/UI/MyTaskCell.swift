@@ -40,7 +40,7 @@ class MyTaskCell: UITableViewCell {
     {
         self.update(task)
         
-        var name = "发布给: "
+        var name = "指派给: "
         if task.assignees != nil
         {
             if task.assignees!.count > 0
@@ -65,7 +65,7 @@ class MyTaskCell: UITableViewCell {
         
         if task.task_publish_date != nil
         {
-            publishTimeLabel.text = "指派时间:" + Helper.formatDateString(task.task_publish_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
+            publishTimeLabel.text = "指派时间:" + task.task_publish_date!
         }
 
         if task.task_status! == "responsing"//待接受
@@ -76,15 +76,23 @@ class MyTaskCell: UITableViewCell {
             }
         }else if task.task_status! == "finished"//已完成
         {
-            if task.task_finish_date != nil
+//            if task.task_finish_date != nil
+//            {
+//                timeLabel.text = "完成时间:" + Helper.formatDateString(task.task_finish_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
+//            }
+            if task.task_end_date != nil
             {
-                timeLabel.text = "完成时间:" + Helper.formatDateString(task.task_finish_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
+                timeLabel.text = "截止时间:" + Helper.formatDateString(task.task_end_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
             }
         }else if task.task_status! == "accepted"//已接受
         {
-            if task.task_accept_date != nil
+//            if task.task_accept_date != nil
+//            {
+//                timeLabel.text = "接受时间:" + Helper.formatDateString(task.task_accept_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
+//            }
+            if task.task_end_date != nil
             {
-                timeLabel.text = "接受时间:" + Helper.formatDateString(task.task_accept_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
+                timeLabel.text = "截止时间:" + Helper.formatDateString(task.task_end_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
             }
         }
     }

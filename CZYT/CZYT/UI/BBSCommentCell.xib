@@ -15,15 +15,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UKw-pp-Ubs">
-                        <rect key="frame" x="8" y="8" width="40" height="40"/>
+                        <rect key="frame" x="8" y="8" width="30" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="40" id="3xc-gX-sBr"/>
-                            <constraint firstAttribute="height" constant="40" id="dzG-JD-rxf"/>
+                            <constraint firstAttribute="width" constant="30" id="3xc-gX-sBr"/>
+                            <constraint firstAttribute="height" constant="30" id="dzG-JD-rxf"/>
                         </constraints>
                         <state key="normal" backgroundImage="user_header_default"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户1001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HcS-C8-keu">
-                        <rect key="frame" x="56" y="17" width="256" height="21"/>
+                        <rect key="frame" x="46" y="12" width="266" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="vml-Ur-6Cn"/>
                         </constraints>
@@ -31,13 +31,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我表示，双十一可以再狠一点我表示，双十一可以再狠一点我表示，双十一可以再狠一点我表示，双十一可以再狠一点我表示，双十一可以再狠一点我表示，双十一可以再狠一点，双十一可以再狠一点" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Bm-ne-7fQ">
-                        <rect key="frame" x="56" y="43" width="256" height="88.5"/>
+                        <rect key="frame" x="46" y="38" width="266" height="93.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-9-8 11:50:06" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dI-pw-hMD">
-                        <rect key="frame" x="56" y="131.5" width="150" height="30"/>
+                        <rect key="frame" x="46" y="131.5" width="150" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="dyc-F3-RaB"/>
                             <constraint firstAttribute="width" constant="150" id="qON-9u-DUm"/>

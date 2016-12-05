@@ -36,7 +36,7 @@
         _failureLabel.center = self.center;
 //        _failureLabel.text = NSLocalizedString(@"download_failure", @"");
 //        _failureLabel.text = CCLOCALIZEDSTRING(@"download_failure", YES);
-        _failureLabel.text = @"下载失败";
+        _failureLabel.text = @"";
         _failureLabel.font = [UIFont boldSystemFontOfSize:20];
         _failureLabel.textColor = [UIColor whiteColor];
         _failureLabel.backgroundColor = [UIColor clearColor];

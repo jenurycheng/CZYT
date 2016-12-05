@@ -153,6 +153,8 @@ class UserLoginViewController: BasePortraitViewController {
             }
             self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(UserLoginViewController.timeout(_:)), userInfo: nil, repeats: true)
             }) { (error) in
+                self.view.dismiss()
+                self.codeBtn.userInteractionEnabled = true
                 MBProgressHUD.showError(error.msg, toView: self.view)
         }
     }

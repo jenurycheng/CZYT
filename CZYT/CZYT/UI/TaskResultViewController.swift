@@ -41,21 +41,25 @@ extension TaskResultViewController : UICollectionViewDelegate
 {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        let photoArray = NSMutableArray()
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ImageCollectionCell
-        for i in 0 ..< self.taskDetail!.task_comment!.photos!.count
+        if indexPath.section == 1
         {
-            let photo = MJPhoto()
-            photo.url = NSURL(string: self.taskDetail!.task_comment!.photos![i].photo_path!)
-            photo.srcImageView = cell.imageView
-            photo.image = cell.imageView.image
-            photoArray.addObject(photo)
+            let photoArray = NSMutableArray()
+            
+            for i in 0 ..< self.taskDetail!.task_comment!.photos!.count
+            {
+                let photo = MJPhoto()
+                let cell = collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: i, inSection: 1)) as! ImageCollectionCell
+                photo.url = NSURL(string: self.taskDetail!.task_comment!.photos![i].photo_path!)
+                photo.srcImageView = cell.imageView
+                photo.image = cell.imageView.image
+                photoArray.addObject(photo)
+            }
+            let browser = MJPhotoBrowser()
+            browser.showPushBtn = false
+            browser.currentPhotoIndex = UInt(indexPath.row)
+            browser.photos = photoArray as [AnyObject]
+            browser.show()
         }
-        let browser = MJPhotoBrowser()
-        browser.showPushBtn = false
-        browser.currentPhotoIndex = UInt(indexPath.row)
-        browser.photos = photoArray as [AnyObject]
-        browser.show()
     }
 }
 
@@ -64,7 +68,12 @@ extension TaskResultViewController : UICollectionViewDataSource
 {
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
     {
-        return 2
+        if taskDetail?.task_status == "accepted"
+        {
+            return 1
+        }else{
+            return 2
+        }
     }
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {

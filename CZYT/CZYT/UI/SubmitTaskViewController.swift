@@ -83,6 +83,23 @@ extension SubmitTaskViewController : UICollectionViewDelegate
             let picker = DNImagePickerController()
             picker.imagePickerDelegate = self
             self.presentViewController(picker, animated: true, completion: nil)
+        }else{
+            let photoArray = NSMutableArray()
+            
+            for i in 0 ..< images.count
+            {
+                let cell = collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: i, inSection: 0)) as! ImageCollectionCell
+                let photo = MJPhoto()
+                photo.url = NSURL()
+                photo.srcImageView = cell.imageView
+                photo.image = images[i]
+                photoArray.addObject(photo)
+            }
+            let browser = MJPhotoBrowser()
+            browser.showPushBtn = false
+            browser.currentPhotoIndex = UInt(indexPath.row)
+            browser.photos = photoArray as [AnyObject]
+            browser.show()
         }
     }
 }
