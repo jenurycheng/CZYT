@@ -202,6 +202,8 @@ extension UserInfoViewController : UIAlertViewDelegate
                     nav?.presentViewController(newNav, animated: true, completion: {
                     })
                 }
+                
+                LaunchAdverScreen.show()
             }
         }
         

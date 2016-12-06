@@ -14,7 +14,7 @@ class WorkStatusActivityViewController: BaseActivityViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "工作状态"
+        self.title = "工作动态"
         
         // Do any additional setup after loading the view.
     }

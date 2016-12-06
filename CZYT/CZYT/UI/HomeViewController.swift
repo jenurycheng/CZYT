@@ -178,7 +178,7 @@ extension HomeViewController : UICollectionViewDataSource
         {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
             let images = ["home_leader", "home_file", "home_status", "home_project", "home_task", "home_chat", "home_link"]
-            let names = ["领导活动", "政策文件", "工作状态", "项目工作", "督查督办", "互动交流", "友情链接"]
+            let names = ["时政新闻", "政策文件", "工作动态", "重点项目", "督查督办", "热点话题", "友情链接"]
             cell.iconImageView.image = UIImage(named: images[indexPath.row])
             cell.nameLabel.text = names[indexPath.row]
             return cell
@@ -252,15 +252,20 @@ extension HomeViewController : CCPageViewDelegate
     func pageViewForIndex(page:CCPageView, index:Int)->UIView
     {
         let view = UIView(frame: pageView.bounds)
-        let imgView = UIImageView(frame: CGRect(x: 0, y: 0, width: page.frame.width, height: page.frame.height-20))
+        let imgView = UIImageView(frame: CGRect(x: 10, y: 10, width: page.frame.width-20, height: page.frame.height-25))
         imgView.image = UIImage(named: "test")
         imgView.clipsToBounds = true
+        imgView.layer.cornerRadius = 5
+        imgView.layer.borderWidth = 1
+        imgView.layer.borderColor = ThemeManager.current().grayFontColor.CGColor
         view.addSubview(imgView)
-        let label = UILabel(frame: CGRect(x: 0, y: page.frame.height-20-30, width: page.frame.width, height: 30))
+        let label = UILabel(frame: CGRect(x: 10, y: page.frame.height-15-30, width: page.frame.width-20, height: 30))
         label.text = dataSource.leaderActivity[index].title
         label.backgroundColor = Helper.parseColor(0x00000077)
         label.font = UIFont.systemFontOfSize(15)
         label.textColor = ThemeManager.current().whiteFontColor
+        label.layer.cornerRadius = 5
+        label.layer.masksToBounds = true
         view.addSubview(label)
         imgView.gm_setImageWithUrlString(dataSource.leaderActivity[index].logo_path, title: dataSource.leaderActivity[index].title, completedBlock: nil)
         

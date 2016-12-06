@@ -30,16 +30,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if launchOptions != nil {
             self.dealPushMessage(launchOptions!)
         }
+
+        let ui = UserInfo.read()
+        if ui != nil
+        {
+            UserInfo.sharedInstance.update(ui!)
+            UserInfo.sharedInstance.isLogin = true
+        }
         
-//        let ui = UserInfo()
-//        ui.mobile = "13880184987"
-//        ui.id = "4"
-//        ui.nickname = "成超"
-//        ui.token = "BKuWHxuPU/JEFH2yO1Y6U8LRPVu5zMHowzoi8T9lP0aqHndFDD2BdN3R0CVdp0yfSFDuGV3Enkm/WBU7z5tbRg=="
-//        ui.dept_name = "综合部"
-//        ui.dept_id = "8"
-//        UserInfo.sharedInstance.update(ui)
-//        UserInfo.sharedInstance.isLogin = true
+        LaunchAdverScreen.show()
         
         return true
     }

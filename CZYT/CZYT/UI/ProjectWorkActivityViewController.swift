@@ -14,7 +14,7 @@ class ProjectWorkActivityViewController: BaseActivityViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "项目工作"
+        self.title = "重点项目"
         
         tableView.registerNib(UINib(nibName: "ProjectWorkCell", bundle: nil), forCellReuseIdentifier: "ProjectWorkCell")
         // Do any additional setup after loading the view.
