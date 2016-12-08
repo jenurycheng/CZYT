@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TaskDetailViewController" customModule="CZYT" customModuleProvider="target">
             <connections>
                 <outlet property="btnView" destination="r6x-da-y2j" id="FYO-yG-gtt"/>
+                <outlet property="collectionView" destination="h4G-xV-yqo" id="CRJ-dJ-iM0"/>
                 <outlet property="contentHeight" destination="ift-ka-vP8" id="rLz-q7-v0y"/>
                 <outlet property="contentLabel" destination="10e-lZ-ysT" id="LQC-aV-ZIc"/>
                 <outlet property="contentView" destination="RIp-sG-PZE" id="KXx-gG-Bq2"/>
@@ -43,7 +44,7 @@
                                                 <constraint firstAttribute="height" constant="1" id="IvU-qR-Vp6"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAR-QA-Nf0">
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAR-QA-Nf0">
                                             <rect key="frame" x="0.0" y="99" width="320" height="1"/>
                                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -128,15 +129,28 @@
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="h4G-xV-yqo">
+                                    <rect key="frame" x="0.0" y="100" width="320" height="468"/>
+                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mBL-Cf-HvC">
+                                        <size key="itemSize" width="50" height="50"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                </collectionView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="h4G-xV-yqo" firstAttribute="leading" secondItem="RIp-sG-PZE" secondAttribute="leading" id="DlU-35-CYm"/>
                                 <constraint firstAttribute="trailing" secondItem="emV-kb-GbD" secondAttribute="trailing" id="HLz-S0-lf0"/>
+                                <constraint firstAttribute="bottom" secondItem="h4G-xV-yqo" secondAttribute="bottom" id="Q4V-oF-fKo"/>
                                 <constraint firstAttribute="width" constant="320" id="QUU-zv-nQC"/>
+                                <constraint firstItem="h4G-xV-yqo" firstAttribute="top" secondItem="emV-kb-GbD" secondAttribute="bottom" id="aPY-Sb-70Y"/>
                                 <constraint firstItem="emV-kb-GbD" firstAttribute="top" secondItem="RIp-sG-PZE" secondAttribute="top" id="eSb-jF-5jk"/>
                                 <constraint firstItem="10e-lZ-ysT" firstAttribute="leading" secondItem="RIp-sG-PZE" secondAttribute="leading" constant="8" id="iZ8-wK-0ae"/>
                                 <constraint firstAttribute="height" constant="568" id="ift-ka-vP8"/>
                                 <constraint firstItem="10e-lZ-ysT" firstAttribute="top" secondItem="emV-kb-GbD" secondAttribute="bottom" constant="10" id="kAT-P8-7hb"/>
+                                <constraint firstAttribute="trailing" secondItem="h4G-xV-yqo" secondAttribute="trailing" id="mCD-qJ-YH6"/>
                                 <constraint firstAttribute="trailing" secondItem="10e-lZ-ysT" secondAttribute="trailing" constant="8" id="q1t-E7-xOE"/>
                                 <constraint firstItem="emV-kb-GbD" firstAttribute="leading" secondItem="RIp-sG-PZE" secondAttribute="leading" id="yya-Bl-NaD"/>
                             </constraints>
@@ -168,7 +182,7 @@
                 <constraint firstItem="NBl-Ih-jqv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="reI-Bd-8bW"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="372" y="158"/>
+            <point key="canvasLocation" x="380" y="154"/>
         </view>
     </objects>
 </document>

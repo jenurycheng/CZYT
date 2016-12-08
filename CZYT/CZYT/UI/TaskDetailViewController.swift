@@ -22,6 +22,7 @@ class TaskDetailViewController: BasePortraitViewController {
     @IBOutlet weak var publishManLabel:UILabel!
     @IBOutlet weak var publishTimeLabel:UILabel!
     @IBOutlet weak var topView:UIView!
+    @IBOutlet weak var collectionView:UICollectionView!
     @IBOutlet weak var contentWidth:NSLayoutConstraint!
     @IBOutlet weak var contentHeight:NSLayoutConstraint!
     @IBOutlet weak var topHeight:NSLayoutConstraint!
@@ -57,6 +58,14 @@ class TaskDetailViewController: BasePortraitViewController {
         btnView.addSubview(assignBtn)
         assignBtn.hidden = true
         assignBtn.addTarget(self, action: #selector(TaskDetailViewController.assignBtnClicked), forControlEvents: .TouchUpInside)
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.scrollEnabled = false
+        collectionView.registerNib(UINib(nibName: "TaskResultTopCell", bundle: nil), forCellWithReuseIdentifier: "TaskResultTopCell")
+        collectionView.registerNib(UINib(nibName: "ImageCollectionCell", bundle: nil), forCellWithReuseIdentifier: "ImageCollectionCell")
+        collectionView.backgroundColor = ThemeManager.current().foregroundColor
+        collectionView.registerClass(UICollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "UICollectionReusableView")
         
         // Do any additional setup after loading the view.
     }
@@ -246,21 +255,15 @@ class TaskDetailViewController: BasePortraitViewController {
     
     func showResult()
     {
-        let re = TaskResultViewController(nibName: "TaskResultViewController", bundle: nil)
-        re.taskDetail = self.dataSource.taskDetail
-        self.addChildViewController(re)
-        re.view.frame = CGRect(x: 0, y: self.topHeight.constant, width: GetSWidth(), height: re.collectionView.contentSize.height)
-        self.contentView.addSubview(re.view)
-//        re.view.alpha = 0
+        collectionView.reloadData()
+        collectionView.alpha = 0
         DispatchAfter(0.2, queue: dispatch_get_main_queue()) {
             let text = self.contentLabel.text == nil ? "" : self.contentLabel.text!
             let textHeight = Helper.getTextSize(text, font: self.contentLabel.font, size: CGSize(width: self.contentLabel.frame.width, height: CGFloat.max)).height
-            
-            re.view.alpha = 1
-            re.view.frame = CGRect(x: 0, y: self.topHeight.constant + textHeight+20, width: GetSWidth(), height: re.collectionView.contentSize.height)
-            print(re.collectionView.contentSize.height)
-            self.contentHeight.constant = self.topHeight.constant + textHeight + re.collectionView.contentSize.height + 20 + 50 + 100
+            self.collectionView.alpha = 1
+            self.contentHeight.constant = self.topHeight.constant + textHeight + self.collectionView.contentSize.height + 20 + 50
             self.view.layoutIfNeeded()
+            print(self.collectionView.contentSize)
         }
     }
     
@@ -320,16 +323,134 @@ class TaskDetailViewController: BasePortraitViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+//MARK: UICollectionViewDelegate
+extension TaskDetailViewController : UICollectionViewDelegate
+{
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    {
+        if indexPath.section == 1
+        {
+            let photoArray = NSMutableArray()
+            
+            for i in 0 ..< self.dataSource.taskDetail!.task_comment!.photos!.count
+            {
+                let photo = MJPhoto()
+                let cell = collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: i, inSection: 1)) as! ImageCollectionCell
+                photo.url = NSURL(string: self.dataSource.taskDetail!.task_comment!.photos![i].photo_path!)
+                photo.srcImageView = cell.imageView
+                photo.image = cell.imageView.image
+                photoArray.addObject(photo)
+            }
+            let browser = MJPhotoBrowser()
+            browser.showPushBtn = false
+            browser.currentPhotoIndex = UInt(indexPath.row)
+            browser.photos = photoArray as [AnyObject]
+            browser.show()
+        }
     }
-    */
+}
 
+//MARK: UICollectionViewDataSource
+extension TaskDetailViewController : UICollectionViewDataSource
+{
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
+    {
+        if dataSource.taskDetail?.task_status == "accepted"
+        {
+            return 1
+        }else{
+            if dataSource.taskDetail?.task_comment?.photos == nil || dataSource.taskDetail!.task_comment!.photos!.count == 0
+            {
+                return 1
+            }
+            return 2
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        let cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "UICollectionReusableView", forIndexPath: indexPath)
+        if kind == UICollectionElementKindSectionHeader {
+            if indexPath.section == 1 && indexPath.row == 0
+            {
+                cell.backgroundColor = ThemeManager.current().backgroundColor
+            }
+        }else{
+            
+        }
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        if section == 0
+        {
+            return dataSource.taskDetail == nil ? 0 : 1
+        }else{
+            return dataSource.taskDetail?.task_comment?.photos?.count == nil ? 0 : dataSource.taskDetail!.task_comment!.photos!.count
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+    {
+        if indexPath.section == 0 {
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("TaskResultTopCell", forIndexPath: indexPath) as! TaskResultTopCell
+            cell.update(self.dataSource.taskDetail!)
+            return cell
+        }else{
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCollectionCell", forIndexPath: indexPath) as! ImageCollectionCell
+            cell.deleteBtn.hidden = true
+            cell.updatePhoto(dataSource.taskDetail!.task_comment!.photos![indexPath.row])
+            return cell
+        }
+    }
+}
+
+//MARK: UICollectionViewDelegateFlowLayout
+extension TaskDetailViewController : UICollectionViewDelegateFlowLayout
+{
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
+    {
+        if indexPath.section == 0
+        {
+            return TaskResultTopCell.cellSize(self.dataSource.taskDetail?.task_comment?.taskcomment_content)
+        }else{
+            return ImageCollectionCell.cellSize()
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets
+    {
+        if section == 0
+        {
+            return UIEdgeInsetsMake(0, 0, 0, 0)
+        }
+        return UIEdgeInsetsMake(10, 10, 10, 10)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat
+    {
+        return 10
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat
+    {
+        return 0
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize
+    {
+        if section == 1
+        {
+            return CGSize(width: GetSWidth(), height: 1)
+        }
+        return CGSizeZero
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize
+    {
+        return CGSizeMake(GetSWidth(), 0)
+    }
 }

@@ -19,9 +19,10 @@ class TaskResultViewController: BasePortraitViewController {
         self.view.backgroundColor = ThemeManager.current().foregroundColor
         self.title = "提交结果"
         
-        collectionView.frame = CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight() * 10)
+        collectionView.frame = CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight())
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.scrollEnabled = false
         collectionView.registerNib(UINib(nibName: "TaskResultTopCell", bundle: nil), forCellWithReuseIdentifier: "TaskResultTopCell")
         collectionView.registerNib(UINib(nibName: "ImageCollectionCell", bundle: nil), forCellWithReuseIdentifier: "ImageCollectionCell")
         collectionView.backgroundColor = ThemeManager.current().foregroundColor

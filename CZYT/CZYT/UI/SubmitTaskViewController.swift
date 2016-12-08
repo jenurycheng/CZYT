@@ -41,7 +41,18 @@ class SubmitTaskViewController: BasePortraitViewController {
         let tap1 = UITapGestureRecognizer(target: self, action: #selector(PublishTaskViewController.endEdit))
         
         self.uploadLabel.addGestureRecognizer(tap1)
+        
+        self.contentTextView.becomeFirstResponder()
         // Do any additional setup after loading the view.
+    }
+    
+    override func backItemBarClicked(item: UIBarButtonItem) {
+        if self.contentTextView.isFirstResponder()
+        {
+            self.contentTextView.resignFirstResponder()
+        }else{
+            super.backItemBarClicked(item)
+        }
     }
     
     func endEdit()
@@ -56,8 +67,15 @@ class SubmitTaskViewController: BasePortraitViewController {
     
     @IBAction func okBtnClicked()
     {
-        let hub = MBProgressHUD.showMessag("提交中", toView: self.view)
+     
         let text = contentTextView.text == nil ? "" : contentTextView.text!
+        
+        if Helper.isStringEmpty(text)
+        {
+            MBProgressHUD.showMessag("请输入内容", toView: self.view, showTimeSec: 1)
+        }
+        
+        let hub = MBProgressHUD.showMessag("提交中", toView: self.view)
         dataSource.finishTask(self.id!, text: text, photos: images, success: { (result) in
             hub.hide(false)
             MBProgressHUD.showSuccess("提交成功", toView: self.view.window)

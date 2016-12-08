@@ -58,6 +58,15 @@ class PublishTaskViewController: BasePortraitViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func backItemBarClicked(item: UIBarButtonItem) {
+        if self.contentTextView.isFirstResponder() || self.titleTextField.isFirstResponder()
+        {
+            self.endEdit()
+        }else{
+            super.backItemBarClicked(item)
+        }
+    }
+    
     func endEdit()
     {
         self.view.endEditing(true)
