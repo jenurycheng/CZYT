@@ -31,6 +31,7 @@ class SubmitTaskViewController: BasePortraitViewController {
         
         contentTextView.layer.cornerRadius = 5
         contentTextView.layer.borderWidth = 1
+        contentTextView.text = ""
         contentTextView.layer.borderColor = ThemeManager.current().backgroundColor.CGColor
         
         collectionView.delegate = self
@@ -80,9 +81,8 @@ extension SubmitTaskViewController : UICollectionViewDelegate
         }
         if indexPath.row == images.count
         {
-            let picker = DNImagePickerController()
-            picker.imagePickerDelegate = self
-            self.presentViewController(picker, animated: true, completion: nil)
+            let actionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "拍照", "相册")
+            actionSheet.showInView(self.view)
         }else{
             let photoArray = NSMutableArray()
             
@@ -100,6 +100,29 @@ extension SubmitTaskViewController : UICollectionViewDelegate
             browser.currentPhotoIndex = UInt(indexPath.row)
             browser.photos = photoArray as [AnyObject]
             browser.show()
+        }
+    }
+}
+
+extension SubmitTaskViewController : UIActionSheetDelegate
+{
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        print(buttonIndex)
+        
+        if buttonIndex == 1
+        {
+            let picker = UIImagePickerController()
+            picker.sourceType = UIImagePickerControllerSourceType.Camera
+            picker.delegate = self;
+            picker.allowsEditing = false
+            
+            self.presentViewController(picker, animated: true, completion: nil)
+            
+        }else if buttonIndex == 2
+        {
+            let picker = DNImagePickerController()
+            picker.imagePickerDelegate = self
+            self.presentViewController(picker, animated: true, completion: nil)
         }
     }
 }
@@ -177,7 +200,7 @@ extension SubmitTaskViewController : UICollectionViewDelegateFlowLayout
     }
 }
 
-extension SubmitTaskViewController : DNImagePickerControllerDelegate
+extension SubmitTaskViewController : DNImagePickerControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     func dnImagePickerControllerDidCancel(imagePicker: DNImagePickerController!) {
         
@@ -194,6 +217,24 @@ extension SubmitTaskViewController : DNImagePickerControllerDelegate
                     
             })
         }
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject])
+    {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        self.images.append(image)
+        self.collectionView.reloadData()
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        print(String(image.size.width) + "===" + String(image.size.height))
         
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController)
+    {
+        picker.dismissViewControllerAnimated(true, completion: nil)
     }
 }
