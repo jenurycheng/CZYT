@@ -316,12 +316,12 @@ class Helper: NSObject {
             rect.size.height = 10
         }
         
-        let minValue = min(size.height, size.width)
+//        let minValue = min(size.height, size.width)
         
-        let img = UIImage(named: "loading")
+//        let img = UIImage(named: "loading")
         let imageView = UIImageView(frame: rect)
         imageView.backgroundColor = ThemeManager.current().backgroundColor
-        imageView.image = Helper.resizeImage(img!, toSize: CGSizeMake(minValue/2, minValue/2 / img!.size.width * img!.size.height))
+//        imageView.image = Helper.resizeImage(img!, toSize: CGSizeMake(minValue/2, minValue/2 / img!.size.width * img!.size.height))
         imageView.contentMode = UIViewContentMode.Center
         
         UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.mainScreen().scale)

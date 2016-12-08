@@ -222,6 +222,122 @@ class LeaderActivityDataSource: NSObject {
         }
     }
     
+    var areaStatusActivity = [LeaderActivity]()
+    func getAreaStatusActivity(isFirst:Bool, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        let request = NetWorkHandle.NetWorkHandleApp.RequestAreaStatusActivity()
+        request.offset = "\(self.areaStatusActivity.count)"
+        request.row_count = "\(pageSize)"
+        if isFirst {
+            request.offset = "0"
+        }
+        
+        NetWorkHandle.NetWorkHandleApp.getAreaStatusActivity(request) { (data) in
+            if data.isSuccess()
+            {
+                var rs = [LeaderActivity]()
+                let ar = data.data as? Array<NSDictionary>
+                if ar != nil
+                {
+                    for dic in ar!
+                    {
+                        let r = LeaderActivity.parse(dict: dic)
+                        rs.append(r)
+                    }
+                }
+                self.areaStatusActivity.appendContentsOf(rs)
+                if isFirst
+                {
+                    self.areaStatusActivity = rs
+                }
+                success(result: rs)
+            }else{
+                failure(error: data)
+            }
+        }
+    }
+    
+    var areaActivityDetail:LeaderActivityDetail?
+    func getAreaActivityDetail(id:String, success:((result:LeaderActivityDetail) -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        let request = NetWorkHandle.NetWorkHandleApp.RequestAreaStatusActivityDetail()
+        request.id = id
+        NetWorkHandle.NetWorkHandleApp.getAreaStatusActivityDetail(request) { (data) in
+            if data.isSuccess()
+            {
+                let r = data.data as? NSDictionary
+                if r != nil
+                {
+                    let d = LeaderActivityDetail.parse(dict: r!)
+                    self.areaActivityDetail = d
+                    success(result: d)
+                }else{
+                    failure(error: data)
+                }
+            }else{
+                failure(error: data)
+            }
+        }
+    }
+    
+    var departStatusActivity = [LeaderActivity]()
+    func getDepartStatusActivity(isFirst:Bool, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        let request = NetWorkHandle.NetWorkHandleApp.RequestDepartStatusActivity()
+        request.offset = "\(self.departStatusActivity.count)"
+        request.row_count = "\(pageSize)"
+        if isFirst {
+            request.offset = "0"
+        }
+        
+        NetWorkHandle.NetWorkHandleApp.getDepartStatusActivity(request) { (data) in
+            if data.isSuccess()
+            {
+                var rs = [LeaderActivity]()
+                let ar = data.data as? Array<NSDictionary>
+                if ar != nil
+                {
+                    for dic in ar!
+                    {
+                        let r = LeaderActivity.parse(dict: dic)
+                        rs.append(r)
+                    }
+                }
+                self.departStatusActivity.appendContentsOf(rs)
+                if isFirst
+                {
+                    self.departStatusActivity = rs
+                }
+                success(result: rs)
+            }else{
+                failure(error: data)
+            }
+        }
+    }
+    
+    var departActivityDetail:LeaderActivityDetail?
+    func getDepartActivityDetail(id:String, success:((result:LeaderActivityDetail) -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        let request = NetWorkHandle.NetWorkHandleApp.RequestDepartStatusActivityDetail()
+        request.id = id
+        NetWorkHandle.NetWorkHandleApp.getDepartStatusActivityDetail(request) { (data) in
+            if data.isSuccess()
+            {
+                let r = data.data as? NSDictionary
+                if r != nil
+                {
+                    let d = LeaderActivityDetail.parse(dict: r!)
+                    self.departActivityDetail = d
+                    success(result: d)
+                }else{
+                    failure(error: data)
+                }
+            }else{
+                failure(error: data)
+            }
+        }
+    }
+    
     var projectWorkActivity = [LeaderActivity]()
     func getProjectWorkActivity(isFirst:Bool, classify:String, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
     {

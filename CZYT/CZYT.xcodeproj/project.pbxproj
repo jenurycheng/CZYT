@@ -133,6 +133,12 @@
 		C450C9771DD376160052B18E /* WebLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C9761DD376160052B18E /* WebLinkViewController.swift */; };
 		C450C9791DD377CB0052B18E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C9781DD377CB0052B18E /* WebViewController.swift */; };
 		C450C97C1DD37D760052B18E /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C97B1DD37D760052B18E /* NetworkErrorView.swift */; };
+		C4623CD41DF84877001ED1EE /* AreaStatusActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4623CD31DF84877001ED1EE /* AreaStatusActivityViewController.swift */; };
+		C4623CD61DF84894001ED1EE /* DepartStatusActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4623CD51DF84894001ED1EE /* DepartStatusActivityViewController.swift */; };
+		C4623CDB1DF84ABC001ED1EE /* AreaActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4623CD71DF84ABC001ED1EE /* AreaActivityDetailViewController.swift */; };
+		C4623CDC1DF84ABC001ED1EE /* AreaActivityDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4623CD81DF84ABC001ED1EE /* AreaActivityDetailViewController.xib */; };
+		C4623CDD1DF84ABC001ED1EE /* DepartActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4623CD91DF84ABC001ED1EE /* DepartActivityDetailViewController.swift */; };
+		C4623CDE1DF84ABC001ED1EE /* DepartActivityDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4623CDA1DF84ABC001ED1EE /* DepartActivityDetailViewController.xib */; };
 		C47CEB7D1DD9D5EE0078DA21 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47CEB7B1DD9D5EE0078DA21 /* UserInfoViewController.swift */; };
 		C47CEB7E1DD9D5EE0078DA21 /* UserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C47CEB7C1DD9D5EE0078DA21 /* UserInfoViewController.xib */; };
 		C47CEB821DD9F6860078DA21 /* NetWorkHandleChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47CEB811DD9F6860078DA21 /* NetWorkHandleChat.swift */; };
@@ -391,6 +397,12 @@
 		C450C9761DD376160052B18E /* WebLinkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebLinkViewController.swift; sourceTree = "<group>"; };
 		C450C9781DD377CB0052B18E /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		C450C97B1DD37D760052B18E /* NetworkErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
+		C4623CD31DF84877001ED1EE /* AreaStatusActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaStatusActivityViewController.swift; sourceTree = "<group>"; };
+		C4623CD51DF84894001ED1EE /* DepartStatusActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartStatusActivityViewController.swift; sourceTree = "<group>"; };
+		C4623CD71DF84ABC001ED1EE /* AreaActivityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaActivityDetailViewController.swift; sourceTree = "<group>"; };
+		C4623CD81DF84ABC001ED1EE /* AreaActivityDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AreaActivityDetailViewController.xib; sourceTree = "<group>"; };
+		C4623CD91DF84ABC001ED1EE /* DepartActivityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartActivityDetailViewController.swift; sourceTree = "<group>"; };
+		C4623CDA1DF84ABC001ED1EE /* DepartActivityDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DepartActivityDetailViewController.xib; sourceTree = "<group>"; };
 		C47CEB7B1DD9D5EE0078DA21 /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		C47CEB7C1DD9D5EE0078DA21 /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoViewController.xib; sourceTree = "<group>"; };
 		C47CEB811DD9F6860078DA21 /* NetWorkHandleChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkHandleChat.swift; sourceTree = "<group>"; };
@@ -849,6 +861,66 @@
 			name = DataSource;
 			sourceTree = "<group>";
 		};
+		C4623CDF1DF84BD2001ED1EE /* TimeNews */ = {
+			isa = PBXGroup;
+			children = (
+				C491E9691DD21797005586C7 /* LeaderActivityViewController.swift */,
+				C491E96F1DD22137005586C7 /* LeaderActivityDetailViewController.swift */,
+				C491E9701DD22137005586C7 /* LeaderActivityDetailViewController.xib */,
+			);
+			name = TimeNews;
+			sourceTree = "<group>";
+		};
+		C4623CE01DF84BE7001ED1EE /* PolicyFiles */ = {
+			isa = PBXGroup;
+			children = (
+				C450C9681DD3610B0052B18E /* FileActivityViewController.swift */,
+				C450C9641DD360030052B18E /* FileActivityDetailViewController.swift */,
+				C450C9651DD360030052B18E /* FileActivityDetailViewController.xib */,
+			);
+			name = PolicyFiles;
+			sourceTree = "<group>";
+		};
+		C4623CE11DF84BEC001ED1EE /* WorkStatus */ = {
+			isa = PBXGroup;
+			children = (
+				C450C96E1DD362820052B18E /* WorkStatusActivityViewController.swift */,
+				C450C96A1DD362630052B18E /* WorkStatusActivityDetailViewController.swift */,
+				C450C96B1DD362630052B18E /* WorkStatusActivityDetailViewController.xib */,
+			);
+			name = WorkStatus;
+			sourceTree = "<group>";
+		};
+		C4623CE21DF84C05001ED1EE /* ImportantProject */ = {
+			isa = PBXGroup;
+			children = (
+				C450C9741DD373030052B18E /* ProjectWorkActivityViewController.swift */,
+				C450C9701DD3720C0052B18E /* ProjectWorkActivityDetailViewController.swift */,
+				C450C9711DD3720C0052B18E /* ProjectWorkActivityDetailViewController.xib */,
+			);
+			name = ImportantProject;
+			sourceTree = "<group>";
+		};
+		C4623CE31DF84C62001ED1EE /* AreaStatus */ = {
+			isa = PBXGroup;
+			children = (
+				C4623CD31DF84877001ED1EE /* AreaStatusActivityViewController.swift */,
+				C4623CD71DF84ABC001ED1EE /* AreaActivityDetailViewController.swift */,
+				C4623CD81DF84ABC001ED1EE /* AreaActivityDetailViewController.xib */,
+			);
+			name = AreaStatus;
+			sourceTree = "<group>";
+		};
+		C4623CE41DF84C6F001ED1EE /* DepartStatus */ = {
+			isa = PBXGroup;
+			children = (
+				C4623CD51DF84894001ED1EE /* DepartStatusActivityViewController.swift */,
+				C4623CD91DF84ABC001ED1EE /* DepartActivityDetailViewController.swift */,
+				C4623CDA1DF84ABC001ED1EE /* DepartActivityDetailViewController.xib */,
+			);
+			name = DepartStatus;
+			sourceTree = "<group>";
+		};
 		C47CEB801DD9F6670078DA21 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -1239,6 +1311,8 @@
 			children = (
 				C48734EF1DCF39F900C9B0C0 /* Cell */,
 				C48734ED1DCF363600C9B0C0 /* HomeViewController.swift */,
+				C450C9761DD376160052B18E /* WebLinkViewController.swift */,
+				C450C9781DD377CB0052B18E /* WebViewController.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -1255,24 +1329,16 @@
 		C491E9681DD2177D005586C7 /* LeaderActivity */ = {
 			isa = PBXGroup;
 			children = (
+				C4623CE41DF84C6F001ED1EE /* DepartStatus */,
+				C4623CE31DF84C62001ED1EE /* AreaStatus */,
+				C4623CE21DF84C05001ED1EE /* ImportantProject */,
+				C4623CE11DF84BEC001ED1EE /* WorkStatus */,
+				C4623CE01DF84BE7001ED1EE /* PolicyFiles */,
+				C4623CDF1DF84BD2001ED1EE /* TimeNews */,
 				C4BC6A501DD4A86800DA19B2 /* Cell */,
 				C450C95A1DD350A60052B18E /* DataSource */,
 				C450C9571DD3503A0052B18E /* Model */,
 				C450C9621DD35CFC0052B18E /* BaseActivityViewController.swift */,
-				C491E9691DD21797005586C7 /* LeaderActivityViewController.swift */,
-				C450C9681DD3610B0052B18E /* FileActivityViewController.swift */,
-				C450C96E1DD362820052B18E /* WorkStatusActivityViewController.swift */,
-				C450C9741DD373030052B18E /* ProjectWorkActivityViewController.swift */,
-				C491E96F1DD22137005586C7 /* LeaderActivityDetailViewController.swift */,
-				C491E9701DD22137005586C7 /* LeaderActivityDetailViewController.xib */,
-				C450C9641DD360030052B18E /* FileActivityDetailViewController.swift */,
-				C450C9651DD360030052B18E /* FileActivityDetailViewController.xib */,
-				C450C96A1DD362630052B18E /* WorkStatusActivityDetailViewController.swift */,
-				C450C96B1DD362630052B18E /* WorkStatusActivityDetailViewController.xib */,
-				C450C9701DD3720C0052B18E /* ProjectWorkActivityDetailViewController.swift */,
-				C450C9711DD3720C0052B18E /* ProjectWorkActivityDetailViewController.xib */,
-				C450C9761DD376160052B18E /* WebLinkViewController.swift */,
-				C450C9781DD377CB0052B18E /* WebViewController.swift */,
 			);
 			name = LeaderActivity;
 			sourceTree = "<group>";
@@ -1393,6 +1459,7 @@
 				C450C96D1DD362630052B18E /* WorkStatusActivityDetailViewController.xib in Resources */,
 				C40B0B651DE46ADF001F966E /* TaskDetailViewController.xib in Resources */,
 				C419A9791DE5ECC300E4DFD5 /* TaskResultTopCell.xib in Resources */,
+				C4623CDE1DF84ABC001ED1EE /* DepartActivityDetailViewController.xib in Resources */,
 				C40B0B9D1DE47F5A001F966E /* imageResources.xcassets in Resources */,
 				C436435B1DD0C118003C91D8 /* RongCloudKit.strings in Resources */,
 				C40B0BAA1DE47FA3001F966E /* SubmitTaskViewController.xib in Resources */,
@@ -1414,6 +1481,7 @@
 				C4E669D21DEC82D800DD35EC /* MJPhotoBrowser.bundle in Resources */,
 				C4138C661DE17F38004964B0 /* AddGroupUserViewController.xib in Resources */,
 				C43707FC1DE891F5005AFD4B /* ContactCell.xib in Resources */,
+				C4623CDC1DF84ABC001ED1EE /* AreaActivityDetailViewController.xib in Resources */,
 				C4190C741DD76DD700B38A7A /* BBSDetailViewController.xib in Resources */,
 				C4C783AE1DDDD0FD00B50693 /* GroupUserCell.xib in Resources */,
 				C48734F31DCF3A2500C9B0C0 /* HomeCell.xib in Resources */,
@@ -1460,6 +1528,7 @@
 				C40B0B941DE47F5A001F966E /* DNImageFlowViewController.m in Sources */,
 				C4138C711DE1F235004964B0 /* TaskModel.swift in Sources */,
 				C48734271DCF09B400C9B0C0 /* AFHTTPSessionManager.m in Sources */,
+				C4623CDD1DF84ABC001ED1EE /* DepartActivityDetailViewController.swift in Sources */,
 				C487348F1DCF0A2C00C9B0C0 /* MJRefreshComponent.m in Sources */,
 				C48734BB1DCF0A4900C9B0C0 /* MBProgressHUD+Add.m in Sources */,
 				C4C783B21DDDD5CC00B50693 /* PrivateConversationViewController.swift in Sources */,
@@ -1473,9 +1542,11 @@
 				C48734D11DCF1E5B00C9B0C0 /* NetworkReachabilityManager.swift in Sources */,
 				C48734571DCF0A1F00C9B0C0 /* SDWebImageManager.m in Sources */,
 				C40B0B971DE47F5A001F966E /* DNPhotoBrowser.m in Sources */,
+				C4623CD41DF84877001ED1EE /* AreaStatusActivityViewController.swift in Sources */,
 				C48734971DCF0A2C00C9B0C0 /* MJRefreshBackStateFooter.m in Sources */,
 				C487349D1DCF0A2C00C9B0C0 /* UIScrollView+MJExtension.m in Sources */,
 				C487348E1DCF0A2C00C9B0C0 /* MJRefreshBackFooter.m in Sources */,
+				C4623CDB1DF84ABC001ED1EE /* AreaActivityDetailViewController.swift in Sources */,
 				C40B0BA21DE47F5A001F966E /* DNFullImageButton.m in Sources */,
 				C42028341DE314D4005E134B /* MyPublishTaskViewController.swift in Sources */,
 				C48734B41DCF0A3A00C9B0C0 /* Reflect.swift in Sources */,
@@ -1560,6 +1631,7 @@
 				C4190C551DD6FBEC00B38A7A /* BBSViewController.swift in Sources */,
 				C43707FB1DE891F5005AFD4B /* ContactCell.swift in Sources */,
 				C43005951DDB5ABA00AC6077 /* CreateGroupViewController.swift in Sources */,
+				C4623CD61DF84894001ED1EE /* DepartStatusActivityViewController.swift in Sources */,
 				C48734C61DCF0DA900C9B0C0 /* Theme.swift in Sources */,
 				C48734591DCF0A1F00C9B0C0 /* UIButton+WebCache.m in Sources */,
 				C48734B11DCF0A3A00C9B0C0 /* Reflect+Other.swift in Sources */,

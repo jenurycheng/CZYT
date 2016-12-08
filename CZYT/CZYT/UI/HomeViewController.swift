@@ -101,9 +101,17 @@ extension HomeViewController : UICollectionViewDelegate
                 nav?.pushViewController(ac, animated: true)
             }else if indexPath.row == 3
             {
-                let ac = ProjectWorkActivityViewController()
+                let ac = AreaStatusActivityViewController()
                 nav?.pushViewController(ac, animated: true)
             }else if indexPath.row == 4
+            {
+                let ac = DepartStatusActivityViewController()
+                nav?.pushViewController(ac, animated: true)
+            }else if indexPath.row == 5
+            {
+                let ac = ProjectWorkActivityViewController()
+                nav?.pushViewController(ac, animated: true)
+            }else if indexPath.row == 6
             {
                 if !UserInfo.sharedInstance.isLogin {
                     let user = UserLoginViewController()
@@ -114,7 +122,7 @@ extension HomeViewController : UICollectionViewDelegate
                 }
                 let task = TaskViewController()
                 nav?.pushViewController(task, animated: true)
-            }else if indexPath.row == 5
+            }else if indexPath.row == 7
             {
                 if !UserInfo.sharedInstance.isLogin {
                     let user = UserLoginViewController()
@@ -126,7 +134,7 @@ extension HomeViewController : UICollectionViewDelegate
                 }
                 let ac = ChatViewController()
                 nav?.pushViewController(ac, animated: true)
-            }else if indexPath.row == 6
+            }else if indexPath.row == 8
             {
                 let ac = WebLinkViewController()
                 nav?.pushViewController(ac, animated: true)
@@ -161,9 +169,9 @@ extension HomeViewController : UICollectionViewDataSource
     {
         if section == 0 {//广告栏
             return 1
-        }else if section == 1   //已安装应用，最多显示4个
+        }else if section == 1
         {
-            return 7
+            return 9
         }
         return 0
     }
@@ -177,8 +185,8 @@ extension HomeViewController : UICollectionViewDataSource
         } else
         {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
-            let images = ["home_leader", "home_file", "home_status", "home_project", "home_task", "home_chat", "home_link"]
-            let names = ["时政新闻", "政策文件", "工作动态", "重点项目", "督查督办", "热点话题", "友情链接"]
+            let images = ["home_leader", "home_file", "home_status", "home_area", "home_depart", "home_project", "home_task", "home_chat", "home_link"]
+            let names = ["时政新闻", "政策文件", "工作动态", "区县动态", "部门动态", "重点项目", "督查督办", "热点话题", "友情链接"]
             cell.iconImageView.image = UIImage(named: images[indexPath.row])
             cell.nameLabel.text = names[indexPath.row]
             return cell

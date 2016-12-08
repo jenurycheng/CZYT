@@ -20,6 +20,12 @@ extension NetWorkHandle
         static var Address_GetWorkStatusActivity = "WorkStatusList?"
         static var Address_GetWorkStatusActivityDetail = "WorkStatusItem?"
         
+        static var Address_GetAreaStatusActivity = "XianStatusList"
+        static var Address_GetAreaStatusActivityDetail = "XianStatusItem"
+        
+        static var Address_GetDepartStatusActivity = "BumenStatusList"
+        static var Address_GetDepartStatusActivityDetail = "BumenStatusItem"
+        
         static var Address_GetProjectWorkActivity = "ProjectWorkList"
         static var Address_GetProjectWorkActivityDetail = "ProjectWorkItem"
         
@@ -84,6 +90,46 @@ extension NetWorkHandle
         class func getWorkStatusActivityDetail(request:RequestWorkStatusActivityDetail?, finish:((HttpResponseData)->Void)) {
             NetWorkHandle.PublicNetWorkAccess(Address_GetWorkStatusActivityDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
         }
+        
+        class RequestAreaStatusActivity : Reflect
+        {
+            var offset:String?  //0开始
+            var row_count:String?
+        }
+        
+        class func getAreaStatusActivity(request:RequestAreaStatusActivity?, finish:((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetAreaStatusActivity, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
+        
+        class RequestAreaStatusActivityDetail : Reflect
+        {
+            var id:String?
+        }
+        
+        class func getAreaStatusActivityDetail(request:RequestAreaStatusActivityDetail?, finish:((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetAreaStatusActivityDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
+        
+        class RequestDepartStatusActivity : Reflect
+        {
+            var offset:String?  //0开始
+            var row_count:String?
+        }
+        
+        class func getDepartStatusActivity(request:RequestDepartStatusActivity?, finish:((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetDepartStatusActivity, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
+        
+        class RequestDepartStatusActivityDetail : Reflect
+        {
+            var id:String?
+        }
+        
+        class func getDepartStatusActivityDetail(request:RequestDepartStatusActivityDetail?, finish:((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetDepartStatusActivityDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
+        
+        
         
         class RequestProjectWorkActivity : Reflect
         {
