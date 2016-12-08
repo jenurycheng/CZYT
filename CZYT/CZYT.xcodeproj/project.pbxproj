@@ -235,6 +235,7 @@
 		C4C783B21DDDD5CC00B50693 /* PrivateConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C783B11DDDD5CC00B50693 /* PrivateConversationViewController.swift */; };
 		C4C783B51DDDE26E00B50693 /* GroupLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C783B31DDDE26E00B50693 /* GroupLineCell.swift */; };
 		C4C783B61DDDE26E00B50693 /* GroupLineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C783B41DDDE26E00B50693 /* GroupLineCell.xib */; };
+		C4E0F36D1DF6FA1200069F00 /* LaunchAdverScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E0F36C1DF6FA1200069F00 /* LaunchAdverScreen.swift */; };
 		C4E669D11DEC82D800DD35EC /* MJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E669C51DEC82D800DD35EC /* MJPhoto.m */; };
 		C4E669D21DEC82D800DD35EC /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C4E669C61DEC82D800DD35EC /* MJPhotoBrowser.bundle */; };
 		C4E669D31DEC82D800DD35EC /* MJPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E669C81DEC82D800DD35EC /* MJPhotoBrowser.m */; };
@@ -539,6 +540,7 @@
 		C4C783B11DDDD5CC00B50693 /* PrivateConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateConversationViewController.swift; sourceTree = "<group>"; };
 		C4C783B31DDDE26E00B50693 /* GroupLineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupLineCell.swift; sourceTree = "<group>"; };
 		C4C783B41DDDE26E00B50693 /* GroupLineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupLineCell.xib; sourceTree = "<group>"; };
+		C4E0F36C1DF6FA1200069F00 /* LaunchAdverScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchAdverScreen.swift; sourceTree = "<group>"; };
 		C4E669C41DEC82D800DD35EC /* MJPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhoto.h; sourceTree = "<group>"; };
 		C4E669C51DEC82D800DD35EC /* MJPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhoto.m; sourceTree = "<group>"; };
 		C4E669C61DEC82D800DD35EC /* MJPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJPhotoBrowser.bundle; sourceTree = "<group>"; };
@@ -1227,6 +1229,7 @@
 				C42028411DE34DA5005E134B /* DatePickerDialog.swift */,
 				C482F07F1DE9F2A700B9342A /* ConditionBar.swift */,
 				C4B491561DEEFA65002376BA /* ImagePickerHelper.swift */,
+				C4E0F36C1DF6FA1200069F00 /* LaunchAdverScreen.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1522,6 +1525,7 @@
 				C491E9711DD22137005586C7 /* LeaderActivityDetailViewController.swift in Sources */,
 				C4190C4F1DD6F6FF00B38A7A /* UserInfo.swift in Sources */,
 				C4190C661DD733A800B38A7A /* ChatGroupCell.swift in Sources */,
+				C4E0F36D1DF6FA1200069F00 /* LaunchAdverScreen.swift in Sources */,
 				C48734DE1DCF224000C9B0C0 /* BasePortraitViewController.swift in Sources */,
 				C450C95C1DD350BB0052B18E /* LeaderActivityDataSource.swift in Sources */,
 				C4190C6A1DD7387D00B38A7A /* ChatGroupTopCell.swift in Sources */,

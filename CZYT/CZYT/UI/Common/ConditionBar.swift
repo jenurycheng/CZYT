@@ -1,9 +1,9 @@
 //
 //  ConditionBar.swift
-//  GiMiHelper_New
+//  CZYT
 //
-//  Created by user on 15/10/30.
-//  Copyright (c) 2015年 XGIMI. All rights reserved.
+//  Created by jerry cheng on 2016/11/18.
+//  Copyright © 2016年 chester. All rights reserved.
 //
 
 import UIKit

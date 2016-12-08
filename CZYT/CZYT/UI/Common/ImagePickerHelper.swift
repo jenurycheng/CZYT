@@ -1,9 +1,9 @@
 //
 //  ImagePickerHelper.swift
-//  GiMiHelper_New
+//  CZYT
 //
-//  Created by 成超 on 15/12/21.
-//  Copyright © 2015年 XGIMI. All rights reserved.
+//  Created by jerry cheng on 2016/11/18.
+//  Copyright © 2016年 chester. All rights reserved.
 //
 
 import UIKit

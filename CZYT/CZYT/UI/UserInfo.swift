@@ -38,8 +38,10 @@ class UserInfo: Reflect {
                         }, failure: { (error) in
                             
                     })
+                    UserInfo.write(UserInfo.sharedInstance)
                 }else{
                     RCIMClient.sharedRCIMClient().disconnect(false)
+                    UserInfo.write(nil)
                 }
             break
         default:
@@ -75,23 +77,48 @@ class UserInfo: Reflect {
     var dept_id:String?
     var dept_name:String?
     
-    var USER_DEFAULT_USERNAME = "USER_DEFAULT_USERNAME"
-    var USER_DEFAULT_PASSWORD = "USER_DEFAULT_PASSWORD"
+    static var USER_DEFAULT_ID = "USER_DEFAULT_ID"
+    static var USER_DEFAULT_NICKNAME = "USER_DEFAULT_NICKNAME"
+    static var USER_DEFAULT_TOKEN = "USER_DEFAULT_TOKEN"
+    static var USER_DEFAULT_LOGO = "USER_DEFAULT_LOGO"
+    static var USER_DEFAULT_MOBILE = "USER_DEFAULT_MOBILE"
+    static var USER_DEFAULT_SESSION = "USER_DEFAULT_SESSION"
+    static var USER_DEFAULT_DEPT_ID = "USER_DEFAULT_DEPT_ID"
+    static var USER_DEFAULT_DEPT_NAME = "USER_DEFAULT_DEPT_NAME"
     
-    func setUserName(username:String, pwd:String)
+    class func write(ui:UserInfo?)
     {
         let dic = NSUserDefaults.standardUserDefaults()
-        dic.setObject(username, forKey: USER_DEFAULT_USERNAME)
-        dic.setObject(pwd, forKey: USER_DEFAULT_PASSWORD)
+        dic.setObject(ui?.id, forKey: USER_DEFAULT_ID)
+        dic.setObject(ui?.nickname, forKey: USER_DEFAULT_NICKNAME)
+        dic.setObject(ui?.token, forKey: USER_DEFAULT_TOKEN)
+        dic.setObject(ui?.logo_path, forKey: USER_DEFAULT_LOGO)
+        dic.setObject(ui?.mobile, forKey: USER_DEFAULT_MOBILE)
+        dic.setObject(ui?.session, forKey: USER_DEFAULT_SESSION)
+        dic.setObject(ui?.dept_id, forKey: USER_DEFAULT_DEPT_ID)
+        dic.setObject(ui?.dept_name, forKey: USER_DEFAULT_DEPT_NAME)
         dic.synchronize()
     }
     
-    func getUserNamePwd()->(username:String?, pwd:String?)
+    class func read()->UserInfo?
     {
         let dic = NSUserDefaults.standardUserDefaults()
-        let username = dic.objectForKey(USER_DEFAULT_USERNAME) as? String
-        let pwd = dic.objectForKey(USER_DEFAULT_PASSWORD) as? String
         
-        return (username, pwd)
+        let ui = UserInfo()
+        ui.id = dic.objectForKey(USER_DEFAULT_ID) as? String
+        ui.nickname = dic.objectForKey(USER_DEFAULT_NICKNAME) as? String
+        ui.token = dic.objectForKey(USER_DEFAULT_TOKEN) as? String
+        ui.logo_path = dic.objectForKey(USER_DEFAULT_LOGO) as? String
+        ui.mobile = dic.objectForKey(USER_DEFAULT_MOBILE) as? String ?? ""
+        ui.session = dic.objectForKey(USER_DEFAULT_SESSION) as? String ?? ""
+        ui.dept_id = dic.objectForKey(USER_DEFAULT_DEPT_ID) as? String
+        ui.dept_name = dic.objectForKey(USER_DEFAULT_DEPT_NAME) as? String
+        
+        if ui.id == nil
+        {
+            return nil
+        }else{
+            return ui
+        }
     }
 }

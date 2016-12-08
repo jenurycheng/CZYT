@@ -1,9 +1,9 @@
 //
 //  DatePickerDialog.swift
-//  GiMiHelper_Kid
+//  CZYT
 //
-//  Created by 成超 on 7/18/16.
-//  Copyright © 2016 成超. All rights reserved.
+//  Created by jerry cheng on 2016/11/18.
+//  Copyright © 2016年 chester. All rights reserved.
 //
 
 import Foundation

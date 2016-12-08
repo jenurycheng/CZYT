@@ -24,13 +24,13 @@ class BBSViewController: BasePortraitViewController {
         self.view.addSubview(tableView)
         tableView.registerNib(UINib(nibName: "BBSCell", bundle: nil), forCellReuseIdentifier: "BBSCell")
         
-        unowned let weakSefl = self
+        unowned let weakSelf = self
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { 
-            weakSefl.loadData()
+            weakSelf.loadData()
         })
         
         tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { 
-            weakSefl.loadMore()
+            weakSelf.loadMore()
         })
         
         self.loadData()

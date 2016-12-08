@@ -18,7 +18,7 @@ import UIKit
 class CCPageView: UIView, UIGestureRecognizerDelegate {
 
     static func viewHeight()->CGFloat{
-        return GetSWidth() * 4/7.0 + 20
+        return GetSWidth() * 4/7.0 + 15
 //        return Helper.scale(545) 7:3
     }
 
@@ -30,6 +30,7 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
     var pageControl:UIPageControl!
     var timer:NSTimer!
     var duration:NSTimeInterval = 4
+    var edge:CGFloat = 1.0
     
     var curPage:Int! = 0
         {
@@ -65,7 +66,7 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
         pageContainer = UIView(frame: self.bounds)
         self.addSubview(pageContainer)
         
-        pageControl = UIPageControl(frame: CGRectMake(0, self.frame.size.height-20, self.frame.size.width, 20))
+        pageControl = UIPageControl(frame: CGRectMake(0, self.frame.size.height-15, self.frame.size.width, 15))
         pageControl.numberOfPages = pageCount
         self.addSubview(pageControl)
         
@@ -184,7 +185,7 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
                 nextView.frame = CGRectMake(self.frame.size.width+p.x, 0, self.frame.size.width, self.frame.size.height)
                 
                 let curView = viewArray[curPage]
-                curView.frame = CGRectMake(p.x/2, 0, self.frame.size.width, self.frame.size.height)
+                curView.frame = CGRectMake(p.x/edge, 0, self.frame.size.width, self.frame.size.height)
             }else if p.x > 0
             {
                 let prePage = (pageCount+curPage-1)%pageCount
@@ -194,7 +195,7 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
                 preView.frame = CGRectMake(p.x-self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)
                 
                 let curView = viewArray[curPage]
-                curView.frame = CGRectMake(p.x/2, 0, self.frame.size.width, self.frame.size.height)
+                curView.frame = CGRectMake(p.x/edge, 0, self.frame.size.width, self.frame.size.height)
             }
         }
         
@@ -277,7 +278,7 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
         }
         let dur = base * Double(nextView.frame.origin.x/nextView.frame.size.width)
         UIView.animateWithDuration(Double(dur), animations: { () -> Void in
-            curView.frame = CGRectMake(-self.frame.size.width/2, 0, self.frame.size.width, self.frame.size.height)
+            curView.frame = CGRectMake(-self.frame.size.width/self.edge, 0, self.frame.size.width, self.frame.size.height)
             nextView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
         }) { (b:Bool) -> Void in
             curView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
@@ -302,7 +303,7 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
         pageContainer.bringSubviewToFront(preView)
         let dur = base * Double(-preView.frame.origin.x/curView.frame.size.width)
         UIView.animateWithDuration(Double(dur), animations: { () -> Void in
-            curView.frame = CGRectMake(self.frame.size.width/2, 0, self.frame.size.width, self.frame.size.height)
+            curView.frame = CGRectMake(self.frame.size.width/self.edge, 0, self.frame.size.width, self.frame.size.height)
             preView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
         }) { (b:Bool) -> Void in
             curView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
