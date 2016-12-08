@@ -150,8 +150,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }else{
             CCPrint("普通推送消息");
         }
-        let alert = UIAlertView(title: "", message: userInfo.description, delegate: nil, cancelButtonTitle: "Cancel")
-        alert.show()
+//        let alert = UIAlertView(title: "", message: userInfo.description, delegate: nil, cancelButtonTitle: "Cancel")
+//        alert.show()
     }
 
     func applicationWillResignActive(application: UIApplication) {

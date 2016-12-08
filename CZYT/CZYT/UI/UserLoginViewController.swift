@@ -88,7 +88,7 @@ class UserLoginViewController: BasePortraitViewController {
         nextBtn.addTarget(self, action: #selector(UserLoginViewController.nextBtnClicked), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(nextBtn)
         
-        self.telTextField.becomeFirstResponder()
+//        self.telTextField.becomeFirstResponder()
         
         self.navigationItem.leftBarButtonItem = nil
         
