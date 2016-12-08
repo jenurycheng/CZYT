@@ -53,10 +53,10 @@ class DepartActivityDetailViewController: BasePortraitViewController {
     
     func updateView()
     {
-        titleLabel.text = dataSource.fileActivityDetail?.title
-        sourceLabel.text = dataSource.fileActivityDetail?.original
-        timeLabel.text = dataSource.fileActivityDetail?.publish_date
-        webView.loadHTMLString(dataSource.fileActivityDetail!.content, baseURL: nil)
+        titleLabel.text = dataSource.departActivityDetail?.title
+        sourceLabel.text = dataSource.departActivityDetail?.original
+        timeLabel.text = dataSource.departActivityDetail?.publish_date
+        webView.loadHTMLString(dataSource.departActivityDetail!.content, baseURL: nil)
     }
 
     override func didReceiveMemoryWarning() {

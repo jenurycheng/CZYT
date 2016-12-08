@@ -186,7 +186,7 @@ extension HomeViewController : UICollectionViewDataSource
         {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
             let images = ["home_leader", "home_file", "home_status", "home_area", "home_depart", "home_project", "home_task", "home_chat", "home_link"]
-            let names = ["时政新闻", "政策文件", "工作动态", "区县动态", "部门动态", "重点项目", "督查督办", "热点话题", "友情链接"]
+            let names = ["时政新闻", "政策文件", "工作动态", "县区动态", "部门动态", "重点项目", "督查督办", "热点话题", "友情链接"]
             cell.iconImageView.image = UIImage(named: images[indexPath.row])
             cell.nameLabel.text = names[indexPath.row]
             return cell

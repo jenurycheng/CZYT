@@ -184,7 +184,7 @@ class DatePickerDialog: UIView {
         self.datePicker.datePickerMode = self.datePickerMode
         self.datePicker.date = self.defaultDate
         self.datePicker.maximumDate = NSDate(timeIntervalSinceNow: 60*60*24*360*10)
-        self.datePicker.minimumDate = NSDate(timeIntervalSinceNow: -60*60*24*1)
+        self.datePicker.minimumDate = NSDate()
         dialogContainer.addSubview(self.datePicker)
         
         addButtonsToView(dialogContainer)

@@ -53,10 +53,10 @@ class AreaActivityDetailViewController: BasePortraitViewController {
     
     func updateView()
     {
-        titleLabel.text = dataSource.fileActivityDetail?.title
-        sourceLabel.text = dataSource.fileActivityDetail?.original
-        timeLabel.text = dataSource.fileActivityDetail?.publish_date
-        webView.loadHTMLString(dataSource.fileActivityDetail!.content, baseURL: nil)
+        titleLabel.text = dataSource.areaActivityDetail?.title
+        sourceLabel.text = dataSource.areaActivityDetail?.original
+        timeLabel.text = dataSource.areaActivityDetail?.publish_date
+        webView.loadHTMLString(dataSource.areaActivityDetail!.content, baseURL: nil)
     }
 
     override func didReceiveMemoryWarning() {
