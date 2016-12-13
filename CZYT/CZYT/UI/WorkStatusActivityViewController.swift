@@ -14,26 +14,27 @@ class WorkStatusActivityViewController: BaseActivityViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "工作动态"
-        
+        self.title = "临空新区"
+        self.conditionBar.hidden = true
+        tableView.frame = CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64)
         // Do any additional setup after loading the view.
     }
     
     override func loadData()
     {
-        if self.conditions.count == 0
-        {
-            lDataSource.getModelType(LeaderActivityDataSource.Type_WorkStatus, success: { (result) in
-                var array = [String]()
-                for r in result
-                {
-                    array.append(r.value!)
-                }
-                self.setCondition(array)
-            }) { (error) in
-                
-            }
-        }
+//        if self.conditions.count == 0
+//        {
+//            lDataSource.getModelType(LeaderActivityDataSource.Type_WorkStatus, success: { (result) in
+//                var array = [String]()
+//                for r in result
+//                {
+//                    array.append(r.value!)
+//                }
+//                self.setCondition(array)
+//            }) { (error) in
+//                
+//            }
+//        }
         
         if self.dataSource.count == 0
         {
@@ -76,7 +77,7 @@ class WorkStatusActivityViewController: BaseActivityViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let detail = WorkStatusActivityDetailViewController(nibName: "WorkStatusActivityDetailViewController", bundle: nil)
+        let detail = WorkStatusDetailViewController()
         detail.id = lDataSource.workStatusActivity[indexPath.row].id!
         self.navigationController?.pushViewController(detail, animated: true)
     }

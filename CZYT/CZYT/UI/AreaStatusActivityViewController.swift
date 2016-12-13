@@ -64,7 +64,7 @@ class AreaStatusActivityViewController: BaseActivityViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let detail = AreaActivityDetailViewController(nibName: "AreaActivityDetailViewController", bundle: nil)
+        let detail = AreaStatusDetailViewController()
         detail.id = lDataSource.areaStatusActivity[indexPath.row].id!
         self.navigationController?.pushViewController(detail, animated: true)
     }

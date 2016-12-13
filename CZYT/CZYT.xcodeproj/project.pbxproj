@@ -227,6 +227,13 @@
 		C491E96E1DD217BF005586C7 /* LeaderActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C491E96C1DD217BF005586C7 /* LeaderActivityCell.xib */; };
 		C491E9711DD22137005586C7 /* LeaderActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C491E96F1DD22137005586C7 /* LeaderActivityDetailViewController.swift */; };
 		C491E9721DD22137005586C7 /* LeaderActivityDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C491E9701DD22137005586C7 /* LeaderActivityDetailViewController.xib */; };
+		C4936D021DFBC07E00C07F0D /* BaseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4936D011DFBC07E00C07F0D /* BaseDetailViewController.swift */; };
+		C4936D041DFBC55400C07F0D /* DepartStatusDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4936D031DFBC55400C07F0D /* DepartStatusDetailViewController.swift */; };
+		C4936D061DFBC70A00C07F0D /* AreaStatusDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4936D051DFBC70A00C07F0D /* AreaStatusDetailViewController.swift */; };
+		C4936D081DFBC74D00C07F0D /* ProjectWorkDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4936D071DFBC74D00C07F0D /* ProjectWorkDetailViewController.swift */; };
+		C4936D0A1DFBC78400C07F0D /* WorkStatusDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4936D091DFBC78400C07F0D /* WorkStatusDetailViewController.swift */; };
+		C4936D0C1DFBC7C500C07F0D /* PolicyFileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4936D0B1DFBC7C500C07F0D /* PolicyFileDetailViewController.swift */; };
+		C4936D0E1DFBC80800C07F0D /* TimeNewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4936D0D1DFBC80800C07F0D /* TimeNewsDetailViewController.swift */; };
 		C4B491571DEEFA65002376BA /* ImagePickerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B491561DEEFA65002376BA /* ImagePickerHelper.swift */; };
 		C4BC6A531DD4A89800DA19B2 /* ProjectWorkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC6A511DD4A89800DA19B2 /* ProjectWorkCell.swift */; };
 		C4BC6A541DD4A89800DA19B2 /* ProjectWorkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BC6A521DD4A89800DA19B2 /* ProjectWorkCell.xib */; };
@@ -538,6 +545,13 @@
 		C491E96C1DD217BF005586C7 /* LeaderActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeaderActivityCell.xib; sourceTree = "<group>"; };
 		C491E96F1DD22137005586C7 /* LeaderActivityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderActivityDetailViewController.swift; sourceTree = "<group>"; };
 		C491E9701DD22137005586C7 /* LeaderActivityDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeaderActivityDetailViewController.xib; sourceTree = "<group>"; };
+		C4936D011DFBC07E00C07F0D /* BaseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDetailViewController.swift; sourceTree = "<group>"; };
+		C4936D031DFBC55400C07F0D /* DepartStatusDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartStatusDetailViewController.swift; sourceTree = "<group>"; };
+		C4936D051DFBC70A00C07F0D /* AreaStatusDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaStatusDetailViewController.swift; sourceTree = "<group>"; };
+		C4936D071DFBC74D00C07F0D /* ProjectWorkDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectWorkDetailViewController.swift; sourceTree = "<group>"; };
+		C4936D091DFBC78400C07F0D /* WorkStatusDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkStatusDetailViewController.swift; sourceTree = "<group>"; };
+		C4936D0B1DFBC7C500C07F0D /* PolicyFileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolicyFileDetailViewController.swift; sourceTree = "<group>"; };
+		C4936D0D1DFBC80800C07F0D /* TimeNewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeNewsDetailViewController.swift; sourceTree = "<group>"; };
 		C4B491561DEEFA65002376BA /* ImagePickerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerHelper.swift; sourceTree = "<group>"; };
 		C4BC6A511DD4A89800DA19B2 /* ProjectWorkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectWorkCell.swift; sourceTree = "<group>"; };
 		C4BC6A521DD4A89800DA19B2 /* ProjectWorkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectWorkCell.xib; sourceTree = "<group>"; };
@@ -867,6 +881,7 @@
 				C491E9691DD21797005586C7 /* LeaderActivityViewController.swift */,
 				C491E96F1DD22137005586C7 /* LeaderActivityDetailViewController.swift */,
 				C491E9701DD22137005586C7 /* LeaderActivityDetailViewController.xib */,
+				C4936D0D1DFBC80800C07F0D /* TimeNewsDetailViewController.swift */,
 			);
 			name = TimeNews;
 			sourceTree = "<group>";
@@ -877,6 +892,7 @@
 				C450C9681DD3610B0052B18E /* FileActivityViewController.swift */,
 				C450C9641DD360030052B18E /* FileActivityDetailViewController.swift */,
 				C450C9651DD360030052B18E /* FileActivityDetailViewController.xib */,
+				C4936D0B1DFBC7C500C07F0D /* PolicyFileDetailViewController.swift */,
 			);
 			name = PolicyFiles;
 			sourceTree = "<group>";
@@ -887,6 +903,7 @@
 				C450C96E1DD362820052B18E /* WorkStatusActivityViewController.swift */,
 				C450C96A1DD362630052B18E /* WorkStatusActivityDetailViewController.swift */,
 				C450C96B1DD362630052B18E /* WorkStatusActivityDetailViewController.xib */,
+				C4936D091DFBC78400C07F0D /* WorkStatusDetailViewController.swift */,
 			);
 			name = WorkStatus;
 			sourceTree = "<group>";
@@ -897,6 +914,7 @@
 				C450C9741DD373030052B18E /* ProjectWorkActivityViewController.swift */,
 				C450C9701DD3720C0052B18E /* ProjectWorkActivityDetailViewController.swift */,
 				C450C9711DD3720C0052B18E /* ProjectWorkActivityDetailViewController.xib */,
+				C4936D071DFBC74D00C07F0D /* ProjectWorkDetailViewController.swift */,
 			);
 			name = ImportantProject;
 			sourceTree = "<group>";
@@ -907,6 +925,7 @@
 				C4623CD31DF84877001ED1EE /* AreaStatusActivityViewController.swift */,
 				C4623CD71DF84ABC001ED1EE /* AreaActivityDetailViewController.swift */,
 				C4623CD81DF84ABC001ED1EE /* AreaActivityDetailViewController.xib */,
+				C4936D051DFBC70A00C07F0D /* AreaStatusDetailViewController.swift */,
 			);
 			name = AreaStatus;
 			sourceTree = "<group>";
@@ -917,6 +936,7 @@
 				C4623CD51DF84894001ED1EE /* DepartStatusActivityViewController.swift */,
 				C4623CD91DF84ABC001ED1EE /* DepartActivityDetailViewController.swift */,
 				C4623CDA1DF84ABC001ED1EE /* DepartActivityDetailViewController.xib */,
+				C4936D031DFBC55400C07F0D /* DepartStatusDetailViewController.swift */,
 			);
 			name = DepartStatus;
 			sourceTree = "<group>";
@@ -1339,6 +1359,7 @@
 				C450C95A1DD350A60052B18E /* DataSource */,
 				C450C9571DD3503A0052B18E /* Model */,
 				C450C9621DD35CFC0052B18E /* BaseActivityViewController.swift */,
+				C4936D011DFBC07E00C07F0D /* BaseDetailViewController.swift */,
 			);
 			name = LeaderActivity;
 			sourceTree = "<group>";
@@ -1518,6 +1539,7 @@
 				C4190C5C1DD6FEDD00B38A7A /* ChatViewController.swift in Sources */,
 				C4190C5A1DD6FC5500B38A7A /* BBSModel.swift in Sources */,
 				C450C9771DD376160052B18E /* WebLinkViewController.swift in Sources */,
+				C4936D081DFBC74D00C07F0D /* ProjectWorkDetailViewController.swift in Sources */,
 				C450C9661DD360030052B18E /* FileActivityDetailViewController.swift in Sources */,
 				C487349A1DCF0A2C00C9B0C0 /* MJRefreshStateHeader.m in Sources */,
 				C4BC6A5A1DD4B97600DA19B2 /* UserLoginViewController.swift in Sources */,
@@ -1537,6 +1559,7 @@
 				C4E669D61DEC82D800DD35EC /* MJPhotoToolbar.m in Sources */,
 				C450C95F1DD3531D0052B18E /* UIView+HUD.swift in Sources */,
 				C40B0B9F1DE47F5A001F966E /* DNAssetsViewCell.m in Sources */,
+				C4936D041DFBC55400C07F0D /* DepartStatusDetailViewController.swift in Sources */,
 				C4BC6A531DD4A89800DA19B2 /* ProjectWorkCell.swift in Sources */,
 				C48734561DCF0A1F00C9B0C0 /* SDWebImageDownloaderOperation.m in Sources */,
 				C48734D11DCF1E5B00C9B0C0 /* NetworkReachabilityManager.swift in Sources */,
@@ -1566,6 +1589,7 @@
 				C4190C791DD778D200B38A7A /* BBSCommentCell.swift in Sources */,
 				C40B0BA31DE47F5A001F966E /* DNSendButton.m in Sources */,
 				C48734E91DCF307600C9B0C0 /* CCPageView.swift in Sources */,
+				C4936D061DFBC70A00C07F0D /* AreaStatusDetailViewController.swift in Sources */,
 				C487349F1DCF0A2C00C9B0C0 /* UIView+MJExtension.m in Sources */,
 				C4C783AD1DDDD0FD00B50693 /* GroupUserCell.swift in Sources */,
 				C48734551DCF0A1F00C9B0C0 /* SDWebImageDownloader.m in Sources */,
@@ -1579,6 +1603,7 @@
 				C450C9691DD3610B0052B18E /* FileActivityViewController.swift in Sources */,
 				C48734CD1DCF14BF00C9B0C0 /* Consts.swift in Sources */,
 				C48734581DCF0A1F00C9B0C0 /* SDWebImagePrefetcher.m in Sources */,
+				C4936D0A1DFBC78400C07F0D /* WorkStatusDetailViewController.swift in Sources */,
 				C48734EB1DCF355B00C9B0C0 /* MainViewController.swift in Sources */,
 				C48734C71DCF0DA900C9B0C0 /* ThemeManager.swift in Sources */,
 				C40B0B9B1DE47F5A001F966E /* UIView+DNImagePicker.m in Sources */,
@@ -1607,8 +1632,10 @@
 				C43643931DD0C6C3003C91D8 /* ChatListViewController.swift in Sources */,
 				C4190C7D1DD77CBC00B38A7A /* KeyboardInputView.swift in Sources */,
 				C48734DC1DCF224000C9B0C0 /* BaseNavViewController.swift in Sources */,
+				C4936D0E1DFBC80800C07F0D /* TimeNewsDetailViewController.swift in Sources */,
 				C40B0B9A1DE47F5A001F966E /* UIColor+Hex.m in Sources */,
 				C450C9721DD3720C0052B18E /* ProjectWorkActivityDetailViewController.swift in Sources */,
+				C4936D0C1DFBC7C500C07F0D /* PolicyFileDetailViewController.swift in Sources */,
 				C48734B01DCF0A3A00C9B0C0 /* Reflect+Class.swift in Sources */,
 				C48734DA1DCF224000C9B0C0 /* BaseNavHiddenPortraitViewController.swift in Sources */,
 				C4190C5E1DD6FF3C00B38A7A /* CCTabTitleView.swift in Sources */,
@@ -1619,6 +1646,7 @@
 				C48734281DCF09B400C9B0C0 /* AFNetworkReachabilityManager.m in Sources */,
 				C43005911DDB3C5600AC6077 /* ChatModel.swift in Sources */,
 				C4E669D41DEC82D800DD35EC /* MJPhotoLoadingView.m in Sources */,
+				C4936D021DFBC07E00C07F0D /* BaseDetailViewController.swift in Sources */,
 				C48734CF1DCF176C00C9B0C0 /* NetWorkHandleApp.swift in Sources */,
 				C4C783B51DDDE26E00B50693 /* GroupLineCell.swift in Sources */,
 				C420283F1DE344F0005E134B /* SelectContactViewController.swift in Sources */,
