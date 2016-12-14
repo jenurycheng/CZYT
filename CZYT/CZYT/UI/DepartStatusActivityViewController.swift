@@ -63,7 +63,7 @@ class DepartStatusActivityViewController: BaseActivityViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let detail = DepartActivityDetailViewController(nibName: "DepartActivityDetailViewController", bundle: nil)
+        let detail = DepartStatusDetailViewController()
         detail.id = lDataSource.departStatusActivity[indexPath.row].id!
         self.navigationController?.pushViewController(detail, animated: true)
     }

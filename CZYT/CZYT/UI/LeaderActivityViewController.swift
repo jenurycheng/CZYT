@@ -76,14 +76,8 @@ class LeaderActivityViewController: BaseActivityViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let detail = LeaderActivityDetailViewController(nibName: "LeaderActivityDetailViewController", bundle: nil)
+        let detail = TimeNewsDetailViewController()
         detail.id = lDataSource.leaderActivity[indexPath.row].id!
         self.navigationController?.pushViewController(detail, animated: true)
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("LeaderActivityCell") as! LeaderActivityCell
-        cell.update(lDataSource.leaderActivity[indexPath.row])
-        return cell
     }
 }

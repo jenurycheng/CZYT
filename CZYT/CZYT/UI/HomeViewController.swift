@@ -19,10 +19,14 @@ class HomeViewController: BasePortraitViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .Vertical
 
+        let imageView = UIImageView(frame: CGRect(x: 0, y: CCPageView.viewHeight(), width: GetSWidth(), height: GetSHeight()-64-CCPageView.viewHeight()))
+        imageView.image = UIImage(named: "home_bg")
+        self.view.addSubview(imageView)
+        
         collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64), collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = ThemeManager.current().foregroundColor
+        collectionView.backgroundColor = UIColor.clearColor()//ThemeManager.current().foregroundColor
         collectionView.registerNib(UINib(nibName: "HomeCell", bundle: nil), forCellWithReuseIdentifier: "HomeCell")
         collectionView.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "UICollectionViewCell")
         unowned let weakSelf = self
@@ -95,21 +99,27 @@ extension HomeViewController : UICollectionViewDelegate
             {
                 let ac = FileActivityViewController()
                 nav?.pushViewController(ac, animated: true)
-            }else if indexPath.row == 2
-            {
-                let ac = WorkStatusActivityViewController()
-                nav?.pushViewController(ac, animated: true)
-            }else if indexPath.row == 3
+            }
+//            else if indexPath.row == 2
+//            {
+//                let ac = WorkStatusActivityViewController()
+//                nav?.pushViewController(ac, animated: true)
+//            }
+            else if indexPath.row == 2
             {
                 let ac = AreaStatusActivityViewController()
                 nav?.pushViewController(ac, animated: true)
-            }else if indexPath.row == 4
+            }else if indexPath.row == 3
             {
                 let ac = DepartStatusActivityViewController()
                 nav?.pushViewController(ac, animated: true)
-            }else if indexPath.row == 5
+            }else if indexPath.row == 4
             {
                 let ac = ProjectWorkActivityViewController()
+                nav?.pushViewController(ac, animated: true)
+            }else if indexPath.row == 5
+            {
+                let ac = WorkStatusActivityViewController()
                 nav?.pushViewController(ac, animated: true)
             }else if indexPath.row == 6
             {
@@ -185,8 +195,8 @@ extension HomeViewController : UICollectionViewDataSource
         } else
         {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
-            let images = ["home_leader", "home_file", "home_status", "home_area", "home_depart", "home_project", "home_task", "home_chat", "home_link"]
-            let names = ["时政新闻", "政策文件", "工作动态", "县区动态", "部门动态", "重点项目", "督查督办", "热点话题", "友情链接"]
+            let images = ["home_leader", "home_file", "home_area", "home_depart", "home_project", "home_status", "home_task", "home_chat", "home_link"]
+            let names = ["时政新闻", "政策文件", "县区动态", "部门动态", "重点项目", "临空新区", "督查督办", "热点话题", "友情链接"]
             cell.iconImageView.image = UIImage(named: images[indexPath.row])
             cell.nameLabel.text = names[indexPath.row]
             return cell
@@ -282,7 +292,7 @@ extension HomeViewController : CCPageViewDelegate
     
     func pageClickedAtIndex(page:CCPageView, index:Int)
     {
-        let detail = LeaderActivityDetailViewController(nibName: "LeaderActivityDetailViewController", bundle: nil)
+        let detail = TimeNewsDetailViewController()
         detail.id = dataSource.leaderActivity[index].id!
         let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
         nav?.pushViewController(detail, animated: true)

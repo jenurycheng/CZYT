@@ -75,7 +75,7 @@ class FileActivityViewController: BaseActivityViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let detail = FileActivityDetailViewController(nibName: "FileActivityDetailViewController", bundle: nil)
+        let detail = PolicyFileDetailViewController()
         detail.id = lDataSource.fileActivity[indexPath.row].id!
         self.navigationController?.pushViewController(detail, animated: true)
     }
