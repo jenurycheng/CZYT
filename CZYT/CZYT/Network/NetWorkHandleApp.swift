@@ -11,6 +11,8 @@ import UIKit
 extension NetWorkHandle
 {
     class NetWorkHandleApp: NSObject {
+        static var Address_GetHomeActivity = "HomeSliderList"
+        
         static var Address_GetLeaderActivity = "LeaderActivityList?"
         static var Address_GetLeaderActivityDetail = "LeaderActivityItem?"
         
@@ -34,6 +36,15 @@ extension NetWorkHandle
         
         static var Address_CheckAppUpdate = "CheckLatestVersion"
 
+        class RequestHomeActivity : Reflect
+        {
+            var offset:String?  //0开始
+            var row_count:String?
+        }
+        class func getHomeActivity(request:RequestHomeActivity?, finish:((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetHomeActivity, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
+        
         class RequestLeaderActivity : Reflect
         {
             var classify:String?//省级，资阳，成都

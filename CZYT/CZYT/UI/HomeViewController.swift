@@ -45,11 +45,11 @@ class HomeViewController: BasePortraitViewController {
     func getHomeData()
     {
         dataSource.pageSize = 5
-        dataSource.getLeaderActivity(true, classify: "省级", success: { (result) in
+        dataSource.getHomeActivity({ (result) in
             self.pageView.loadData()
             self.collectionView.mj_header.endRefreshing()
-        }) { (error) in
-            
+            }) { (error) in
+                
         }
     }
     
@@ -263,7 +263,7 @@ extension HomeViewController : CCPageViewDelegate
 {
     func pageCountForPageView(page:CCPageView)->Int
     {
-        return dataSource.leaderActivity.count > 3 ? 3 : dataSource.leaderActivity.count
+        return dataSource.homeActivity.count > 5 ? 5 : dataSource.homeActivity.count
     }
     
     func pageViewForIndex(page:CCPageView, index:Int)->UIView
@@ -273,13 +273,17 @@ extension HomeViewController : CCPageViewDelegate
         imgView.image = UIImage(named: "test")
         imgView.layer.borderColor = ThemeManager.current().grayFontColor.CGColor
         view.addSubview(imgView)
-        let label = UILabel(frame: CGRect(x: 0, y: page.frame.height-15-30, width: page.frame.width, height: 30))
-        label.text = dataSource.leaderActivity[index].title
-        label.backgroundColor = Helper.parseColor(0x00000077)
+        
+        let labelView = UIView(frame: CGRect(x: 0, y: page.frame.height-15-30, width: page.frame.width, height: 30))
+        labelView.backgroundColor = Helper.parseColor(0x00000077)
+        view.addSubview(labelView)
+        
+        let label = UILabel(frame: CGRect(x: 10, y: 0, width: page.frame.width-20, height: 30))
+        label.text = dataSource.homeActivity[index].title
         label.font = UIFont.systemFontOfSize(15)
         label.textColor = ThemeManager.current().whiteFontColor
-        view.addSubview(label)
-        imgView.gm_setImageWithUrlString(dataSource.leaderActivity[index].logo_path, title: dataSource.leaderActivity[index].title, completedBlock: nil)
+        labelView.addSubview(label)
+        imgView.gm_setImageWithUrlString(dataSource.homeActivity[index].logo_path, title: dataSource.homeActivity[index].title, completedBlock: nil)
         
         return view
     }
@@ -287,7 +291,7 @@ extension HomeViewController : CCPageViewDelegate
     func pageClickedAtIndex(page:CCPageView, index:Int)
     {
         let detail = TimeNewsDetailViewController()
-        detail.id = dataSource.leaderActivity[index].id!
+        detail.id = dataSource.homeActivity[index].id!
         let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
         nav?.pushViewController(detail, animated: true)
     }
