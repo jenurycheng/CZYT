@@ -38,14 +38,13 @@ class HomeViewController: BasePortraitViewController {
         pageView = CCPageView(frame: CGRectMake(0, 0, GetSWidth(), CCPageView.viewHeight()))
         pageView.delegate = self
         pageView.pageControl.backgroundColor = ThemeManager.current().backgroundColor
-        pageView.pageControl.pageIndicatorTintColor = ThemeManager.current().mainColor
-        
         self.getHomeData()
         // Do any additional setup after loading the view.
     }
     
     func getHomeData()
     {
+        dataSource.pageSize = 5
         dataSource.getLeaderActivity(true, classify: "省级", success: { (result) in
             self.pageView.loadData()
             self.collectionView.mj_header.endRefreshing()
@@ -270,20 +269,15 @@ extension HomeViewController : CCPageViewDelegate
     func pageViewForIndex(page:CCPageView, index:Int)->UIView
     {
         let view = UIView(frame: pageView.bounds)
-        let imgView = UIImageView(frame: CGRect(x: 10, y: 10, width: page.frame.width-20, height: page.frame.height-25))
+        let imgView = UIImageView(frame: CGRect(x: 0, y: 0, width: page.frame.width, height: page.frame.height-15))
         imgView.image = UIImage(named: "test")
-        imgView.clipsToBounds = true
-        imgView.layer.cornerRadius = 5
-        imgView.layer.borderWidth = 1
         imgView.layer.borderColor = ThemeManager.current().grayFontColor.CGColor
         view.addSubview(imgView)
-        let label = UILabel(frame: CGRect(x: 10, y: page.frame.height-15-30, width: page.frame.width-20, height: 30))
+        let label = UILabel(frame: CGRect(x: 0, y: page.frame.height-15-30, width: page.frame.width, height: 30))
         label.text = dataSource.leaderActivity[index].title
         label.backgroundColor = Helper.parseColor(0x00000077)
         label.font = UIFont.systemFontOfSize(15)
         label.textColor = ThemeManager.current().whiteFontColor
-        label.layer.cornerRadius = 5
-        label.layer.masksToBounds = true
         view.addSubview(label)
         imgView.gm_setImageWithUrlString(dataSource.leaderActivity[index].logo_path, title: dataSource.leaderActivity[index].title, completedBlock: nil)
         

@@ -62,7 +62,13 @@ class MainViewController: BasePortraitViewController {
         self.navigationItem.rightBarButtonItem = userItem
         
         self.title = "成资一体化"
+        
         tabBarViewController.showIndex(0)
+        
+        var dic = Dictionary<String, AnyObject>()
+        dic.updateValue(ThemeManager.current().whiteFontColor, forKey: NSForegroundColorAttributeName)
+        dic.updateValue(UIFont.systemFontOfSize(22), forKey: NSFontAttributeName)
+        self.navigationController?.navigationBar.titleTextAttributes = dic
     }
     
     deinit{
@@ -117,6 +123,21 @@ class MainViewController: BasePortraitViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        
+        var dic = Dictionary<String, AnyObject>()
+        dic.updateValue(ThemeManager.current().whiteFontColor, forKey: NSForegroundColorAttributeName)
+        dic.updateValue(UIFont(name: "Helvetica-Bold", size: 21)!, forKey: NSFontAttributeName)
+        self.navigationController?.navigationBar.titleTextAttributes = dic
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+//        var dic = Dictionary<String, AnyObject>()
+//        dic.updateValue(ThemeManager.current().whiteFontColor, forKey: NSForegroundColorAttributeName)
+//        dic.updateValue(UIFont(name: "Helvetica-Bold", size: 18)!, forKey: NSFontAttributeName)
+//        self.navigationController?.navigationBar.titleTextAttributes = dic
     }
     
     func initViewController()

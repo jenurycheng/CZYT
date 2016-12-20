@@ -73,6 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var dic = Dictionary<String, AnyObject>()
         dic.updateValue(ThemeManager.current().whiteFontColor, forKey: NSForegroundColorAttributeName)
         bar.titleTextAttributes = dic
+        
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
     }
     
     func initRemoteNotify(){

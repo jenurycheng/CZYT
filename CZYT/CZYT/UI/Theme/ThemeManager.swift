@@ -35,7 +35,7 @@ class ThemeManager: NSObject {
     func initTheme()
     {
         defaultTheme = Theme()
-        defaultTheme.mainColor = Helper.parseColor(0x4392F3FF)
+        defaultTheme.mainColor = Helper.parseColor(0xDD3237FF)
         defaultTheme.secMainColor = Helper.parseColor(0x4392F3FF)
         defaultTheme.navTitleColor = UIColor.whiteColor()
         defaultTheme.backgroundColor = Helper.parseColor(0xF0F0F0FF)

@@ -21,6 +21,7 @@ class HomeCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         nameLabel.textColor = ThemeManager.current().darkGrayFontColor
+        nameLabel.font = UIFont(name: "Helvetica-Bold", size: 16)
         // Initialization code
     }
 

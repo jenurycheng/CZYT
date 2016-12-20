@@ -67,6 +67,14 @@ class ConditionBar: UIView {
         self.addSubview(scrollView)
         scrollView.showsHorizontalScrollIndicator = false
         
+        let leftG = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: ConditionBar.barHeight()))
+        leftG.image = UIImage(named: "gradient_left")
+        self.addSubview(leftG)
+        
+        let rightG = UIImageView(frame: CGRect(x: self.frame.width-80, y: 0, width: 100, height: ConditionBar.barHeight()))
+        rightG.image = UIImage(named: "gradient_right")
+        self.addSubview(rightG)
+        
         titleBtn = UIButton(frame: CGRectMake(10, 0, 65, ConditionBar.barHeight()))
         titleBtn.titleLabel?.font = UIFont.systemFontOfSize(14)
         titleBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: UIControlState.Normal)
@@ -118,9 +126,10 @@ class ConditionBar: UIView {
                 selectedBtn = titleBtn
                 self.updateCornerView(titleBtn.frame)
             }
+            let spacing:CGFloat = 25
             let titleWidth = Helper.getTextSize(title!, font: UIFont.systemFontOfSize(14), size: CGSizeMake(CGFloat(MAXFLOAT), ConditionBar.barHeight())).width
-            titleBtn.frame = CGRectMake(10, 0, titleWidth, ConditionBar.barHeight())
-            var x:CGFloat = titleWidth + 20
+            titleBtn.frame = CGRectMake(10, 0, titleWidth+spacing, ConditionBar.barHeight())
+            var x:CGFloat = titleBtn.frame.origin.x + titleBtn.frame.width
             if Helper.isStringEmpty(title) {
                 x = 10
             }
@@ -129,7 +138,7 @@ class ConditionBar: UIView {
                 let btn:UIButton = UIButton()
                 btn.titleLabel?.font = UIFont.systemFontOfSize(14)
                 var width = Helper.getTextSize(textsArray![i], font: btn.titleLabel!.font, size: CGSizeMake(CGFloat(MAXFLOAT), ConditionBar.barHeight())).width
-                width+=20
+                width+=spacing
                 btn.frame = CGRectMake(x, 0, width, ConditionBar.barHeight())
                 x+=width
                 btn.setTitle(textsArray![i], forState: UIControlState.Normal)
