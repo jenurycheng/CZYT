@@ -20,6 +20,9 @@ class HomeCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        iconImageView.backgroundColor = Helper.parseColor(0x00000022)
+        iconImageView.layer.cornerRadius = 5
+        iconImageView.layer.masksToBounds = true
         nameLabel.textColor = ThemeManager.current().darkGrayFontColor
         nameLabel.font = UIFont(name: "Helvetica-Bold", size: 16)
         // Initialization code
