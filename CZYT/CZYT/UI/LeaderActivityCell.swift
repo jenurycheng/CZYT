@@ -15,8 +15,17 @@ class LeaderActivityCell: UITableViewCell {
     @IBOutlet weak var sourceLabel:UILabel!
     @IBOutlet weak var detailLabel:UILabel!
     @IBOutlet weak var timeLabel:UILabel!
-    class func cellHeight()->CGFloat
+    
+    @IBOutlet weak var imageViewLeadingConstraint:NSLayoutConstraint!
+    @IBOutlet weak var imageViewWidthConstraint:NSLayoutConstraint!
+    
+    class func cellHeight(leader:LeaderActivity)->CGFloat
     {
+        if Helper.isStringEmpty(leader.logo_path)
+        {
+            let height = Helper.getTextSize(leader.summary!, font: UIFont.systemFontOfSize(12), size: CGSize(width: GetSWidth()-16, height: CGFloat.max)).height+10
+            return 70 + height
+        }
         return 150
     }
     
@@ -27,6 +36,14 @@ class LeaderActivityCell: UITableViewCell {
         sourceLabel.text = leader.original
         detailLabel.text = leader.summary
         timeLabel.text = leader.publish_date
+        if Helper.isStringEmpty(leader.logo_path)
+        {
+            imageViewLeadingConstraint.constant = 0
+            imageViewWidthConstraint.constant = 0
+        }else{
+            imageViewLeadingConstraint.constant = 8
+            imageViewWidthConstraint.constant = 125
+        }
     }
     
     override func awakeFromNib() {

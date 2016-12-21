@@ -25,7 +25,7 @@ class BaseActivityViewController: BasePortraitViewController {
         self.title = "领导活动"
         
         conditionView = UIView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: ConditionBar.barHeight()))
-        conditionView.backgroundColor = ThemeManager.current().backgroundColor
+//        conditionView.backgroundColor = ThemeManager.current().backgroundColor
         self.view.addSubview(conditionView)
         conditionBar = ConditionBar(frame: conditionView.bounds)
         conditionBar.delegate = self
@@ -126,7 +126,7 @@ extension BaseActivityViewController : UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return LeaderActivityCell.cellHeight()
+        return LeaderActivityCell.cellHeight(dataSource[indexPath.row])
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

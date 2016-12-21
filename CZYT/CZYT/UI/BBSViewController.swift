@@ -87,7 +87,7 @@ extension BBSViewController : UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 170
+        return BBSCell.cellHeight(dataSource.bbs[indexPath.row])
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

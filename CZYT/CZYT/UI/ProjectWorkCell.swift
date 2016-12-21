@@ -17,9 +17,17 @@ class ProjectWorkCell: UITableViewCell {
     @IBOutlet weak var timeLabel:UILabel!
     @IBOutlet weak var typeLabel:UILabel!
     @IBOutlet weak var accountLabel:UILabel!
+ 
+    @IBOutlet weak var imageViewLeadingConstraint:NSLayoutConstraint!
+    @IBOutlet weak var imageViewWidthConstraint:NSLayoutConstraint!
     
-    class func cellHeight()->CGFloat
+    class func cellHeight(leader:LeaderActivity)->CGFloat
     {
+        if Helper.isStringEmpty(leader.logo_path)
+        {
+            let height = Helper.getTextSize(leader.summary!, font: UIFont.systemFontOfSize(12), size: CGSize(width: GetSWidth()-16, height: CGFloat.max)).height+10
+            return 90 + height
+        }
         return 170
     }
     
@@ -40,6 +48,15 @@ class ProjectWorkCell: UITableViewCell {
         attribute.appendAttributeString("\(account)元", color: UIColor.redColor(), font: UIFont.systemFontOfSize(15))
         
         accountLabel.attributedText = attribute
+        
+        if Helper.isStringEmpty(leader.logo_path)
+        {
+            imageViewLeadingConstraint.constant = 0
+            imageViewWidthConstraint.constant = 0
+        }else{
+            imageViewLeadingConstraint.constant = 8
+            imageViewWidthConstraint.constant = 125
+        }
     }
     
     override func awakeFromNib() {

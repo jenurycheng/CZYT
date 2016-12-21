@@ -19,8 +19,16 @@ class BBSCell: UITableViewCell {
     @IBOutlet weak var scanBtn:UIButton!
     @IBOutlet weak var commentBtn:UIButton!
     
-    class func cellHeight()->CGFloat
+    @IBOutlet weak var imageViewLeadingConstraint:NSLayoutConstraint!
+    @IBOutlet weak var imageViewWidthConstraint:NSLayoutConstraint!
+    
+    class func cellHeight(bbs:BBS)->CGFloat
     {
+        if Helper.isStringEmpty(bbs.logo_path)
+        {
+            let height = Helper.getTextSize(bbs.summary!, font: UIFont.systemFontOfSize(12), size: CGSize(width: GetSWidth()-16, height: CGFloat.max)).height+10
+            return 90 + height
+        }
         return 170
     }
     
@@ -46,6 +54,15 @@ class BBSCell: UITableViewCell {
         }
         
         posterImageView.gm_setImageWithUrlString(bbs.logo_path, title: bbs.title, completedBlock: nil)
+        
+        if Helper.isStringEmpty(bbs.logo_path)
+        {
+            imageViewLeadingConstraint.constant = 0
+            imageViewWidthConstraint.constant = 0
+        }else{
+            imageViewLeadingConstraint.constant = 8
+            imageViewWidthConstraint.constant = 125
+        }
     }
     
     override func awakeFromNib() {

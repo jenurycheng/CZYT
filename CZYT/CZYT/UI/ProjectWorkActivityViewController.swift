@@ -77,7 +77,7 @@ class ProjectWorkActivityViewController: BaseActivityViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return ProjectWorkCell.cellHeight()
+        return ProjectWorkCell.cellHeight(dataSource[indexPath.row])
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
