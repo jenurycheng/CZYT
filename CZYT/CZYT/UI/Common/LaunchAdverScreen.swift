@@ -43,7 +43,8 @@ class LaunchAdverScreen: UIView {
         return single?.superview == nil ? false : true
     }
     
-    var count = 3
+    static let showTime = 3
+    var count = LaunchAdverScreen.showTime
     func timeout(t:NSTimer)
     {
         count = count - 1
@@ -90,7 +91,7 @@ class LaunchAdverScreen: UIView {
     
     func loadImage()
     {
-        count = 3
+        count = LaunchAdverScreen.showTime
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LaunchAdverScreen.timeout(_:)), userInfo: nil, repeats: true)
         
         let imageName = "launch"

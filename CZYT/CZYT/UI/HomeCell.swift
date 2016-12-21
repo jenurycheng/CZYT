@@ -24,6 +24,7 @@ class HomeCell: UICollectionViewCell {
         iconImageView.layer.cornerRadius = 5
         iconImageView.layer.masksToBounds = true
         nameLabel.textColor = ThemeManager.current().darkGrayFontColor
+        nameLabel.font = UIFont(name: "Helvetica-Bold", size: 16)
         // Initialization code
     }
 

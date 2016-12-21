@@ -38,19 +38,18 @@ class HomeViewController: BasePortraitViewController {
         pageView = CCPageView(frame: CGRectMake(0, 0, GetSWidth(), CCPageView.viewHeight()))
         pageView.delegate = self
         pageView.pageControl.backgroundColor = ThemeManager.current().backgroundColor
-        pageView.pageControl.pageIndicatorTintColor = ThemeManager.current().mainColor
-        
         self.getHomeData()
         // Do any additional setup after loading the view.
     }
     
     func getHomeData()
     {
-        dataSource.getLeaderActivity(true, classify: "省级", success: { (result) in
+        dataSource.pageSize = 5
+        dataSource.getHomeActivity({ (result) in
             self.pageView.loadData()
             self.collectionView.mj_header.endRefreshing()
-        }) { (error) in
-            
+            }) { (error) in
+                
         }
     }
     
@@ -264,28 +263,27 @@ extension HomeViewController : CCPageViewDelegate
 {
     func pageCountForPageView(page:CCPageView)->Int
     {
-        return dataSource.leaderActivity.count > 3 ? 3 : dataSource.leaderActivity.count
+        return dataSource.homeActivity.count > 5 ? 5 : dataSource.homeActivity.count
     }
     
     func pageViewForIndex(page:CCPageView, index:Int)->UIView
     {
         let view = UIView(frame: pageView.bounds)
-        let imgView = UIImageView(frame: CGRect(x: 10, y: 10, width: page.frame.width-20, height: page.frame.height-25))
+        let imgView = UIImageView(frame: CGRect(x: 0, y: 0, width: page.frame.width, height: page.frame.height-15))
         imgView.image = UIImage(named: "test")
-        imgView.clipsToBounds = true
-        imgView.layer.cornerRadius = 5
-        imgView.layer.borderWidth = 1
         imgView.layer.borderColor = ThemeManager.current().grayFontColor.CGColor
         view.addSubview(imgView)
-        let label = UILabel(frame: CGRect(x: 10, y: page.frame.height-15-30, width: page.frame.width-20, height: 30))
-        label.text = dataSource.leaderActivity[index].title
-        label.backgroundColor = Helper.parseColor(0x00000077)
+        
+        let labelView = UIView(frame: CGRect(x: 0, y: page.frame.height-15-30, width: page.frame.width, height: 30))
+        labelView.backgroundColor = Helper.parseColor(0x00000077)
+        view.addSubview(labelView)
+        
+        let label = UILabel(frame: CGRect(x: 10, y: 0, width: page.frame.width-20, height: 30))
+        label.text = dataSource.homeActivity[index].title
         label.font = UIFont.systemFontOfSize(15)
         label.textColor = ThemeManager.current().whiteFontColor
-        label.layer.cornerRadius = 5
-        label.layer.masksToBounds = true
-        view.addSubview(label)
-        imgView.gm_setImageWithUrlString(dataSource.leaderActivity[index].logo_path, title: dataSource.leaderActivity[index].title, completedBlock: nil)
+        labelView.addSubview(label)
+        imgView.gm_setImageWithUrlString(dataSource.homeActivity[index].logo_path, title: dataSource.homeActivity[index].title, completedBlock: nil)
         
         return view
     }
@@ -293,7 +291,7 @@ extension HomeViewController : CCPageViewDelegate
     func pageClickedAtIndex(page:CCPageView, index:Int)
     {
         let detail = TimeNewsDetailViewController()
-        detail.id = dataSource.leaderActivity[index].id!
+        detail.id = dataSource.homeActivity[index].id!
         let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
         nav?.pushViewController(detail, animated: true)
     }

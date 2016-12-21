@@ -44,6 +44,35 @@ class LeaderActivityDataSource: NSObject {
         }
     }
     
+    var homeActivity = [LeaderActivity]()
+    func getHomeActivity(success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        let request = NetWorkHandle.NetWorkHandleApp.RequestHomeActivity()
+        request.row_count = "\(pageSize)"
+        request.offset = "0"
+        
+        NetWorkHandle.NetWorkHandleApp.getHomeActivity(request) { (data) in
+            if data.isSuccess()
+            {
+                var rs = [LeaderActivity]()
+                let ar = data.data as? Array<NSDictionary>
+                if ar != nil
+                {
+                    for dic in ar!
+                    {
+                        let r = LeaderActivity.parse(dict: dic)
+                        rs.append(r)
+                    }
+                }
+                self.homeActivity.appendContentsOf(rs)
+
+                success(result: rs)
+            }else{
+                failure(error: data)
+            }
+        }
+    }
+    
     
     var leaderActivity = [LeaderActivity]()
     func getLeaderActivity(isFirst:Bool, classify:String, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))

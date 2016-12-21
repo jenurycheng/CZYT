@@ -68,6 +68,8 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
         
         pageControl = UIPageControl(frame: CGRectMake(0, self.frame.size.height-15, self.frame.size.width, 15))
         pageControl.numberOfPages = pageCount
+        pageControl.pageIndicatorTintColor = UIColor.whiteColor()
+        pageControl.currentPageIndicatorTintColor = ThemeManager.current().mainColor
         self.addSubview(pageControl)
         
         let pan = UIPanGestureRecognizer(target: self, action: #selector(CCPageView.panned(_:)))
