@@ -25,9 +25,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test" translatesAutoresizingMaskIntoConstraints="NO" id="7M0-pV-65q">
-                        <rect key="frame" x="8" y="35" width="125" height="79"/>
+                        <rect key="frame" x="8" y="35" width="121" height="79"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="125" id="Eev-RS-rWf"/>
+                            <constraint firstAttribute="width" constant="121" id="Eev-RS-rWf"/>
                             <constraint firstAttribute="height" constant="79" id="v1f-19-f3p"/>
                         </constraints>
                     </imageView>
@@ -62,7 +62,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在第十七个中国记者节到来之际，中华全国新闻工作者协会第九届理事会第一次会议暨中国新闻奖、长江韬奋奖颁奖会7日在京举行。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="76J-bw-uNM">
-                        <rect key="frame" x="141" y="35" width="209" height="79"/>
+                        <rect key="frame" x="137" y="35" width="213" height="79"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
