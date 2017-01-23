@@ -19,6 +19,7 @@ class ContactViewController: BasePortraitViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "联系人"
         departmentView = DepartmentListView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64))
         departmentView.delegate = self
         contactView = ContactListView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64))

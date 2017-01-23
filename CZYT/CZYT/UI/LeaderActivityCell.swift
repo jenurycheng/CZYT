@@ -49,6 +49,7 @@ class LeaderActivityCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .None
+        detailLabel.numberOfLines = 6
         // Initialization code
     }
 

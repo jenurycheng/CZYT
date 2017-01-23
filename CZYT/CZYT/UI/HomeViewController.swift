@@ -27,7 +27,7 @@ class HomeViewController: BasePortraitViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = UIColor.clearColor()//ThemeManager.current().foregroundColor
-        collectionView.registerNib(UINib(nibName: "HomeCell", bundle: nil), forCellWithReuseIdentifier: "HomeCell")
+        collectionView.registerNib(UINib(nibName: "HomeCell2", bundle: nil), forCellWithReuseIdentifier: "HomeCell2")
         collectionView.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "UICollectionViewCell")
         unowned let weakSelf = self
         collectionView.mj_header = MJRefreshNormalHeader(refreshingBlock: { 
@@ -96,31 +96,18 @@ extension HomeViewController : UICollectionViewDelegate
                 nav?.pushViewController(ac, animated: true)
             }else if indexPath.row == 1
             {
-                let ac = FileActivityViewController()
+                let ac = WorkStatusActivityViewController()
                 nav?.pushViewController(ac, animated: true)
             }
-//            else if indexPath.row == 2
-//            {
-//                let ac = WorkStatusActivityViewController()
-//                nav?.pushViewController(ac, animated: true)
-//            }
             else if indexPath.row == 2
-            {
-                let ac = AreaStatusActivityViewController()
-                nav?.pushViewController(ac, animated: true)
-            }else if indexPath.row == 3
-            {
-                let ac = DepartStatusActivityViewController()
-                nav?.pushViewController(ac, animated: true)
-            }else if indexPath.row == 4
             {
                 let ac = ProjectWorkActivityViewController()
                 nav?.pushViewController(ac, animated: true)
-            }else if indexPath.row == 5
+            }else if indexPath.row == 3
             {
-                let ac = WorkStatusActivityViewController()
+                let ac = FileActivityViewController()
                 nav?.pushViewController(ac, animated: true)
-            }else if indexPath.row == 6
+            }else if indexPath.row == 4
             {
                 if !UserInfo.sharedInstance.isLogin {
                     let user = UserLoginViewController()
@@ -129,21 +116,9 @@ extension HomeViewController : UICollectionViewDelegate
                     nav?.presentViewController(newNav, animated: true, completion: nil)
                     return
                 }
-                let task = TaskViewController()
+                let task = TaskChatViewController()
                 nav?.pushViewController(task, animated: true)
-            }else if indexPath.row == 7
-            {
-                if !UserInfo.sharedInstance.isLogin {
-                    let user = UserLoginViewController()
-                    user.pushToVC = ChatViewController()
-                    let newNav = UINavigationController(rootViewController: user)
-                    nav?.presentViewController(newNav, animated: true, completion: nil)
-                    
-                    return
-                }
-                let ac = ChatViewController()
-                nav?.pushViewController(ac, animated: true)
-            }else if indexPath.row == 8
+            }else if indexPath.row == 5
             {
                 let ac = WebLinkViewController()
                 nav?.pushViewController(ac, animated: true)
@@ -180,7 +155,7 @@ extension HomeViewController : UICollectionViewDataSource
             return 1
         }else if section == 1
         {
-            return 9
+            return 6
         }
         return 0
     }
@@ -193,11 +168,10 @@ extension HomeViewController : UICollectionViewDataSource
             return cell
         } else
         {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeCell", forIndexPath: indexPath) as! HomeCell
-            let images = ["home_leader", "home_file", "home_area", "home_depart", "home_project", "home_status", "home_task", "home_chat", "home_link"]
-            let names = ["时政新闻", "政策文件", "县区动态", "部门动态", "重点项目", "临空新区", "督查督办", "热点话题", "友情链接"]
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeCell2", forIndexPath: indexPath) as! HomeCell2
+            let images = ["home_leader", "home_status", "home_project", "home_file", "home_task", "home_link"]
+            let names = ["时政新闻", "动态消息", "重点项目", "政策文件", "督办交流", "友情链接"]
             cell.iconImageView.image = UIImage(named: images[indexPath.row])
-            cell.nameLabel.text = names[indexPath.row]
             return cell
         }
         
@@ -213,7 +187,7 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout
             return CGSizeMake(GetSWidth(), CCPageView.viewHeight())
         }else if indexPath.section == 1
         {
-            return HomeCell.cellSize()
+            return HomeCell2.cellSize()
         }
         return CGSizeZero
     }
@@ -221,14 +195,14 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets
     {
         if section == 1 {
-            return UIEdgeInsetsMake(10, 20, 10, 20)
+            return UIEdgeInsetsMake(30, 10, 10, 10)
         }
         return UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat
     {
-        return 5
+        return 20
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat

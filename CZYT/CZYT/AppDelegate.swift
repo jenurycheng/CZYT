@@ -176,6 +176,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        //        return XMShareApi.handleOpenUrl(url, delegate: nil)
+        //调用其他SDK
+        let path = url.absoluteString
+        //其它应用传过来的文件
+        if path.hasPrefix("file://") {
+            let hub = MBProgressHUD.showMessag("正在储存", toView: window)
+            FileSharedManager.sharedManager().wirteToFile(url, callback: { (b, msg) in
+                hub.hide(false)
+                MBProgressHUD.showMessag("已储存到成资合作", toView: self.window, showTimeSec: 1)
+            })
+        }
+        return true
+    }
 }
 
 extension AppDelegate : RCIMUserInfoDataSource, RCIMGroupInfoDataSource

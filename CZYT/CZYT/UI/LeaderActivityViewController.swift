@@ -18,6 +18,12 @@ class LeaderActivityViewController: BaseActivityViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func search()
+    {
+        let search = TimeNewsSearchViewController()
+        self.navigationController?.pushViewController(search, animated: true)
+    }
+    
     override func loadData()
     {
         if self.conditions.count == 0
@@ -38,7 +44,7 @@ class LeaderActivityViewController: BaseActivityViewController {
         {
             self.view.showHud()
         }
-        lDataSource.getLeaderActivity(true, classify: classify, success: { (result) in
+        lDataSource.getLeaderActivity(true, classify: classify, key: self.searchText, success: { (result) in
             self.dataSource = self.lDataSource.leaderActivity
             self.tableView.mj_header.endRefreshing()
             self.tableView.mj_footer.endRefreshing()
@@ -56,7 +62,7 @@ class LeaderActivityViewController: BaseActivityViewController {
     
     override func loadMore()
     {
-        lDataSource.getLeaderActivity(false, classify: classify, success: { (result) in
+        lDataSource.getLeaderActivity(false, classify: classify, key: self.searchText, success: { (result) in
             self.dataSource = self.lDataSource.leaderActivity
             self.tableView.mj_footer.endRefreshing()
             self.tableView.reloadData()

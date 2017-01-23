@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="FileCollectionCell" customModule="CZYT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="265" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="265" height="50"/>
+                <subviews>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vdt-9P-nhq">
+                        <rect key="frame" x="8" y="0.0" width="197" height="50"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="添加附件">
+                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mem-u2-75X">
+                        <rect key="frame" x="215" y="0.0" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Mem-u2-75X" secondAttribute="height" multiplier="1:1" id="aZ1-nK-geB"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                        <state key="normal" image="data_error"/>
+                        <connections>
+                            <action selector="deleteBtnClicked" destination="gTV-IL-0wX" eventType="touchUpInside" id="hia-oy-WaA"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Vdt-9P-nhq" secondAttribute="bottom" id="3cK-1a-QHt"/>
+                <constraint firstAttribute="trailing" secondItem="Vdt-9P-nhq" secondAttribute="trailing" constant="60" id="BLm-Us-iZO"/>
+                <constraint firstAttribute="bottom" secondItem="Mem-u2-75X" secondAttribute="bottom" id="VXS-XX-yLY"/>
+                <constraint firstItem="Vdt-9P-nhq" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="WKi-4Y-WwM"/>
+                <constraint firstAttribute="trailing" secondItem="Mem-u2-75X" secondAttribute="trailing" id="eE4-Nb-Q0A"/>
+                <constraint firstItem="Mem-u2-75X" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="tFt-cP-MqN"/>
+                <constraint firstItem="Vdt-9P-nhq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="wmA-x8-bhl"/>
+            </constraints>
+            <size key="customSize" width="265" height="50"/>
+            <connections>
+                <outlet property="addBtn" destination="Vdt-9P-nhq" id="1Yj-A9-bGP"/>
+                <outlet property="deleteBtn" destination="Mem-u2-75X" id="6k9-zN-ED0"/>
+            </connections>
+            <point key="canvasLocation" x="303.5" y="169"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="data_error" width="36" height="36"/>
+    </resources>
+</document>

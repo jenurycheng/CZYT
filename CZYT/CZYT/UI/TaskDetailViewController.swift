@@ -64,6 +64,7 @@ class TaskDetailViewController: BasePortraitViewController {
         collectionView.scrollEnabled = false
         collectionView.registerNib(UINib(nibName: "TaskResultTopCell", bundle: nil), forCellWithReuseIdentifier: "TaskResultTopCell")
         collectionView.registerNib(UINib(nibName: "ImageCollectionCell", bundle: nil), forCellWithReuseIdentifier: "ImageCollectionCell")
+        collectionView.registerNib(UINib(nibName: "FileCollectionCell", bundle: nil), forCellWithReuseIdentifier: "FileCollectionCell")
         collectionView.backgroundColor = ThemeManager.current().foregroundColor
         collectionView.registerClass(UICollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "UICollectionReusableView")
         
@@ -72,6 +73,10 @@ class TaskDetailViewController: BasePortraitViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if dataSource.taskDetail != nil && dataSource.taskDetail!.task_status! == "finished"
+        {
+            return
+        }
         self.getData()
     }
     
@@ -161,6 +166,10 @@ class TaskDetailViewController: BasePortraitViewController {
     
     func updateView()
     {
+        if !Helper.isStringEmpty(dataSource.taskDetail?.task_status_name) && self.statusLabel.text == dataSource.taskDetail?.task_status_name
+        {
+            return
+        }
         self.titleLabel.text = dataSource.taskDetail?.task_title
         self.statusLabel.text = dataSource.taskDetail?.task_status_name
         self.timeLabel.text = dataSource.taskDetail?.task_end_date
@@ -349,6 +358,14 @@ extension TaskDetailViewController : UICollectionViewDelegate
             browser.currentPhotoIndex = UInt(indexPath.row)
             browser.photos = photoArray as [AnyObject]
             browser.show()
+        }else if indexPath.section == 2
+        {
+            let web = WebShowViewController()
+            var path = self.dataSource.taskDetail!.task_comment!.files![indexPath.row].file_path!
+//            path = path.stringByRemovingPercentEncoding!
+            path = path.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+            web.url = NSURL(string: path)
+            self.navigationController?.pushViewController(web, animated: true)
         }
     }
 }
@@ -362,11 +379,7 @@ extension TaskDetailViewController : UICollectionViewDataSource
         {
             return 1
         }else{
-            if dataSource.taskDetail?.task_comment?.photos == nil || dataSource.taskDetail!.task_comment!.photos!.count == 0
-            {
-                return 1
-            }
-            return 2
+            return 3
         }
     }
     
@@ -388,8 +401,10 @@ extension TaskDetailViewController : UICollectionViewDataSource
         if section == 0
         {
             return dataSource.taskDetail == nil ? 0 : 1
-        }else{
+        }else if section == 1{
             return dataSource.taskDetail?.task_comment?.photos?.count == nil ? 0 : dataSource.taskDetail!.task_comment!.photos!.count
+        }else{
+            return dataSource.taskDetail?.task_comment?.files?.count == nil ? 0 : dataSource.taskDetail!.task_comment!.files!.count
         }
     }
     
@@ -399,10 +414,16 @@ extension TaskDetailViewController : UICollectionViewDataSource
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("TaskResultTopCell", forIndexPath: indexPath) as! TaskResultTopCell
             cell.update(self.dataSource.taskDetail!)
             return cell
-        }else{
+        }else if indexPath.section == 1{
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCollectionCell", forIndexPath: indexPath) as! ImageCollectionCell
             cell.deleteBtn.hidden = true
             cell.updatePhoto(dataSource.taskDetail!.task_comment!.photos![indexPath.row])
+            return cell
+        }else
+        {
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("FileCollectionCell", forIndexPath: indexPath) as! FileCollectionCell
+            cell.deleteBtn.hidden = true
+            cell.updateFile(dataSource.taskDetail!.task_comment!.files![indexPath.row])
             return cell
         }
     }
@@ -416,8 +437,11 @@ extension TaskDetailViewController : UICollectionViewDelegateFlowLayout
         if indexPath.section == 0
         {
             return TaskResultTopCell.cellSize(self.dataSource.taskDetail?.task_comment?.taskcomment_content)
-        }else{
+        }else if indexPath.section == 1{
             return ImageCollectionCell.cellSize()
+        }else
+        {
+            return FileCollectionCell.cellSize()
         }
     }
     
@@ -442,7 +466,7 @@ extension TaskDetailViewController : UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize
     {
-        if section == 1
+        if section == 1 || section == 2
         {
             return CGSize(width: GetSWidth(), height: 1)
         }

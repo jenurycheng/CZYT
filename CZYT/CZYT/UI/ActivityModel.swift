@@ -18,6 +18,7 @@ class LeaderActivity: Reflect {
     var original:String?
     var type:String?
     var amount:String?
+    var progress:String?
 }
 
 class LeaderType : Reflect
@@ -37,6 +38,11 @@ class LeaderActivityDetail: Reflect {
     var content:String = ""
     var type:String?
     var amount:String?
+    var progress:String?
+    var basic:String?
+    var requirement:String?
+    var promotion:String?
+    var problem:String?
 }
 
 class WebLink : Reflect

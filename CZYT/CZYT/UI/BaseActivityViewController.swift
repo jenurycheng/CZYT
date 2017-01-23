@@ -10,6 +10,8 @@ import UIKit
 
 class BaseActivityViewController: BasePortraitViewController {
 
+    var searchBar:UISearchBar!
+    var searchText:String = ""
     var conditionView:UIView!
     var tableView:UITableView!
     var provinceBtn:UIButton!
@@ -24,14 +26,19 @@ class BaseActivityViewController: BasePortraitViewController {
         super.viewDidLoad()
         self.title = "领导活动"
         
-        conditionView = UIView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: ConditionBar.barHeight()))
+        searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: 40))
+        searchBar.delegate = self
+        searchBar.placeholder = "输入搜索内容"
+        self.view.addSubview(searchBar)
+        
+        conditionView = UIView(frame: CGRect(x: 0, y: 40, width: GetSWidth(), height: ConditionBar.barHeight()))
 //        conditionView.backgroundColor = ThemeManager.current().backgroundColor
         self.view.addSubview(conditionView)
         conditionBar = ConditionBar(frame: conditionView.bounds)
         conditionBar.delegate = self
         conditionView.addSubview(conditionBar)
         
-        tableView = UITableView(frame: CGRect(x: 0, y: 40, width: GetSWidth(), height: GetSHeight()-64-40))
+        tableView = UITableView(frame: CGRect(x: 0, y: 80, width: GetSWidth(), height: GetSHeight()-64-80))
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerNib(UINib(nibName: "LeaderActivityCell", bundle: nil), forCellReuseIdentifier: "LeaderActivityCell")
@@ -46,7 +53,15 @@ class BaseActivityViewController: BasePortraitViewController {
         })
         
         self.loadData()
+        
+//        let searchItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(BaseActivityViewController.search))
+//        self.navigationItem.rightBarButtonItem = searchItem
         // Do any additional setup after loading the view.
+    }
+    
+    func search()
+    {
+        
     }
     
     var btns = [UIButton]()
@@ -117,6 +132,10 @@ extension BaseActivityViewController : ConditionBarDelegate
 
 extension BaseActivityViewController : UITableViewDelegate, UITableViewDataSource
 {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        self.searchBar.resignFirstResponder()
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
@@ -133,5 +152,29 @@ extension BaseActivityViewController : UITableViewDelegate, UITableViewDataSourc
         let cell = tableView.dequeueReusableCellWithIdentifier("LeaderActivityCell") as! LeaderActivityCell
         cell.update(dataSource[indexPath.row])
         return cell
+    }
+}
+
+extension BaseActivityViewController : UISearchBarDelegate
+{
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        if searchBar.text != nil
+        {
+            self.searchText = searchBar.text!
+        }else{
+            self.searchText = ""
+        }
+        self.loadData()
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        self.searchText = searchText
+        if searchText == ""
+        {
+            self.searchText = ""
+            self.loadData()
+        }
     }
 }

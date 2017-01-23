@@ -20,6 +20,7 @@ class SubmitTaskViewController: BasePortraitViewController {
     var dataSource = TaskDataSource()
     
     var images = [UIImage]()
+    var files = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,7 @@ class SubmitTaskViewController: BasePortraitViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.registerNib(UINib(nibName: "ImageCollectionCell", bundle: nil), forCellWithReuseIdentifier: "ImageCollectionCell")
+        collectionView.registerNib(UINib(nibName: "FileCollectionCell", bundle: nil), forCellWithReuseIdentifier: "FileCollectionCell")
         collectionView.backgroundColor = ThemeManager.current().backgroundColor
         let tap1 = UITapGestureRecognizer(target: self, action: #selector(PublishTaskViewController.endEdit))
         
@@ -44,6 +46,15 @@ class SubmitTaskViewController: BasePortraitViewController {
         
         self.contentTextView.becomeFirstResponder()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if ResourceDocumentFileView.selectedPath != nil {
+            self.files.append(ResourceDocumentFileView.selectedPath!)
+            ResourceDocumentFileView.selectedPath = nil
+            self.collectionView.reloadData()
+        }
     }
     
     override func backItemBarClicked(item: UIBarButtonItem) {
@@ -73,10 +84,11 @@ class SubmitTaskViewController: BasePortraitViewController {
         if Helper.isStringEmpty(text)
         {
             MBProgressHUD.showMessag("请输入内容", toView: self.view, showTimeSec: 1)
+            return;
         }
         
         let hub = MBProgressHUD.showMessag("提交中", toView: self.view)
-        dataSource.finishTask(self.id!, text: text, photos: images, success: { (result) in
+        dataSource.finishTask(self.id!, text: text, photos: images, files: files, success: { (result) in
             hub.hide(false)
             MBProgressHUD.showSuccess("提交成功", toView: self.view.window)
             self.navigationController?.popViewControllerAnimated(true)
@@ -97,27 +109,43 @@ extension SubmitTaskViewController : UICollectionViewDelegate
             contentTextView.resignFirstResponder()
             return
         }
-        if indexPath.row == images.count
+        
+        if indexPath.section == 0
         {
-            let actionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "拍照", "相册")
-            actionSheet.showInView(self.view)
-        }else{
-            let photoArray = NSMutableArray()
-            
-            for i in 0 ..< images.count
+        
+            if indexPath.row == images.count
             {
-                let cell = collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: i, inSection: 0)) as! ImageCollectionCell
-                let photo = MJPhoto()
-                photo.url = NSURL()
-                photo.srcImageView = cell.imageView
-                photo.image = images[i]
-                photoArray.addObject(photo)
+                let actionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "拍照", "相册")
+                actionSheet.showInView(self.view)
+            }else{
+                let photoArray = NSMutableArray()
+                
+                for i in 0 ..< images.count
+                {
+                    let cell = collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: i, inSection: 0)) as! ImageCollectionCell
+                    let photo = MJPhoto()
+                    photo.url = NSURL()
+                    photo.srcImageView = cell.imageView
+                    photo.image = images[i]
+                    photoArray.addObject(photo)
+                }
+                let browser = MJPhotoBrowser()
+                browser.showPushBtn = false
+                browser.currentPhotoIndex = UInt(indexPath.row)
+                browser.photos = photoArray as [AnyObject]
+                browser.show()
             }
-            let browser = MJPhotoBrowser()
-            browser.showPushBtn = false
-            browser.currentPhotoIndex = UInt(indexPath.row)
-            browser.photos = photoArray as [AnyObject]
-            browser.show()
+        }else{
+            if indexPath.row == files.count
+            {
+                let select = SelectFileViewController()
+                self.navigationController?.pushViewController(select, animated: true)
+            }else{
+                //browse
+                let web = WebShowViewController()
+                web.url = NSURL.fileURLWithPath(files[indexPath.row])
+                self.navigationController?.pushViewController(web, animated: true)
+            }
         }
     }
 }
@@ -150,28 +178,47 @@ extension SubmitTaskViewController : UICollectionViewDataSource
 {
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
     {
-        return 1
+        return 2
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return images.count + 1
+        if section == 0
+        {
+            return images.count + 1
+        }
+        return files.count + 1
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCollectionCell", forIndexPath: indexPath) as! ImageCollectionCell
-        cell.delegate = self
-        if indexPath.row < images.count
+        if indexPath.section == 0
         {
-            cell.updateView(images[indexPath.row])
-            cell.deleteBtn.hidden = false
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCollectionCell", forIndexPath: indexPath) as! ImageCollectionCell
+            cell.delegate = self
+            if indexPath.row < images.count
+            {
+                cell.updateView(images[indexPath.row])
+                cell.deleteBtn.hidden = false
+            }else{
+                cell.updateView(UIImage(named: "add_photo")!)
+                cell.deleteBtn.hidden = true
+            }
+            
+            return cell
         }else{
-            cell.updateView(UIImage(named: "add_photo")!)
-            cell.deleteBtn.hidden = true
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("FileCollectionCell", forIndexPath: indexPath) as! FileCollectionCell
+            cell.delegate = self
+            if indexPath.row < files.count
+            {
+                cell.update(files[indexPath.row])
+                cell.deleteBtn.hidden = false
+            }else{
+                cell.addBtn.setTitle("添加附件", forState: .Normal)
+                cell.deleteBtn.hidden = true
+            }
+            return cell
         }
-        
-        return cell
     }
 }
 
@@ -184,21 +231,44 @@ extension SubmitTaskViewController : ImageCollectionCellDelegate
     }
 }
 
+extension SubmitTaskViewController : FileCollectionCellDelegate
+{
+    func fileDeleteBtnClicked(cell: FileCollectionCell) {
+        let index = collectionView.indexPathForCell(cell)
+        files.removeAtIndex(index!.row)
+        collectionView.reloadData()
+    }
+}
+
 //MARK: UICollectionViewDelegateFlowLayout
 extension SubmitTaskViewController : UICollectionViewDelegateFlowLayout
 {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
     {
-        return ImageCollectionCell.cellSize()
+        if indexPath.section == 0
+        {
+            return ImageCollectionCell.cellSize()
+        }else{
+            return FileCollectionCell.cellSize()
+        }
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets
     {
-        return UIEdgeInsetsMake(20, 10, 20, 10)
+        if section == 0
+        {
+            return UIEdgeInsetsMake(20, 10, 20, 10)
+        }else{
+            return UIEdgeInsetsMake(0, 0, 0, 0)
+        }
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat
     {
+        if section == 1
+        {
+            return 5
+        }
         return 10
     }
     

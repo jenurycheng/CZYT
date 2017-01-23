@@ -90,10 +90,18 @@ class TaskResult : Reflect
     var taskcomment_user_name:String?
     var taskcomment_date:String?
     var photos:[TaskPhoto]?
+    var files:[TaskFile]?
 }
 
 class TaskPhoto : Reflect
 {
     var photo_path:String?
     var photo_thumbnail_path:String?
+}
+
+class TaskFile : Reflect
+{
+    var file_path:String?
+    var file_name:String?
+    var file_type:String?
 }

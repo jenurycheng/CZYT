@@ -10,7 +10,6 @@ import UIKit
 
 extension NetWorkHandle
 {
-    
     class NetWorkHandleTask: NSObject {
         
         static var Address_PublishTask = "PublishTask?"
@@ -20,6 +19,10 @@ extension NetWorkHandle
         static var Address_AcceptTask = "AcceptTask?"
         static var Address_FinishTask = "FinishTask?"
         static var Address_AssignTask = "AssignTask"
+        
+        static var Address_TaskNotify = "TaskNotificationList"
+        static var Address_TaskNotifySearch = "TaskNotificationSearch"
+        static var Address_TaskNotifyDetail = "TaskNotificationItem"
         
         class RequestPublishTask : Reflect
         {
@@ -77,11 +80,19 @@ extension NetWorkHandle
             var photo_content:String?
         }
         
+        class RequestFinishTaskFile : Reflect
+        {
+            var file_name:String?
+            var file_suffix:String?
+            var file_content:String?
+        }
+        
         class RequestFinishTask : Reflect
         {
             var task_id:String?
             var task_comment:String?
             var photos = [RequestFinishTaskPhoto]()
+            var files = [RequestFinishTaskFile]()
         }
         
         class func finishTask(request:RequestFinishTask?, finish:((HttpResponseData)->Void)) {
@@ -97,6 +108,28 @@ extension NetWorkHandle
         class func assignTask(request: RequestAssignTask?, finish:((HttpResponseData)->Void))
         {
             NetWorkHandle.PublicNetWorkAccess(Address_AssignTask, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
+        
+        class RequestTaskNotify : Reflect
+        {
+            var classify:String?
+            var offset:String?
+            var row_count:String?
+            var key:String?
+        }
+        class func getTaskNotifyList(request: RequestTaskNotify?, finish:((HttpResponseData)->Void))
+        {
+            NetWorkHandle.PublicNetWorkAccess(Address_TaskNotify, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+            
+        }
+        
+        class RequestTaskNotifyDetail : Reflect
+        {
+            var id:String?
+        }
+        class func getTaskNotifyDetail(request: RequestTaskNotifyDetail?, finish:((HttpResponseData)->Void))
+        {
+            NetWorkHandle.PublicNetWorkAccess(Address_TaskNotifyDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
         }
     }
     

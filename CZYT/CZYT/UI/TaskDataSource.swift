@@ -123,7 +123,7 @@ class TaskDataSource: NSObject {
         }
     }
     
-    func finishTask(id:String, text:String, photos:[UIImage], success:((result:String) -> Void), failure:((error:HttpResponseData)->Void))
+    func finishTask(id:String, text:String, photos:[UIImage], files:[String], success:((result:String) -> Void), failure:((error:HttpResponseData)->Void))
     {
         dispatch_async(dispatch_get_global_queue(0, 0)) { 
             let request = NetWorkHandle.NetWorkHandleTask.RequestFinishTask()
@@ -136,6 +136,18 @@ class TaskDataSource: NSObject {
                 photo.photo_content = Helper.imageToBase64(p)
                 request.photos.append(photo)
             }
+            for f in files
+            {
+                let file = NetWorkHandle.NetWorkHandleTask.RequestFinishTaskFile()
+                let s:NSString = f
+                file.file_name = s.lastPathComponent.componentsSeparatedByString(".")[0]
+                file.file_suffix = s.lastPathComponent.componentsSeparatedByString(".")[1]
+                let data:NSData = NSData(contentsOfURL: NSURL.fileURLWithPath(f))!
+                let base = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithCarriageReturn)
+                file.file_content = base
+                request.files.append(file)
+            }
+            
             NetWorkHandle.NetWorkHandleTask.finishTask(request) { (data) in
                 if data.isSuccess()
                 {
@@ -176,4 +188,63 @@ class TaskDataSource: NSObject {
             }
         }
     }
+    
+    var notify = [LeaderActivity]()
+    func getTaskNotify(isFirst:Bool, key:String? = nil, classify:String?, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        let request = NetWorkHandle.NetWorkHandleTask.RequestTaskNotify()
+        request.offset = "\(self.notify.count)"
+        request.row_count = "\(pageSize)"
+        request.classify = classify
+        if isFirst {
+            request.offset = "0"
+        }
+        
+        NetWorkHandle.NetWorkHandleTask.getTaskNotifyList(request) { (data) in
+            if data.isSuccess()
+            {
+                var rs = [LeaderActivity]()
+                let ar = data.data as? Array<NSDictionary>
+                if ar != nil
+                {
+                    for dic in ar!
+                    {
+                        let r = LeaderActivity.parse(dict: dic)
+                        rs.append(r)
+                    }
+                }
+                self.notify.appendContentsOf(rs)
+                if isFirst
+                {
+                    self.notify = rs
+                }
+                success(result: rs)
+            }else{
+                failure(error: data)
+            }
+        }
+    }
+    
+    var notifyDetail:LeaderActivityDetail?
+    func getTaskNotifyDetail(id:String, success:((result:LeaderActivityDetail) -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        let request = NetWorkHandle.NetWorkHandleTask.RequestTaskNotifyDetail()
+        request.id = id
+        NetWorkHandle.NetWorkHandleTask.getTaskNotifyDetail(request) { (data) in
+            if data.isSuccess()
+            {
+                if data.data as? NSDictionary != nil
+                {
+                    let d = LeaderActivityDetail.parse(dict: data.data as! NSDictionary)
+                    self.notifyDetail = d
+                    success(result: d)
+                }else{
+                    failure(error: data)
+                }
+            }else{
+                failure(error: data)
+            }
+        }
+    }
+    
 }

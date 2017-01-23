@@ -13,6 +13,7 @@ class ChatListViewController: RCConversationListViewController {
         //重写显示相关的接口，必须先调用super，否则会屏蔽SDK默认的处理
         self.view.frame = CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64)
         super.viewDidLoad()
+        self.title = "会话"
         self.automaticallyAdjustsScrollViewInsets = false
         self.conversationListTableView.separatorStyle = .SingleLine
         

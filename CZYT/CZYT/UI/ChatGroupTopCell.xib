@@ -15,10 +15,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p7n-bR-WCF">
-                        <rect key="frame" x="20" y="0.0" width="140" height="120"/>
+                        <rect key="frame" x="20" y="0.0" width="280" height="120"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHK-jo-pEN">
-                                <rect key="frame" x="40" y="20" width="60" height="60"/>
+                                <rect key="frame" x="110" y="20" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="qBo-aB-ZoG"/>
                                     <constraint firstAttribute="width" constant="60" id="u6p-SM-Uok"/>
@@ -30,7 +30,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新建讨论组" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMf-ei-8yT">
-                                <rect key="frame" x="20" y="90" width="100" height="18"/>
+                                <rect key="frame" x="90" y="90" width="100" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="sYC-hn-yZ4"/>
                                 </constraints>
@@ -47,56 +47,18 @@
                             <constraint firstItem="gHK-jo-pEN" firstAttribute="centerX" secondItem="p7n-bR-WCF" secondAttribute="centerX" id="vxh-O8-Wn5"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nx9-8g-IAz">
-                        <rect key="frame" x="160" y="0.0" width="140" height="119.5"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pFE-ms-MBm">
-                                <rect key="frame" x="40" y="20" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="MQZ-kg-qVG"/>
-                                    <constraint firstAttribute="height" constant="60" id="fFJ-fH-p50"/>
-                                </constraints>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="10"/>
-                                <state key="normal" image="chat_bbs"/>
-                                <connections>
-                                    <action selector="bbsBtnClicked" destination="KGk-i7-Jjw" eventType="touchUpInside" id="c98-7k-QvD"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="他山之石" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4P-vO-XZx">
-                                <rect key="frame" x="20" y="90" width="100" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="XmA-0t-89z"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="pFE-ms-MBm" firstAttribute="centerX" secondItem="nx9-8g-IAz" secondAttribute="centerX" id="Sfb-DV-4xz"/>
-                            <constraint firstItem="A4P-vO-XZx" firstAttribute="top" secondItem="pFE-ms-MBm" secondAttribute="bottom" constant="10" id="Y3R-42-Qdf"/>
-                            <constraint firstItem="A4P-vO-XZx" firstAttribute="centerX" secondItem="nx9-8g-IAz" secondAttribute="centerX" id="qg9-4d-8Jl"/>
-                            <constraint firstItem="pFE-ms-MBm" firstAttribute="top" secondItem="nx9-8g-IAz" secondAttribute="top" constant="20" id="r4o-dE-x7m"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="p7n-bR-WCF" secondAttribute="bottom" id="18w-jA-NPt"/>
-                    <constraint firstAttribute="bottom" secondItem="nx9-8g-IAz" secondAttribute="bottom" id="4S8-en-HDN"/>
-                    <constraint firstItem="nx9-8g-IAz" firstAttribute="width" secondItem="p7n-bR-WCF" secondAttribute="width" id="5Hv-eH-aNf"/>
                     <constraint firstItem="p7n-bR-WCF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="7tY-0H-tox"/>
-                    <constraint firstItem="nx9-8g-IAz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="IIy-Js-Pnw"/>
-                    <constraint firstAttribute="trailing" secondItem="nx9-8g-IAz" secondAttribute="trailing" constant="20" id="Vaq-Nc-NaK"/>
+                    <constraint firstAttribute="trailing" secondItem="p7n-bR-WCF" secondAttribute="trailing" constant="20" id="Ajm-IO-SHd"/>
                     <constraint firstItem="p7n-bR-WCF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="hcE-B5-N6Y"/>
-                    <constraint firstItem="nx9-8g-IAz" firstAttribute="leading" secondItem="p7n-bR-WCF" secondAttribute="trailing" id="qqK-mc-7I9"/>
                 </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="195" y="213"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="chat_bbs" width="192" height="141"/>
         <image name="group_add" width="198" height="117"/>
     </resources>
 </document>

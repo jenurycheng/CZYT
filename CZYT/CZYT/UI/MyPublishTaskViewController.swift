@@ -17,7 +17,7 @@ class MyPublishTaskViewController: BasePortraitViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = "我发布的"
         MyPublishTaskViewController.shouldReload = true
         
         self.view.backgroundColor = ThemeManager.current().foregroundColor

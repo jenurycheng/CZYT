@@ -20,6 +20,11 @@ class ProjectWorkActivityViewController: BaseActivityViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func search() {
+        let search = ProjectWorkSearchViewController()
+        self.navigationController?.pushViewController(search, animated: true)
+    }
+    
     override func loadData()
     {
         if self.conditions.count == 0
@@ -40,7 +45,7 @@ class ProjectWorkActivityViewController: BaseActivityViewController {
         {
             self.view.showHud()
         }
-        lDataSource.getProjectWorkActivity(true, classify: classify, success: { (result) in
+        lDataSource.getProjectWorkActivity(true, classify: classify, key: self.searchText, success: { (result) in
             self.dataSource = self.lDataSource.projectWorkActivity
             self.tableView.mj_header.endRefreshing()
             self.tableView.mj_footer.endRefreshing()
@@ -57,7 +62,7 @@ class ProjectWorkActivityViewController: BaseActivityViewController {
     
     override func loadMore()
     {
-        lDataSource.getProjectWorkActivity(false, classify: classify, success: { (result) in
+        lDataSource.getProjectWorkActivity(false, classify: classify, key: self.searchText, success: { (result) in
             self.dataSource = self.lDataSource.projectWorkActivity
             self.tableView.mj_footer.endRefreshing()
             self.tableView.reloadData()

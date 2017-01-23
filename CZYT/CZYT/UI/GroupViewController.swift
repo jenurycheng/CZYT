@@ -18,6 +18,7 @@ class GroupViewController: BasePortraitViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "讨论组"
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64))
         tableView.delegate = self
         tableView.dataSource = self

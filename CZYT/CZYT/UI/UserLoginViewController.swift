@@ -35,7 +35,7 @@ class UserLoginViewController: BasePortraitViewController {
         self.view.addSubview(logoImageView)
         
         nameLabel = UILabel(frame: CGRect(x: 0, y: logoImageView.frame.origin.y + logoImageView.frame.height + 10, width: GetSWidth(), height: 20))
-        nameLabel.text = "成资一体化"
+        nameLabel.text = "成资合作"
         nameLabel.textColor = ThemeManager.current().mainColor
         nameLabel.textAlignment = .Center
         self.view.addSubview(nameLabel)

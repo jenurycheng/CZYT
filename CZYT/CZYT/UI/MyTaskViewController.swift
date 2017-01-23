@@ -16,7 +16,7 @@ class MyTaskViewController: BasePortraitViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = "我的任务"
         MyTaskViewController.shouldReload = true
         
         self.view.backgroundColor = ThemeManager.current().foregroundColor

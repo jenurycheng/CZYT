@@ -15,6 +15,7 @@ class LeaderActivityDataSource: NSObject {
     static let Type_WorkStatus = "WorkStatus"
     static let Type_ProjectWork = "ProjectWork"
     static let Type_BBSList = "Exchange"
+    static let Type_TaskNotify = "TaskNotification"
     
     var pageSize = 10
     
@@ -75,12 +76,13 @@ class LeaderActivityDataSource: NSObject {
     
     
     var leaderActivity = [LeaderActivity]()
-    func getLeaderActivity(isFirst:Bool, classify:String, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getLeaderActivity(isFirst:Bool, classify:String, key:String? = nil, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestLeaderActivity()
         request.classify = classify
         request.offset = "\(self.leaderActivity.count)"
         request.row_count = "\(pageSize)"
+        request.key = key
         if isFirst {
             request.offset = "0"
         }
@@ -134,12 +136,13 @@ class LeaderActivityDataSource: NSObject {
     }
     
     var fileActivity = [LeaderActivity]()
-    func getFileActivity(isFirst:Bool, classify:String, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getFileActivity(isFirst:Bool, classify:String, key:String? = nil, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestFileActivity()
         request.classify = classify
         request.offset = "\(self.fileActivity.count)"
         request.row_count = "\(pageSize)"
+        request.key = key
         if isFirst {
             request.offset = "0"
         }
@@ -193,12 +196,13 @@ class LeaderActivityDataSource: NSObject {
     }
     
     var workStatusActivity = [LeaderActivity]()
-    func getWorkStatusActivity(isFirst:Bool, classify:String, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getWorkStatusActivity(isFirst:Bool, classify:String, key:String? = nil, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestWorkStatusActivity()
         request.classify = classify
         request.offset = "\(self.workStatusActivity.count)"
         request.row_count = "\(pageSize)"
+        request.key = key
         if isFirst {
             request.offset = "0"
         }
@@ -368,12 +372,13 @@ class LeaderActivityDataSource: NSObject {
     }
     
     var projectWorkActivity = [LeaderActivity]()
-    func getProjectWorkActivity(isFirst:Bool, classify:String, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getProjectWorkActivity(isFirst:Bool, classify:String, key:String? = nil, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestProjectWorkActivity()
         request.classify = classify
         request.offset = "\(self.projectWorkActivity.count)"
         request.row_count = "\(pageSize)"
+        request.key = key
         if isFirst {
             request.offset = "0"
         }

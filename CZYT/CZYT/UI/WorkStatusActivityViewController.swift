@@ -14,33 +14,39 @@ class WorkStatusActivityViewController: BaseActivityViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "临空新区"
-        self.conditionBar.hidden = true
-        tableView.frame = CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64)
+        self.title = "动态消息"
+//        self.conditionBar.hidden = true
+//        tableView.frame = CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64)
         // Do any additional setup after loading the view.
+    }
+    
+    override func search()
+    {
+        let search = WorkStatusSearchViewController()
+        self.navigationController?.pushViewController(search, animated: true)
     }
     
     override func loadData()
     {
-//        if self.conditions.count == 0
-//        {
-//            lDataSource.getModelType(LeaderActivityDataSource.Type_WorkStatus, success: { (result) in
-//                var array = [String]()
-//                for r in result
-//                {
-//                    array.append(r.value!)
-//                }
-//                self.setCondition(array)
-//            }) { (error) in
-//                
-//            }
-//        }
+        if self.conditions.count == 0
+        {
+            lDataSource.getModelType(LeaderActivityDataSource.Type_WorkStatus, success: { (result) in
+                var array = [String]()
+                for r in result
+                {
+                    array.append(r.value!)
+                }
+                self.setCondition(array)
+            }) { (error) in
+                
+            }
+        }
         
         if self.dataSource.count == 0
         {
             self.view.showHud()
         }
-        lDataSource.getWorkStatusActivity(true, classify: classify, success: { (result) in
+        lDataSource.getWorkStatusActivity(true, classify: classify, key: self.searchText, success: { (result) in
             self.dataSource = self.lDataSource.workStatusActivity
             self.tableView.mj_header.endRefreshing()
             self.tableView.mj_footer.endRefreshing()
@@ -57,7 +63,7 @@ class WorkStatusActivityViewController: BaseActivityViewController {
     
     override func loadMore()
     {
-        lDataSource.getWorkStatusActivity(false, classify: classify, success: { (result) in
+        lDataSource.getWorkStatusActivity(false, classify: classify, key: self.searchText, success: { (result) in
             self.dataSource = self.lDataSource.workStatusActivity
             self.tableView.mj_footer.endRefreshing()
             self.tableView.reloadData()

@@ -61,7 +61,7 @@ class MainViewController: BasePortraitViewController {
         let userItem = UIBarButtonItem(image: UIImage(named: "home_user"), style: .Plain, target: self, action: #selector(MainViewController.userItemClicked))
         self.navigationItem.rightBarButtonItem = userItem
         
-        self.title = "成资一体化"
+        self.title = "成资合作"
         
         tabBarViewController.showIndex(0)
         
@@ -143,7 +143,7 @@ class MainViewController: BasePortraitViewController {
     func initViewController()
     {
         homeViewController = HomeViewController()
-        homeViewController.title = "成资一体化"
+        homeViewController.title = "成资合作"
         doneViewController = UIViewController()
         doneViewController.title = "督办"
         chatViewController = ChatListViewController()
@@ -168,6 +168,6 @@ extension MainViewController : TabBarDelegate
     
     func tabBarClickedIndex(tabBar: TabBar, index: Int) {
         tabBarViewController.showIndex(index)
-        self.title = ["成资一体化", "督办", "会话", "我的"][index]
+        self.title = ["成资合作", "督办", "会话", "我的"][index]
     }
 }

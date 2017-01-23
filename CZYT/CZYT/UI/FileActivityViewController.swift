@@ -18,6 +18,11 @@ class FileActivityViewController: BaseActivityViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func search() {
+        let search = PolicyFileSearchViewController()
+        self.navigationController?.pushViewController(search, animated: true)
+    }
+    
     override func loadData()
     {
         if self.conditions.count == 0
@@ -38,7 +43,7 @@ class FileActivityViewController: BaseActivityViewController {
         {
             self.view.showHud()
         }
-        lDataSource.getFileActivity(true, classify: classify, success: { (result) in
+        lDataSource.getFileActivity(true, classify: classify, key: self.searchText, success: { (result) in
             self.dataSource = self.lDataSource.fileActivity
             self.tableView.mj_header.endRefreshing()
             self.tableView.mj_footer.endRefreshing()
@@ -55,7 +60,7 @@ class FileActivityViewController: BaseActivityViewController {
     
     override func loadMore()
     {
-        lDataSource.getLeaderActivity(false, classify: classify, success: { (result) in
+        lDataSource.getLeaderActivity(false, classify: classify, key: self.searchText, success: { (result) in
             self.dataSource = self.lDataSource.fileActivity
             self.tableView.mj_footer.endRefreshing()
             self.tableView.reloadData()
