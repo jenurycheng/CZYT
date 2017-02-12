@@ -18,6 +18,8 @@ class MainViewController: BasePortraitViewController {
     var chatViewController:ChatListViewController!
     var userViewController:UIViewController!
     
+    var dataSource = UserDataSource()
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         UserInfo.sharedInstance.addObserver(self, forKeyPath: "isLogin", options: .New, context: nil)
@@ -69,6 +71,22 @@ class MainViewController: BasePortraitViewController {
         dic.updateValue(ThemeManager.current().whiteFontColor, forKey: NSForegroundColorAttributeName)
         dic.updateValue(UIFont.systemFontOfSize(22), forKey: NSFontAttributeName)
         self.navigationController?.navigationBar.titleTextAttributes = dic
+        
+//        DispatchAfter(5, queue: dispatch_get_main_queue()) { 
+//            self.dataSource.checkAppUpdate({ (needUpdate, msg, url) in
+//                if needUpdate && url != nil
+//                {
+//                    let alert = UIAlertView(title: "发现新版本", message: msg, delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+//                    alert.tag = 100
+//                    alert.show()
+//                }else{
+//                    let alert = UIAlertView(title: "当前为最新版本", message: "", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+//                    alert.show()
+//                }
+//                }, failure: { (error) in
+//                    
+//            })
+//        }
     }
     
     deinit{
@@ -169,5 +187,18 @@ extension MainViewController : TabBarDelegate
     func tabBarClickedIndex(tabBar: TabBar, index: Int) {
         tabBarViewController.showIndex(index)
         self.title = ["成资合作", "督办", "会话", "我的"][index]
+    }
+}
+
+extension MainViewController : UIAlertViewDelegate
+{
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if alertView.tag == 100
+        {
+            if buttonIndex == 1
+            {
+                UIApplication.sharedApplication().openURL(NSURL(string: dataSource.updateUrl!)!)
+            }
+        }
     }
 }

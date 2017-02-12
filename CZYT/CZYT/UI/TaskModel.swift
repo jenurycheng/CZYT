@@ -14,8 +14,9 @@ class PublishTask : NSObject
     var task_title:String?
     var task_content:String?
     var task_end_date:String?//yyyy-MM-dd
-    var director:String?//主办人 id
-    var supporter:String? = ""//协办人 id
+//    var director:String?//主办人 id
+//    var supporter:String? = ""//协办人 id
+    var assigns:String?
 }
 
 class Task: Reflect {

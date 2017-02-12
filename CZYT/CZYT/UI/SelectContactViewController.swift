@@ -22,8 +22,9 @@ class SelectContactViewController: BasePortraitViewController {
         self.title = "指派员工"
         
         selectContactView = SelectContactView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64-50), selectMode:true, departmentID: DepartmentTree.rootDepartmentID)
-        selectContactView.contactView.maxSelectCount = 2
-        selectContactView.contactView.showMaxCountText = "最多可以选择一个主办人和协办人"
+//        selectContactView.contactView.maxSelectCount = 2
+//        selectContactView.contactView.showMaxCountText = "最多可以选择一个主办人和协办人"
+        selectContactView.contactView.selectedIds.appendContentsOf(self.selectedIds)
         self.view.addSubview(selectContactView)
         
         okBtn = UIButton(frame: CGRect(x: 10, y: GetSHeight()-64-45, width: GetSWidth()-20, height: 40))

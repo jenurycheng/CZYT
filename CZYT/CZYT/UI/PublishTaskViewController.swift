@@ -97,13 +97,24 @@ class PublishTaskViewController: BasePortraitViewController {
         let task = PublishTask()
         task.task_title = titleTextField.text
         task.task_content = contentTextView.text
-        task.director = selectedIds[0]
-        if selectedIds.count > 1
+//        task.director = selectedIds[0]
+//        if selectedIds.count > 1
+//        {
+//            task.supporter = selectedIds[1]
+//        }else{
+//            task.supporter = ""
+//        }
+        var assigns = ""
+        for id in selectedIds
         {
-            task.supporter = selectedIds[1]
-        }else{
-            task.supporter = ""
+            if id != selectedIds[selectedIds.count-1]
+            {
+                assigns = assigns + id + ","
+            }else{
+                assigns = assigns + id
+            }
         }
+        task.assigns = assigns
         task.task_end_date = endDate
         
         self.view.showHud()
@@ -148,16 +159,18 @@ extension PublishTaskViewController : UITableViewDataSource, UITableViewDelegate
                 
                 if selectedIds.count > 0
                 {
-                    let u = ContactDataSource.sharedInstance.getUserInfo(selectedIds[0])
-                    let n = u == nil ? "" : u!.nickname!
-                    name = "主办人:" + n
-                }
-                
-                if selectedIds.count > 1
-                {
-                    let u = ContactDataSource.sharedInstance.getUserInfo(selectedIds[1])
-                    let n = u == nil ? "" : u!.nickname!
-                    name = name + "，协办人:" + n
+                    for id in selectedIds
+                    {
+                        let u = ContactDataSource.sharedInstance.getUserInfo(id)
+                        let n = u == nil ? "" : u!.nickname!
+                        if id != selectedIds[selectedIds.count-1]
+                        {
+                            name = name + n + ","
+                        }else{
+                            name = name + n
+                        }
+                        
+                    }
                 }
                 
                 weakSelf.selectedIds.appendContentsOf(selectedIds)

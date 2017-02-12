@@ -33,11 +33,13 @@ class BaseDetailViewController: BasePortraitViewController {
         topView = UIView(frame: CGRect(x: 5, y: 0, width: GetSWidth()-10, height: 70))
         scrollView.addSubview(topView)
         
-        titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: topView.frame.width, height: 40))
-        titleLabel.font = UIFont.systemFontOfSize(15)
+        titleLabel = UILabel(frame: CGRect(x: 10, y: 0, width: topView.frame.width-20, height: 40))
+//        titleLabel.font = UIFont.systemFontOfSize(15)
+        titleLabel.font = UIFont(name: "Helvetica-Bold", size: 16)
         titleLabel.numberOfLines = 2
         titleLabel.textAlignment = .Center
         titleLabel.lineBreakMode = .ByCharWrapping
+        titleLabel.adjustsFontSizeToFitWidth = true
         topView.addSubview(titleLabel)
         
         sourceLabel = UILabel(frame: CGRect(x: 0, y: 40, width: topView.frame.width/2, height: 30))

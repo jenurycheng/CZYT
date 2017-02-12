@@ -116,7 +116,7 @@ extension TaskChatViewController : UICollectionViewDataSource
             return 4
         }else if section == 1
         {
-            return 4
+            return 3
         }
         return 0
     }
@@ -129,7 +129,7 @@ extension TaskChatViewController : UICollectionViewDataSource
         if indexPath.section == 0 {
             
             let images = ["task_new", "task_my_publish", "task_my", "task_msg", "home_task", "home_link"]
-            let names = ["新建任务", "我发布的", "我的任务", "通知通报", "督查督办", "友情链接"]
+            let names = ["新建任务", "我的发布", "我的任务", "通知通报", "督查督办", "友情链接"]
             cell.iconImageView.image = UIImage(named: images[indexPath.row])
             cell.nameLabel.text = names[indexPath.row]
             return cell
@@ -166,7 +166,7 @@ extension TaskChatViewController : UICollectionViewDataSource
                 label.textColor = ThemeManager.current().darkGrayFontColor
                 label.font = UIFont.systemFontOfSize(13)
                 view.addSubview(label)
-                label.text = "热点话题"
+                label.text = "互动交流"
                 
                 let line = GetLineView(CGRect(x: 0, y: 39, width: GetSWidth(), height: 1))
                 view.addSubview(line)

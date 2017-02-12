@@ -29,8 +29,9 @@ extension NetWorkHandle
             var task_title:String?
             var task_content:String?
             var task_end_date:String?
-            var director:String?
-            var supporter:String?
+//            var director:String?
+//            var supporter:String?
+            var assigns:String?
         }
         
         class func publishTask(request:RequestPublishTask?, finish:((HttpResponseData)->Void)) {
@@ -102,8 +103,9 @@ extension NetWorkHandle
         class RequestAssignTask : Reflect
         {
             var task_id:String?
-            var director:String?
-            var supporter:String?
+//            var director:String?
+//            var supporter:String?
+            var assigns:String?
         }
         class func assignTask(request: RequestAssignTask?, finish:((HttpResponseData)->Void))
         {

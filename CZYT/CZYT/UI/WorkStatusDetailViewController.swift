@@ -14,7 +14,7 @@ class WorkStatusDetailViewController: BaseDetailViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "重点项目"
         self.loadData()
         // Do any additional setup after loading the view.
     }

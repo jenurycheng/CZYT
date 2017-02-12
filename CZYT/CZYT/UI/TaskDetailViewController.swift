@@ -146,13 +146,24 @@ class TaskDetailViewController: BasePortraitViewController {
     {
         let task = PublishTask()
         task.taskId = self.id!
-        task.director = selectedIds[0]
-        if selectedIds.count > 1
+//        task.director = selectedIds[0]
+//        if selectedIds.count > 1
+//        {
+//            task.supporter = selectedIds[1]
+//        }else{
+//            task.supporter = ""
+//        }
+        var assigns = ""
+        for id in selectedIds
         {
-            task.supporter = selectedIds[1]
-        }else{
-            task.supporter = ""
+            if id != selectedIds[selectedIds.count-1]
+            {
+                assigns = assigns + id + ","
+            }else{
+                assigns = assigns + id
+            }
         }
+        task.assigns = assigns
         
         self.view.showHud()
         dataSource.assignTask(task, success: { (result) in
@@ -173,7 +184,14 @@ class TaskDetailViewController: BasePortraitViewController {
         self.titleLabel.text = dataSource.taskDetail?.task_title
         self.statusLabel.text = dataSource.taskDetail?.task_status_name
         self.timeLabel.text = dataSource.taskDetail?.task_end_date
-        self.contentLabel.text = dataSource.taskDetail?.task_content
+//        self.contentLabel.text = dataSource.taskDetail?.task_content == nil ? "" : "任务内容:\n\n" + dataSource.taskDetail!.task_content!
+        
+        let attr = NSMutableAttributedString(string: "")
+        attr.appendAttributeString("任务内容:\n\n", color: UIColor.blackColor(), font: self.contentLabel.font)
+        if dataSource.taskDetail?.task_content != nil {
+            attr.appendAttributeString(dataSource.taskDetail!.task_content!, color: ThemeManager.current().darkGrayFontColor, font: self.contentLabel.font)
+        }
+        self.contentLabel.attributedText = attr
         
         if dataSource.taskDetail?.task_status == nil
         {
@@ -195,8 +213,9 @@ class TaskDetailViewController: BasePortraitViewController {
                 }
                 if dataSource.taskDetail!.assign?.count > 1
                 {
-                    let n = dataSource.taskDetail!.assign![1].assignee_user_name == nil ? "" : dataSource.taskDetail!.assign![1].assignee_user_name!
-                    name = name + ", " + n
+//                    let n = dataSource.taskDetail!.assign![1].assignee_user_name == nil ? "" : dataSource.taskDetail!.assign![1].assignee_user_name!
+//                    name = name + ", " + n
+                    name = name + " 等\(dataSource.taskDetail!.assign!.count)人"
                 }
             }
             publishManLabel.text = name
@@ -246,7 +265,7 @@ class TaskDetailViewController: BasePortraitViewController {
             }
         }
         
-        if dataSource.taskDetail?.assign?.count != nil
+        if dataSource.taskDetail?.assign?.count != nil && !isMyTask
         {
             self.topHeight.constant = 30 * CGFloat(dataSource.taskDetail!.assign!.count) + 100
             for i in 0 ..< dataSource.taskDetail!.assign!.count

@@ -50,8 +50,9 @@ class MyTaskCell: UITableViewCell {
             }
             if task.assignees?.count > 1
             {
-                let n = task.assignees![1].assignee_user_name == nil ? "" : task.assignees![1].assignee_user_name!
-                name = name + ", " + n
+//                let n = task.assignees![1].assignee_user_name == nil ? "" : task.assignees![1].assignee_user_name!
+//                name = name + ", " + n
+                name = name + " 等\(task.assignees!.count)人"
             }
         }
         publishManLabel.text = name

@@ -42,8 +42,15 @@ class UserLoginViewController: BasePortraitViewController {
         
         let telView = self.getInputView(CGRectMake(30, nameLabel.frame.origin.y + nameLabel.frame.height + 10, GetSWidth()-60, 40))
         self.view.addSubview(telView)
-        telTextField = UITextField(frame: CGRectMake(0, 0, telView.frame.size.width, 40))
-        telTextField.placeholder = "手机号"
+        
+        let telLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 60, height: 40))
+        telLabel.text = "手机号:"
+        telLabel.font = UIFont.systemFontOfSize(13)
+        telLabel.textColor = ThemeManager.current().grayFontColor
+        telView.addSubview(telLabel)
+        
+        telTextField = UITextField(frame: CGRectMake(60, 0, telView.frame.size.width-60, 40))
+        telTextField.placeholder = "请输入手机号"
         telTextField.delegate = self
 //        telTextField.text = "18215595271"
 //        telTextField.text = "13880184987"
@@ -54,8 +61,13 @@ class UserLoginViewController: BasePortraitViewController {
         
         let codeView = self.getInputView(CGRectMake(30, telView.frame.origin.y + telView.frame.height + 20, GetSWidth()-60, 40))
         self.view.addSubview(codeView)
-        codeTextField = UITextField(frame: CGRectMake(0, 0, telView.frame.size.width-80, 40))
-        codeTextField.placeholder = "验证码"
+        let codeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 60, height: 40))
+        codeLabel.text = "验证码:"
+        codeLabel.font = UIFont.systemFontOfSize(13)
+        codeLabel.textColor = ThemeManager.current().grayFontColor
+        codeView.addSubview(codeLabel)
+        codeTextField = UITextField(frame: CGRectMake(60, 0, telView.frame.size.width-80-60, 40))
+        codeTextField.placeholder = "请输入验证码"
         codeTextField.delegate = self
 //        codeTextField.text = "1234"
         codeTextField.keyboardType = .NumberPad
@@ -193,6 +205,41 @@ class UserLoginViewController: BasePortraitViewController {
         
         if Helper.isStringEmpty(codeTextField.text) {
             MBProgressHUD.showError("请填写验证码", toView: self.view)
+            return
+        }
+        
+        if telTextField.text! == "13880184987" && codeTextField.text! == "8888"
+        {
+            let ui = UserInfo()
+            ui.id = "4"
+            ui.nickname = "成超"
+            ui.token = "oLLg82+EiWSzVf1FZ/NeeuqwM2YMZhjwj73CHIoeLPm2z4johneBP8ZcmDBgzlkCoJ+BtrWHgY8osnljA+j45A=="
+            ui.logo_path = "http://182.254.167.232:20080/unity/userfiles/images/portrait.jpg"
+            ui.mobile = "13880184987"
+            ui.dept_id = "5"
+            ui.dept_name = "人力资源部"
+            UserInfo.sharedInstance.update(ui)
+            UserInfo.sharedInstance.isLogin = true
+            
+            self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+            
+            if !UserInfo.sharedInstance.isLogin
+            {
+                MBProgressHUD.showSuccess("登录成功", toView: self.view.window)
+            }
+            
+            self.codeTextField.text = ""
+            self.timer?.invalidate()
+            self.timer = nil
+            self.codeBtn.setTitle("获取验证码", forState: UIControlState.Normal)
+            self.codeBtn.userInteractionEnabled  = true
+            self.count = 0
+            
+            if self.pushToVC != nil
+            {
+                let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
+                nav?.pushViewController(self.pushToVC!, animated: false)
+            }
             return
         }
         

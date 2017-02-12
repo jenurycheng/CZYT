@@ -21,22 +21,23 @@ class BaseActivityViewController: BasePortraitViewController {
     var conditionBar:ConditionBar!
     var conditions = [String]()
     var dataSource = [LeaderActivity]()
+    var conditionTitle = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "领导活动"
         
-        searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: 40))
-        searchBar.delegate = self
-        searchBar.placeholder = "输入搜索内容"
-        self.view.addSubview(searchBar)
-        
-        conditionView = UIView(frame: CGRect(x: 0, y: 40, width: GetSWidth(), height: ConditionBar.barHeight()))
+        conditionView = UIView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: ConditionBar.barHeight()))
 //        conditionView.backgroundColor = ThemeManager.current().backgroundColor
         self.view.addSubview(conditionView)
         conditionBar = ConditionBar(frame: conditionView.bounds)
         conditionBar.delegate = self
         conditionView.addSubview(conditionBar)
+        
+        searchBar = UISearchBar(frame: CGRect(x: 0, y: 40, width: GetSWidth(), height: 40))
+        searchBar.delegate = self
+        searchBar.placeholder = "输入搜索内容"
+        self.view.addSubview(searchBar)
         
         tableView = UITableView(frame: CGRect(x: 0, y: 80, width: GetSWidth(), height: GetSHeight()-64-80))
         tableView.dataSource = self
@@ -105,7 +106,7 @@ extension BaseActivityViewController : ConditionBarDelegate
 {
     func titleForConditionBar(conditionBar:ConditionBar)->String
     {
-        return "全部"
+        return conditionTitle
     }
     
     func textsForConditionBar(conditionBar:ConditionBar)->[String]

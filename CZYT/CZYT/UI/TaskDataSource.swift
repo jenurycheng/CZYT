@@ -110,8 +110,9 @@ class TaskDataSource: NSObject {
         request.task_title = task.task_title
         request.task_content = task.task_content
         request.task_end_date = task.task_end_date
-        request.director = task.director
-        request.supporter = task.supporter
+        request.assigns = task.assigns
+//        request.director = task.director
+//        request.supporter = task.supporter
         
         NetWorkHandle.NetWorkHandleTask.publishTask(request) { (data) in
             if data.isSuccess()
@@ -177,8 +178,9 @@ class TaskDataSource: NSObject {
     {
         let request = NetWorkHandle.NetWorkHandleTask.RequestAssignTask()
         request.task_id = task.taskId
-        request.director = task.director
-        request.supporter = task.supporter
+        request.assigns = task.assigns
+//        request.director = task.director
+//        request.supporter = task.supporter
         NetWorkHandle.NetWorkHandleTask.assignTask(request) { (data) in
             if data.isSuccess()
             {

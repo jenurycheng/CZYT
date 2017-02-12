@@ -919,14 +919,14 @@
 			name = PolicyFiles;
 			sourceTree = "<group>";
 		};
-		C4623CE11DF84BEC001ED1EE /* WorkStatus */ = {
+		C4623CE11DF84BEC001ED1EE /* DynamicMsg */ = {
 			isa = PBXGroup;
 			children = (
 				C450C96E1DD362820052B18E /* WorkStatusActivityViewController.swift */,
 				C4936D091DFBC78400C07F0D /* WorkStatusDetailViewController.swift */,
 				C41167D21E2FB86F006C9540 /* WorkStatusSearchViewController.swift */,
 			);
-			name = WorkStatus;
+			name = DynamicMsg;
 			sourceTree = "<group>";
 		};
 		C4623CE21DF84C05001ED1EE /* ImportantProject */ = {
@@ -1377,7 +1377,7 @@
 				C4623CE41DF84C6F001ED1EE /* DepartStatus */,
 				C4623CE31DF84C62001ED1EE /* AreaStatus */,
 				C4623CE21DF84C05001ED1EE /* ImportantProject */,
-				C4623CE11DF84BEC001ED1EE /* WorkStatus */,
+				C4623CE11DF84BEC001ED1EE /* DynamicMsg */,
 				C4623CE01DF84BE7001ED1EE /* PolicyFiles */,
 				C4623CDF1DF84BD2001ED1EE /* TimeNews */,
 				C4BC6A501DD4A86800DA19B2 /* Cell */,
@@ -1475,6 +1475,7 @@
 				TargetAttributes = {
 					C48733FF1DCF093E00C9B0C0 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 26JVMY8BXV;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -1877,7 +1878,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: chao chen (385H963A8V)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: chao chen (385H963A8V)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CZYT/Depends/Rong_Cloud_iOS_IMKit_SDK_v2_7_3_stable",
@@ -1904,7 +1907,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: chao chen (385H963A8V)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: chao chen (385H963A8V)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CZYT/Depends/Rong_Cloud_iOS_IMKit_SDK_v2_7_3_stable",

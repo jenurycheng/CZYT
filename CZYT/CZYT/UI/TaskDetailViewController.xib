@@ -35,7 +35,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emV-kb-GbD">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Utm-PB-yGJ">
                                             <rect key="frame" x="0.0" y="100" width="320" height="1"/>
@@ -45,7 +45,7 @@
                                             </constraints>
                                         </view>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAR-QA-Nf0">
-                                            <rect key="frame" x="0.0" y="99" width="320" height="1"/>
+                                            <rect key="frame" x="0.0" y="119" width="320" height="1"/>
                                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="tSM-3w-Vq5"/>
@@ -109,7 +109,7 @@
                                         <constraint firstItem="I1P-jC-mcp" firstAttribute="leading" secondItem="kOA-lT-Hcj" secondAttribute="trailing" id="BcK-8h-1e8"/>
                                         <constraint firstItem="vPA-Ld-Ibf" firstAttribute="leading" secondItem="emV-kb-GbD" secondAttribute="leading" id="CjQ-v3-8aI"/>
                                         <constraint firstAttribute="bottom" secondItem="MAR-QA-Nf0" secondAttribute="bottom" id="Sve-zr-t70"/>
-                                        <constraint firstAttribute="height" constant="100" id="VXX-gZ-2c7"/>
+                                        <constraint firstAttribute="height" constant="120" id="VXX-gZ-2c7"/>
                                         <constraint firstItem="JSg-EC-clq" firstAttribute="leading" secondItem="egn-pF-ymE" secondAttribute="trailing" id="W8U-ZH-vOT"/>
                                         <constraint firstAttribute="trailing" secondItem="MAR-QA-Nf0" secondAttribute="trailing" id="WvX-qH-qnh"/>
                                         <constraint firstAttribute="trailing" secondItem="vPA-Ld-Ibf" secondAttribute="trailing" id="d1J-t4-Yg5"/>
@@ -124,13 +124,13 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10e-lZ-ysT">
-                                    <rect key="frame" x="8" y="110" width="304" height="0.0"/>
+                                    <rect key="frame" x="8" y="130" width="304" height="0.0"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="h4G-xV-yqo">
-                                    <rect key="frame" x="0.0" y="100" width="320" height="468"/>
+                                    <rect key="frame" x="0.0" y="130" width="320" height="438"/>
                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mBL-Cf-HvC">
                                         <size key="itemSize" width="50" height="50"/>
                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -145,12 +145,12 @@
                                 <constraint firstAttribute="trailing" secondItem="emV-kb-GbD" secondAttribute="trailing" id="HLz-S0-lf0"/>
                                 <constraint firstAttribute="bottom" secondItem="h4G-xV-yqo" secondAttribute="bottom" id="Q4V-oF-fKo"/>
                                 <constraint firstAttribute="width" constant="320" id="QUU-zv-nQC"/>
-                                <constraint firstItem="h4G-xV-yqo" firstAttribute="top" secondItem="emV-kb-GbD" secondAttribute="bottom" id="aPY-Sb-70Y"/>
                                 <constraint firstItem="emV-kb-GbD" firstAttribute="top" secondItem="RIp-sG-PZE" secondAttribute="top" id="eSb-jF-5jk"/>
                                 <constraint firstItem="10e-lZ-ysT" firstAttribute="leading" secondItem="RIp-sG-PZE" secondAttribute="leading" constant="8" id="iZ8-wK-0ae"/>
                                 <constraint firstAttribute="height" constant="568" id="ift-ka-vP8"/>
                                 <constraint firstItem="10e-lZ-ysT" firstAttribute="top" secondItem="emV-kb-GbD" secondAttribute="bottom" constant="10" id="kAT-P8-7hb"/>
                                 <constraint firstAttribute="trailing" secondItem="h4G-xV-yqo" secondAttribute="trailing" id="mCD-qJ-YH6"/>
+                                <constraint firstItem="h4G-xV-yqo" firstAttribute="top" secondItem="10e-lZ-ysT" secondAttribute="bottom" id="pgD-wX-NlP"/>
                                 <constraint firstAttribute="trailing" secondItem="10e-lZ-ysT" secondAttribute="trailing" constant="8" id="q1t-E7-xOE"/>
                                 <constraint firstItem="emV-kb-GbD" firstAttribute="leading" secondItem="RIp-sG-PZE" secondAttribute="leading" id="yya-Bl-NaD"/>
                             </constraints>
