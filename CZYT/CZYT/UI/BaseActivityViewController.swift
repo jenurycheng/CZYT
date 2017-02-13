@@ -116,7 +116,7 @@ extension BaseActivityViewController : ConditionBarDelegate
     
     func selectedIndexForConditionBar(conditionBar:ConditionBar)->Int    //返回－1:全部
     {
-        return -1
+        return 0
     }
     
     func didSelectedConditionBar(conditionBar:ConditionBar, index:Int)

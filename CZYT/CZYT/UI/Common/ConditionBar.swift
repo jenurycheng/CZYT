@@ -30,6 +30,9 @@ class ConditionBar: UIView {
     var textsArray:Array<String>?
     var line:UIView!
     var cornerView:UIView!
+    var leftArrow:UIImageView!
+    var rightArrow:UIImageView!
+    
     weak var delegate:ConditionBarDelegate?
         {
         didSet
@@ -67,13 +70,29 @@ class ConditionBar: UIView {
         self.addSubview(scrollView)
         scrollView.showsHorizontalScrollIndicator = false
         
-        let leftG = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: ConditionBar.barHeight()))
-        leftG.image = UIImage(named: "gradient_left")
-        self.addSubview(leftG)
+        leftArrow = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: ConditionBar.barHeight()))
+        leftArrow.image = UIImage(named: "gradient_left")
+        let left = UIImageView(frame: leftArrow.bounds)
+        left.contentMode = .Center
+        left.image = UIImage(named: "arrow_left")
+        leftArrow.addSubview(left)
+        self.addSubview(leftArrow)
+        leftArrow.userInteractionEnabled = true
+        let leftTap = UITapGestureRecognizer(target: self, action: #selector(ConditionBar.leftTapped(_:)))
+        leftArrow.addGestureRecognizer(leftTap)
         
-        let rightG = UIImageView(frame: CGRect(x: self.frame.width-80, y: 0, width: 100, height: ConditionBar.barHeight()))
-        rightG.image = UIImage(named: "gradient_right")
-        self.addSubview(rightG)
+        
+        rightArrow = UIImageView(frame: CGRect(x: self.frame.width-40, y: 0, width: 40, height: ConditionBar.barHeight()))
+        rightArrow.image = UIImage(named: "gradient_right")
+        rightArrow.userInteractionEnabled = true
+        let right = UIImageView(frame: rightArrow.bounds)
+        right.image = UIImage(named: "arrow_right")
+        right.contentMode = .Center
+        rightArrow.addSubview(right)
+        self.addSubview(rightArrow)
+        
+        let rightTap = UITapGestureRecognizer(target: self, action: #selector(ConditionBar.rightTapped(_:)))
+        rightArrow.addGestureRecognizer(rightTap)
         
         titleBtn = UIButton(frame: CGRectMake(10, 0, 65, ConditionBar.barHeight()))
         titleBtn.titleLabel?.font = UIFont.systemFontOfSize(14)
@@ -128,10 +147,10 @@ class ConditionBar: UIView {
             }
             let spacing:CGFloat = 25
             let titleWidth = Helper.getTextSize(title!, font: UIFont.systemFontOfSize(14), size: CGSizeMake(CGFloat(MAXFLOAT), ConditionBar.barHeight())).width
-            titleBtn.frame = CGRectMake(10, 0, titleWidth+spacing, ConditionBar.barHeight())
+            titleBtn.frame = CGRectMake(15, 0, titleWidth+spacing, ConditionBar.barHeight())
             var x:CGFloat = titleBtn.frame.origin.x + titleBtn.frame.width
             if Helper.isStringEmpty(title) {
-                x = 10
+                x = 15
             }
             for i in 0 ..< textsArray!.count
             {
@@ -153,8 +172,37 @@ class ConditionBar: UIView {
                 }
                 btn.addTarget(self, action: #selector(ConditionBar.btnClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             }
-            scrollView.contentSize = CGSizeMake(x, ConditionBar.barHeight())
+            scrollView.contentSize = CGSizeMake(x+30, ConditionBar.barHeight())
+            
+            if x + 30 > GetSWidth() {
+                leftArrow.hidden = false
+                rightArrow.hidden = false
+                
+            }else{
+                leftArrow.hidden = true
+                rightArrow.hidden = true
+            }
         }
+    }
+    
+    func leftTapped(tap:UITapGestureRecognizer)
+    {
+        var x = scrollView.contentOffset.x
+        x = x - 60
+        if x < 0 {
+            x = 0
+        }
+        scrollView.scrollRectToVisible(CGRectMake(x, 0, scrollView.frame.width, scrollView.frame.height), animated: true)
+    }
+    
+    func rightTapped(tap:UITapGestureRecognizer)
+    {
+        var x = scrollView.contentOffset.x
+        x = x + 60
+        if x + 60 + scrollView.frame.width > scrollView.contentSize.width {
+            x = scrollView.contentSize.width - scrollView.frame.width
+        }
+        scrollView.scrollRectToVisible(CGRectMake(x, 0, scrollView.frame.width, scrollView.frame.height), animated: true)
     }
     
     func btnClicked(btn:UIButton)

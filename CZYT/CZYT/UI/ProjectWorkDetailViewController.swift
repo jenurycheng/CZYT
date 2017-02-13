@@ -84,10 +84,11 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         let config = WKWebViewConfiguration()
         config.userContentController = ctrl
         
-        let btnView = UIView(frame: CGRect(x: 0, y: 40, width: GetSWidth(), height: 40))
+        let btnView = UIView(frame: CGRect(x: 0, y: 40, width: GetSWidth(), height: 39))
+        btnView.backgroundColor = ThemeManager.current().backgroundColor
         scrollView.addSubview(btnView)
-        let width = GetSWidth()/4
-        basicBtn = UIButton(frame: CGRect(x: 0, y: 0, width: width, height: 40))
+        let width = (GetSWidth()-0)/4
+        basicBtn = UIButton(frame: CGRect(x: 0, y: 0, width: width, height: 39))
         basicBtn.setTitle("基本情况", forState: .Normal)
         basicBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
         basicBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
@@ -95,7 +96,7 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         btnArray.append(basicBtn)
         btnView.addSubview(basicBtn)
         
-        requireBtn = UIButton(frame: CGRect(x: width, y: 0, width: width, height: 40))
+        requireBtn = UIButton(frame: CGRect(x: width+0, y: 0, width: width, height: 39))
         requireBtn.setTitle("工作要求", forState: .Normal)
         requireBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
         requireBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
@@ -103,7 +104,7 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         btnArray.append(requireBtn)
         requireBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController.btnClicked(_:)), forControlEvents: .TouchUpInside)
         
-        progressBtn = UIButton(frame: CGRect(x: width*2, y: 0, width: width, height: 40))
+        progressBtn = UIButton(frame: CGRect(x: width*2+0, y: 0, width: width, height: 39))
         progressBtn.setTitle("推进情况", forState: .Normal)
         progressBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
         progressBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
@@ -111,7 +112,7 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         btnArray.append(progressBtn)
         progressBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController.btnClicked(_:)), forControlEvents: .TouchUpInside)
         
-        problemBtn = UIButton(frame: CGRect(x: width*3, y: 0, width: width, height: 40))
+        problemBtn = UIButton(frame: CGRect(x: width*3+0, y: 0, width: width, height: 39))
         problemBtn.setTitle("存在问题", forState: .Normal)
         problemBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
         problemBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
@@ -138,6 +139,14 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         scrollView.addSubview(timeLabel)
         
         self.loadData()
+        
+        for btn in btnArray
+        {
+            btn.layer.cornerRadius = 5;
+            btn.layer.borderWidth = 1
+            btn.layer.borderColor = UIColor.whiteColor().CGColor
+            btn.layer.masksToBounds = true
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -147,13 +156,17 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
             if btn.isEqual(b)
             {
                 b.backgroundColor = ThemeManager.current().foregroundColor
+                b.setTitleColor(ThemeManager.current().mainColor, forState: .Normal)
             }else{
                 b.backgroundColor = ThemeManager.current().backgroundColor
+                b.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
             }
         }
         if dataSource == nil {
             return
         }
+        
+        webView.frame = CGRect(x: 5, y: 80, width: GetSWidth()-10, height: 10)
         let index = btnArray.indexOf(btn)
         sourceLabel.hidden = true
         timeLabel.hidden = true
