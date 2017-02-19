@@ -10,7 +10,7 @@ import UIKit
 
 class TimeNewsDetailViewController: BaseDetailViewController {
 
-    var id:String = ""
+    var id:String? = ""
     var dataSourceApi = LeaderActivityDataSource()
     
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class TimeNewsDetailViewController: BaseDetailViewController {
     func loadData()
     {
         self.view.showHud()
-        dataSourceApi.getLeaderActivityDetail(id, success: { (result) in
+        dataSourceApi.getLeaderActivityDetail(id!, success: { (result) in
             self.update(result)
             self.view.dismiss()
         }) { (error) in

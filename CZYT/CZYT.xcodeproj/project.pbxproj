@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C40A6E3D1E59DBF80024E737 /* TimeNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A6E3B1E59DBF80024E737 /* TimeNewsCell.swift */; };
+		C40A6E3E1E59DBF80024E737 /* TimeNewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C40A6E3C1E59DBF80024E737 /* TimeNewsCell.xib */; };
+		C40A6E411E59EB190024E737 /* PolicyFileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A6E3F1E59EB180024E737 /* PolicyFileCell.swift */; };
+		C40A6E421E59EB190024E737 /* PolicyFileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C40A6E401E59EB180024E737 /* PolicyFileCell.xib */; };
 		C40B0B641DE46ADF001F966E /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40B0B621DE46ADF001F966E /* TaskDetailViewController.swift */; };
 		C40B0B651DE46ADF001F966E /* TaskDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C40B0B631DE46ADF001F966E /* TaskDetailViewController.xib */; };
 		C40B0B921DE47F5A001F966E /* DNAlbumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C40B0B691DE47F5A001F966E /* DNAlbumTableViewController.m */; };
@@ -88,6 +92,7 @@
 		C420283F1DE344F0005E134B /* SelectContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C420283E1DE344F0005E134B /* SelectContactViewController.swift */; };
 		C42028421DE34DA5005E134B /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42028411DE34DA5005E134B /* DatePickerDialog.swift */; };
 		C4292BBB1DE9691400A18B5A /* SelectContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4292BBA1DE9691400A18B5A /* SelectContactView.swift */; };
+		C42BEAEE1E55E11700063B8E /* FlowLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42BEAED1E55E11700063B8E /* FlowLayoutView.swift */; };
 		C43005911DDB3C5600AC6077 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43005901DDB3C5600AC6077 /* ChatModel.swift */; };
 		C43005951DDB5ABA00AC6077 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43005931DDB5ABA00AC6077 /* CreateGroupViewController.swift */; };
 		C43005961DDB5ABA00AC6077 /* CreateGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43005941DDB5ABA00AC6077 /* CreateGroupViewController.xib */; };
@@ -265,6 +270,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C40A6E3B1E59DBF80024E737 /* TimeNewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeNewsCell.swift; sourceTree = "<group>"; };
+		C40A6E3C1E59DBF80024E737 /* TimeNewsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeNewsCell.xib; sourceTree = "<group>"; };
+		C40A6E3F1E59EB180024E737 /* PolicyFileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolicyFileCell.swift; sourceTree = "<group>"; };
+		C40A6E401E59EB180024E737 /* PolicyFileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PolicyFileCell.xib; sourceTree = "<group>"; };
 		C40B0B621DE46ADF001F966E /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		C40B0B631DE46ADF001F966E /* TaskDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskDetailViewController.xib; sourceTree = "<group>"; };
 		C40B0B681DE47F5A001F966E /* DNAlbumTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNAlbumTableViewController.h; sourceTree = "<group>"; };
@@ -364,6 +373,7 @@
 		C420283E1DE344F0005E134B /* SelectContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectContactViewController.swift; sourceTree = "<group>"; };
 		C42028411DE34DA5005E134B /* DatePickerDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerDialog.swift; sourceTree = "<group>"; };
 		C4292BBA1DE9691400A18B5A /* SelectContactView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectContactView.swift; sourceTree = "<group>"; };
+		C42BEAED1E55E11700063B8E /* FlowLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowLayoutView.swift; sourceTree = "<group>"; };
 		C43005901DDB3C5600AC6077 /* ChatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		C43005931DDB5ABA00AC6077 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		C43005941DDB5ABA00AC6077 /* CreateGroupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGroupViewController.xib; sourceTree = "<group>"; };
@@ -1333,6 +1343,7 @@
 		C48734E31DCF240D00C9B0C0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C42BEAED1E55E11700063B8E /* FlowLayoutView.swift */,
 				C4190C5D1DD6FF3C00B38A7A /* CCTabTitleView.swift */,
 				C48734E81DCF307600C9B0C0 /* CCPageView.swift */,
 				C48734E41DCF240D00C9B0C0 /* TabBar.swift */,
@@ -1397,6 +1408,10 @@
 				C491E96C1DD217BF005586C7 /* LeaderActivityCell.xib */,
 				C4BC6A511DD4A89800DA19B2 /* ProjectWorkCell.swift */,
 				C4BC6A521DD4A89800DA19B2 /* ProjectWorkCell.xib */,
+				C40A6E3B1E59DBF80024E737 /* TimeNewsCell.swift */,
+				C40A6E3C1E59DBF80024E737 /* TimeNewsCell.xib */,
+				C40A6E3F1E59EB180024E737 /* PolicyFileCell.swift */,
+				C40A6E401E59EB180024E737 /* PolicyFileCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -1517,6 +1532,7 @@
 				C4E03C561E325E1300FBEE0D /* HomeCell2.xib in Resources */,
 				C40B0B9D1DE47F5A001F966E /* imageResources.xcassets in Resources */,
 				C436435B1DD0C118003C91D8 /* RongCloudKit.strings in Resources */,
+				C40A6E421E59EB190024E737 /* PolicyFileCell.xib in Resources */,
 				C40B0BAA1DE47FA3001F966E /* SubmitTaskViewController.xib in Resources */,
 				C487340B1DCF093E00C9B0C0 /* Assets.xcassets in Resources */,
 				C4190C6B1DD7387D00B38A7A /* ChatGroupTopCell.xib in Resources */,
@@ -1546,6 +1562,7 @@
 				C47CEB7E1DD9D5EE0078DA21 /* UserInfoViewController.xib in Resources */,
 				C419A9751DE5EC3600E4DFD5 /* TaskResultViewController.xib in Resources */,
 				C42028391DE31808005E134B /* MyTaskCell.xib in Resources */,
+				C40A6E3E1E59DBF80024E737 /* TimeNewsCell.xib in Resources */,
 				C48734091DCF093E00C9B0C0 /* Main.storyboard in Resources */,
 				C4190C701DD7664900B38A7A /* BBSCell.xib in Resources */,
 			);
@@ -1566,6 +1583,7 @@
 				C4190C511DD6FB3100B38A7A /* NetworkHandleBBS.swift in Sources */,
 				C47CEB841DDA016E0078DA21 /* ChatDataSource.swift in Sources */,
 				C48734541DCF0A1F00C9B0C0 /* SDWebImageDecoder.m in Sources */,
+				C40A6E3D1E59DBF80024E737 /* TimeNewsCell.swift in Sources */,
 				C487345E1DCF0A1F00C9B0C0 /* UIImageView+WebCache.m in Sources */,
 				C4190C5C1DD6FEDD00B38A7A /* ChatViewController.swift in Sources */,
 				C4190C5A1DD6FC5500B38A7A /* BBSModel.swift in Sources */,
@@ -1588,6 +1606,7 @@
 				C450C95F1DD3531D0052B18E /* UIView+HUD.swift in Sources */,
 				C40B0B9F1DE47F5A001F966E /* DNAssetsViewCell.m in Sources */,
 				C4936D041DFBC55400C07F0D /* DepartStatusDetailViewController.swift in Sources */,
+				C40A6E411E59EB190024E737 /* PolicyFileCell.swift in Sources */,
 				C4BC6A531DD4A89800DA19B2 /* ProjectWorkCell.swift in Sources */,
 				C48734561DCF0A1F00C9B0C0 /* SDWebImageDownloaderOperation.m in Sources */,
 				C48734D11DCF1E5B00C9B0C0 /* NetworkReachabilityManager.swift in Sources */,
@@ -1714,6 +1733,7 @@
 				C42028421DE34DA5005E134B /* DatePickerDialog.swift in Sources */,
 				C444A2B31E34E4610027E6B7 /* TaskNotifyDetailViewController.swift in Sources */,
 				C4190C731DD76DD700B38A7A /* BBSDetailViewController.swift in Sources */,
+				C42BEAEE1E55E11700063B8E /* FlowLayoutView.swift in Sources */,
 				C491E96D1DD217BF005586C7 /* LeaderActivityCell.swift in Sources */,
 				C487342B1DCF09B400C9B0C0 /* AFURLResponseSerialization.m in Sources */,
 				C48734901DCF0A2C00C9B0C0 /* MJRefreshFooter.m in Sources */,

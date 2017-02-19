@@ -62,14 +62,22 @@
                         <action selector="logoutBtnClicked" destination="-1" eventType="touchUpInside" id="XeD-ec-TiB"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ds-yD-SY7">
+                    <rect key="frame" x="0.0" y="179" width="320" height="10"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="FJz-hl-MPn" firstAttribute="top" secondItem="1ds-yD-SY7" secondAttribute="bottom" id="1qj-zW-ElE"/>
                 <constraint firstItem="IEq-5c-gvX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="5ng-Oh-GEa"/>
+                <constraint firstItem="1ds-yD-SY7" firstAttribute="top" secondItem="AWa-fY-hUb" secondAttribute="bottom" id="8Kf-kJ-Mmi"/>
                 <constraint firstAttribute="trailing" secondItem="IEq-5c-gvX" secondAttribute="trailing" constant="10" id="AsQ-ol-5oq"/>
                 <constraint firstItem="AWa-fY-hUb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="C2w-rm-J8G"/>
                 <constraint firstAttribute="bottom" secondItem="udK-9h-DYH" secondAttribute="bottom" constant="20" id="ENb-Qg-nNu"/>
+                <constraint firstItem="1ds-yD-SY7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LAH-NO-xkJ"/>
                 <constraint firstAttribute="trailing" secondItem="FJz-hl-MPn" secondAttribute="trailing" id="LFL-7l-MsE"/>
+                <constraint firstAttribute="trailing" secondItem="1ds-yD-SY7" secondAttribute="trailing" id="WNZ-EX-Gmb"/>
                 <constraint firstAttribute="bottom" secondItem="FJz-hl-MPn" secondAttribute="bottom" id="dHy-W5-abb"/>
                 <constraint firstItem="FJz-hl-MPn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ixF-sC-PWa"/>
                 <constraint firstItem="IEq-5c-gvX" firstAttribute="top" secondItem="AEv-QY-qfB" secondAttribute="bottom" constant="20" id="lIY-VW-pvd"/>
@@ -82,7 +90,7 @@
                 <constraint firstItem="FJz-hl-MPn" firstAttribute="top" secondItem="AWa-fY-hUb" secondAttribute="bottom" constant="10" id="x5o-MN-s7o"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="196" y="78"/>
+            <point key="canvasLocation" x="27" y="61"/>
         </view>
     </objects>
     <resources>

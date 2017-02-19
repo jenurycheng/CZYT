@@ -16,6 +16,8 @@ class LeaderActivityViewController: BaseActivityViewController {
         super.viewDidLoad()
         self.title = "时政新闻"
         self.conditionTitle = "推荐"
+        
+        self.tableView.registerNib(UINib(nibName: "TimeNewsCell", bundle: nil), forCellReuseIdentifier: "TimeNewsCell")
         // Do any additional setup after loading the view.
     }
     
@@ -35,6 +37,7 @@ class LeaderActivityViewController: BaseActivityViewController {
                 {
                     array.append(r.value!)
                 }
+                array.insert("推荐", atIndex: 0)
                 self.setCondition(array)
             }) { (error) in
                 
@@ -80,6 +83,17 @@ class LeaderActivityViewController: BaseActivityViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return TimeNewsCell.cellHeight(lDataSource.leaderActivity[indexPath.row])
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("TimeNewsCell") as! TimeNewsCell
+        cell.update(lDataSource.leaderActivity[indexPath.row])
+        return cell
+
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

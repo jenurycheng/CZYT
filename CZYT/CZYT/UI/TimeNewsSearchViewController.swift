@@ -15,6 +15,7 @@ class TimeNewsSearchViewController: BaseSearchViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "时政新闻"
+        self.tableView.registerNib(UINib(nibName: "TimeNewsCell", bundle: nil), forCellReuseIdentifier: "TimeNewsCell")
         // Do any additional setup after loading the view.
     }
     
@@ -61,6 +62,17 @@ class TimeNewsSearchViewController: BaseSearchViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return TimeNewsCell.cellHeight(lDataSource.leaderActivity[indexPath.row])
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("TimeNewsCell") as! TimeNewsCell
+        cell.update(lDataSource.leaderActivity[indexPath.row])
+        return cell
+        
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

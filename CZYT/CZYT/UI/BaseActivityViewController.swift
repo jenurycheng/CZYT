@@ -12,13 +12,14 @@ class BaseActivityViewController: BasePortraitViewController {
 
     var searchBar:UISearchBar!
     var searchText:String = ""
-    var conditionView:UIView!
+//    var conditionView:UIView!
     var tableView:UITableView!
     var provinceBtn:UIButton!
     var cityBtn:UIButton!
     var countryBtn:UIButton!
     var classify = ""
-    var conditionBar:ConditionBar!
+//    var conditionBar:ConditionBar!
+    var conditionView:FlowLayoutView!
     var conditions = [String]()
     var dataSource = [LeaderActivity]()
     var conditionTitle = ""
@@ -27,19 +28,34 @@ class BaseActivityViewController: BasePortraitViewController {
         super.viewDidLoad()
         self.title = "领导活动"
         
-        conditionView = UIView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: ConditionBar.barHeight()))
+        self.automaticallyAdjustsScrollViewInsets = false
+        conditionView = FlowLayoutView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: 43))
 //        conditionView.backgroundColor = ThemeManager.current().backgroundColor
         self.view.addSubview(conditionView)
-        conditionBar = ConditionBar(frame: conditionView.bounds)
-        conditionBar.delegate = self
-        conditionView.addSubview(conditionBar)
+//        conditionBar = ConditionBar(frame: conditionView.bounds)
+//        conditionBar.delegate = self
+//        conditionView.addSubview(conditionBar)
         
-        searchBar = UISearchBar(frame: CGRect(x: 0, y: 40, width: GetSWidth(), height: 40))
+        conditionView.delegate = self
+        
+        searchBar = UISearchBar(frame: CGRect(x: 0, y: 38, width: GetSWidth(), height: 40))
+        if IS_IPHONE_6
+        {
+            searchBar.frame = CGRect(x: 0, y: 43, width: GetSWidth(), height: 40)
+        }
         searchBar.delegate = self
         searchBar.placeholder = "输入搜索内容"
-        self.view.addSubview(searchBar)
+//        self.view.addSubview(searchBar)
         
-        tableView = UITableView(frame: CGRect(x: 0, y: 80, width: GetSWidth(), height: GetSHeight()-64-80))
+        tableView = UITableView(frame: CGRect(x: 0, y: 33, width: GetSWidth(), height: GetSHeight()-64-33))
+        if IS_IPHONE_6
+        {
+            tableView.frame = CGRect(x: 0, y: 38, width: GetSWidth(), height: GetSHeight()-64-38)
+        }
+        if IS_IPHONE_6P
+        {
+            tableView.frame = CGRect(x: 0, y: 46, width: GetSWidth(), height: GetSHeight()-64-38)
+        }
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerNib(UINib(nibName: "LeaderActivityCell", bundle: nil), forCellReuseIdentifier: "LeaderActivityCell")
@@ -55,8 +71,8 @@ class BaseActivityViewController: BasePortraitViewController {
         
         self.loadData()
         
-//        let searchItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(BaseActivityViewController.search))
-//        self.navigationItem.rightBarButtonItem = searchItem
+        let searchItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(BaseActivityViewController.search))
+        self.navigationItem.rightBarButtonItem = searchItem
         // Do any additional setup after loading the view.
     }
     
@@ -69,7 +85,10 @@ class BaseActivityViewController: BasePortraitViewController {
     func setCondition(conditions:[String])
     {
         self.conditions = conditions
-        self.conditionBar.loadView()
+        self.conditionView.setDatas(conditions)
+//        searchBar.frame = CGRectMake(0, conditionView.frame.origin.y + conditionView.frame.height + 5, GetSWidth(), 40)
+        tableView.frame = CGRectMake(0, conditionView.frame.origin.y + conditionView.frame.height, GetSWidth(), GetSHeight() - conditionView.frame.origin.y - conditionView.frame.height-20)
+//        self.conditionBar.loadView()
     }
     
     func btnClicked(btn:UIButton)
@@ -177,5 +196,18 @@ extension BaseActivityViewController : UISearchBarDelegate
             self.searchText = ""
             self.loadData()
         }
+    }
+}
+
+extension BaseActivityViewController : FlowLayoutViewDelegate
+{
+    func flowLayoutViewClickedBtn(view: FlowLayoutView, btn: UIButton, text: String) {
+        if text == "推荐"
+        {
+            self.classify = ""
+        }else{
+            self.classify = text
+        }
+        self.loadData()
     }
 }

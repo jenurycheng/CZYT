@@ -15,7 +15,7 @@ class DepartStatusActivityViewController: BaseActivityViewController {
         super.viewDidLoad()
         self.title = "部门动态"
         
-        self.conditionBar.hidden = true
+        self.conditionView.hidden = true
         tableView.frame = CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64)
         // Do any additional setup after loading the view.
     }

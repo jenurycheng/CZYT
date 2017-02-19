@@ -16,7 +16,7 @@ class ProjectWorkActivityViewController: BaseActivityViewController {
         super.viewDidLoad()
         self.title = "重点项目"
         
-        tableView.registerNib(UINib(nibName: "ProjectWorkCell", bundle: nil), forCellReuseIdentifier: "ProjectWorkCell")
+        tableView.registerNib(UINib(nibName: "PolicyFileCell", bundle: nil), forCellReuseIdentifier: "PolicyFileCell")
         // Do any additional setup after loading the view.
     }
     
@@ -82,7 +82,7 @@ class ProjectWorkActivityViewController: BaseActivityViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return ProjectWorkCell.cellHeight(dataSource[indexPath.row])
+        return PolicyFileCell.cellHeight()
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -92,8 +92,9 @@ class ProjectWorkActivityViewController: BaseActivityViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ProjectWorkCell") as! ProjectWorkCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("PolicyFileCell") as! PolicyFileCell
         cell.update(dataSource[indexPath.row])
+        cell.scanLabel.text = "来源: " + (dataSource[indexPath.row].classify ?? "")
         return cell
     }
 }

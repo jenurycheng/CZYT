@@ -116,7 +116,7 @@ class UserInfoViewController: BasePortraitViewController {
 extension UserInfoViewController : UITableViewDelegate, UITableViewDataSource
 {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -134,19 +134,19 @@ extension UserInfoViewController : UITableViewDelegate, UITableViewDataSource
             })
         }else if indexPath.row == 1
         {
-            dataSource.checkAppUpdate({ (needUpdate, msg, url) in
-                if needUpdate && url != nil
-                {
-                    let alert = UIAlertView(title: "发现新版本", message: msg, delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
-                    alert.tag = 100
-                    alert.show()
-                }else{
-                    let alert = UIAlertView(title: "当前为最新版本", message: "", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "确定")
-                    alert.show()
-                }
-                }, failure: { (error) in
-                    
-            })
+//            dataSource.checkAppUpdate({ (needUpdate, msg, url) in
+//                if needUpdate && url != nil
+//                {
+//                    let alert = UIAlertView(title: "", message: msg, delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+//                    alert.tag = 100
+//                    alert.show()
+//                }else{
+//                    let alert = UIAlertView(title: "", message: "", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+//                    alert.show()
+//                }
+//                }, failure: { (error) in
+//                    
+//            })
         }
     }
     
@@ -161,7 +161,7 @@ extension UserInfoViewController : UITableViewDelegate, UITableViewDataSource
         cell.textLabel?.textColor = ThemeManager.current().darkGrayFontColor
         let line = GetLineView(CGRect(x: 0, y: 49, width: GetSWidth(), height: 1))
         cell.addSubview(line)
-        cell.selectionStyle = .None
+        
         
         if indexPath.row == 0
         {
@@ -170,6 +170,7 @@ extension UserInfoViewController : UITableViewDelegate, UITableViewDataSource
             cell.detailTextLabel?.textColor = ThemeManager.current().grayFontColor
             cell.detailTextLabel?.font = UIFont.systemFontOfSize(13)
         }else{
+            cell.selectionStyle = .None
             cell.detailTextLabel?.text = "V" + (NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as! String)
             cell.detailTextLabel?.textColor = ThemeManager.current().grayFontColor
             cell.detailTextLabel?.font = UIFont.systemFontOfSize(13)

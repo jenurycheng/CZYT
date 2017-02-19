@@ -76,11 +76,11 @@ class MainViewController: BasePortraitViewController {
 //            self.dataSource.checkAppUpdate({ (needUpdate, msg, url) in
 //                if needUpdate && url != nil
 //                {
-//                    let alert = UIAlertView(title: "发现新版本", message: msg, delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+//                    let alert = UIAlertView(title: "", message: msg, delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
 //                    alert.tag = 100
 //                    alert.show()
 //                }else{
-//                    let alert = UIAlertView(title: "当前为最新版本", message: "", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "确定")
+//                    let alert = UIAlertView(title: "", message: "", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "确定")
 //                    alert.show()
 //                }
 //                }, failure: { (error) in

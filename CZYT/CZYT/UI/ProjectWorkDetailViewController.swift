@@ -53,25 +53,6 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         titleLabel.textAlignment = .Center
         topView.addSubview(titleLabel)
         
-//        progressBgView = UIView(frame: CGRect(x: 0, y: 65, width: topView.frame.width, height: 14))
-//        progressBgView.layer.cornerRadius = 7
-//        progressBgView.layer.borderWidth = 1
-//        progressBgView.layer.borderColor = ThemeManager.current().backgroundColor.CGColor
-//        progressBgView.layer.masksToBounds = true
-//        topView.addSubview(progressBgView)
-//        
-//        progressView = UIView(frame: progressBgView.bounds)
-//        progressView.backgroundColor = Helper.parseColor(0x15984888)
-//        progressView.frame = CGRect(x: 0, y: 0, width: 0, height: 14)
-//        progressBgView.addSubview(progressView)
-//        
-//        progressLabel = UILabel(frame: CGRect(x: 20, y: 0, width: 100, height: 14))
-//        progressLabel.text = "已完成：0%"
-//        progressLabel.font = UIFont.systemFontOfSize(12)
-//        progressLabel.textColor = ThemeManager.current().darkGrayFontColor
-//        progressLabel.textAlignment = .Left
-//        progressBgView.addSubview(progressLabel)
-        
         let line = UIView(frame: CGRect(x: 0, y: topView.frame.height-1, width: GetSWidth(), height: 1))
         line.backgroundColor = ThemeManager.current().backgroundColor
         topView.addSubview(line)
@@ -84,11 +65,11 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         let config = WKWebViewConfiguration()
         config.userContentController = ctrl
         
-        let btnView = UIView(frame: CGRect(x: 0, y: 40, width: GetSWidth(), height: 39))
+        let btnView = UIView(frame: CGRect(x: 0, y: 40, width: GetSWidth(), height: 45))
         btnView.backgroundColor = ThemeManager.current().backgroundColor
         scrollView.addSubview(btnView)
-        let width = (GetSWidth()-0)/4
-        basicBtn = UIButton(frame: CGRect(x: 0, y: 0, width: width, height: 39))
+        let width = (GetSWidth()-50)/4
+        basicBtn = UIButton(frame: CGRect(x: 10, y: 7, width: width, height: 31))
         basicBtn.setTitle("基本情况", forState: .Normal)
         basicBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
         basicBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
@@ -96,7 +77,7 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         btnArray.append(basicBtn)
         btnView.addSubview(basicBtn)
         
-        requireBtn = UIButton(frame: CGRect(x: width+0, y: 0, width: width, height: 39))
+        requireBtn = UIButton(frame: CGRect(x: width+20, y: 7, width: width, height: 31))
         requireBtn.setTitle("工作要求", forState: .Normal)
         requireBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
         requireBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
@@ -104,7 +85,7 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         btnArray.append(requireBtn)
         requireBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController.btnClicked(_:)), forControlEvents: .TouchUpInside)
         
-        progressBtn = UIButton(frame: CGRect(x: width*2+0, y: 0, width: width, height: 39))
+        progressBtn = UIButton(frame: CGRect(x: width*2+30, y: 7, width: width, height: 31))
         progressBtn.setTitle("推进情况", forState: .Normal)
         progressBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
         progressBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
@@ -112,7 +93,7 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         btnArray.append(progressBtn)
         progressBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController.btnClicked(_:)), forControlEvents: .TouchUpInside)
         
-        problemBtn = UIButton(frame: CGRect(x: width*3+0, y: 0, width: width, height: 39))
+        problemBtn = UIButton(frame: CGRect(x: width*3+40, y: 7, width: width, height: 31))
         problemBtn.setTitle("存在问题", forState: .Normal)
         problemBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
         problemBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
@@ -120,7 +101,7 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         btnArray.append(problemBtn)
         problemBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController.btnClicked(_:)), forControlEvents: .TouchUpInside)
         
-        webView = WKWebView(frame: CGRect(x: 5, y: 80, width: GetSWidth()-10, height: 10), configuration: config)
+        webView = WKWebView(frame: CGRect(x: 5, y: 85, width: GetSWidth()-10, height: 10), configuration: config)
         webView.navigationDelegate = self
         webView.scrollView.scrollEnabled = false
         scrollView.addSubview(webView)
@@ -142,11 +123,13 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         
         for btn in btnArray
         {
-            btn.layer.cornerRadius = 5;
-            btn.layer.borderWidth = 1
-            btn.layer.borderColor = UIColor.whiteColor().CGColor
+            btn.layer.cornerRadius = btn.frame.height/2;
             btn.layer.masksToBounds = true
+            btn.backgroundColor = ThemeManager.current().foregroundColor
+            btn.setTitleColor(ThemeManager.current().grayFontColor, forState: .Normal)
         }
+        
+        self.btnClicked(basicBtn)
         // Do any additional setup after loading the view.
     }
     
@@ -155,18 +138,18 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         for b in btnArray {
             if btn.isEqual(b)
             {
-                b.backgroundColor = ThemeManager.current().foregroundColor
-                b.setTitleColor(ThemeManager.current().mainColor, forState: .Normal)
+                b.backgroundColor = ThemeManager.current().mainColor
+                b.setTitleColor(ThemeManager.current().whiteFontColor, forState: .Normal)
             }else{
-                b.backgroundColor = ThemeManager.current().backgroundColor
-                b.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
+                b.backgroundColor = ThemeManager.current().foregroundColor
+                b.setTitleColor(ThemeManager.current().grayFontColor, forState: .Normal)
             }
         }
         if dataSource == nil {
             return
         }
         
-        webView.frame = CGRect(x: 5, y: 80, width: GetSWidth()-10, height: 10)
+        webView.frame = CGRect(x: 5, y: 85, width: GetSWidth()-10, height: 10)
         let index = btnArray.indexOf(btn)
         sourceLabel.hidden = true
         timeLabel.hidden = true
@@ -252,12 +235,12 @@ extension ProjectWorkDetailViewController : WKNavigationDelegate
 {
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         DispatchAfter(0.2, queue: dispatch_get_main_queue()) {
-            self.webView.frame = CGRect(x: 5, y: 80, width: GetSWidth()-10, height: self.webView.scrollView.contentSize.height)
+            self.webView.frame = CGRect(x: 5, y: 85, width: GetSWidth()-10, height: self.webView.scrollView.contentSize.height)
             self.sourceLabel.frame = CGRect(x: 10, y: self.webView.frame.origin.y + self.webView.frame.height + 20, width: self.scrollView.frame.width/2-10, height: 20)
             self.timeLabel.frame = CGRect(x: self.scrollView.frame.width/2, y: self.webView.frame.origin.y + self.webView.frame.height + 20, width: self.scrollView.frame.width/2-10, height: 20)
             
             
-            let height = self.webView.frame.height + 80 > GetSHeight() ? self.webView.frame.height + 80 : GetSHeight() + 20
+            let height = self.webView.frame.height + 85 > GetSHeight() ? self.webView.frame.height + 85 : GetSHeight() + 20
             self.scrollView.contentSize = CGSize(width: GetSWidth(), height: height)
             
             print(self.webView.contentScaleFactor)

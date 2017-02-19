@@ -265,7 +265,9 @@ extension HomeViewController : CCPageViewDelegate
     func pageClickedAtIndex(page:CCPageView, index:Int)
     {
         let detail = TimeNewsDetailViewController()
-        detail.id = dataSource.homeActivity[index].id!
+        let array = dataSource.homeActivity
+        let id = array[index].id
+        detail.id = id
         let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
         nav?.pushViewController(detail, animated: true)
     }

@@ -15,6 +15,8 @@ class FileActivityViewController: BaseActivityViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "政策文件"
+        
+        tableView.registerNib(UINib(nibName: "PolicyFileCell", bundle: nil), forCellReuseIdentifier: "PolicyFileCell")
         // Do any additional setup after loading the view.
     }
     
@@ -77,6 +79,16 @@ class FileActivityViewController: BaseActivityViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return PolicyFileCell.cellHeight()
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("PolicyFileCell") as! PolicyFileCell
+        cell.update(lDataSource.fileActivity[indexPath.row])
+        return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

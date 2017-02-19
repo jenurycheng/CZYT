@@ -52,7 +52,7 @@ class HttpResponseData : NSObject
 
 class NetWorkHandle: NSObject {
     
-    static var ServerAddress:String = "http://www.yumutech.cn:20080/unity/webservice/ap/"
+    static var ServerAddress:String = "http://111.9.93.229:20080/unity/webservice/ap/"
 //    static var ServerAddress:String = "http://222.18.162.136:8080/unity/webservice/ap/"
     
     static var pathNetCache:String! = NSTemporaryDirectory() + "netCache/"

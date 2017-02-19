@@ -20,6 +20,9 @@ class BaseDetailViewController: BasePortraitViewController {
     
     var webView:WKWebView!
     
+    var zoomOutBtn:UIButton!
+    var zoomInBtn:UIButton!
+    
     var dataSource:LeaderActivityDetail?
     
     override func viewDidLoad() {
@@ -71,7 +74,34 @@ class BaseDetailViewController: BasePortraitViewController {
         webView.navigationDelegate = self
         webView.scrollView.scrollEnabled = false
         scrollView.addSubview(webView)
+        
+        zoomOutBtn = UIButton(frame: CGRect(x: 0, y: GetSHeight()-100-64, width: 40, height: 40))
+        zoomOutBtn.backgroundColor = ThemeManager.current().backgroundColor
+        zoomOutBtn.setTitle("+", forState: .Normal)
+        zoomOutBtn.addTarget(self, action: #selector(BaseDetailViewController.zoomOutBtnClicked), forControlEvents: .TouchUpInside)
+//        self.view.addSubview(zoomOutBtn)
+        
+        zoomInBtn = UIButton(frame: CGRect(x: 0, y: zoomOutBtn.frame.origin.y + zoomOutBtn.frame.height, width: 40, height: 40))
+        zoomInBtn.setTitle("-", forState: .Normal)
+        zoomInBtn.backgroundColor = ThemeManager.current().backgroundColor
+//        self.view.addSubview(zoomInBtn)
         // Do any additional setup after loading the view.
+    }
+    
+    var scale:CGFloat = 1
+    func zoomOutBtnClicked()
+    {
+        scale = scale * 1.1
+        let trans = CGAffineTransformMakeScale(scale, scale)
+        webView.transform = trans
+        
+        let size = scrollView.contentSize
+        scrollView.contentSize = CGSizeMake(size.width * 1.1, size.height * 1.1)
+    }
+    
+    func zoomInBtnClicked()
+    {
+        
     }
     
     func update(data:LeaderActivityDetail?)
