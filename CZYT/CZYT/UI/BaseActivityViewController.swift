@@ -202,12 +202,12 @@ extension BaseActivityViewController : UISearchBarDelegate
 extension BaseActivityViewController : FlowLayoutViewDelegate
 {
     func flowLayoutViewClickedBtn(view: FlowLayoutView, btn: UIButton, text: String) {
-        if text == "推荐"
-        {
-            self.classify = ""
-        }else{
+//        if text == "推荐"
+//        {
+//            self.classify = ""
+//        }else{
             self.classify = text
-        }
+//        }
         self.loadData()
     }
 }

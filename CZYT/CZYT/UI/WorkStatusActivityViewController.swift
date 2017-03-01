@@ -37,28 +37,52 @@ class WorkStatusActivityViewController: BaseActivityViewController {
                     array.append(r.value!)
                 }
                 self.setCondition(array)
+                
+                if array.count > 0
+                {
+                    self.classify = array[0]
+                }
+                if self.dataSource.count == 0
+                {
+                    self.view.showHud()
+                }
+                self.lDataSource.getWorkStatusActivity(true, classify: self.classify, key: self.searchText, success: { (result) in
+                    self.dataSource = self.lDataSource.workStatusActivity
+                    self.tableView.mj_header.endRefreshing()
+                    self.tableView.mj_footer.endRefreshing()
+                    self.tableView.reloadData()
+                    self.view.dismiss()
+                }) { (error) in
+                    self.tableView.mj_header.endRefreshing()
+                    self.view.dismiss()
+                    NetworkErrorView.show(self.view, data: error, callback: {
+                        self.loadData()
+                    })
+                }
             }) { (error) in
                 
             }
+        }else{
+            if self.dataSource.count == 0
+            {
+                self.view.showHud()
+            }
+            self.lDataSource.getWorkStatusActivity(true, classify: self.classify, key: self.searchText, success: { (result) in
+                self.dataSource = self.lDataSource.workStatusActivity
+                self.tableView.mj_header.endRefreshing()
+                self.tableView.mj_footer.endRefreshing()
+                self.tableView.reloadData()
+                self.view.dismiss()
+            }) { (error) in
+                self.tableView.mj_header.endRefreshing()
+                self.view.dismiss()
+                NetworkErrorView.show(self.view, data: error, callback: {
+                    self.loadData()
+                })
+            }
         }
         
-        if self.dataSource.count == 0
-        {
-            self.view.showHud()
-        }
-        lDataSource.getWorkStatusActivity(true, classify: classify, key: self.searchText, success: { (result) in
-            self.dataSource = self.lDataSource.workStatusActivity
-            self.tableView.mj_header.endRefreshing()
-            self.tableView.mj_footer.endRefreshing()
-            self.tableView.reloadData()
-            self.view.dismiss()
-        }) { (error) in
-            self.tableView.mj_header.endRefreshing()
-            self.view.dismiss()
-            NetworkErrorView.show(self.view, data: error, callback: {
-                self.loadData()
-            })
-        }
+        
     }
     
     override func loadMore()

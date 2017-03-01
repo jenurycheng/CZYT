@@ -11,6 +11,7 @@ import WebKit
 
 class ProjectWorkDetailViewController: BasePortraitViewController {
     
+    var hiddenItem = false
     var id:String = ""
     
     var scrollView:UIScrollView!
@@ -37,7 +38,7 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "详情"
+//        self.title = "重点项目"
         
         scrollView = UIScrollView(frame: self.view.bounds)
         self.view.addSubview(scrollView)
@@ -77,15 +78,7 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         btnArray.append(basicBtn)
         btnView.addSubview(basicBtn)
         
-        requireBtn = UIButton(frame: CGRect(x: width+20, y: 7, width: width, height: 31))
-        requireBtn.setTitle("工作要求", forState: .Normal)
-        requireBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
-        requireBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
-        btnView.addSubview(requireBtn)
-        btnArray.append(requireBtn)
-        requireBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController.btnClicked(_:)), forControlEvents: .TouchUpInside)
-        
-        progressBtn = UIButton(frame: CGRect(x: width*2+30, y: 7, width: width, height: 31))
+        progressBtn = UIButton(frame: CGRect(x: width+20, y: 7, width: width, height: 31))
         progressBtn.setTitle("推进情况", forState: .Normal)
         progressBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
         progressBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
@@ -93,13 +86,21 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         btnArray.append(progressBtn)
         progressBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController.btnClicked(_:)), forControlEvents: .TouchUpInside)
         
-        problemBtn = UIButton(frame: CGRect(x: width*3+40, y: 7, width: width, height: 31))
+        problemBtn = UIButton(frame: CGRect(x: width*2+30, y: 7, width: width, height: 31))
         problemBtn.setTitle("存在问题", forState: .Normal)
         problemBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
         problemBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
         btnView.addSubview(problemBtn)
         btnArray.append(problemBtn)
         problemBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController.btnClicked(_:)), forControlEvents: .TouchUpInside)
+        
+        requireBtn = UIButton(frame: CGRect(x: width*3+40, y: 7, width: width, height: 31))
+        requireBtn.setTitle("工作要求", forState: .Normal)
+        requireBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
+        requireBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
+        btnView.addSubview(requireBtn)
+        btnArray.append(requireBtn)
+        requireBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController.btnClicked(_:)), forControlEvents: .TouchUpInside)
         
         webView = WKWebView(frame: CGRect(x: 5, y: 85, width: GetSWidth()-10, height: 10), configuration: config)
         webView.navigationDelegate = self
@@ -130,7 +131,23 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         }
         
         self.btnClicked(basicBtn)
+        
+        if !hiddenItem {
+            let assignItem = UIBarButtonItem(title: "指派", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ProjectWorkDetailViewController.assignBtnClicked))
+            self.navigationItem.rightBarButtonItem = assignItem
+        }
+        
         // Do any additional setup after loading the view.
+    }
+    
+    func assignBtnClicked()
+    {
+        if dataSource?.id == nil {
+            return
+        }
+        let publish = PublishTaskViewController(nibName: "PublishTaskViewController", bundle: nil)
+        publish.taskID = dataSource?.id
+        self.navigationController?.pushViewController(publish, animated: true)
     }
     
     func btnClicked(btn:UIButton)
@@ -154,7 +171,7 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         sourceLabel.hidden = true
         timeLabel.hidden = true
         if index == 0 {
-            if Helper.isStringEmpty(dataSource?.basic)
+            if dataSource?.basic != nil
             {
                 webView.loadHTMLString(dataSource!.basic!, baseURL: nil)
                 sourceLabel.hidden = false
@@ -162,22 +179,22 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
             }
         }else if index == 1
         {
-            if dataSource?.requirement != nil {
-                webView.loadHTMLString(dataSource!.requirement!, baseURL: nil)
-            }
-            
-        }else if index == 2
-        {
-            if dataSource?.progress != nil
+            if dataSource?.promotion != nil
             {
-                webView.loadHTMLString(dataSource!.progress!, baseURL: nil)
+                webView.loadHTMLString(dataSource!.promotion!, baseURL: nil)
             }
-        }else if index == 3
+        }else if index == 2
         {
             if dataSource?.problem != nil
             {
                 webView.loadHTMLString(dataSource!.problem!, baseURL: nil)
             }
+        }else if index == 3
+        {
+            if dataSource?.requirement != nil {
+                webView.loadHTMLString(dataSource!.requirement!, baseURL: nil)
+            }
+            
         }
     }
     
@@ -201,7 +218,11 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         {
             return
         }
+        
         self.dataSource = data
+        if data?.classify != nil {
+            self.title = "重点项目/" + (dataSource?.classify ?? "")
+        }
         titleLabel.text = dataSource!.title
         sourceLabel.text = "来源:" + (dataSource?.classify ?? "")
 //        let tattribute = NSMutableAttributedString(string: "")

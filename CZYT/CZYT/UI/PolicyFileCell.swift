@@ -18,6 +18,7 @@ class PolicyFileCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.contentView.backgroundColor = ThemeManager.current().backgroundColor
         self.selectionStyle = .None
         
         contentBgView.layer.cornerRadius = 5

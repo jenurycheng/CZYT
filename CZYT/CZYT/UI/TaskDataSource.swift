@@ -111,6 +111,7 @@ class TaskDataSource: NSObject {
         request.task_content = task.task_content
         request.task_end_date = task.task_end_date
         request.assigns = task.assigns
+        request.task_projectwork_id = task.task_projectwork_id
 //        request.director = task.director
 //        request.supporter = task.supporter
         

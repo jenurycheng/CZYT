@@ -29,6 +29,7 @@ class TaskDetailViewController: BasePortraitViewController {
     
     var okBtn:UIButton!
     var assignBtn:UIButton!
+    var projectItem:UIBarButtonItem!
     
     var dataSource = TaskDataSource()
     override func viewDidLoad() {
@@ -68,7 +69,19 @@ class TaskDetailViewController: BasePortraitViewController {
         collectionView.backgroundColor = ThemeManager.current().foregroundColor
         collectionView.registerClass(UICollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "UICollectionReusableView")
         
+        projectItem = UIBarButtonItem(title: "项目背景", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(TaskDetailViewController.projectClicked))
         // Do any additional setup after loading the view.
+    }
+    
+    func projectClicked()
+    {
+        if dataSource.taskDetail?.task_projectwork_id == nil {
+            return
+        }
+        let detail = ProjectWorkDetailViewController()
+        detail.hiddenItem = true
+        detail.id = dataSource.taskDetail!.task_projectwork_id!
+        self.navigationController?.pushViewController(detail, animated: true)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -177,6 +190,11 @@ class TaskDetailViewController: BasePortraitViewController {
     
     func updateView()
     {
+        if Helper.isStringEmpty(dataSource.taskDetail?.task_projectwork_id) {
+            self.navigationItem.rightBarButtonItem = nil
+        }else{
+            self.navigationItem.rightBarButtonItem = projectItem
+        }
         if !Helper.isStringEmpty(dataSource.taskDetail?.task_status_name) && self.statusLabel.text == dataSource.taskDetail?.task_status_name
         {
             return

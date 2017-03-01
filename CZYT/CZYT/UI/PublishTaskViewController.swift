@@ -10,6 +10,7 @@ import UIKit
 
 class PublishTaskViewController: BasePortraitViewController {
 
+    var taskID:String?
     @IBOutlet weak var titleTextField:UITextField!
     @IBOutlet weak var contentTextView:UITextView!
     @IBOutlet weak var tableView:UITableView!
@@ -97,6 +98,7 @@ class PublishTaskViewController: BasePortraitViewController {
         let task = PublishTask()
         task.task_title = titleTextField.text
         task.task_content = contentTextView.text
+        task.task_projectwork_id = taskID
 //        task.director = selectedIds[0]
 //        if selectedIds.count > 1
 //        {

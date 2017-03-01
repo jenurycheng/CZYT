@@ -34,7 +34,13 @@ class BBSCell: UITableViewCell {
     
     func update(bbs:BBS)
     {
-        titleLabel.text = bbs.title
+        let title = bbs.title ?? ""
+        let attribute = NSMutableAttributedString(string: "")
+        if bbs.isTop() {
+            attribute.appendAttributeString("【置顶】", color: UIColor.redColor(), font: titleLabel.font)
+        }
+        attribute.appendAttributeString(title, color: titleLabel.textColor, font: titleLabel.font)
+        titleLabel.attributedText = attribute
         sourceLabel.text = bbs.original
         detailLabel.text = bbs.summary
         timeLabel.text = bbs.publish_date

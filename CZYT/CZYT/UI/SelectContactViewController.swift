@@ -19,7 +19,7 @@ class SelectContactViewController: BasePortraitViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "指派员工"
+        self.title = "被指派人"
         
         selectContactView = SelectContactView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64-50), selectMode:true, departmentID: DepartmentTree.rootDepartmentID)
 //        selectContactView.contactView.maxSelectCount = 2

@@ -11,6 +11,7 @@ import UIKit
 class HomeCell2: UICollectionViewCell {
 
     @IBOutlet weak var iconImageView:UIImageView!
+    @IBOutlet weak var numLabel:UILabel!
     
     class func cellSize()->CGSize
     {
@@ -22,6 +23,11 @@ class HomeCell2: UICollectionViewCell {
         iconImageView.backgroundColor = Helper.parseColor(0x00000022)
         iconImageView.layer.cornerRadius = 5
         iconImageView.layer.masksToBounds = true
+        
+        numLabel.backgroundColor = ThemeManager.current().mainColor
+        numLabel.textColor = UIColor.whiteColor()
+        numLabel.layer.cornerRadius = 10
+        numLabel.layer.masksToBounds = true
         // Initialization code
     }
 

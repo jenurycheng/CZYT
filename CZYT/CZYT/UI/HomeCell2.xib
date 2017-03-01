@@ -16,20 +16,33 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_header_default" translatesAutoresizingMaskIntoConstraints="NO" id="jpG-iR-hJK">
                         <rect key="frame" x="0.0" y="0.0" width="90" height="104"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JqD-qE-Qg2">
+                        <rect key="frame" x="70" y="0.0" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="iAS-IK-HF2"/>
+                            <constraint firstAttribute="width" constant="20" id="muW-wa-m4u"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstItem="JqD-qE-Qg2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="7qa-uq-CTK"/>
                 <constraint firstAttribute="bottom" secondItem="jpG-iR-hJK" secondAttribute="bottom" id="Q8a-Z8-u0A"/>
                 <constraint firstItem="jpG-iR-hJK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="aCm-xO-5F9"/>
                 <constraint firstAttribute="trailing" secondItem="jpG-iR-hJK" secondAttribute="trailing" id="bIx-rC-ZW8"/>
+                <constraint firstAttribute="trailing" secondItem="JqD-qE-Qg2" secondAttribute="trailing" id="ctq-x9-bVO"/>
                 <constraint firstItem="jpG-iR-hJK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="fY9-88-xcr"/>
             </constraints>
             <size key="customSize" width="90" height="104"/>
             <connections>
                 <outlet property="iconImageView" destination="jpG-iR-hJK" id="581-hp-hYc"/>
+                <outlet property="numLabel" destination="JqD-qE-Qg2" id="BuZ-co-nUZ"/>
             </connections>
-            <point key="canvasLocation" x="410" y="418"/>
+            <point key="canvasLocation" x="404" y="418"/>
         </collectionViewCell>
     </objects>
     <resources>

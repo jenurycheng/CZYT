@@ -25,7 +25,19 @@ class TaskChatViewController: BasePortraitViewController {
         collectionView.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "UICollectionViewCell")
         collectionView.registerClass(UICollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "UICollectionReusableView")
         self.view.addSubview(collectionView)
+        UserInfo.sharedInstance.addObserver(self, forKeyPath: "unreadMsg", options: .New, context: nil)
         // Do any additional setup after loading the view.
+    }
+    
+    deinit{
+        UserInfo.sharedInstance.removeObserver(self, forKeyPath: "unreadMsg")
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == "unreadMsg" {
+            let index = NSIndexPath(forItem: 1, inSection: 1)
+            collectionView.reloadItemsAtIndexPaths([index])
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,19 +65,23 @@ extension TaskChatViewController : UICollectionViewDelegate
     {
         if indexPath.section == 0
         {
-            if indexPath.row == 0
+            var row = indexPath.row
+            if !UserInfo.sharedInstance.publishEnabled() {
+                row = row + 2
+            }
+            if row == 0
             {
                 let new = PublishTaskViewController(nibName: "PublishTaskViewController", bundle: nil)
                 self.navigationController?.pushViewController(new, animated: true)
-            }else if indexPath.row == 1
+            }else if row == 1
             {
                 let my = MyPublishTaskViewController()
                 self.navigationController?.pushViewController(my, animated: true)
-            }else if indexPath.row == 2
+            }else if row == 2
             {
                 let my = MyTaskViewController()
                 self.navigationController?.pushViewController(my, animated: true)
-            }else if indexPath.row == 3
+            }else if row == 3
             {
                 let t = TaskNotifyViewController()
                 self.navigationController?.pushViewController(t, animated: true)
@@ -74,12 +90,15 @@ extension TaskChatViewController : UICollectionViewDelegate
         {
             if indexPath.row == 0
             {
-                let list = ChatListViewController()
-                self.navigationController?.pushViewController(list, animated: true)
-            }else if indexPath.row == 1
-            {
                 let contact = ContactViewController()
                 self.navigationController?.pushViewController(contact, animated: true)
+            }else if indexPath.row == 1
+            {
+                let list = ChatListViewController()
+                self.navigationController?.pushViewController(list, animated: true)
+                if UserInfo.sharedInstance.unreadMsg != 0 {
+                    UserInfo.sharedInstance.unreadMsg = 0
+                }
             }else if indexPath.row == 2
             {
                 let group = GroupViewController()
@@ -112,11 +131,15 @@ extension TaskChatViewController : UICollectionViewDataSource
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        if section == 0 {//广告栏
+        if section == 0 {
+            if !UserInfo.sharedInstance.publishEnabled()
+            {
+                return 2
+            }
             return 4
         }else if section == 1
         {
-            return 3
+            return 4
         }
         return 0
     }
@@ -128,15 +151,26 @@ extension TaskChatViewController : UICollectionViewDataSource
         cell.nameLabel.textColor = ThemeManager.current().darkGrayFontColor
         if indexPath.section == 0 {
             
-            let images = ["task_new", "task_my_publish", "task_my", "task_msg", "home_task", "home_link"]
-            let names = ["新建任务", "我的发布", "我的任务", "通知通报", "督查督办", "友情链接"]
+            var images = ["task_new", "task_my_publish", "task_my", "task_msg", "home_task", "home_link"]
+            var names = ["新建任务", "我的发布", "我的任务", "通知通报", "督查督办", "友情链接"]
+            if !UserInfo.sharedInstance.publishEnabled() {
+                images = ["task_my", "task_msg", "home_task", "home_link"]
+                names = ["我的任务", "通知通报", "督查督办", "友情链接"]
+            }
             cell.iconImageView.image = UIImage(named: images[indexPath.row])
             cell.nameLabel.text = names[indexPath.row]
+            cell.numLabel.hidden = true
             return cell
         } else
         {
-            let images = ["chat_list", "chat_contact", "chat_group", "chat_bbs1", "home_task", "home_link"]
-            let names = ["会话", "联系人", "讨论组", "他山之石", "督查督办", "友情链接"]
+            if indexPath.row == 1 && UserInfo.sharedInstance.unreadMsg != 0{
+                cell.numLabel.text = "\(UserInfo.sharedInstance.unreadMsg)"
+                cell.numLabel.hidden = false
+            }else{
+                cell.numLabel.hidden = true
+            }
+            let images = ["chat_contact", "chat_list", "chat_group", "chat_bbs1", "home_task", "home_link"]
+            let names = ["联系人", "会话", "讨论组", "建言献策", "督查督办", "友情链接"]
             cell.iconImageView.image = UIImage(named: images[indexPath.row])
             cell.nameLabel.text = names[indexPath.row]
             return cell
@@ -170,7 +204,6 @@ extension TaskChatViewController : UICollectionViewDataSource
                 
                 let line = GetLineView(CGRect(x: 0, y: 39, width: GetSWidth(), height: 1))
                 view.addSubview(line)
-                
             }
             
             return view

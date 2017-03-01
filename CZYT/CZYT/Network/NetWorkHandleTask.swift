@@ -32,6 +32,7 @@ extension NetWorkHandle
 //            var director:String?
 //            var supporter:String?
             var assigns:String?
+            var task_projectwork_id:String?
         }
         
         class func publishTask(request:RequestPublishTask?, finish:((HttpResponseData)->Void)) {

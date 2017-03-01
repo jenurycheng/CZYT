@@ -16,6 +16,7 @@ class PublishTask : NSObject
     var task_end_date:String?//yyyy-MM-dd
 //    var director:String?//主办人 id
 //    var supporter:String? = ""//协办人 id
+    var task_projectwork_id:String?
     var assigns:String?
 }
 
@@ -41,6 +42,9 @@ class Task: Reflect {
     var task_assigner_user_name:String?
     var task_assigner_user_mobile:String?
     var task_assign_date:String?
+    
+    var task_projectwork_id:String?
+    var task_projectwork_title:String?
     
     var assignees:[TaskAssign]?
 }
@@ -78,6 +82,8 @@ class TaskDetail : Reflect
     var task_publish_user_id:String?
     var task_publish_user_name:String?
     var task_publish_date:String?
+    var task_projectwork_id:String?
+    var task_projectwork_title:String?
     
     var assign:[TaskAssign]?
     

@@ -12,6 +12,7 @@ class HomeCell: UICollectionViewCell {
 
     @IBOutlet weak var iconImageView:UIImageView!
     @IBOutlet weak var nameLabel:UILabel!
+    @IBOutlet weak var numLabel:UILabel!
     
     class func cellSize()->CGSize
     {
@@ -25,6 +26,11 @@ class HomeCell: UICollectionViewCell {
         iconImageView.layer.masksToBounds = true
         nameLabel.textColor = ThemeManager.current().darkGrayFontColor
         nameLabel.font = UIFont(name: "Helvetica-Bold", size: 16)
+        
+        numLabel.backgroundColor = ThemeManager.current().mainColor
+        numLabel.textColor = UIColor.whiteColor()
+        numLabel.layer.cornerRadius = 10
+        numLabel.layer.masksToBounds = true
         // Initialization code
     }
 

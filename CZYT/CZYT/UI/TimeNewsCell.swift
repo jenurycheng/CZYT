@@ -40,6 +40,7 @@ class TimeNewsCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.contentView.backgroundColor = ThemeManager.current().backgroundColor
         self.selectionStyle = .None
         self.clipsToBounds = true
         contentLabel.textColor = ThemeManager.current().grayFontColor

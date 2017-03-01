@@ -267,6 +267,8 @@
 		C4E669D51DEC82D800DD35EC /* MJPhotoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E669CC1DEC82D800DD35EC /* MJPhotoProgressView.m */; };
 		C4E669D61DEC82D800DD35EC /* MJPhotoToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E669CE1DEC82D800DD35EC /* MJPhotoToolbar.m */; };
 		C4E669D71DEC82D800DD35EC /* MJPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E669D01DEC82D800DD35EC /* MJPhotoView.m */; };
+		C4EDA4581E67046B003B9C79 /* PublishBBSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EDA4561E67046A003B9C79 /* PublishBBSViewController.swift */; };
+		C4EDA4591E67046B003B9C79 /* PublishBBSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EDA4571E67046A003B9C79 /* PublishBBSViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -602,6 +604,8 @@
 		C4E669CE1DEC82D800DD35EC /* MJPhotoToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoToolbar.m; sourceTree = "<group>"; };
 		C4E669CF1DEC82D800DD35EC /* MJPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoView.h; sourceTree = "<group>"; };
 		C4E669D01DEC82D800DD35EC /* MJPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoView.m; sourceTree = "<group>"; };
+		C4EDA4561E67046A003B9C79 /* PublishBBSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishBBSViewController.swift; sourceTree = "<group>"; };
+		C4EDA4571E67046A003B9C79 /* PublishBBSViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishBBSViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -736,6 +740,8 @@
 				C4190C711DD76DD700B38A7A /* BBSDetailViewController.swift */,
 				C4190C721DD76DD700B38A7A /* BBSDetailViewController.xib */,
 				C4190C751DD7788E00B38A7A /* BBSCommentViewController.swift */,
+				C4EDA4561E67046A003B9C79 /* PublishBBSViewController.swift */,
+				C4EDA4571E67046A003B9C79 /* PublishBBSViewController.xib */,
 			);
 			name = BBS;
 			sourceTree = "<group>";
@@ -1526,6 +1532,7 @@
 			files = (
 				C487340E1DCF093E00C9B0C0 /* LaunchScreen.storyboard in Resources */,
 				C40B0B981DE47F5A001F966E /* DNImagePicker.strings in Resources */,
+				C4EDA4591E67046B003B9C79 /* PublishBBSViewController.xib in Resources */,
 				C4BC6A5E1DD4BB0A00DA19B2 /* UserNotLoginViewController.xib in Resources */,
 				C40B0B651DE46ADF001F966E /* TaskDetailViewController.xib in Resources */,
 				C419A9791DE5ECC300E4DFD5 /* TaskResultTopCell.xib in Resources */,
@@ -1620,6 +1627,7 @@
 				C40B0BA21DE47F5A001F966E /* DNFullImageButton.m in Sources */,
 				C42028341DE314D4005E134B /* MyPublishTaskViewController.swift in Sources */,
 				C48734B41DCF0A3A00C9B0C0 /* Reflect.swift in Sources */,
+				C4EDA4581E67046B003B9C79 /* PublishBBSViewController.swift in Sources */,
 				C41243941DDF42ED0005058C /* CCSideView.swift in Sources */,
 				C4E669D51DEC82D800DD35EC /* MJPhotoProgressView.m in Sources */,
 				C4190C491DD6F27B00B38A7A /* NetworkHandleUser.swift in Sources */,
@@ -1916,7 +1924,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.yumutech.unity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a2002c04-dffd-452d-b33e-5d79846afb98";
+				PROVISIONING_PROFILE = "4d8733f7-e451-4d1e-b756-9d7f388f7ec3";
 				SWIFT_OBJC_BRIDGING_HEADER = "./CZYT/CZYT-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
 			};
@@ -1945,7 +1953,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.yumutech.unity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a2002c04-dffd-452d-b33e-5d79846afb98";
+				PROVISIONING_PROFILE = "4d8733f7-e451-4d1e-b756-9d7f388f7ec3";
 				SWIFT_OBJC_BRIDGING_HEADER = "./CZYT/CZYT-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
 			};

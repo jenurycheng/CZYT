@@ -13,6 +13,21 @@ class BBSDataSource: NSObject {
     var bbs = [BBS]()
     var pageSize = 10
     
+    func publishBBS(title:String, content:String?, success:(() -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        let r = NetWorkHandle.NetworkHandleBBS.RequestAddBBS()
+        r.title = title
+        r.content = content
+        NetWorkHandle.NetworkHandleBBS.addBBS(r) { (data) in
+            if data.isSuccess()
+            {
+                success()
+            }else{
+                failure(error: data)
+            }
+        }
+    }
+    
     func getBBSList(isFirst:Bool, success:((result:[BBS]) -> Void), failure:((error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetworkHandleBBS.RequestGetBBSList()

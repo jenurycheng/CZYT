@@ -39,7 +39,20 @@ class HomeViewController: BasePortraitViewController {
         pageView.delegate = self
         pageView.pageControl.backgroundColor = ThemeManager.current().backgroundColor
         self.getHomeData()
+
+        UserInfo.sharedInstance.addObserver(self, forKeyPath: "unreadMsg", options: .New, context: nil)
         // Do any additional setup after loading the view.
+    }
+    
+    deinit{
+        UserInfo.sharedInstance.removeObserver(self, forKeyPath: "unreadMsg")
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == "unreadMsg" {
+            let index = NSIndexPath(forItem: 4, inSection: 1)
+            collectionView.reloadItemsAtIndexPaths([index])
+        }
     }
     
     func getHomeData()
@@ -60,6 +73,9 @@ class HomeViewController: BasePortraitViewController {
             let count = RCIMClient.sharedRCIMClient().getUnreadCount(a)
             dispatch_async(dispatch_get_main_queue(), { 
                 CCPrint("未读消息:\(count)")
+                UserInfo.sharedInstance.unreadMsg = Int(count)
+                let path = NSIndexPath(forItem: 4, inSection: 1)
+                self.collectionView.reloadItemsAtIndexPaths([path])
             })
         }
         
@@ -172,6 +188,12 @@ extension HomeViewController : UICollectionViewDataSource
             let images = ["home_leader", "home_status", "home_project", "home_file", "home_task", "home_link"]
             let names = ["时政新闻", "动态消息", "重点项目", "政策文件", "督办交流", "友情链接"]
             cell.iconImageView.image = UIImage(named: images[indexPath.row])
+            if indexPath.row == 4 && UserInfo.sharedInstance.unreadMsg != 0{
+                cell.numLabel.text = "\(UserInfo.sharedInstance.unreadMsg)"
+                cell.numLabel.hidden = false
+            }else{
+                cell.numLabel.hidden = true
+            }
             return cell
         }
         

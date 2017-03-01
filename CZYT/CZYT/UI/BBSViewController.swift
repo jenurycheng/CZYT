@@ -16,7 +16,7 @@ class BBSViewController: BasePortraitViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "他山之石"
+        self.title = "建言献策"
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64))
         tableView.delegate = self
         tableView.dataSource = self
@@ -34,7 +34,16 @@ class BBSViewController: BasePortraitViewController {
         })
         
         self.loadData()
+        
+        let add = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(BBSViewController.addClicked))
+        self.navigationItem.rightBarButtonItem = add
         // Do any additional setup after loading the view.
+    }
+    
+    func addClicked()
+    {
+        let add = PublishBBSViewController(nibName: "PublishBBSViewController", bundle: nil)
+        self.navigationController?.pushViewController(add, animated: true)
     }
     
     func loadData()

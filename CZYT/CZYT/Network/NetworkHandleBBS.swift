@@ -11,10 +11,22 @@ import UIKit
 extension NetWorkHandle
 {
     class NetworkHandleBBS: NSObject {
+        static var Address_AddBBS = "PublishExchange"
         static var Address_GetBBSList = "ExchangeList?"
         static var Address_GetBBSDetail = "ExchangeItem?"
         static var Address_GetBBSCommentList = "ExchangeCommentList?"
         static var Address_GetBBSAddComment = "ExchangeCommentAdd?"
+        
+        class RequestAddBBS : Reflect
+        {
+            var title:String?
+            var summary:String?
+            var content:String?
+        }
+        
+        class func addBBS(request:RequestAddBBS?, finish:((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_AddBBS, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
         
         class RequestGetBBSList : Reflect
         {

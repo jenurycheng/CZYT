@@ -29,6 +29,16 @@
                             <constraint firstAttribute="width" constant="60" id="a9G-Uy-oNd"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zqk-dU-jIZ">
+                        <rect key="frame" x="70" y="0.0" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="AOM-dc-hQX"/>
+                            <constraint firstAttribute="width" constant="20" id="kzG-eX-ncF"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -36,6 +46,8 @@
                 <constraint firstItem="jpG-iR-hJK" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="JtJ-pT-pIE"/>
                 <constraint firstAttribute="bottom" secondItem="CYR-or-Tgj" secondAttribute="bottom" id="TRL-xR-SXV"/>
                 <constraint firstAttribute="trailing" secondItem="CYR-or-Tgj" secondAttribute="trailing" id="TTv-QM-ip9"/>
+                <constraint firstItem="Zqk-dU-jIZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="czt-B3-BQf"/>
+                <constraint firstAttribute="trailing" secondItem="Zqk-dU-jIZ" secondAttribute="trailing" id="dRg-EG-LNI"/>
                 <constraint firstItem="CYR-or-Tgj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ih7-yg-C8f"/>
                 <constraint firstItem="CYR-or-Tgj" firstAttribute="top" secondItem="jpG-iR-hJK" secondAttribute="bottom" id="r7A-eB-dXj"/>
             </constraints>
@@ -43,6 +55,7 @@
             <connections>
                 <outlet property="iconImageView" destination="jpG-iR-hJK" id="581-hp-hYc"/>
                 <outlet property="nameLabel" destination="CYR-or-Tgj" id="exi-Wb-7HH"/>
+                <outlet property="numLabel" destination="Zqk-dU-jIZ" id="Nt3-ix-TlE"/>
             </connections>
             <point key="canvasLocation" x="410" y="418"/>
         </collectionViewCell>

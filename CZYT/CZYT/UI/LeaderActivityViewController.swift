@@ -37,31 +37,54 @@ class LeaderActivityViewController: BaseActivityViewController {
                 {
                     array.append(r.value!)
                 }
-                array.insert("推荐", atIndex: 0)
+//                array.insert("推荐", atIndex: 0)
                 self.setCondition(array)
+                if array.count > 0
+                {
+                    self.classify = array[0]
+                }
+                if self.dataSource.count == 0
+                {
+                    self.view.showHud()
+                }
+                self.lDataSource.getLeaderActivity(true, classify: self.classify, key: self.searchText, success: { (result) in
+                    self.dataSource = self.lDataSource.leaderActivity
+                    self.tableView.mj_header.endRefreshing()
+                    self.tableView.mj_footer.endRefreshing()
+                    self.tableView.reloadData()
+                    self.view.dismiss()
+                }) { (error) in
+                    self.tableView.mj_header.endRefreshing()
+                    self.view.dismiss()
+                    
+                    NetworkErrorView.show(self.view, data: error, callback: {
+                        self.loadData()
+                    })
+                }
             }) { (error) in
                 
             }
-        }
-        
-        if self.dataSource.count == 0
-        {
-            self.view.showHud()
-        }
-        lDataSource.getLeaderActivity(true, classify: classify, key: self.searchText, success: { (result) in
-            self.dataSource = self.lDataSource.leaderActivity
-            self.tableView.mj_header.endRefreshing()
-            self.tableView.mj_footer.endRefreshing()
-            self.tableView.reloadData()
-            self.view.dismiss()
+        }else{
+            if self.dataSource.count == 0
+            {
+                self.view.showHud()
+            }
+            self.lDataSource.getLeaderActivity(true, classify: self.classify, key: self.searchText, success: { (result) in
+                self.dataSource = self.lDataSource.leaderActivity
+                self.tableView.mj_header.endRefreshing()
+                self.tableView.mj_footer.endRefreshing()
+                self.tableView.reloadData()
+                self.view.dismiss()
             }) { (error) in
                 self.tableView.mj_header.endRefreshing()
                 self.view.dismiss()
                 
-                NetworkErrorView.show(self.view, data: error, callback: { 
+                NetworkErrorView.show(self.view, data: error, callback: {
                     self.loadData()
                 })
+            }
         }
+        
     }
     
     override func loadMore()

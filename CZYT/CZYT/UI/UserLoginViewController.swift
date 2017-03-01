@@ -208,16 +208,17 @@ class UserLoginViewController: BasePortraitViewController {
             return
         }
         
-        if telTextField.text! == "13880184987" && codeTextField.text! == "8888"
+        if telTextField.text! == "18010648123" && codeTextField.text! == "8888"
         {
             let ui = UserInfo()
-            ui.id = "4"
-            ui.nickname = "成超"
-            ui.token = "oLLg82+EiWSzVf1FZ/NeeuqwM2YMZhjwj73CHIoeLPm2z4johneBP8ZcmDBgzlkCoJ+BtrWHgY8osnljA+j45A=="
-            ui.logo_path = "http://182.254.167.232:20080/unity/userfiles/images/portrait.jpg"
-            ui.mobile = "13880184987"
-            ui.dept_id = "5"
-            ui.dept_name = "人力资源部"
+            ui.id = "550"
+            ui.nickname = "赵"
+            ui.token = "6gggGQ7Id15zUFnEH88gh1c3WSEN8buxIX4ah9tuS/Eq07d6P18AyLc4AQTT6ECMnxNK547lF/q8i9UwMUD15Q=="
+            ui.logo_path = "http://111.9.93.229:20080/unity/userfiles/user/photo/portrait.jpg"
+            ui.mobile = "18010648123"
+            ui.dept_id = "4"
+            ui.dept_name = "市成资一体办"
+            ui.publish_task_flag = "1"
             UserInfo.sharedInstance.update(ui)
             UserInfo.sharedInstance.isLogin = true
             

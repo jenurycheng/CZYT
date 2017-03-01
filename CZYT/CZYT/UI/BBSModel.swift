@@ -18,6 +18,12 @@ class BBS: Reflect {
     var publish_date:String?
     var logo_path:String?
     var original:String?
+    var exchange_istop:String?
+    
+    func isTop()->Bool
+    {
+        return exchange_istop == "1" ? true : false
+    }
 }
 
 class BBSDetail : Reflect
