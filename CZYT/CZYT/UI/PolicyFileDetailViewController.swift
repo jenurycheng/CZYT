@@ -16,7 +16,7 @@ class PolicyFileDetailViewController: BaseDetailViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "政策文件"
         self.loadData()
         // Do any additional setup after loading the view.
     }

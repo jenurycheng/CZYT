@@ -77,7 +77,8 @@ class PublishBBSViewController: BasePortraitViewController {
         self.view.showHud()
         dataSource.publishBBS(titleTextField.text!, content: contentTextView.text, success: { 
             self.view.dismiss()
-            MBProgressHUD.showSuccess("发布成功，后台审核中", toView: self.view)
+            MBProgressHUD.showSuccess("发布成功，后台审核中", toView: self.view.window)
+            self.navigationController?.popViewControllerAnimated(true)
             }) { (error) in
                 self.view.dismiss()
                 MBProgressHUD.showError("发布失败", toView: self.view)

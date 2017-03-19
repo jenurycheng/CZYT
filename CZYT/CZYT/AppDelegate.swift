@@ -28,9 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.initRemoteNotify()
 
         if launchOptions != nil {
+            //处理推送消息
             self.dealPushMessage(launchOptions!)
         }
-
+        
+        //是否保存了登录信息
         let ui = UserInfo.read()
         if ui != nil
         {
@@ -58,14 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func initNavigationBar()
     {
-//        let nav = self.window?.rootViewController as! UINavigationController
-//        nav.navigationBar.barTintColor = ThemeManager.current().mainColor
-//        nav.navigationBar.tintColor = ThemeManager.current().whiteFontColor
-//        nav.navigationBar.translucent = false
-//        var dic = Dictionary<String, AnyObject>()
-//        dic.updateValue(ThemeManager.current().whiteFontColor, forKey: NSForegroundColorAttributeName)
-//        nav.navigationBar.titleTextAttributes = dic
-        
         let bar = UINavigationBar.appearance()
         bar.barTintColor = ThemeManager.current().mainColor
         bar.tintColor = ThemeManager.current().whiteFontColor

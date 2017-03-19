@@ -208,7 +208,7 @@ class UserLoginViewController: BasePortraitViewController {
             return
         }
         
-        if telTextField.text! == "18010648123" && codeTextField.text! == "8888"
+        if telTextField.text! == "13880184987" && codeTextField.text! == "8888"
         {
             let ui = UserInfo()
             ui.id = "550"

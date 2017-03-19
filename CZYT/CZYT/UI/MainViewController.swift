@@ -33,6 +33,7 @@ class MainViewController: BasePortraitViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //检查登录
         if !UserInfo.sharedInstance.isLogin
         {
             let nav = self.navigationController

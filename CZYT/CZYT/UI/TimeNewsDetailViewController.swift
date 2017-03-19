@@ -15,7 +15,7 @@ class TimeNewsDetailViewController: BaseDetailViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "时政新闻"
         self.loadData()
         // Do any additional setup after loading the view.
     }

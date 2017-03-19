@@ -12,9 +12,7 @@ class BBSDetailViewController: BasePortraitViewController {
 
     var id:String = ""
     @IBOutlet weak var titleLabel:UILabel!
-    @IBOutlet weak var sourceLabel:UILabel!
     @IBOutlet weak var timeLabel:UILabel!
-    @IBOutlet weak var typeLabel:UILabel!
     @IBOutlet weak var webView:UIWebView!
     @IBOutlet weak var commentCountBtn:UIButton!
     @IBOutlet weak var commentBtn:UIButton!
@@ -51,7 +49,7 @@ class BBSDetailViewController: BasePortraitViewController {
         webView.delegate = self
         webView.scalesPageToFit = true
         webView.scrollView.scrollEnabled = false
-        webView.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.baidu.com")!))
+//        webView.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.baidu.com")!))
         self.loadData()
         // Do any additional setup after loading the view.
     }
@@ -73,12 +71,12 @@ class BBSDetailViewController: BasePortraitViewController {
     func updateView()
     {
         titleLabel.text = dataSource.bbsDetail?.title
-        sourceLabel.text = dataSource.bbsDetail?.original
         timeLabel.text = dataSource.bbsDetail?.publish_date
-        typeLabel.text = dataSource.bbsDetail?.classify
         commentCountBtn.setTitle("\(dataSource.bbsDetail!.comment_count!)条评论", forState: .Normal)
-        if dataSource.bbsDetail?.content != nil {
-            webView.loadHTMLString(dataSource.bbsDetail!.content!, baseURL: nil)
+        if dataSource.bbsDetail?.summary != nil {
+            let data = "<p style=\"font-size:40px;\">\(dataSource.bbsDetail!.summary!)</p>"
+            
+            webView.loadHTMLString(data, baseURL: nil)
         }
         
     }

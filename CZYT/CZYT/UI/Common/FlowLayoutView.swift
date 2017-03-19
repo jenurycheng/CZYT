@@ -39,7 +39,7 @@ class FlowLayoutView : UIView {
         fatalError("init(coder:) has not been implemented")
     }
            
-    func setDatas(datas:Array<String>?,  textFontSize:CGFloat = Helper.scale(60) , viewWidth:CGFloat! = 0) {
+    func setDatas(datas:Array<String>?,  textFontSize:CGFloat = 15 , viewWidth:CGFloat! = 0) {
    
 //        if nil == datas || datas?.count < 1  {
 //            return
@@ -137,7 +137,7 @@ class FlowLayoutView : UIView {
                     oneDataInfo.column = 0
                     oneDataInfo.row = dataInfo![i-1].row + 1
                     oneDataInfo.dataBtn.frame = CGRectMake(space, dataInfo![i-1].dataBtn.frame.origin.y + btnHeight + Helper.scale(30) , textWidth, btnHeight)
-                    curWidth = textWidth + 5
+                    curWidth = textWidth + space
                 }
             }
             setFalowLayoutData(&oneDataInfo)

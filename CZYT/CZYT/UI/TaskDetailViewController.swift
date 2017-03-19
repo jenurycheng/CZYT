@@ -190,7 +190,7 @@ class TaskDetailViewController: BasePortraitViewController {
     
     func updateView()
     {
-        if Helper.isStringEmpty(dataSource.taskDetail?.task_projectwork_id) {
+        if Helper.isStringEmpty(dataSource.taskDetail?.task_projectwork_id) || dataSource.taskDetail!.task_projectwork_id == "0"{
             self.navigationItem.rightBarButtonItem = nil
         }else{
             self.navigationItem.rightBarButtonItem = projectItem
@@ -253,7 +253,12 @@ class TaskDetailViewController: BasePortraitViewController {
                     timeLabel.text = "截止时间:" + Helper.formatDateString(dataSource.taskDetail!.task_end_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
                 }
                 okBtn.setTitle("接受", forState: .Normal)
-                self.showBtn(true, showPublishBtn: true)
+                if UserInfo.sharedInstance.publishEnabled()
+                {
+                    self.showBtn(true, showPublishBtn: true)
+                }else{
+                    self.showBtn(true, showPublishBtn: false)
+                }
             }else if dataSource.taskDetail!.task_status! == "finished"//已完成
             {
 //                if dataSource.taskDetail?.task_finish_date != nil

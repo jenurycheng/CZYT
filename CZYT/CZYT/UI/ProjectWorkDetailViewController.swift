@@ -95,7 +95,7 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         problemBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController.btnClicked(_:)), forControlEvents: .TouchUpInside)
         
         requireBtn = UIButton(frame: CGRect(x: width*3+40, y: 7, width: width, height: 31))
-        requireBtn.setTitle("工作要求", forState: .Normal)
+        requireBtn.setTitle("下步打算", forState: .Normal)
         requireBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
         requireBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
         btnView.addSubview(requireBtn)
@@ -133,7 +133,7 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         self.btnClicked(basicBtn)
         
         if !hiddenItem {
-            let assignItem = UIBarButtonItem(title: "指派", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ProjectWorkDetailViewController.assignBtnClicked))
+            let assignItem = UIBarButtonItem(title: "批示", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ProjectWorkDetailViewController.assignBtnClicked))
             self.navigationItem.rightBarButtonItem = assignItem
         }
         

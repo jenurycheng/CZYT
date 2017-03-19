@@ -12,10 +12,8 @@ class BBSCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel:UILabel!
     @IBOutlet weak var posterImageView:UIImageView!
-    @IBOutlet weak var sourceLabel:UILabel!
     @IBOutlet weak var detailLabel:UILabel!
     @IBOutlet weak var timeLabel:UILabel!
-    @IBOutlet weak var typeLabel:UILabel!
     @IBOutlet weak var scanBtn:UIButton!
     @IBOutlet weak var commentBtn:UIButton!
     
@@ -27,9 +25,9 @@ class BBSCell: UITableViewCell {
         if Helper.isStringEmpty(bbs.logo_path)
         {
             let height = Helper.getTextSize(bbs.summary!, font: UIFont.systemFontOfSize(12), size: CGSize(width: GetSWidth()-16, height: CGFloat.max)).height+10
-            return 90 + height
+            return 70 + height
         }
-        return 170
+        return 150
     }
     
     func update(bbs:BBS)
@@ -39,12 +37,10 @@ class BBSCell: UITableViewCell {
         if bbs.isTop() {
             attribute.appendAttributeString("【置顶】", color: UIColor.redColor(), font: titleLabel.font)
         }
-        attribute.appendAttributeString(title, color: titleLabel.textColor, font: titleLabel.font)
+        attribute.appendAttributeString(title, color: ThemeManager.current().darkGrayFontColor, font: titleLabel.font)
         titleLabel.attributedText = attribute
-        sourceLabel.text = bbs.original
         detailLabel.text = bbs.summary
         timeLabel.text = bbs.publish_date
-        typeLabel.text = bbs.classify
         if !Helper.isStringEmpty(bbs.browser_count)
         {
             scanBtn.setTitle(bbs.browser_count, forState: .Normal)

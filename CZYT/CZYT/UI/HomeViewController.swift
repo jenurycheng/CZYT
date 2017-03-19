@@ -41,11 +41,14 @@ class HomeViewController: BasePortraitViewController {
         self.getHomeData()
 
         UserInfo.sharedInstance.addObserver(self, forKeyPath: "unreadMsg", options: .New, context: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.getUnreadMsg), name: RCKitDispatchMessageNotification, object: nil)
         // Do any additional setup after loading the view.
     }
     
     deinit{
         UserInfo.sharedInstance.removeObserver(self, forKeyPath: "unreadMsg")
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: RCKitDispatchMessageNotification, object: nil)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {

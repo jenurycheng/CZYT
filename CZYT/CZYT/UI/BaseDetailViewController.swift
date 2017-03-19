@@ -79,7 +79,7 @@ class BaseDetailViewController: BasePortraitViewController {
         zoomOutBtn.backgroundColor = ThemeManager.current().backgroundColor
         zoomOutBtn.setTitle("+", forState: .Normal)
         zoomOutBtn.addTarget(self, action: #selector(BaseDetailViewController.zoomOutBtnClicked), forControlEvents: .TouchUpInside)
-        self.view.addSubview(zoomOutBtn)
+//        self.view.addSubview(zoomOutBtn)
         
         zoomInBtn = UIButton(frame: CGRect(x: 0, y: zoomOutBtn.frame.origin.y + zoomOutBtn.frame.height, width: 40, height: 40))
         zoomInBtn.setTitle("-", forState: .Normal)

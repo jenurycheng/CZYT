@@ -118,7 +118,7 @@ class ProjectWorkActivityViewController: BaseActivityViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("PolicyFileCell") as! PolicyFileCell
         cell.update(dataSource[indexPath.row])
-        cell.scanLabel.text = "来源: " + (dataSource[indexPath.row].classify ?? "")
+        cell.scanLabel.text = "分类: " + (dataSource[indexPath.row].classify ?? "")
         return cell
     }
 }
