@@ -52,10 +52,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UMessage.setLogEnabled(true)
         UMessage.setAutoAlert(false)
         
+        UMSocialManager.defaultManager().openLog(true)
+        UMSocialManager.defaultManager().umSocialAppkey = Consts.umengAppKey
+        UMSocialGlobal.shareInstance().isUsingHttpsWhenShareContent = false
+        
+        UMSocialManager.defaultManager().setPlaform(UMSocialPlatformType.WechatSession, appKey: "wxdf24aa8a5e969fe2", appSecret: "19a84011e151450ae8cd0668999730e0", redirectURL: "http://mobile.umeng.com/social")
+        UMSocialManager.defaultManager().removePlatformProviderWithPlatformType(UMSocialPlatformType.WechatFavorite)
+        
+//        UMSocialManager.defaultManager().setPlaform(UMSocialPlatformType.QQ, appKey: "1104491791", appSecret: "DIeHXRrC1DCVn3ru", redirectURL: "http://mobile.umeng.com/social")
+        
+//        UMSocialManager.defaultManager().setPlaform(UMSocialPlatformType.Sina, appKey: "3498385673", appSecret: nil, redirectURL: "https://sns.whalecloud.com/sina2/callback")
+        
+        UMSocialManager.defaultManager().setPlaform(UMSocialPlatformType.QQ, appKey: "1106074872", appSecret: "wdmXjT8EZYZ1rV7W", redirectURL: "http://mobile.umeng.com/social")
+        
+        UMSocialManager.defaultManager().setPlaform(UMSocialPlatformType.Sina, appKey: "2762936634", appSecret: "49b8ef0beca28cace2e3372f8b936aa1", redirectURL: "https://sns.whalecloud.com/sina2/callback")
+        
+        
         RCIM.sharedRCIM().initWithAppKey(Consts.RCIMAppKey)//server:4yqYEo2DDgWPx
         //        RCIM.sharedRCIM().initWithAppKey("25wehl3uwhwew")
         RCIM.sharedRCIM().userInfoDataSource = self
         RCIM.sharedRCIM().groupInfoDataSource = self
+        
+        
     }
     
     func initNavigationBar()
@@ -182,8 +200,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 hub.hide(false)
                 MBProgressHUD.showMessag("已储存到成资合作", toView: self.window, showTimeSec: 1)
             })
+        }else{
+            let b = UMSocialManager.defaultManager().handleOpenURL(url, sourceApplication: sourceApplication, annotation: annotation)
+            if !b {
+                //other
+            }
+            return b
         }
         return true
+    }
+    
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        let b = UMSocialManager.defaultManager().handleOpenURL(url)
+        if !b {
+            //other
+        }
+        return b
     }
 }
 

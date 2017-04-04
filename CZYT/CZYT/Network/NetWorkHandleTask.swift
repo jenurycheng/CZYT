@@ -24,6 +24,10 @@ extension NetWorkHandle
         static var Address_TaskNotifySearch = "TaskNotificationSearch"
         static var Address_TaskNotifyDetail = "TaskNotificationItem"
         
+        static var Address_PublishApprove = "PublishAdvice"
+        static var Address_GetApproveList = "ShowAdviceList"
+        static var Address_GetApproveDetail = "ShowAdviceDetail"
+        
         class RequestPublishTask : Reflect
         {
             var task_title:String?
@@ -133,6 +137,38 @@ extension NetWorkHandle
         class func getTaskNotifyDetail(request: RequestTaskNotifyDetail?, finish:((HttpResponseData)->Void))
         {
             NetWorkHandle.PublicNetWorkAccess(Address_TaskNotifyDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
+        
+        class RequestPublishApprove : Reflect
+        {
+            var advice_content:String?
+            var advice_type:String?//类型，// 1代表重点项目,2代表动态消息
+            var advice_ref_id:String?//重点项目或者动态消息id
+        }
+        class func publishApprove(request:RequestPublishApprove?, finish:((HttpResponseData)->Void))
+        {
+            NetWorkHandle.PublicNetWorkAccess(Address_PublishApprove, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
+        
+        class RequestGetApproveList : Reflect
+        {
+            var advice_type:String?//类型，// 1代表重点项目,2代表动态消息
+            var advice_ref_id:String?//重点项目或者动态消息id
+            var offset:String?
+            var row_count:String?
+        }
+        class func getApproveList(request:RequestGetApproveList?, finish:((HttpResponseData)->Void))
+        {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetApproveList, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        }
+        
+        class RequestApproveDetail : Reflect
+        {
+            var advice_id:String?
+        }
+        class func getApproveDetail(request:RequestApproveDetail?, finish:((HttpResponseData)->Void))
+        {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetApproveDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
         }
     }
     

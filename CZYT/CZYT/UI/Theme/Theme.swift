@@ -11,6 +11,7 @@ import UIKit
 class Theme: NSObject {
     var mainColor:UIColor! = UIColor(white: 0.28, alpha: 1)   //主色调
     var secMainColor:UIColor! = UIColor.whiteColor()    //二级色调
+    var blueColor:UIColor! = Helper.parseColor(0x4DB7F8FF)
     var navTitleColor:UIColor! = UIColor.whiteColor()    //导航栏字体颜色
     var darkGrayFontColor:UIColor! = UIColor.darkGrayColor()
     var grayFontColor:UIColor! = UIColor.grayColor()

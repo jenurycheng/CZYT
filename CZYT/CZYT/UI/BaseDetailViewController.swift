@@ -68,7 +68,7 @@ class BaseDetailViewController: BasePortraitViewController {
         ctrl.addUserScript(wks)
         
         let config = WKWebViewConfiguration()
-        config.userContentController = ctrl
+//        config.userContentController = ctrl
         
         webView = WKWebView(frame: CGRect(x: 5, y: 70, width: GetSWidth()-10, height: GetSHeight()-70-64), configuration: config)
         webView.navigationDelegate = self

@@ -72,22 +72,6 @@ class MainViewController: BasePortraitViewController {
         dic.updateValue(ThemeManager.current().whiteFontColor, forKey: NSForegroundColorAttributeName)
         dic.updateValue(UIFont.systemFontOfSize(22), forKey: NSFontAttributeName)
         self.navigationController?.navigationBar.titleTextAttributes = dic
-        
-//        DispatchAfter(5, queue: dispatch_get_main_queue()) { 
-//            self.dataSource.checkAppUpdate({ (needUpdate, msg, url) in
-//                if needUpdate && url != nil
-//                {
-//                    let alert = UIAlertView(title: "", message: msg, delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
-//                    alert.tag = 100
-//                    alert.show()
-//                }else{
-//                    let alert = UIAlertView(title: "", message: "", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "确定")
-//                    alert.show()
-//                }
-//                }, failure: { (error) in
-//                    
-//            })
-//        }
     }
     
     deinit{
@@ -130,13 +114,14 @@ class MainViewController: BasePortraitViewController {
                 //如果设置了token有效期并且token过期，请重新请求您的服务器获取新的token
                 //如果没有设置token有效期却提示token错误，请检查您客户端和服务器的appkey是否匹配，还有检查您获取token的流程。
                 print("token错误")
-                
-                UserDataSource().getToken({ (result) in
-                    UserInfo.sharedInstance.token = result
-                    self.connectRM()
-                }) { (error) in
-                    MBProgressHUD.showMessag(error.msg, toView: self.view, showTimeSec: 1)
-                }
+                DispatchAfter(10, queue: dispatch_get_main_queue(), block: { 
+                    UserDataSource().getToken({ (result) in
+                        UserInfo.sharedInstance.token = result
+                        self.connectRM()
+                    }) { (error) in
+                        MBProgressHUD.showMessag(error.msg, toView: self.view, showTimeSec: 1)
+                    }
+                })
         })
     }
     
@@ -188,18 +173,5 @@ extension MainViewController : TabBarDelegate
     func tabBarClickedIndex(tabBar: TabBar, index: Int) {
         tabBarViewController.showIndex(index)
         self.title = ["成资合作", "督办", "会话", "我的"][index]
-    }
-}
-
-extension MainViewController : UIAlertViewDelegate
-{
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        if alertView.tag == 100
-        {
-            if buttonIndex == 1
-            {
-                UIApplication.sharedApplication().openURL(NSURL(string: dataSource.updateUrl!)!)
-            }
-        }
     }
 }

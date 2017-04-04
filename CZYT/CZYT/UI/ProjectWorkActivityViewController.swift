@@ -110,7 +110,7 @@ class ProjectWorkActivityViewController: BaseActivityViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let detail = ProjectWorkDetailViewController()
+        let detail = ProjectWorkDetailViewController_New()
         detail.id = lDataSource.projectWorkActivity[indexPath.row].id!
         self.navigationController?.pushViewController(detail, animated: true)
     }

@@ -65,6 +65,7 @@ extension NetWorkHandle
             var content:String = ""
             var publish_user_id:String?
             var receiver_user_id:String?
+            var parent_comment_id:String?
         }
         
         class func addBBSComment(request:RequestAddBBSComment?, finish:((HttpResponseData)->Void)) {

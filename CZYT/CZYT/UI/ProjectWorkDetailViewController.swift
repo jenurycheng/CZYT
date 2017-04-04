@@ -202,7 +202,7 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
     {
         self.view.showHud()
         dataSourceApi.getProjectWorkActivityDetail(id, success: { (result) in
-            self.update(result)
+//            self.update(result)
             self.view.dismiss()
         }) { (error) in
             self.view.dismiss()

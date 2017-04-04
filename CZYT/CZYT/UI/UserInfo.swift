@@ -63,11 +63,18 @@ class UserInfo: Reflect {
         self.dept_id = user.dept_id
         self.dept_name = user.dept_name
         self.publish_task_flag = user.publish_task_flag
+        self.is_advice = user.is_advice
+        
     }
     
     func publishEnabled()->Bool
     {
         return self.publish_task_flag == "1" ? true : false
+    }
+    
+    func adviceEnabled()->Bool
+    {
+        return self.is_advice == "1" ? true : false
     }
     
     dynamic var isLogin:Bool = false
@@ -84,6 +91,8 @@ class UserInfo: Reflect {
     var dept_id:String?
     var dept_name:String?
     var publish_task_flag:String?
+    var pinyin:String?
+    var is_advice:String?//是否具有批示功能，1：有，0或者null没有
     
     dynamic var unreadMsg:Int = 0
     
@@ -96,6 +105,7 @@ class UserInfo: Reflect {
     static var USER_DEFAULT_DEPT_ID = "USER_DEFAULT_DEPT_ID"
     static var USER_DEFAULT_DEPT_NAME = "USER_DEFAULT_DEPT_NAME"
     static var USER_DEFAULT_PUBLISH_TASK_FLAG = "USER_DEFAULT_PUBLISH_TASK_FLAG"
+    static var USER_DEFAULT_IS_ADVICE = "USER_DEFAULT_IS_ADVICE"
     
     class func write(ui:UserInfo?)
     {
@@ -109,6 +119,7 @@ class UserInfo: Reflect {
         dic.setObject(ui?.dept_id, forKey: USER_DEFAULT_DEPT_ID)
         dic.setObject(ui?.dept_name, forKey: USER_DEFAULT_DEPT_NAME)
         dic.setObject(ui?.publish_task_flag, forKey: USER_DEFAULT_PUBLISH_TASK_FLAG)
+        dic.setObject(ui?.is_advice, forKey: USER_DEFAULT_IS_ADVICE)
         dic.synchronize()
     }
     
@@ -126,6 +137,7 @@ class UserInfo: Reflect {
         ui.dept_id = dic.objectForKey(USER_DEFAULT_DEPT_ID) as? String
         ui.dept_name = dic.objectForKey(USER_DEFAULT_DEPT_NAME) as? String
         ui.publish_task_flag = dic.objectForKey(USER_DEFAULT_PUBLISH_TASK_FLAG) as? String
+        ui.is_advice = dic.objectForKey(USER_DEFAULT_IS_ADVICE) as? String
         if ui.id == nil
         {
             return nil

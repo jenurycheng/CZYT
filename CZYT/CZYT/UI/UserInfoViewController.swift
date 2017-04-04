@@ -134,19 +134,7 @@ extension UserInfoViewController : UITableViewDelegate, UITableViewDataSource
             })
         }else if indexPath.row == 1
         {
-//            dataSource.checkAppUpdate({ (needUpdate, msg, url) in
-//                if needUpdate && url != nil
-//                {
-//                    let alert = UIAlertView(title: "", message: msg, delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "确定")
-//                    alert.tag = 100
-//                    alert.show()
-//                }else{
-//                    let alert = UIAlertView(title: "", message: "", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "确定")
-//                    alert.show()
-//                }
-//                }, failure: { (error) in
-//                    
-//            })
+
         }
     }
     
@@ -156,7 +144,7 @@ extension UserInfoViewController : UITableViewDelegate, UITableViewDataSource
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .Value1, reuseIdentifier: "")
-        cell.textLabel?.text = ["清除缓存", "关于我们"][indexPath.row]
+        cell.textLabel?.text = ["清除缓存"][indexPath.row]
         cell.textLabel?.font = UIFont.systemFontOfSize(15)
         cell.textLabel?.textColor = ThemeManager.current().darkGrayFontColor
         let line = GetLineView(CGRect(x: 0, y: 49, width: GetSWidth(), height: 1))
@@ -170,10 +158,7 @@ extension UserInfoViewController : UITableViewDelegate, UITableViewDataSource
             cell.detailTextLabel?.textColor = ThemeManager.current().grayFontColor
             cell.detailTextLabel?.font = UIFont.systemFontOfSize(13)
         }else{
-            cell.selectionStyle = .None
-            cell.detailTextLabel?.text = "V" + (NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as! String)
-            cell.detailTextLabel?.textColor = ThemeManager.current().grayFontColor
-            cell.detailTextLabel?.font = UIFont.systemFontOfSize(13)
+            
         }
         
         return cell
@@ -187,7 +172,7 @@ extension UserInfoViewController : UIAlertViewDelegate
         {
             if buttonIndex == 1
             {
-                UIApplication.sharedApplication().openURL(NSURL(string: dataSource.updateUrl!)!)
+                
             }
         }else{
             if buttonIndex == 1

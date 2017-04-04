@@ -18,10 +18,10 @@ class BBSCommentCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        nameLabel.textColor = UIColor.blackColor()
-        nameLabel.font = UIFont.systemFontOfSize(15)
+        nameLabel.textColor = ThemeManager.current().darkGrayFontColor
+        nameLabel.font = UIFont.systemFontOfSize(12)
         
-        contentLabel.textColor = ThemeManager.current().darkGrayFontColor
+        contentLabel.textColor = UIColor.blackColor()
         timeLabel.textColor = ThemeManager.current().grayFontColor
         
         self.selectionStyle = .None
@@ -48,6 +48,23 @@ class BBSCommentCell: UITableViewCell {
         {
             headerBtn.sd_setBackgroundImageWithURL(NSURL(string: c.publish_user_logo_path!), forState: .Normal, placeholderImage: UIImage(named: "user_header_default"))
         }
+    }
+    
+    func updateApprove(c:Approve)
+    {
+        let name = c.publish_user_name == nil ? "" : c.publish_user_name!
+        let attributeText = NSMutableAttributedString(string: name)
+        nameLabel.attributedText = attributeText
+        nameLabel.font = UIFont.systemFontOfSize(15)
+        contentLabel.text = c.advice_content
+        contentLabel.textColor = ThemeManager.current().darkGrayFontColor
+        timeLabel.text = c.publish_date
+        
+        if !Helper.isStringEmpty(c.publish_user_logo_path)
+        {
+            headerBtn.sd_setBackgroundImageWithURL(NSURL(string: c.publish_user_logo_path!), forState: .Normal, placeholderImage: UIImage(named: "user_header_default"))
+        }
+        replyBtn.hidden = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

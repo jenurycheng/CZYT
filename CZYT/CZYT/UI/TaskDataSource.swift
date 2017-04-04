@@ -250,4 +250,58 @@ class TaskDataSource: NSObject {
         }
     }
     
+    func publishApprove(advice_content:String, advice_type:String, advice_ref_id:String, success:(() -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        let request = NetWorkHandle.NetWorkHandleTask.RequestPublishApprove()
+        request.advice_content = advice_content
+        request.advice_type = advice_type
+        request.advice_ref_id = advice_ref_id
+        NetWorkHandle.NetWorkHandleTask.publishApprove(request) { (data) in
+            if data.isSuccess()
+            {
+                success()
+            }else{
+                failure(error: data)
+            }
+        }
+    }
+    
+    //类型，// 1代表重点项目,2代表动态消息
+    var approves = [Approve]()
+    func getApprove(isFirst:Bool, advice_type:String?, advice_ref_id:String, success:((result:[Approve]) -> Void), failure:((error:HttpResponseData)->Void))
+    {
+        let request = NetWorkHandle.NetWorkHandleTask.RequestGetApproveList()
+        request.offset = "\(self.approves.count)"
+        request.row_count = "\(pageSize)"
+        request.advice_type = advice_type
+        request.advice_ref_id = advice_ref_id
+        if isFirst {
+            request.offset = "0"
+        }
+        
+        NetWorkHandle.NetWorkHandleTask.getApproveList(request) { (data) in
+            if data.isSuccess()
+            {
+                var rs = [Approve]()
+                let ar = data.data as? Array<NSDictionary>
+                if ar != nil
+                {
+                    for dic in ar!
+                    {
+                        let r = Approve.parse(dict: dic)
+                        rs.append(r)
+                    }
+                }
+                self.approves.appendContentsOf(rs)
+                if isFirst
+                {
+                    self.approves = rs
+                }
+                success(result: rs)
+            }else{
+                failure(error: data)
+            }
+        }
+    }
+    
 }

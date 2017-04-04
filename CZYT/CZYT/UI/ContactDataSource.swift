@@ -95,6 +95,7 @@ class ContactDataSource: NSObject {
                     for dic in r!
                     {
                         let u = UserInfo.parse(dict: dic)
+                        u.pinyin = Utils.toPinYins(u.nickname)
                         array.append(u)
                     }
                 }

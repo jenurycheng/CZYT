@@ -9,6 +9,7 @@
 import UIKit
 
 class WorkStatusDetailViewController: BaseDetailViewController {
+    var hiddenItem = false
     var id:String = ""
     var dataSourceApi = LeaderActivityDataSource()
     
@@ -16,7 +17,24 @@ class WorkStatusDetailViewController: BaseDetailViewController {
         super.viewDidLoad()
         self.title = "动态消息"
         self.loadData()
+        if UserInfo.sharedInstance.adviceEnabled() && !hiddenItem{
+            let assignItem = UIBarButtonItem(title: "批示", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ProjectWorkDetailViewController_New.assignBtnClicked))
+            self.navigationItem.rightBarButtonItem = assignItem
+        }
+        
         // Do any additional setup after loading the view.
+    }
+    
+    func assignBtnClicked()
+    {
+        if dataSource?.id == nil {
+            return
+        }
+        
+        let list = ApproveListViewController()
+        list.id = dataSource?.id
+        list.type = "2"
+        self.navigationController?.pushViewController(list, animated: true)
     }
     
     func loadData()

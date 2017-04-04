@@ -112,3 +112,15 @@ class TaskFile : Reflect
     var file_name:String?
     var file_type:String?
 }
+
+class Approve : Reflect
+{
+    var advice_id:String?
+    var advice_content:String?
+    var advice_type:String?
+    var advice_ref_id:String?
+    var publish_user_id:String?
+    var publish_user_name:String?
+    var publish_user_logo_path:String?
+    var publish_date:String?
+}

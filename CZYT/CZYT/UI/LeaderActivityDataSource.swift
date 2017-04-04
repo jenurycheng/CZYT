@@ -408,8 +408,8 @@ class LeaderActivityDataSource: NSObject {
         }
     }
     
-    var projectWorkActivityDetail:LeaderActivityDetail?
-    func getProjectWorkActivityDetail(id:String, success:((result:LeaderActivityDetail) -> Void), failure:((error:HttpResponseData)->Void))
+    var projectWorkActivityDetail:ProjectWorkDetail?
+    func getProjectWorkActivityDetail(id:String, success:((result:ProjectWorkDetail) -> Void), failure:((error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestProjectWorkActivityDetail()
         request.id = id
@@ -419,7 +419,7 @@ class LeaderActivityDataSource: NSObject {
                 let r = data.data as? NSDictionary
                 if r != nil
                 {
-                    let d = LeaderActivityDetail.parse(dict: r!)
+                    let d = ProjectWorkDetail.parse(dict: r!)
                     self.projectWorkActivityDetail = d
                     success(result: d)
                 }else{

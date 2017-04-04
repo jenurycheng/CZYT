@@ -56,9 +56,10 @@ class ContactListView: UIView {
                 let text = searchBar.text!
                 let nick = u.nickname == nil ? "" : u.nickname!
                 let dep = u.dept_name == nil ? "" : u.dept_name!
+                let pinyin = u.pinyin == nil ? "" : u.pinyin!
                 let mob = u.mobile
                 
-                if nick.contain(subStr: text) || dep.contain(subStr: text) || mob.contain(subStr: text)
+                if nick.contain(subStr: text) || dep.contain(subStr: text) || mob.contain(subStr: text) || pinyin.contain(subStr: text.lowercaseString)
                 {
                     dataSource.append(u)
                 }

@@ -23,5 +23,8 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import <RongIMKit/RongIMKit.h>
+#import <UMSocialCore/UMSocialCore.h>
+#import <UShareUI/UShareUI.h>
+#import "Utils.h"
 
 #endif /* GiMiHelper_3_0_Bridging_Header_h */

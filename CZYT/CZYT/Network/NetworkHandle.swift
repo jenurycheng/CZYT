@@ -52,7 +52,9 @@ class HttpResponseData : NSObject
 
 class NetWorkHandle: NSObject {
     
-    static var ServerAddress:String = "http://111.9.93.229:20080/unity/webservice/ap/"
+//    static var ServerAddress:String = "http://111.9.93.229:20080/unity/webservice/ap/"
+    static var ServerAddress:String = "http://182.254.167.232:20080/unity/webservice/ap/"//test
+    
 //    static var ServerAddress:String = "http://222.18.162.136:8080/unity/webservice/ap/"
     
     static var pathNetCache:String! = NSTemporaryDirectory() + "netCache/"
@@ -78,7 +80,8 @@ class NetWorkHandle: NSObject {
             param.setObject(p!, forKey: "data")
         }
         
-        let paramString = Helper.resultToJsonString(param)
+        var paramString = Helper.resultToJsonString(param)
+        paramString = paramString.replacingOccurrencesOfString("\\n", withString: "\n")
         let resultDic = NSMutableDictionary(object: paramString, forKey: "req")
         
         return resultDic

@@ -21,8 +21,11 @@ class BBSViewController: BasePortraitViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .None
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 50
         self.view.addSubview(tableView)
         tableView.registerNib(UINib(nibName: "BBSCell", bundle: nil), forCellReuseIdentifier: "BBSCell")
+        tableView.registerNib(UINib(nibName: "BBSCell_New", bundle: nil), forCellReuseIdentifier: "BBSCell_New")
         
         unowned let weakSelf = self
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { 
@@ -90,17 +93,21 @@ extension BBSViewController : UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let detail = BBSDetailViewController(nibName: "BBSDetailViewController", bundle: nil)
+//        let detail = BBSDetailViewController(nibName: "BBSDetailViewController", bundle: nil)
+//        detail.id = dataSource.bbs[indexPath.row].id!
+//        self.navigationController?.pushViewController(detail, animated: true)
+        let detail = BBSDetailViewController_New()
         detail.id = dataSource.bbs[indexPath.row].id!
         self.navigationController?.pushViewController(detail, animated: true)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return BBSCell.cellHeight(dataSource.bbs[indexPath.row])
+//        return BBSCell.cellHeight(dataSource.bbs[indexPath.row])
+        return UITableViewAutomaticDimension
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("BBSCell") as! BBSCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("BBSCell_New") as! BBSCell_New
         cell.update(dataSource.bbs[indexPath.row])
         return cell
     }

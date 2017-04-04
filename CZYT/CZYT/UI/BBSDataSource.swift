@@ -122,13 +122,14 @@ class BBSDataSource: NSObject {
         }
     }
     
-    func addBBSComment(id:String, content:String, userId:String, replyUserId:String?, success:((result:BBSComment) -> Void), failure:((error:HttpResponseData)->Void))
+    func addBBSComment(id:String, content:String, userId:String, replyUserId:String?, parent_comment_id:String?, success:((result:BBSComment) -> Void), failure:((error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetworkHandleBBS.RequestAddBBSComment()
         request.exchange_id = id
         request.publish_user_id = userId
         request.content = content
         request.receiver_user_id = replyUserId == nil ? "" : replyUserId
+        request.parent_comment_id = parent_comment_id
         NetWorkHandle.NetworkHandleBBS.addBBSComment(request) { (data) in
             if data.isSuccess()
             {

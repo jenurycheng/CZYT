@@ -85,6 +85,9 @@ extension TaskChatViewController : UICollectionViewDelegate
             {
                 let t = TaskNotifyViewController()
                 self.navigationController?.pushViewController(t, animated: true)
+            }else if row == 4
+            {
+                
             }
         }else if indexPath.section == 1
         {
@@ -152,10 +155,10 @@ extension TaskChatViewController : UICollectionViewDataSource
         if indexPath.section == 0 {
             
             var images = ["task_new", "task_my_publish", "task_my", "task_msg", "home_task", "home_link"]
-            var names = ["新建任务", "我的发布", "我的任务", "通知通报", "督查督办", "友情链接"]
+            var names = ["新建任务", "我的发布", "我的任务", "通知通报", "批示列表", "友情链接"]
             if !UserInfo.sharedInstance.publishEnabled() {
                 images = ["task_my", "task_msg", "home_task", "home_link"]
-                names = ["我的任务", "通知通报", "督查督办", "友情链接"]
+                names = ["我的任务", "通知通报", "批示列表", "友情链接"]
             }
             cell.iconImageView.image = UIImage(named: images[indexPath.row])
             cell.nameLabel.text = names[indexPath.row]
