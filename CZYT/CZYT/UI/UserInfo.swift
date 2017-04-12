@@ -69,14 +69,14 @@ class UserInfo: EVObject {
     
     func publishEnabled()->Bool
     {
-//        return self.publish_task_flag == "1" ? true : false
-        return true
+        return self.publish_task_flag == "1" ? true : false
+//        return true
     }
     
     func adviceEnabled()->Bool
     {
-//        return self.is_advice == "1" ? true : false
-        return true
+        return self.is_advice == "1" ? true : false
+//        return true
     }
     
     dynamic var isLogin:Bool = false
