@@ -19,72 +19,72 @@ extension NetWorkHandle
         static var Address_UpdateGroup = "GroupRefresh?"
         static var Address_QueryUserGroup = "QueryGroupList?"
         
-        class RequestCreateGroup : Reflect
+        class RequestCreateGroup : EVObject
         {
             var userIds:String?
             var groupName:String?
         }
         
-        class func createGroup(request:RequestCreateGroup?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_CreateGroup, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func createGroup(_ request:RequestCreateGroup?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_CreateGroup, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestDestroyGroup : Reflect
+        class RequestDestroyGroup : EVObject
         {
             var userId:String?
             var groupId:String?
         }
         
-        class func destoryGroup(request:RequestDestroyGroup?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_DestoryGroup, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func destoryGroup(_ request:RequestDestroyGroup?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_DestoryGroup, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestJoinGroup : Reflect
+        class RequestJoinGroup : EVObject
         {
             var userIds:String?
             var groupId:String?
             var groupName:String?
         }
         
-        class func joinGroup(request:RequestJoinGroup?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_JoinGroup, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func joinGroup(_ request:RequestJoinGroup?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_JoinGroup, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestQueryGroupDetail : Reflect
+        class RequestQueryGroupDetail : EVObject
         {
             var groupId:String?
         }
         
-        class func queryGroupDetail(request:RequestQueryGroupDetail?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_QueryGroupDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func queryGroupDetail(_ request:RequestQueryGroupDetail?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_QueryGroupDetail, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestQueryUserGroup : Reflect
+        class RequestQueryUserGroup : EVObject
         {
             var userId:String?
         }
         
-        class func queryUserGroup(request:RequestQueryUserGroup?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_QueryUserGroup, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func queryUserGroup(_ request:RequestQueryUserGroup?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_QueryUserGroup, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestQuitGroup : Reflect
+        class RequestQuitGroup : EVObject
         {
             var userIds:String?
             var groupId:String?
         }
-        class func quitGroup(request:RequestQuitGroup?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_QuitGroup, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func quitGroup(_ request:RequestQuitGroup?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_QuitGroup, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestUpdateGroup : Reflect
+        class RequestUpdateGroup : EVObject
         {
             var groupId:String?
             var groupName:String?
         }
         
-        class func updateGroup(request:RequestUpdateGroup?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_UpdateGroup, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func updateGroup(_ request:RequestUpdateGroup?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_UpdateGroup, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
     }
 }

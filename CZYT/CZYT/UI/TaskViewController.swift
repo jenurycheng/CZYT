@@ -9,8 +9,6 @@
 import UIKit
 
 class TaskViewController: TabBarViewController {
-
-    var dataSource = TaskDataSource()
     
     var tabTitleView:CCTabTitleView!
     var myTaskVC : MyTaskViewController?
@@ -20,12 +18,12 @@ class TaskViewController: TabBarViewController {
         super.viewDidLoad()
         self.title = "我的任务"
         // Do any additional setup after loading the view.
-        backItemBar =  UIBarButtonItem(image: UIImage(named: "backbar"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(BaseNavViewController.backItemBarClicked(_:)))
+        backItemBar =  UIBarButtonItem(image: UIImage(named: "backbar"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(BaseNavViewController.backItemBarClicked(_:)))
         self.navigationItem.leftBarButtonItem = backItemBar
         
         tabTitleView = CCTabTitleView(frame: CGRect(x: 40, y: 0, width: GetSWidth()-120, height: 44))
         tabTitleView.spacingLineHidden = true
-        tabTitleView.font = UIFont.systemFontOfSize(Helper.scale(60))
+        tabTitleView.font = UIFont.systemFont(ofSize: Helper.scale(60))
         tabTitleView.selectTextColor = ThemeManager.current().whiteFontColor
         tabTitleView.delegate = self
         self.navigationItem.titleView = tabTitleView
@@ -37,7 +35,7 @@ class TaskViewController: TabBarViewController {
         
         self.showIndex(0)
         
-        let addItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(TaskViewController.addBtnClicked))
+        let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(TaskViewController.addBtnClicked))
         self.navigationItem.rightBarButtonItem = addItem
         // Do any additional setup after loading the view.
     }
@@ -60,11 +58,11 @@ extension TaskViewController : CCTabTitleViewDelegate
         return 2
     }
     
-    func titleForPosition(pos: NSInteger) -> String! {
+    func titleForPosition(_ pos: NSInteger) -> String! {
         return  ["我的任务", "我发布的"][pos]
     }
     
-    func titleViewIndexDidSelected(titleView: CCTabTitleView, index: Int) {
+    func titleViewIndexDidSelected(_ titleView: CCTabTitleView, index: Int) {
         self.showIndex(index)
         tabTitleView.updateLine(CGFloat(index)/2)
         

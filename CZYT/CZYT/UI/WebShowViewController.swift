@@ -10,7 +10,7 @@ import UIKit
 
 class WebShowViewController: BasePortraitViewController {
 
-    var url:NSURL?
+    var url:URL?
     var webView:UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,52 +21,52 @@ class WebShowViewController: BasePortraitViewController {
         
         if url != nil
         {
-            let r = NSURLRequest(URL: url!)
+            let r = URLRequest(url: url!)
             webView.loadRequest(r)
             
             if url!.absoluteString.hasPrefix("http") {
-                let share = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: #selector(WebShowViewController.share))
+                let share = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action: #selector(WebShowViewController.share))
                 self.navigationItem.rightBarButtonItem = share
             }
         }
         
         // Do any additional setup after loading the view.
     }
-    var task:NSURLSessionDownloadTask?
+    var task:URLSessionDownloadTask?
     func share()
     {
-        let path:NSString = url!.absoluteString
+        let path:NSString = url!.absoluteString as NSString
         let name:String = path.lastPathComponent
         let savePath = NSTemporaryDirectory() + "/" + name
         
-        if NSFileManager.defaultManager().fileExistsAtPath(savePath)
+        if FileManager.default.fileExists(atPath: savePath)
         {
-            let doc = UIDocumentInteractionController(URL: NSURL(fileURLWithPath: savePath))
+            let doc = UIDocumentInteractionController(url: URL(fileURLWithPath: savePath))
             doc.delegate = nil
-            doc.presentOpenInMenuFromRect(self.view.bounds, inView: self.view, animated: true)
+            doc.presentOpenInMenu(from: self.view.bounds, in: self.view, animated: true)
             return;
         }
-        let hub = MBProgressHUD.showMessag("正在下载", toView: self.view)
-        task = AFURLSessionManager().downloadTaskWithRequest(NSURLRequest(URL: url!), progress: { (progress) in
-            hub.labelText = "正在下载\(Float(progress.completedUnitCount)/Float(progress.totalUnitCount))"
-            }, destination: { (url, resp) -> NSURL in
-                return NSURL(fileURLWithPath: savePath)
+        let hub = MBProgressHUD.showMessag("正在下载", to: self.view)
+        task = AFURLSessionManager().downloadTask(with: URLRequest(url: url!), progress: { (progress) in
+            hub?.labelText = "正在下载\(Float(progress.completedUnitCount)/Float(progress.totalUnitCount))"
+            }, destination: { (url, resp) -> URL in
+                return URL(fileURLWithPath: savePath)
             }) { (resp, url, error) in
             
                 if error == nil
                 {
-                    hub.hide(true)
-                    MBProgressHUD.showSuccess("下载完成", toView: self.view)
+                    hub?.hide(true)
+                    MBProgressHUD.showSuccess("下载完成", to: self.view)
                     
-                    let doc = UIDocumentInteractionController(URL: NSURL(fileURLWithPath: savePath))
+                    let doc = UIDocumentInteractionController(url: URL(fileURLWithPath: savePath))
                     doc.delegate = nil
-                    doc.presentOpenInMenuFromRect(self.view.bounds, inView: self.view, animated: true)
+                    doc.presentOpenInMenu(from: self.view.bounds, in: self.view, animated: true)
                 }else{
-                    hub.hide(true)
-                    MBProgressHUD.showError("下载失败", toView: self.view)
+                    hub?.hide(true)
+                    MBProgressHUD.showError("下载失败", to: self.view)
                 }
         }
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC*1)), dispatch_get_main_queue()) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(NSEC_PER_SEC*1)) / Double(NSEC_PER_SEC)) {
             self.task?.resume()
         }
         

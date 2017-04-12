@@ -20,22 +20,22 @@ class BBSCell: UITableViewCell {
     @IBOutlet weak var imageViewLeadingConstraint:NSLayoutConstraint!
     @IBOutlet weak var imageViewWidthConstraint:NSLayoutConstraint!
     
-    class func cellHeight(bbs:BBS)->CGFloat
+    class func cellHeight(_ bbs:BBS)->CGFloat
     {
         if Helper.isStringEmpty(bbs.logo_path)
         {
-            let height = Helper.getTextSize(bbs.summary!, font: UIFont.systemFontOfSize(12), size: CGSize(width: GetSWidth()-16, height: CGFloat.max)).height+10
+            let height = Helper.getTextSize(bbs.summary!, font: UIFont.systemFont(ofSize: 12), size: CGSize(width: GetSWidth()-16, height: CGFloat.greatestFiniteMagnitude)).height+10
             return 70 + height
         }
         return 150
     }
     
-    func update(bbs:BBS)
+    func update(_ bbs:BBS)
     {
         let title = bbs.title ?? ""
         let attribute = NSMutableAttributedString(string: "")
         if bbs.isTop() {
-            attribute.appendAttributeString("【置顶】", color: UIColor.redColor(), font: titleLabel.font)
+            attribute.appendAttributeString("【置顶】", color: UIColor.red, font: titleLabel.font)
         }
         attribute.appendAttributeString(title, color: ThemeManager.current().darkGrayFontColor, font: titleLabel.font)
         titleLabel.attributedText = attribute
@@ -43,16 +43,16 @@ class BBSCell: UITableViewCell {
         timeLabel.text = bbs.publish_date
         if !Helper.isStringEmpty(bbs.browser_count)
         {
-            scanBtn.setTitle(bbs.browser_count, forState: .Normal)
+            scanBtn.setTitle(bbs.browser_count, for: UIControlState())
         }else{
-            scanBtn.setTitle("0", forState: .Normal)
+            scanBtn.setTitle("0", for: UIControlState())
         }
         
         if !Helper.isStringEmpty(bbs.comment_count)
         {
-            commentBtn.setTitle(bbs.comment_count, forState: .Normal)
+            commentBtn.setTitle(bbs.comment_count, for: UIControlState())
         }else{
-            commentBtn.setTitle("0", forState: .Normal)
+            commentBtn.setTitle("0", for: UIControlState())
         }
         
         posterImageView.gm_setImageWithUrlString(bbs.logo_path, title: bbs.title, completedBlock: nil)
@@ -69,11 +69,11 @@ class BBSCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.selectionStyle = .None
+        self.selectionStyle = .none
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

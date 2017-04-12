@@ -23,8 +23,8 @@ class GroupViewController: BasePortraitViewController {
         tableView.delegate = self
         tableView.dataSource = self
         self.view.addSubview(tableView)
-        tableView.registerNib(UINib(nibName: "ChatGroupCell", bundle: nil), forCellReuseIdentifier: "ChatGroupCell")
-        tableView.registerNib(UINib(nibName: "ChatGroupTopCell", bundle: nil), forCellReuseIdentifier: "ChatGroupTopCell")
+        tableView.register(UINib(nibName: "ChatGroupCell", bundle: nil), forCellReuseIdentifier: "ChatGroupCell")
+        tableView.register(UINib(nibName: "ChatGroupTopCell", bundle: nil), forCellReuseIdentifier: "ChatGroupTopCell")
         
         unowned let weakSelf = self
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { 
@@ -34,7 +34,7 @@ class GroupViewController: BasePortraitViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.loadData()
     }
@@ -57,18 +57,18 @@ class GroupViewController: BasePortraitViewController {
 
 extension GroupViewController : UITableViewDelegate, UITableViewDataSource
 {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 0.1
         }
         return 20
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             return UIView()
         }else{
@@ -76,14 +76,14 @@ extension GroupViewController : UITableViewDelegate, UITableViewDataSource
             v.backgroundColor = ThemeManager.current().backgroundColor
             let label = UILabel(frame: CGRect(x: 10, y: 0, width: GetSWidth()-10, height: 20))
             label.text = "我加入的讨论组"
-            label.font = UIFont.systemFontOfSize(12)
+            label.font = UIFont.systemFont(ofSize: 12)
             label.textColor = ThemeManager.current().grayFontColor
             v.addSubview(label)
             return v
         }
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0
         {
             return 1
@@ -91,7 +91,7 @@ extension GroupViewController : UITableViewDelegate, UITableViewDataSource
         return dataSource.group.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1
         {
             let chat = GroupConversationViewController()
@@ -102,7 +102,7 @@ extension GroupViewController : UITableViewDelegate, UITableViewDataSource
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 120
         }else{
@@ -110,15 +110,15 @@ extension GroupViewController : UITableViewDelegate, UITableViewDataSource
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("ChatGroupTopCell") as! ChatGroupTopCell
-            cell.selectionStyle = .None
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatGroupTopCell") as! ChatGroupTopCell
+            cell.selectionStyle = .none
             return cell
         }else{
-            let cell = tableView.dequeueReusableCellWithIdentifier("ChatGroupCell") as! ChatGroupCell
-            cell.selectionStyle = .None
-            cell.accessoryType = .DisclosureIndicator
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatGroupCell") as! ChatGroupCell
+            cell.selectionStyle = .none
+            cell.accessoryType = .disclosureIndicator
             cell.update(dataSource.group[indexPath.row])
             return cell
         }

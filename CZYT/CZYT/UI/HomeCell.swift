@@ -28,7 +28,7 @@ class HomeCell: UICollectionViewCell {
         nameLabel.font = UIFont(name: "Helvetica-Bold", size: 16)
         
         numLabel.backgroundColor = ThemeManager.current().mainColor
-        numLabel.textColor = UIColor.whiteColor()
+        numLabel.textColor = UIColor.white
         numLabel.layer.cornerRadius = 10
         numLabel.layer.masksToBounds = true
         // Initialization code

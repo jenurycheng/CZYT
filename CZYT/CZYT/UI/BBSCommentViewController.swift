@@ -22,11 +22,11 @@ class BBSCommentViewController: BasePortraitViewController {
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64))
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 170
         self.view.addSubview(tableView)
-        tableView.registerNib(UINib(nibName: "BBSCommentCell", bundle: nil), forCellReuseIdentifier: "BBSCommentCell")
+        tableView.register(UINib(nibName: "BBSCommentCell", bundle: nil), forCellReuseIdentifier: "BBSCommentCell")
         
         unowned let weakSelf = self
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { 
@@ -40,9 +40,9 @@ class BBSCommentViewController: BasePortraitViewController {
         commentBtn = UIButton(frame: CGRect(x: GetSWidth()-10-50, y: GetSHeight()-64-20-50, width: 50, height: 50))
         commentBtn.layer.cornerRadius = commentBtn.frame.height/2
         commentBtn.layer.masksToBounds = true
-        commentBtn.setImage(UIImage(named: "comment_add"), forState: .Normal)
-        commentBtn.titleLabel?.font = UIFont.systemFontOfSize(15)
-        commentBtn.addTarget(self, action: #selector(BBSCommentViewController.commentBtnClicked), forControlEvents: .TouchUpInside)
+        commentBtn.setImage(UIImage(named: "comment_add"), for: UIControlState())
+        commentBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        commentBtn.addTarget(self, action: #selector(BBSCommentViewController.commentBtnClicked), for: .touchUpInside)
         self.view.addSubview(commentBtn)
         
         if isComment
@@ -102,11 +102,11 @@ class BBSCommentViewController: BasePortraitViewController {
         }
     }
     
-    func comment(text:String)
+    func comment(_ text:String)
     {
         if Helper.isStringEmpty(text)
         {
-            MBProgressHUD.showMessag("内容不能为空", toView: self.view.window, showTimeSec: 1)
+            MBProgressHUD.showMessag("内容不能为空", to: self.view.window, showTimeSec: 1)
             return
         }
         self.view.showHud()
@@ -131,19 +131,19 @@ class BBSCommentViewController: BasePortraitViewController {
 
 extension BBSCommentViewController : UITableViewDelegate, UITableViewDataSource
 {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.bbsComment.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let toName = dataSource.bbsComment[indexPath.row].publish_user_name == nil ? "" : dataSource.bbsComment[indexPath.row].publish_user_name!
         KeyboardInputView.shareInstance().inputTextView.placeholder = "回复:\(toName)"
         self.toId = dataSource.bbsComment[indexPath.row].publish_user_id
         self.showInput()
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("BBSCommentCell") as! BBSCommentCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BBSCommentCell") as! BBSCommentCell
         cell.update(dataSource.bbsComment[indexPath.row])
         return cell
     }

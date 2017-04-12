@@ -40,11 +40,11 @@ class CCSideView: UIView {
         self.addSubview(leftView!)
         self.addSubview(contentView!)
         contentView.layer.shadowOffset = CGSize(width: -4, height: -2)
-        contentView.layer.shadowColor = UIColor.blackColor().CGColor
+        contentView.layer.shadowColor = UIColor.black.cgColor
         contentView.layer.shadowOpacity = 0.3
         
         blackView = UIView(frame: contentView.bounds)
-        blackView.backgroundColor = UIColor.blackColor()
+        blackView.backgroundColor = UIColor.black
         blackView.alpha = 0
         
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(CCSideView.pan(_:)))
@@ -57,9 +57,9 @@ class CCSideView: UIView {
         contentView.addSubview(openView)
         
         openBtn = UIButton(frame: CGRect(x: -12, y: 0, width: openView.frame.width, height: openView.frame.height))
-        openBtn.setBackgroundImage(UIImage(named: "side_open"), forState: .Normal)
+        openBtn.setBackgroundImage(UIImage(named: "side_open"), for: UIControlState())
         openView.addSubview(openBtn)
-        openBtn.addTarget(self, action: #selector(CCSideView.openBtnClicked), forControlEvents: .TouchUpInside)
+        openBtn.addTarget(self, action: #selector(CCSideView.openBtnClicked), for: .touchUpInside)
     }
     
     func openBtnClicked()
@@ -72,21 +72,21 @@ class CCSideView: UIView {
         }
     }
     
-    func pan(pan:UIPanGestureRecognizer)
+    func pan(_ pan:UIPanGestureRecognizer)
     {
-        if pan.state == .Began
+        if pan.state == .began
         {
             contentView.addSubview(blackView)
         }
-        else if pan.state == .Changed
+        else if pan.state == .changed
         {
             var x:CGFloat = 0
-            x = pan.translationInView(self).x
+            x = pan.translation(in: self).x
             print(x)
             
             if x > 0 && !self.isShow
             {
-                UIView.animateWithDuration(0.1, animations: {
+                UIView.animate(withDuration: 0.1, animations: {
                     var frame = self.leftView.frame
                     frame.origin.x = x/CCSideView.LeftWidth * self.leftView.frame.width/2 - self.leftView.frame.width/2
                     if frame.origin.x >= -frame.width/2 && frame.origin.x <= 0
@@ -105,7 +105,7 @@ class CCSideView: UIView {
                 })
             }
             
-        }else if pan.state == .Ended
+        }else if pan.state == .ended
         {
             if self.contentView.frame.origin.x > CCSideView.LeftWidth/3
             {
@@ -121,7 +121,7 @@ class CCSideView: UIView {
     {
         contentView.addSubview(blackView)
         contentView.addGestureRecognizer(tapGesture)
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             var frame = self.leftView.frame
             frame.origin.x = 0
             self.leftView.frame = frame
@@ -131,16 +131,16 @@ class CCSideView: UIView {
             self.contentView.frame = frame
             
             self.blackView.alpha = 0.2
-            }) { (b) in
+            }, completion: { (b) in
                 self.isShow = true
-                self.openBtn.setBackgroundImage(UIImage(named: "side_close"), forState: .Normal)
-        }
+                self.openBtn.setBackgroundImage(UIImage(named: "side_close"), for: UIControlState())
+        }) 
     }
     
     func hide()
     {
         contentView.removeGestureRecognizer(tapGesture)
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             var frame = self.leftView.frame
             frame.origin.x = -self.leftView.frame.width/2
             self.leftView.frame = frame
@@ -150,10 +150,10 @@ class CCSideView: UIView {
             self.contentView.frame = frame
             
             self.blackView.alpha = 0
-        }) { (b) in
+        }, completion: { (b) in
             self.isShow = false
             self.blackView.removeFromSuperview()
-            self.openBtn.setBackgroundImage(UIImage(named: "side_open"), forState: .Normal)
-        }
+            self.openBtn.setBackgroundImage(UIImage(named: "side_open"), for: UIControlState())
+        }) 
     }
 }

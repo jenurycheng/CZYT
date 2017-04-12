@@ -19,7 +19,7 @@ class PolicyFileCell: UITableViewCell {
         super.awakeFromNib()
         
         self.contentView.backgroundColor = ThemeManager.current().backgroundColor
-        self.selectionStyle = .None
+        self.selectionStyle = .none
         
         contentBgView.layer.cornerRadius = 5
         contentBgView.layer.masksToBounds = true
@@ -35,13 +35,13 @@ class PolicyFileCell: UITableViewCell {
         return 100
     }
     
-    func update(info:LeaderActivity)
+    func update(_ info:LeaderActivity)
     {
         titleLabel.text = info.title
         timeLabel.text = info.publish_date
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

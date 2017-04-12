@@ -21,7 +21,7 @@ class ProjectNextView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(data:ProjectWorkDetail?)
+    func update(_ data:ProjectWorkDetail?)
     {
         if data?.requirement != nil {
             webView.loadHTMLString(data!.requirement!, baseURL: nil)
@@ -34,7 +34,7 @@ class ProjectNextView: UIView {
         self.backgroundColor = ThemeManager.current().foregroundColor
         
         webView = WKWebView(frame: self.bounds)
-        webView.scrollView.scrollEnabled = false
+        webView.scrollView.isScrollEnabled = false
         self.addSubview(webView)
     }
     

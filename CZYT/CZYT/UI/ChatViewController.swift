@@ -21,12 +21,12 @@ class ChatViewController: TabBarViewController {
         self.view.clipsToBounds = true
         self.title = "消息"
         
-        backItemBar =  UIBarButtonItem(image: UIImage(named: "backbar"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(BaseNavViewController.backItemBarClicked(_:)))
+        backItemBar =  UIBarButtonItem(image: UIImage(named: "backbar"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(BaseNavViewController.backItemBarClicked(_:)))
         self.navigationItem.leftBarButtonItem = backItemBar
         
         tabTitleView = CCTabTitleView(frame: CGRect(x: 40, y: 0, width: GetSWidth()-80, height: 44))
         tabTitleView.spacingLineHidden = true
-        tabTitleView.font = UIFont.systemFontOfSize(Helper.scale(60))
+        tabTitleView.font = UIFont.systemFont(ofSize: Helper.scale(60))
         tabTitleView.selectTextColor = ThemeManager.current().whiteFontColor
         tabTitleView.delegate = self
         self.navigationItem.titleView = tabTitleView
@@ -39,11 +39,11 @@ class ChatViewController: TabBarViewController {
         
         self.showIndex(0)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.quitGroup), name: ChatDataSource.NOTIFICATION_QUIT_GROUP, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.quitGroup), name: NSNotification.Name(rawValue: ChatDataSource.NOTIFICATION_QUIT_GROUP), object: nil)
         // Do any additional setup after loading the view.
     }
     
-    func quitGroup(notify:NSNotification)
+    func quitGroup(_ notify:Notification)
     {
         if notify.userInfo != nil
         {
@@ -57,7 +57,7 @@ class ChatViewController: TabBarViewController {
     
     deinit
     {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: ChatDataSource.NOTIFICATION_QUIT_GROUP, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: ChatDataSource.NOTIFICATION_QUIT_GROUP), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,11 +72,11 @@ extension ChatViewController : CCTabTitleViewDelegate
         return 3
     }
     
-    func titleForPosition(pos: NSInteger) -> String! {
+    func titleForPosition(_ pos: NSInteger) -> String! {
         return  ["消息", "联系人", "讨论组"][pos]
     }
     
-    func titleViewIndexDidSelected(titleView: CCTabTitleView, index: Int) {
+    func titleViewIndexDidSelected(_ titleView: CCTabTitleView, index: Int) {
         self.showIndex(index)
         tabTitleView.updateLine(CGFloat(index)/3)
         

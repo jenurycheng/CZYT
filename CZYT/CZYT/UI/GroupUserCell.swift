@@ -19,7 +19,7 @@ class GroupUserCell: UICollectionViewCell {
         return CGSize(width: width, height: 70+30)
     }
     
-    func update(user:GroupUser)
+    func update(_ user:GroupUser)
     {
         headerImageView.gm_setImageWithUrlString(user.user_logo_path, title: user.user_name, completedBlock: nil)
         nameLabel.text = user.user_name

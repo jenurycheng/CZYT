@@ -18,7 +18,7 @@ class ContactDataSource: NSObject {
         return Instance.instance
     }
     
-    func getDepartment(id:String)->Department?
+    func getDepartment(_ id:String)->Department?
     {
         for d in department
         {
@@ -31,7 +31,7 @@ class ContactDataSource: NSObject {
     }
     
     var department = [Department]()
-    func getDepartmentList(success:((result:[Department]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getDepartmentList(_ success:@escaping ((_ result:[Department]) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleUser.RequestGetDepartmentList()
         NetWorkHandle.NetWorkHandleUser.getDepartmentList(request) { (data) in
@@ -43,19 +43,19 @@ class ContactDataSource: NSObject {
                 {
                     for dic in r!
                     {
-                        let d = Department.parse(dict: dic)
+                        let d = Department(dictionary: dic)
                         array.append(d)
                     }
                 }
                 self.department = array
-                success(result: array)
+                success(array)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
-    func getUser(departId:String)->[UserInfo]
+    func getUser(_ departId:String)->[UserInfo]
     {
         var users = [UserInfo]()
         for u in contact
@@ -68,7 +68,7 @@ class ContactDataSource: NSObject {
         return users
     }
     
-    func getUserInfo(id:String)->UserInfo?
+    func getUserInfo(_ id:String)->UserInfo?
     {
         for u in contact
         {
@@ -81,7 +81,7 @@ class ContactDataSource: NSObject {
     }
     
     var contact = [UserInfo]()
-    func getContactList(groupId:String, success:((result:[UserInfo]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getContactList(_ groupId:String, success:@escaping ((_ result:[UserInfo]) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleUser.RequestGetContactList()
         request.dept_id = groupId
@@ -94,15 +94,15 @@ class ContactDataSource: NSObject {
                 {
                     for dic in r!
                     {
-                        let u = UserInfo.parse(dict: dic)
+                        let u = UserInfo(dictionary: dic)
                         u.pinyin = Utils.toPinYins(u.nickname)
                         array.append(u)
                     }
                 }
                 self.contact = array
-                success(result: array)
+                success(array)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
@@ -110,7 +110,7 @@ class ContactDataSource: NSObject {
 
 class DepartmentTree : NSObject
 {
-    private static var single:DepartmentTree?
+    fileprivate static var single:DepartmentTree?
     class func sharedInstance()->DepartmentTree
     {
         if single == nil
@@ -120,7 +120,7 @@ class DepartmentTree : NSObject
         return single!
     }
     
-    func update(id:String)
+    func update(_ id:String)
     {
         DepartmentTree.allSubTree.removeAll()
         DepartmentTree.single = DepartmentTree(id: id)
@@ -171,7 +171,7 @@ class DepartmentTree : NSObject
             {
                 
                 let tree = DepartmentTree(id: depart.dept_id!, level: self.level + 1)
-                self.users.appendContentsOf(tree.users)
+                self.users.append(contentsOf: tree.users)
                 self.subDepartment.append(depart)
             }
         }

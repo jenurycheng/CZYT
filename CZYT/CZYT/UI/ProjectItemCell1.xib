@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -35,7 +39,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfl-V5-zCD">
-                        <rect key="frame" x="168" y="0.0" width="144" height="49.5"/>
+                        <rect key="frame" x="168" y="8" width="144" height="33.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -52,10 +56,10 @@
                     <constraint firstItem="NkA-I8-eaB" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Ycr-5a-sc3"/>
                     <constraint firstItem="kHt-es-nPM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="afv-ld-Ugf"/>
                     <constraint firstItem="bfl-V5-zCD" firstAttribute="width" secondItem="kHt-es-nPM" secondAttribute="width" id="bS2-pQ-3Rb"/>
-                    <constraint firstItem="bfl-V5-zCD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cxE-yp-3VM"/>
+                    <constraint firstItem="bfl-V5-zCD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="cxE-yp-3VM"/>
                     <constraint firstAttribute="trailing" secondItem="bfl-V5-zCD" secondAttribute="trailing" constant="8" id="dlf-dJ-zc1"/>
                     <constraint firstAttribute="bottom" secondItem="ny2-tS-4m6" secondAttribute="bottom" id="pPd-Vb-sec"/>
-                    <constraint firstAttribute="bottom" secondItem="bfl-V5-zCD" secondAttribute="bottom" id="pYr-Eq-iqR"/>
+                    <constraint firstAttribute="bottom" secondItem="bfl-V5-zCD" secondAttribute="bottom" constant="8" id="pYr-Eq-iqR"/>
                     <constraint firstItem="kHt-es-nPM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="rLS-Jr-7ce"/>
                 </constraints>
             </tableViewCellContentView>
@@ -63,7 +67,7 @@
                 <outlet property="label1" destination="kHt-es-nPM" id="lHm-T4-2dM"/>
                 <outlet property="label2" destination="bfl-V5-zCD" id="2sh-5E-k6H"/>
             </connections>
-            <point key="canvasLocation" x="411" y="256"/>
+            <point key="canvasLocation" x="246" y="163"/>
         </tableViewCell>
     </objects>
 </document>

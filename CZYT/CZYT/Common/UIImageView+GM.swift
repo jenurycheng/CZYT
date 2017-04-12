@@ -10,18 +10,18 @@ import Foundation
 
 extension UIImageView
 {
-    func gm_setImageWithURL(url:NSURL?, placeholderImage:UIImage?, completedBlock:SDWebImageCompletionBlock)
+    func gm_setImageWithURL(_ url:URL?, placeholderImage:UIImage?, completedBlock:SDWebImageCompletionBlock?)
     {
-        self.sd_setImageWithURL(url, placeholderImage: placeholderImage, completed: completedBlock)
+        //        self.sd_setImage(with: url, placeholderImage: placeholderImage, completed: completedBlock)
+        self.sd_setImage(with: url, placeholderImage: placeholderImage, options: SDWebImageOptions(), completed: completedBlock)
     }
     
-    func gm_setImageWithURL(url:NSURL?, title:String?, completedBlock:SDWebImageCompletionBlock?)
+    func gm_setImageWithURL(_ url:URL?, title:String?, completedBlock:SDWebImageCompletionBlock?)
     {
         let loadImage = Helper.imageWithLoading(self.bounds.size)
-        self.sd_setImageWithURL(url, placeholderImage: loadImage) { (image, error, type, url) in
-            
+        self.sd_setImage(with: url, placeholderImage: loadImage, options: SDWebImageOptions()) { (image, error, type, url) in
             if nil != error {
-                let image = Helper.imageWithString("", size: self.frame.size)
+                let image = Helper.imageWithString(" ", size: self.frame.size)
                 self.image = image
             }
             if completedBlock != nil
@@ -31,13 +31,13 @@ extension UIImageView
         }
     }
     
-    func gm_setImageWithUrlString(urlString:String?, title:String?, completedBlock:SDWebImageCompletionBlock?)
+    func gm_setImageWithUrlString(_ urlString:String?, title:String?, completedBlock:SDWebImageCompletionBlock?)
     {
         if !Helper.isStringEmpty(urlString)
         {
-            self.gm_setImageWithURL(NSURL(string: urlString!), title: title, completedBlock: completedBlock)
+            self.gm_setImageWithURL(URL(string: urlString!), title: title, completedBlock: completedBlock)
         }else{
-            let image = Helper.imageWithString("", size: self.frame.size)
+            let image = Helper.imageWithString(title, size: self.frame.size)
             self.image = image
         }
     }

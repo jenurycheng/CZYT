@@ -13,14 +13,14 @@ class ChatGroupTopCell: UITableViewCell {
     @IBAction func addGroupBtnClicked()
     {
         let create = CreateGroupViewController(nibName: "CreateGroupViewController", bundle: nil)
-        let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
+        let nav = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController
         nav?.pushViewController(create, animated: true)
     }
     
     @IBAction func bbsBtnClicked()
     {
         let bbs = BBSViewController()
-        let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
+        let nav = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController
         nav?.pushViewController(bbs, animated: true)
     }
     
@@ -29,7 +29,7 @@ class ChatGroupTopCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

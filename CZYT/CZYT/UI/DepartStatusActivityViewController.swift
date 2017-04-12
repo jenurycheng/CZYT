@@ -15,7 +15,7 @@ class DepartStatusActivityViewController: BaseActivityViewController {
         super.viewDidLoad()
         self.title = "部门动态"
         
-        self.conditionView.hidden = true
+        self.conditionView.isHidden = true
         tableView.frame = CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64)
         // Do any additional setup after loading the view.
     }
@@ -62,7 +62,7 @@ class DepartStatusActivityViewController: BaseActivityViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detail = DepartStatusDetailViewController()
         detail.id = lDataSource.departStatusActivity[indexPath.row].id!
         self.navigationController?.pushViewController(detail, animated: true)

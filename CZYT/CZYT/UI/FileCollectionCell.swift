@@ -9,7 +9,7 @@
 import UIKit
 
 protocol FileCollectionCellDelegate : NSObjectProtocol {
-    func fileDeleteBtnClicked(cell:FileCollectionCell)
+    func fileDeleteBtnClicked(_ cell:FileCollectionCell)
 }
 
 class FileCollectionCell: UICollectionViewCell {
@@ -24,16 +24,16 @@ class FileCollectionCell: UICollectionViewCell {
         return CGSize(width: width, height: 40)
     }
     
-    func update(path:String)
+    func update(_ path:String)
     {
-        let s:NSString = path;
+        let s:NSString = path as NSString;
         
-        addBtn.setTitle(s.lastPathComponent, forState: .Normal)
+        addBtn.setTitle(s.lastPathComponent, for: UIControlState())
     }
     
-    func updateFile(f:TaskFile)
+    func updateFile(_ f:TaskFile)
     {
-        addBtn.setTitle(f.file_name, forState: .Normal)
+        addBtn.setTitle(f.file_name, for: UIControlState())
     }
     
     @IBAction func deleteBtnClicked()

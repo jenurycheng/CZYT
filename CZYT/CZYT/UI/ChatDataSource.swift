@@ -20,7 +20,7 @@ class ChatDataSource: NSObject {
         return Instance.instance
     }
     
-    func createGroup(userIds:[String], groupName:String, success:((result:GroupDetail) -> Void), failure:((error:HttpResponseData)->Void))
+    func createGroup(_ userIds:[String], groupName:String, success:@escaping ((_ result:GroupDetail) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         var ids = ""
         for i in userIds
@@ -28,7 +28,7 @@ class ChatDataSource: NSObject {
             ids = ids + i + ","
         }
         if ids.characters.count > 0 {
-            ids = ids.substringToIndex(ids.endIndex.advancedBy(-1))
+            ids = ids.substring(to: ids.characters.index(ids.endIndex, offsetBy: -1))
         }
         let request = NetWorkHandle.NetWorkHandleChat.RequestCreateGroup()
         request.userIds = ids
@@ -36,15 +36,15 @@ class ChatDataSource: NSObject {
         NetWorkHandle.NetWorkHandleChat.createGroup(request) { (data) in
             if data.isSuccess()
             {
-                let d = GroupDetail.parse(dict: data.data as! NSDictionary)
-                success(result: d)
+                let d = GroupDetail(dictionary: data.data as! NSDictionary)
+                success(d)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
-    func destoryGroup(userId:String, groupId:String, success:((result:String) -> Void), failure:((error:HttpResponseData)->Void))
+    func destoryGroup(_ userId:String, groupId:String, success:@escaping ((_ result:String) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let r = NetWorkHandle.NetWorkHandleChat.RequestDestroyGroup()
         r.groupId = groupId
@@ -52,14 +52,14 @@ class ChatDataSource: NSObject {
         NetWorkHandle.NetWorkHandleChat.destoryGroup(r) { (data) in
             if data.isSuccess()
             {
-                success(result: data.msg)
+                success(data.msg)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
-    func joinGroup(userIds:[String], groupId:String, groupName:String, success:((result:String) -> Void), failure:((error:HttpResponseData)->Void))
+    func joinGroup(_ userIds:[String], groupId:String, groupName:String, success:@escaping ((_ result:String) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         var ids = ""
         for i in userIds
@@ -67,7 +67,7 @@ class ChatDataSource: NSObject {
             ids = ids + i + ","
         }
         if ids.characters.count > 0 {
-            ids = ids.substringToIndex(ids.endIndex.advancedBy(-1))
+            ids = ids.substring(to: ids.characters.index(ids.endIndex, offsetBy: -1))
         }
         let request = NetWorkHandle.NetWorkHandleChat.RequestJoinGroup()
         request.userIds = ids
@@ -76,15 +76,15 @@ class ChatDataSource: NSObject {
         NetWorkHandle.NetWorkHandleChat.joinGroup(request) { (data) in
             if data.isSuccess()
             {
-                success(result: data.msg)
+                success(data.msg)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
     var groupDetail:GroupDetail?
-    func queryGroupDetail(groupId:String, success:((result:GroupDetail) -> Void), failure:((error:HttpResponseData)->Void))
+    func queryGroupDetail(_ groupId:String, success:@escaping ((_ result:GroupDetail) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleChat.RequestQueryGroupDetail()
         request.groupId = groupId
@@ -94,21 +94,21 @@ class ChatDataSource: NSObject {
                 let r = data.data as? NSDictionary
                 if r != nil
                 {
-                    let u = GroupDetail.parse(dict: data.data as! NSDictionary)
+                    let u = GroupDetail(dictionary: data.data as! NSDictionary)
                     self.groupDetail = u
-                    success(result: u)
+                    success(u)
                 }
                 else{
-                    failure(error: data)
+                    failure(data)
                 }
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
     var group = [Group]()
-    func queryUserGroup(userId:String, success:((result:[Group]) -> Void), failure:((error:HttpResponseData)->Void))
+    func queryUserGroup(_ userId:String, success:@escaping ((_ result:[Group]) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleChat.RequestQueryUserGroup()
         request.userId = userId
@@ -121,19 +121,19 @@ class ChatDataSource: NSObject {
                 {
                     for dic in r!
                     {
-                        let g = Group.parse(dict: dic)
+                        let g = Group(dictionary: dic)
                         array.append(g)
                     }
                 }
                 self.group = array
-                success(result: array)
+                success(array)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
-    func getGroup(id:String)->Group?
+    func getGroup(_ id:String)->Group?
     {
         for g in group
         {
@@ -145,7 +145,7 @@ class ChatDataSource: NSObject {
         return nil
     }
     
-    func quitGroup(userIds:[String], groupId:String, success:((result:String) -> Void), failure:((error:HttpResponseData)->Void))
+    func quitGroup(_ userIds:[String], groupId:String, success:@escaping ((_ result:String) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         var ids = ""
         for i in userIds
@@ -153,7 +153,7 @@ class ChatDataSource: NSObject {
             ids = ids + i + ","
         }
         if ids.characters.count > 0 {
-            ids = ids.substringToIndex(ids.endIndex.advancedBy(-1))
+            ids = ids.substring(to: ids.characters.index(ids.endIndex, offsetBy: -1))
         }
         let request = NetWorkHandle.NetWorkHandleChat.RequestQuitGroup()
         request.userIds = ids
@@ -161,14 +161,14 @@ class ChatDataSource: NSObject {
         NetWorkHandle.NetWorkHandleChat.quitGroup(request) { (data) in
             if data.isSuccess()
             {
-                success(result: data.msg)
+                success(data.msg)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
-    func updateGroup(groupId:String, groupName:String, success:((result:String) -> Void), failure:((error:HttpResponseData)->Void))
+    func updateGroup(_ groupId:String, groupName:String, success:@escaping ((_ result:String) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleChat.RequestUpdateGroup()
         request.groupId = groupId
@@ -176,9 +176,9 @@ class ChatDataSource: NSObject {
         NetWorkHandle.NetWorkHandleChat.updateGroup(request) { (data) in
             if data.isSuccess()
             {
-                success(result: data.msg)
+                success(data.msg)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }

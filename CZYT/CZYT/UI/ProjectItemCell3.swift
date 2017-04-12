@@ -18,23 +18,23 @@ class ProjectItemCell3: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.selectionStyle = .None
+        self.selectionStyle = .none
         
         label1.textColor = ThemeManager.current().darkGrayFontColor
-        label1.font = UIFont.systemFontOfSize(14)
+        label1.font = UIFont.systemFont(ofSize: 14)
         
         label2.textColor = ThemeManager.current().grayFontColor
-        label2.font = UIFont.systemFontOfSize(13)
+        label2.font = UIFont.systemFont(ofSize: 13)
         
         label3.textColor = ThemeManager.current().darkGrayFontColor
-        label3.font = UIFont.systemFontOfSize(14)
+        label3.font = UIFont.systemFont(ofSize: 14)
         
         label4.textColor = ThemeManager.current().grayFontColor
-        label4.font = UIFont.systemFontOfSize(13)
+        label4.font = UIFont.systemFont(ofSize: 13)
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

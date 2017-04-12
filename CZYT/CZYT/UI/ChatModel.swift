@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Department: Reflect {
+class Department: EVObject {
     var dept_id:String?
     var dept_parent_id:String?
     var dept_name:String?
@@ -34,7 +34,7 @@ class Department: Reflect {
     }
 }
 
-class Group : Reflect
+class Group : EVObject
 {
     var groupId:String?
     var groupName:String?
@@ -45,7 +45,7 @@ class Group : Reflect
     var create_date:String?
 }
 
-class GroupDetail : Reflect
+class GroupDetail : EVObject
 {
     var create_date:String?
     var create_user_logo_path:String?
@@ -57,7 +57,7 @@ class GroupDetail : Reflect
     var users:[GroupUser]?
 }
 
-class GroupUser : Reflect
+class GroupUser : EVObject
 {
     var user_logo_path:String?
     var user_mobile:String?

@@ -19,25 +19,25 @@ class BBSCommentCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         nameLabel.textColor = ThemeManager.current().darkGrayFontColor
-        nameLabel.font = UIFont.systemFontOfSize(12)
+        nameLabel.font = UIFont.systemFont(ofSize: 12)
         
-        contentLabel.textColor = UIColor.blackColor()
+        contentLabel.textColor = UIColor.black
         timeLabel.textColor = ThemeManager.current().grayFontColor
         
-        self.selectionStyle = .None
+        self.selectionStyle = .none
         
         headerBtn.layer.cornerRadius = 15
         headerBtn.layer.masksToBounds = true
         // Initialization code
     }
     
-    func update(c:BBSComment)
+    func update(_ c:BBSComment)
     {
         let name = c.publish_user_name == nil ? "" : c.publish_user_name!
         let attributeText = NSMutableAttributedString(string: name)
         if !Helper.isStringEmpty(c.receiver_user_name) {
-            attributeText.appendAttributeString("回复", color: ThemeManager.current().mainColor, font: UIFont.systemFontOfSize(15))
-            attributeText.appendAttributeString(c.receiver_user_name!, color: UIColor.blackColor(), font: UIFont.systemFontOfSize(15))
+            attributeText.appendAttributeString("回复", color: ThemeManager.current().mainColor, font: UIFont.systemFont(ofSize: 15))
+            attributeText.appendAttributeString(c.receiver_user_name!, color: UIColor.black, font: UIFont.systemFont(ofSize: 15))
         }
         nameLabel.attributedText = attributeText
         
@@ -46,28 +46,45 @@ class BBSCommentCell: UITableViewCell {
         
         if !Helper.isStringEmpty(c.publish_user_logo_path)
         {
-            headerBtn.sd_setBackgroundImageWithURL(NSURL(string: c.publish_user_logo_path!), forState: .Normal, placeholderImage: UIImage(named: "user_header_default"))
+            headerBtn.sd_setBackgroundImage(with: URL(string: c.publish_user_logo_path!), for: UIControlState(), placeholderImage: UIImage(named: "user_header_default"))
         }
     }
     
-    func updateApprove(c:Approve)
+    func updateApprove(_ c:Approve)
     {
         let name = c.publish_user_name == nil ? "" : c.publish_user_name!
         let attributeText = NSMutableAttributedString(string: name)
         nameLabel.attributedText = attributeText
-        nameLabel.font = UIFont.systemFontOfSize(15)
+        nameLabel.font = UIFont.systemFont(ofSize: 15)
         contentLabel.text = c.advice_content
         contentLabel.textColor = ThemeManager.current().darkGrayFontColor
         timeLabel.text = c.publish_date
         
         if !Helper.isStringEmpty(c.publish_user_logo_path)
         {
-            headerBtn.sd_setBackgroundImageWithURL(NSURL(string: c.publish_user_logo_path!), forState: .Normal, placeholderImage: UIImage(named: "user_header_default"))
+            headerBtn.sd_setBackgroundImage(with: URL(string: c.publish_user_logo_path!), for: UIControlState(), placeholderImage: UIImage(named: "user_header_default"))
         }
-        replyBtn.hidden = true
+        replyBtn.isHidden = true
+    }
+    
+    func updateApproveComment(_ c:ApproveComment)
+    {
+        let name = c.comment_user_name == nil ? "" : c.comment_user_name!
+        let attributeText = NSMutableAttributedString(string: name)
+        nameLabel.attributedText = attributeText
+        nameLabel.font = UIFont.systemFont(ofSize: 15)
+        contentLabel.text = c.comment_content
+        contentLabel.textColor = ThemeManager.current().darkGrayFontColor
+        timeLabel.text = c.comment_date
+        
+        if !Helper.isStringEmpty(c.comment_user_logo_path)
+        {
+            headerBtn.sd_setBackgroundImage(with: URL(string: c.comment_user_logo_path!), for: UIControlState(), placeholderImage: UIImage(named: "user_header_default"))
+        }
+        replyBtn.isHidden = true
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

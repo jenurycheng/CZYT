@@ -25,7 +25,7 @@ class HomeCell2: UICollectionViewCell {
         iconImageView.layer.masksToBounds = true
         
         numLabel.backgroundColor = ThemeManager.current().mainColor
-        numLabel.textColor = UIColor.whiteColor()
+        numLabel.textColor = UIColor.white
         numLabel.layer.cornerRadius = 10
         numLabel.layer.masksToBounds = true
         // Initialization code

@@ -19,17 +19,17 @@ class ProjectWorkCell: UITableViewCell {
     @IBOutlet weak var imageViewLeadingConstraint:NSLayoutConstraint!
     @IBOutlet weak var imageViewWidthConstraint:NSLayoutConstraint!
     
-    class func cellHeight(leader:LeaderActivity)->CGFloat
+    class func cellHeight(_ leader:LeaderActivity)->CGFloat
     {
         if Helper.isStringEmpty(leader.logo_path)
         {
-            let height = Helper.getTextSize(leader.summary!, font: UIFont.systemFontOfSize(12), size: CGSize(width: GetSWidth()-16, height: CGFloat.max)).height+10
+            let height = Helper.getTextSize(leader.summary!, font: UIFont.systemFont(ofSize: 12), size: CGSize(width: GetSWidth()-16, height: CGFloat.greatestFiniteMagnitude)).height+10
             return 70 + height
         }
         return 150
     }
     
-    func update(leader:LeaderActivity)
+    func update(_ leader:LeaderActivity)
     {
         titleLabel.text = leader.title
         posterImageView.gm_setImageWithUrlString(leader.logo_path, title: leader.title, completedBlock: nil)
@@ -58,12 +58,12 @@ class ProjectWorkCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.selectionStyle = .None
+        self.selectionStyle = .none
         detailLabel.numberOfLines = 6
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

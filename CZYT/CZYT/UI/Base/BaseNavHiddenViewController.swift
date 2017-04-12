@@ -16,17 +16,17 @@ class BaseNavHiddenViewController: BaseViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
-        if navigationController?.navigationBarHidden ==  false{
+        if navigationController?.isNavigationBarHidden ==  false{
             navigationController?.setNavigationBarHidden(true, animated: true)
         }
         super.viewWillAppear(animated)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         
-        if navigationController?.navigationBarHidden == true {
+        if navigationController?.isNavigationBarHidden == true {
             navigationController?.setNavigationBarHidden(false, animated: true)
             
         }

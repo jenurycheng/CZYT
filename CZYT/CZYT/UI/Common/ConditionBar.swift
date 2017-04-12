@@ -7,13 +7,26 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 protocol ConditionBarDelegate : NSObjectProtocol
 {
-    func titleForConditionBar(conditionBar:ConditionBar)->String
-    func textsForConditionBar(conditionBar:ConditionBar)->[String]
-    func selectedIndexForConditionBar(conditionBar:ConditionBar)->Int    //返回－1:全部
-    func didSelectedConditionBar(conditionBar:ConditionBar, index:Int)
+    func titleForConditionBar(_ conditionBar:ConditionBar)->String
+    func textsForConditionBar(_ conditionBar:ConditionBar)->[String]
+    func selectedIndexForConditionBar(_ conditionBar:ConditionBar)->Int    //返回－1:全部
+    func didSelectedConditionBar(_ conditionBar:ConditionBar, index:Int)
 }
 
 class ConditionBar: UIView {
@@ -50,15 +63,15 @@ class ConditionBar: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateCornerView(btnFrame:CGRect)
+    func updateCornerView(_ btnFrame:CGRect)
     {
         var frame = cornerView.frame
         frame.origin.x = btnFrame.origin.x
         frame.origin.y = (btnFrame.size.height - 30)/2
         frame.size.width = btnFrame.size.width
-        UIView.animateWithDuration(0.2) { 
+        UIView.animate(withDuration: 0.2, animations: { 
             self.cornerView.frame = frame
-        }
+        }) 
     }
     
     func initView(){
@@ -66,48 +79,48 @@ class ConditionBar: UIView {
         btnArray = NSMutableArray(capacity: 1)
         textsArray = Array<String>()
         
-        scrollView = UIScrollView(frame: CGRectMake(0, 0, self.frame.size.width, ConditionBar.barHeight()))
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: ConditionBar.barHeight()))
         self.addSubview(scrollView)
         scrollView.showsHorizontalScrollIndicator = false
         
         leftArrow = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: ConditionBar.barHeight()))
         leftArrow.image = UIImage(named: "gradient_left")
         let left = UIImageView(frame: leftArrow.bounds)
-        left.contentMode = .Center
+        left.contentMode = .center
         left.image = UIImage(named: "arrow_left")
         leftArrow.addSubview(left)
         self.addSubview(leftArrow)
-        leftArrow.userInteractionEnabled = true
+        leftArrow.isUserInteractionEnabled = true
         let leftTap = UITapGestureRecognizer(target: self, action: #selector(ConditionBar.leftTapped(_:)))
         leftArrow.addGestureRecognizer(leftTap)
         
         
         rightArrow = UIImageView(frame: CGRect(x: self.frame.width-40, y: 0, width: 40, height: ConditionBar.barHeight()))
         rightArrow.image = UIImage(named: "gradient_right")
-        rightArrow.userInteractionEnabled = true
+        rightArrow.isUserInteractionEnabled = true
         let right = UIImageView(frame: rightArrow.bounds)
         right.image = UIImage(named: "arrow_right")
-        right.contentMode = .Center
+        right.contentMode = .center
         rightArrow.addSubview(right)
         self.addSubview(rightArrow)
         
         let rightTap = UITapGestureRecognizer(target: self, action: #selector(ConditionBar.rightTapped(_:)))
         rightArrow.addGestureRecognizer(rightTap)
         
-        titleBtn = UIButton(frame: CGRectMake(10, 0, 65, ConditionBar.barHeight()))
-        titleBtn.titleLabel?.font = UIFont.systemFontOfSize(14)
-        titleBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: UIControlState.Normal)
+        titleBtn = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: ConditionBar.barHeight()))
+        titleBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        titleBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, for: UIControlState())
         scrollView.addSubview(titleBtn)
-        titleBtn.addTarget(self, action: #selector(ConditionBar.titleBtnClicked), forControlEvents: UIControlEvents.TouchUpInside)
+        titleBtn.addTarget(self, action: #selector(ConditionBar.titleBtnClicked), for: UIControlEvents.touchUpInside)
         
-        line = UIView(frame: CGRectMake(0, ConditionBar.barHeight()-0.5, GetSWidth(), 0.5))
+        line = UIView(frame: CGRect(x: 0, y: ConditionBar.barHeight()-0.5, width: GetSWidth(), height: 0.5))
         line.backgroundColor = ThemeManager.current().backgroundColor
         self.addSubview(line)
         
-        cornerView = UIView(frame:CGRectMake(-100, 0, 100, 30))
+        cornerView = UIView(frame:CGRect(x: -100, y: 0, width: 100, height: 30))
         cornerView.layer.cornerRadius = 15
         cornerView.layer.borderWidth = 1
-        cornerView.layer.borderColor = ThemeManager.current().mainColor.CGColor
+        cornerView.layer.borderColor = ThemeManager.current().mainColor.cgColor
 //        scrollView.addSubview(cornerView)
     }
     
@@ -119,9 +132,9 @@ class ConditionBar: UIView {
         }
         if selectedBtn != nil
         {
-            selectedBtn?.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: UIControlState.Normal)
+            selectedBtn?.setTitleColor(ThemeManager.current().darkGrayFontColor, for: UIControlState())
         }
-        titleBtn.setTitleColor(ThemeManager.current().mainColor, forState: UIControlState.Normal)
+        titleBtn.setTitleColor(ThemeManager.current().mainColor, for: UIControlState())
         selectedBtn = titleBtn
         self.updateCornerView(titleBtn.frame)
     }
@@ -129,25 +142,25 @@ class ConditionBar: UIView {
     func loadView(){
         for btn in btnArray
         {
-            btn.removeFromSuperview()
+            (btn as AnyObject).removeFromSuperview()
         }
         btnArray.removeAllObjects()
         
         if delegate != nil
         {
             let title = delegate?.titleForConditionBar(self)
-            titleBtn.setTitle(title, forState: UIControlState.Normal)
+            titleBtn.setTitle(title, for: UIControlState())
             textsArray = delegate?.textsForConditionBar(self)
             let selectedIndex = delegate?.selectedIndexForConditionBar(self)
             if selectedIndex < 0
             {
-                titleBtn.setTitleColor(ThemeManager.current().mainColor, forState: UIControlState.Normal)
+                titleBtn.setTitleColor(ThemeManager.current().mainColor, for: UIControlState())
                 selectedBtn = titleBtn
                 self.updateCornerView(titleBtn.frame)
             }
             let spacing:CGFloat = 25
-            let titleWidth = Helper.getTextSize(title!, font: UIFont.systemFontOfSize(14), size: CGSizeMake(CGFloat(MAXFLOAT), ConditionBar.barHeight())).width
-            titleBtn.frame = CGRectMake(15, 0, titleWidth+spacing, ConditionBar.barHeight())
+            let titleWidth = Helper.getTextSize(title!, font: UIFont.systemFont(ofSize: 14), size: CGSize(width: CGFloat(MAXFLOAT), height: ConditionBar.barHeight())).width
+            titleBtn.frame = CGRect(x: 15, y: 0, width: titleWidth+spacing, height: ConditionBar.barHeight())
             var x:CGFloat = titleBtn.frame.origin.x + titleBtn.frame.width
             if Helper.isStringEmpty(title) {
                 x = 15
@@ -155,66 +168,66 @@ class ConditionBar: UIView {
             for i in 0 ..< textsArray!.count
             {
                 let btn:UIButton = UIButton()
-                btn.titleLabel?.font = UIFont.systemFontOfSize(14)
-                var width = Helper.getTextSize(textsArray![i], font: btn.titleLabel!.font, size: CGSizeMake(CGFloat(MAXFLOAT), ConditionBar.barHeight())).width
+                btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+                var width = Helper.getTextSize(textsArray![i], font: btn.titleLabel!.font, size: CGSize(width: CGFloat(MAXFLOAT), height: ConditionBar.barHeight())).width
                 width+=spacing
-                btn.frame = CGRectMake(x, 0, width, ConditionBar.barHeight())
+                btn.frame = CGRect(x: x, y: 0, width: width, height: ConditionBar.barHeight())
                 x+=width
-                btn.setTitle(textsArray![i], forState: UIControlState.Normal)
-                btn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: UIControlState.Normal)
+                btn.setTitle(textsArray![i], for: UIControlState())
+                btn.setTitleColor(ThemeManager.current().darkGrayFontColor, for: UIControlState())
                 scrollView.addSubview(btn)
-                btnArray.addObject(btn)
+                btnArray.add(btn)
                 if i == selectedIndex
                 {
-                    btn.setTitleColor(ThemeManager.current().mainColor, forState: UIControlState.Normal)
+                    btn.setTitleColor(ThemeManager.current().mainColor, for: UIControlState())
                     selectedBtn = btn
                     self.updateCornerView(btn.frame)
                 }
-                btn.addTarget(self, action: #selector(ConditionBar.btnClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+                btn.addTarget(self, action: #selector(ConditionBar.btnClicked(_:)), for: UIControlEvents.touchUpInside)
             }
-            scrollView.contentSize = CGSizeMake(x+30, ConditionBar.barHeight())
+            scrollView.contentSize = CGSize(width: x+30, height: ConditionBar.barHeight())
             
             if x + 30 > GetSWidth() {
-                leftArrow.hidden = false
-                rightArrow.hidden = false
+                leftArrow.isHidden = false
+                rightArrow.isHidden = false
                 
             }else{
-                leftArrow.hidden = true
-                rightArrow.hidden = true
+                leftArrow.isHidden = true
+                rightArrow.isHidden = true
             }
         }
     }
     
-    func leftTapped(tap:UITapGestureRecognizer)
+    func leftTapped(_ tap:UITapGestureRecognizer)
     {
         var x = scrollView.contentOffset.x
         x = x - 60
         if x < 0 {
             x = 0
         }
-        scrollView.scrollRectToVisible(CGRectMake(x, 0, scrollView.frame.width, scrollView.frame.height), animated: true)
+        scrollView.scrollRectToVisible(CGRect(x: x, y: 0, width: scrollView.frame.width, height: scrollView.frame.height), animated: true)
     }
     
-    func rightTapped(tap:UITapGestureRecognizer)
+    func rightTapped(_ tap:UITapGestureRecognizer)
     {
         var x = scrollView.contentOffset.x
         x = x + 60
         if x + 60 + scrollView.frame.width > scrollView.contentSize.width {
             x = scrollView.contentSize.width - scrollView.frame.width
         }
-        scrollView.scrollRectToVisible(CGRectMake(x, 0, scrollView.frame.width, scrollView.frame.height), animated: true)
+        scrollView.scrollRectToVisible(CGRect(x: x, y: 0, width: scrollView.frame.width, height: scrollView.frame.height), animated: true)
     }
     
-    func btnClicked(btn:UIButton)
+    func btnClicked(_ btn:UIButton)
     {
         if selectedBtn != nil
         {
-            selectedBtn?.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: UIControlState.Normal)
+            selectedBtn?.setTitleColor(ThemeManager.current().darkGrayFontColor, for: UIControlState())
         }
-        btn.setTitleColor(ThemeManager.current().mainColor, forState: UIControlState.Normal)
+        btn.setTitleColor(ThemeManager.current().mainColor, for: UIControlState())
         selectedBtn = btn
         self.updateCornerView(btn.frame)
-        delegate?.didSelectedConditionBar(self, index: btnArray.indexOfObject(btn))
+        delegate?.didSelectedConditionBar(self, index: btnArray.index(of: btn))
     }
     
     

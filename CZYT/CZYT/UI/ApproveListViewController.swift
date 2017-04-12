@@ -22,11 +22,11 @@ class ApproveListViewController: BasePortraitViewController {
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64))
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 50
         self.view.addSubview(tableView)
-        tableView.registerNib(UINib(nibName: "BBSCommentCell", bundle: nil), forCellReuseIdentifier: "BBSCommentCell")
+        tableView.register(UINib(nibName: "BBSCommentCell", bundle: nil), forCellReuseIdentifier: "BBSCommentCell")
         
         unowned let weakSelf = self
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
@@ -39,13 +39,13 @@ class ApproveListViewController: BasePortraitViewController {
         
         self.loadData()
         
-        let add = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(BBSViewController.addClicked))
+        let add = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(ApproveListViewController.addClicked))
         self.navigationItem.rightBarButtonItem = add
         // Do any additional setup after loading the view.
     }
     
     static var needUpdate = false
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if ApproveListViewController.needUpdate == true {
@@ -102,34 +102,34 @@ class ApproveListViewController: BasePortraitViewController {
 
 extension ApproveListViewController : UITableViewDelegate, UITableViewDataSource
 {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.approves.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let type = dataSource.approves[indexPath.row].advice_type
-        if type == "1"
-        {
-            let project = ProjectWorkDetailViewController_New()
-            project.id = dataSource.approves[indexPath.row].advice_ref_id!
-            project.hiddenItem = true
-            self.navigationController?.pushViewController(project, animated: true)
-        }else if type == "2"
-        {
-            let status = WorkStatusDetailViewController()
-            status.id = dataSource.approves[indexPath.row].advice_ref_id!
-            status.hiddenItem = true
-            self.navigationController?.pushViewController(status, animated: true)
-        }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let type = dataSource.approves[indexPath.row].advice_type
+//        if type == "1"
+//        {
+//            let project = ProjectWorkDetailViewController_New()
+//            project.id = dataSource.approves[indexPath.row].advice_ref_id!
+//            project.hiddenItem = true
+//            self.navigationController?.pushViewController(project, animated: true)
+//        }else if type == "2"
+//        {
+//            let status = WorkStatusDetailViewController()
+//            status.id = dataSource.approves[indexPath.row].advice_ref_id!
+//            status.hiddenItem = true
+//            self.navigationController?.pushViewController(status, animated: true)
+//        }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         //        return BBSCell.cellHeight(dataSource.bbs[indexPath.row])
         return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("BBSCommentCell") as! BBSCommentCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BBSCommentCell") as! BBSCommentCell
         cell.updateApprove(dataSource.approves[indexPath.row])
         return cell
     }

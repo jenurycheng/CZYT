@@ -34,11 +34,11 @@ class ProjectTimeView: UIView {
         tableView.estimatedRowHeight = 50
         self.addSubview(tableView)
         
-        tableView.separatorStyle = .None
-        tableView.registerNib(UINib(nibName: "ProjectItemTimeCell", bundle: nil), forCellReuseIdentifier: "ProjectItemTimeCell")
+        tableView.separatorStyle = .none
+        tableView.register(UINib(nibName: "ProjectItemTimeCell", bundle: nil), forCellReuseIdentifier: "ProjectItemTimeCell")
     }
     
-    func update(data:ProjectWorkDetail?)
+    func update(_ data:ProjectWorkDetail?)
     {
         if data == nil {
             return
@@ -79,19 +79,19 @@ class ProjectTimeView: UIView {
 extension ProjectTimeView : UITableViewDelegate, UITableViewDataSource
 {
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if shows[indexPath.row] == nil || shows[indexPath.row]! != "1" {
             return 0
         }
         return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shows.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ProjectItemTimeCell") as! ProjectItemTimeCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectItemTimeCell") as! ProjectItemTimeCell
         cell.label1.text = "\(indexPath.row + 1)" + "月份"
         cell.label2.text = times[indexPath.row]
         return cell

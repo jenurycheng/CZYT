@@ -59,7 +59,7 @@ class WorkStatusSearchViewController: BaseSearchViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detail = WorkStatusDetailViewController()
         detail.id = lDataSource.workStatusActivity[indexPath.row].id!
         self.navigationController?.pushViewController(detail, animated: true)

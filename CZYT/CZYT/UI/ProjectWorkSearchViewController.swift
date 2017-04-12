@@ -15,7 +15,7 @@ class ProjectWorkSearchViewController: BaseSearchViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "重点项目"
-        tableView.registerNib(UINib(nibName: "ProjectWorkCell", bundle: nil), forCellReuseIdentifier: "ProjectWorkCell")
+        tableView.register(UINib(nibName: "ProjectWorkCell", bundle: nil), forCellReuseIdentifier: "ProjectWorkCell")
         // Do any additional setup after loading the view.
     }
 
@@ -61,18 +61,18 @@ class ProjectWorkSearchViewController: BaseSearchViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return ProjectWorkCell.cellHeight(dataSource[indexPath.row])
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detail = ProjectWorkDetailViewController_New()
         detail.id = lDataSource.projectWorkActivity[indexPath.row].id!
         self.navigationController?.pushViewController(detail, animated: true)
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ProjectWorkCell") as! ProjectWorkCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectWorkCell") as! ProjectWorkCell
         cell.update(dataSource[indexPath.row])
         return cell
     }

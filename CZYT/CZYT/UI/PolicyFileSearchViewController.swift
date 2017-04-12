@@ -60,7 +60,7 @@ class PolicyFileSearchViewController: BaseSearchViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detail = PolicyFileDetailViewController()
         detail.id = lDataSource.fileActivity[indexPath.row].id!
         self.navigationController?.pushViewController(detail, animated: true)

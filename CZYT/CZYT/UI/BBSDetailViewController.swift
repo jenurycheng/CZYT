@@ -48,7 +48,7 @@ class BBSDetailViewController: BasePortraitViewController {
 
         webView.delegate = self
         webView.scalesPageToFit = true
-        webView.scrollView.scrollEnabled = false
+        webView.scrollView.isScrollEnabled = false
 //        webView.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.baidu.com")!))
         self.loadData()
         // Do any additional setup after loading the view.
@@ -72,7 +72,7 @@ class BBSDetailViewController: BasePortraitViewController {
     {
         titleLabel.text = dataSource.bbsDetail?.title
         timeLabel.text = dataSource.bbsDetail?.publish_date
-        commentCountBtn.setTitle("\(dataSource.bbsDetail!.comment_count!)条评论", forState: .Normal)
+        commentCountBtn.setTitle("\(dataSource.bbsDetail!.comment_count!)条评论", for: UIControlState())
         if dataSource.bbsDetail?.summary != nil {
             let data = "<p style=\"font-size:40px;\">\(dataSource.bbsDetail!.summary!)</p>"
             
@@ -101,11 +101,11 @@ class BBSDetailViewController: BasePortraitViewController {
 
 extension BBSDetailViewController : UIWebViewDelegate
 {
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         contentHeight.constant = webView.scrollView.contentSize.height + 70 - 64 < GetSHeight() ? GetSHeight() : webView.scrollView.contentSize.height + 70 - 64
     }
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         contentHeight.constant = webView.scrollView.contentSize.height + 70 - 64 < GetSHeight() ? GetSHeight() : webView.scrollView.contentSize.height + 70 - 64
         return true
     }

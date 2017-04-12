@@ -34,14 +34,14 @@ class ContactListView: UIView {
     }
     
     var hiddenIds = [String]()
-    func updateHiddenIds(hiddenIds:[String])
+    func updateHiddenIds(_ hiddenIds:[String])
     {
         self.hiddenIds.removeAll()
-        self.hiddenIds.appendContentsOf(hiddenIds)
+        self.hiddenIds.append(contentsOf: hiddenIds)
         self.tableView.reloadData()
     }
     
-    func update(tree:DepartmentTree)
+    func update(_ tree:DepartmentTree)
     {
         self.tree = tree
         originalDataSource = tree.users
@@ -59,7 +59,7 @@ class ContactListView: UIView {
                 let pinyin = u.pinyin == nil ? "" : u.pinyin!
                 let mob = u.mobile
                 
-                if nick.contain(subStr: text) || dep.contain(subStr: text) || mob.contain(subStr: text) || pinyin.contain(subStr: text.lowercaseString)
+                if nick.contains(text) || dep.contains(text) || mob.contains(text) || pinyin.contains(text.lowercased())
                 {
                     dataSource.append(u)
                 }
@@ -83,38 +83,38 @@ class ContactListView: UIView {
         tableView = UITableView(frame: CGRect(x: 0, y: 40, width: self.frame.width, height: self.frame.height-40))
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.registerNib(UINib(nibName: "ContactCell", bundle: nil), forCellReuseIdentifier: "ContactCell")
+        tableView.register(UINib(nibName: "ContactCell", bundle: nil), forCellReuseIdentifier: "ContactCell")
         self.addSubview(tableView)
     }
 }
 
 extension ContactListView : UITableViewDataSource, UITableViewDelegate
 {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
     
-    func scrollViewDidScrollToTop(scrollView: UIScrollView) {
-        if searchBar.isFirstResponder()
+    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+        if searchBar.isFirstResponder
         {
             searchBar.resignFirstResponder()
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = dataSource[indexPath.row]
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ContactCell
+        let cell = tableView.cellForRow(at: indexPath) as! ContactCell
         if selectMode == true
         {
-            cell.accessoryType = .None
+            cell.accessoryType = .none
             if selectedIds.contains(user.id!)
             {
                 cell.setChecked(false)
-                selectedIds.removeAtIndex(selectedIds.indexOf(user.id!)!)
+                selectedIds.remove(at: selectedIds.index(of: user.id!)!)
             }else{
                 if selectedIds.count >= maxSelectCount
                 {
-                    MBProgressHUD.showMessag(self.showMaxCountText, toView: self, showTimeSec: 1)
+                    MBProgressHUD.showMessag(self.showMaxCountText, to: self, showTimeSec: 1)
                 }else{
                     cell.setChecked(true)
                     selectedIds.append(user.id!)
@@ -130,11 +130,11 @@ extension ContactListView : UITableViewDataSource, UITableViewDelegate
         chat.conversationType = RCConversationType.ConversationType_PRIVATE
         chat.targetId = dataSource[indexPath.row].id
         chat.title = dataSource[indexPath.row].nickname
-        let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
+        let nav = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController
         nav?.pushViewController(chat, animated: true)
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         let user = dataSource[indexPath.row]
         if !showMySelf && user.id == UserInfo.sharedInstance.id || hiddenIds.contains(user.id!)
@@ -145,32 +145,32 @@ extension ContactListView : UITableViewDataSource, UITableViewDelegate
         return ContactCell.cellHeight()
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell") as! ContactCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell") as! ContactCell
         cell.clipsToBounds = true
         let user = dataSource[indexPath.row]
         let showMobile = self.tree!.department!.isMyLevel()
         cell.updateUserInfo(user, showMobile: showMobile)
-        cell.selectionStyle = .None
-        cell.accessoryType = .DisclosureIndicator
+        cell.selectionStyle = .none
+        cell.accessoryType = .disclosureIndicator
     
         if selectMode == true
         {
-            cell.accessoryType = .None
+            cell.accessoryType = .none
             cell.setChecked(selectedIds.contains(user.id!))
         }
         
         return cell
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         searchBar.resignFirstResponder()
     }
 }
 
 extension ContactListView : UISearchBarDelegate
 {
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.loadDataSource()
     }
 }

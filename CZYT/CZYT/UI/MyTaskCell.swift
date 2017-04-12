@@ -7,6 +7,30 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class MyTaskCell: UITableViewCell {
 
@@ -22,7 +46,7 @@ class MyTaskCell: UITableViewCell {
         // Initialization code
     }
     
-    func updateMy(task:Task)
+    func updateMy(_ task:Task)
     {
         self.update(task)
         
@@ -36,7 +60,7 @@ class MyTaskCell: UITableViewCell {
         }
     }
     
-    func updatePublish(task:Task)
+    func updatePublish(_ task:Task)
     {
         self.update(task)
         
@@ -58,9 +82,9 @@ class MyTaskCell: UITableViewCell {
         publishManLabel.text = name
     }
     
-    func update(task:Task)
+    func update(_ task:Task)
     {
-        titleLabel.text = task.task_title
+//        titleLabel.text = task.task_title
         contentLabel.text = task.task_content
         statusLabel.text = task.task_status_name
         
@@ -98,7 +122,7 @@ class MyTaskCell: UITableViewCell {
         }
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

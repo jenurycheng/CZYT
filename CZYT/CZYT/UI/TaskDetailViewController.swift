@@ -7,6 +7,30 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class TaskDetailViewController: BasePortraitViewController {
 
@@ -44,32 +68,32 @@ class TaskDetailViewController: BasePortraitViewController {
         okBtn.backgroundColor = ThemeManager.current().mainColor
         okBtn.layer.cornerRadius = 5
         okBtn.layer.masksToBounds = true
-        okBtn.setTitle("提交", forState: .Normal)
-        okBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        okBtn.setTitle("提交", for: UIControlState())
+        okBtn.setTitleColor(UIColor.white, for: UIControlState())
         btnView.addSubview(okBtn)
-        okBtn.hidden = true
-        okBtn.addTarget(self, action: #selector(TaskDetailViewController.okBtnClicked), forControlEvents: .TouchUpInside)
+        okBtn.isHidden = true
+        okBtn.addTarget(self, action: #selector(TaskDetailViewController.okBtnClicked), for: .touchUpInside)
         
         assignBtn = UIButton(frame: CGRect(x: 10, y: 5, width: GetSWidth()-20, height: 40))
         assignBtn.backgroundColor = ThemeManager.current().mainColor
         assignBtn.layer.cornerRadius = 5
         assignBtn.layer.masksToBounds = true
-        assignBtn.setTitle("指派", forState: .Normal)
-        assignBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        assignBtn.setTitle("指派", for: UIControlState())
+        assignBtn.setTitleColor(UIColor.white, for: UIControlState())
         btnView.addSubview(assignBtn)
-        assignBtn.hidden = true
-        assignBtn.addTarget(self, action: #selector(TaskDetailViewController.assignBtnClicked), forControlEvents: .TouchUpInside)
+        assignBtn.isHidden = true
+        assignBtn.addTarget(self, action: #selector(TaskDetailViewController.assignBtnClicked), for: .touchUpInside)
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.scrollEnabled = false
-        collectionView.registerNib(UINib(nibName: "TaskResultTopCell", bundle: nil), forCellWithReuseIdentifier: "TaskResultTopCell")
-        collectionView.registerNib(UINib(nibName: "ImageCollectionCell", bundle: nil), forCellWithReuseIdentifier: "ImageCollectionCell")
-        collectionView.registerNib(UINib(nibName: "FileCollectionCell", bundle: nil), forCellWithReuseIdentifier: "FileCollectionCell")
+        collectionView.isScrollEnabled = false
+        collectionView.register(UINib(nibName: "TaskResultTopCell", bundle: nil), forCellWithReuseIdentifier: "TaskResultTopCell")
+        collectionView.register(UINib(nibName: "ImageCollectionCell", bundle: nil), forCellWithReuseIdentifier: "ImageCollectionCell")
+        collectionView.register(UINib(nibName: "FileCollectionCell", bundle: nil), forCellWithReuseIdentifier: "FileCollectionCell")
         collectionView.backgroundColor = ThemeManager.current().foregroundColor
-        collectionView.registerClass(UICollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "UICollectionReusableView")
+        collectionView.register(UICollectionReusableView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "UICollectionReusableView")
         
-        projectItem = UIBarButtonItem(title: "项目背景", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(TaskDetailViewController.projectClicked))
+        projectItem = UIBarButtonItem(title: "项目背景", style: UIBarButtonItemStyle.plain, target: self, action: #selector(TaskDetailViewController.projectClicked))
         // Do any additional setup after loading the view.
     }
     
@@ -84,7 +108,7 @@ class TaskDetailViewController: BasePortraitViewController {
         self.navigationController?.pushViewController(detail, animated: true)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if dataSource.taskDetail != nil && dataSource.taskDetail!.task_status! == "finished"
         {
@@ -117,11 +141,11 @@ class TaskDetailViewController: BasePortraitViewController {
         {
             self.view.showHud()
             dataSource.acceptTask(self.id!, success: { (result) in
-                MBProgressHUD.showSuccess("接受成功", toView: self.view.window)
+                MBProgressHUD.showSuccess("接受成功", to: self.view.window)
                 MyTaskViewController.shouldReload = true
-                self.navigationController?.popViewControllerAnimated(true)
+                self.navigationController?.popViewController(animated: true)
                 }, failure: { (error) in
-                    MBProgressHUD.showSuccess(error.msg, toView: self.view.window)
+                    MBProgressHUD.showSuccess(error.msg, to: self.view.window)
             })
         }else if dataSource.taskDetail!.task_status! == "finished"//已完成
         {
@@ -148,7 +172,7 @@ class TaskDetailViewController: BasePortraitViewController {
         s.addCallback({ (selectedIds) in
             
             weakSelf.selectedIds.removeAll()
-            weakSelf.selectedIds.appendContentsOf(selectedIds)
+            weakSelf.selectedIds.append(contentsOf: selectedIds)
             
             weakSelf.assign()
         })
@@ -180,10 +204,10 @@ class TaskDetailViewController: BasePortraitViewController {
         
         self.view.showHud()
         dataSource.assignTask(task, success: { (result) in
-            MBProgressHUD.showSuccess("指派成功", toView: self.view)
+            MBProgressHUD.showSuccess("指派成功", to: self.view)
             self.view.dismiss()
             }, failure: { (error) in
-                MBProgressHUD.showError(error.msg, toView: self.view)
+                MBProgressHUD.showError(error.msg, to: self.view)
                 self.view.dismiss()
         })
     }
@@ -205,7 +229,7 @@ class TaskDetailViewController: BasePortraitViewController {
 //        self.contentLabel.text = dataSource.taskDetail?.task_content == nil ? "" : "任务内容:\n\n" + dataSource.taskDetail!.task_content!
         
         let attr = NSMutableAttributedString(string: "")
-        attr.appendAttributeString("任务内容:\n\n", color: UIColor.blackColor(), font: self.contentLabel.font)
+        attr.appendAttributeString("任务内容:\n\n", color: UIColor.black, font: self.contentLabel.font)
         if dataSource.taskDetail?.task_content != nil {
             attr.appendAttributeString(dataSource.taskDetail!.task_content!, color: ThemeManager.current().darkGrayFontColor, font: self.contentLabel.font)
         }
@@ -252,7 +276,7 @@ class TaskDetailViewController: BasePortraitViewController {
                 {
                     timeLabel.text = "截止时间:" + Helper.formatDateString(dataSource.taskDetail!.task_end_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
                 }
-                okBtn.setTitle("接受", forState: .Normal)
+                okBtn.setTitle("接受", for: UIControlState())
                 if UserInfo.sharedInstance.publishEnabled()
                 {
                     self.showBtn(true, showPublishBtn: true)
@@ -269,7 +293,7 @@ class TaskDetailViewController: BasePortraitViewController {
                 {
                     timeLabel.text = "截止时间:" + Helper.formatDateString(dataSource.taskDetail!.task_end_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
                 }
-                okBtn.setTitle("查看", forState: .Normal)
+                okBtn.setTitle("查看", for: UIControlState())
                 self.showBtn(false, showPublishBtn: false)
                 self.showResult()
             }else if dataSource.taskDetail!.task_status! == "accepted"//已接受
@@ -282,7 +306,7 @@ class TaskDetailViewController: BasePortraitViewController {
                 {
                     timeLabel.text = "截止时间:" + Helper.formatDateString(dataSource.taskDetail!.task_end_date!, fromFormat: "yyyy-MM-dd HH:mm:ss", toFormat:"yyyy-MM-dd")
                 }
-                okBtn.setTitle("提交", forState: .Normal)
+                okBtn.setTitle("提交", for: UIControlState())
                 self.showBtn(true, showPublishBtn: false)
                 self.showResult()
             }
@@ -308,9 +332,9 @@ class TaskDetailViewController: BasePortraitViewController {
     {
         collectionView.reloadData()
         collectionView.alpha = 0
-        DispatchAfter(0.2, queue: dispatch_get_main_queue()) {
+        DispatchAfter(0.2, queue: DispatchQueue.main) {
             let text = self.contentLabel.text == nil ? "" : self.contentLabel.text!
-            let textHeight = Helper.getTextSize(text, font: self.contentLabel.font, size: CGSize(width: self.contentLabel.frame.width, height: CGFloat.max)).height
+            let textHeight = Helper.getTextSize(text, font: self.contentLabel.font, size: CGSize(width: self.contentLabel.frame.width, height: CGFloat.greatestFiniteMagnitude)).height
             self.collectionView.alpha = 1
             self.contentHeight.constant = self.topHeight.constant + textHeight + self.collectionView.contentSize.height + 20 + 50
             self.view.layoutIfNeeded()
@@ -318,39 +342,39 @@ class TaskDetailViewController: BasePortraitViewController {
         }
     }
     
-    func getView(i:Int, assign:TaskAssign)->UIView
+    func getView(_ i:Int, assign:TaskAssign)->UIView
     {
         let view = UIView(frame: CGRect(x: 0, y: 100 + CGFloat(i) * 30, width: GetSWidth(), height: 30))
         let label = UILabel(frame: CGRect(x: 10, y: 0, width: view.frame.width-20, height: 30))
-        label.font = UIFont.systemFontOfSize(12)
+        label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = ThemeManager.current().darkGrayFontColor
         
         let text = NSMutableAttributedString()
         if assign.assign_date != nil
         {
             let t = assign.assign_date! + ": "
-            text.appendAttributeString(t, color: ThemeManager.current().darkGrayFontColor, font: UIFont.systemFontOfSize(12))
+            text.appendAttributeString(t, color: ThemeManager.current().darkGrayFontColor, font: UIFont.systemFont(ofSize: 12))
         }
         
         if assign.assigner_user_name != nil
         {
-            text.appendAttributeString(assign.assigner_user_name!, color: ThemeManager.current().mainColor, font: UIFont.systemFontOfSize(12))
-            text.appendAttributeString("指派给了", color: ThemeManager.current().darkGrayFontColor, font: UIFont.systemFontOfSize(12))
+            text.appendAttributeString(assign.assigner_user_name!, color: ThemeManager.current().mainColor, font: UIFont.systemFont(ofSize: 12))
+            text.appendAttributeString("指派给了", color: ThemeManager.current().darkGrayFontColor, font: UIFont.systemFont(ofSize: 12))
         }
         
         if assign.assignee_user_name != nil
         {
-            text.appendAttributeString(assign.assignee_user_name!, color: ThemeManager.current().mainColor, font: UIFont.systemFontOfSize(12))
+            text.appendAttributeString(assign.assignee_user_name!, color: ThemeManager.current().mainColor, font: UIFont.systemFont(ofSize: 12))
         }
         label.attributedText = text
         view.addSubview(label)
         return view
     }
     
-    func showBtn(showOkBtn:Bool, showPublishBtn:Bool)
+    func showBtn(_ showOkBtn:Bool, showPublishBtn:Bool)
     {
-        okBtn.hidden = !showOkBtn
-        assignBtn.hidden = !showPublishBtn
+        okBtn.isHidden = !showOkBtn
+        assignBtn.isHidden = !showPublishBtn
         
         if showOkBtn
         {
@@ -364,9 +388,9 @@ class TaskDetailViewController: BasePortraitViewController {
         
         if !showOkBtn && !showPublishBtn
         {
-            btnView.hidden = true
+            btnView.isHidden = true
         }else{
-            btnView.hidden = false
+            btnView.isHidden = false
         }
     }
 
@@ -380,7 +404,7 @@ class TaskDetailViewController: BasePortraitViewController {
 //MARK: UICollectionViewDelegate
 extension TaskDetailViewController : UICollectionViewDelegate
 {
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         if indexPath.section == 1
         {
@@ -389,11 +413,11 @@ extension TaskDetailViewController : UICollectionViewDelegate
             for i in 0 ..< self.dataSource.taskDetail!.task_comment!.photos!.count
             {
                 let photo = MJPhoto()
-                let cell = collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: i, inSection: 1)) as! ImageCollectionCell
-                photo.url = NSURL(string: self.dataSource.taskDetail!.task_comment!.photos![i].photo_path!)
+                let cell = collectionView.cellForItem(at: IndexPath(item: i, section: 1)) as! ImageCollectionCell
+                photo.url = URL(string: self.dataSource.taskDetail!.task_comment!.photos![i].photo_path!)
                 photo.srcImageView = cell.imageView
                 photo.image = cell.imageView.image
-                photoArray.addObject(photo)
+                photoArray.add(photo)
             }
             let browser = MJPhotoBrowser()
             browser.showPushBtn = false
@@ -405,8 +429,8 @@ extension TaskDetailViewController : UICollectionViewDelegate
             let web = WebShowViewController()
             var path = self.dataSource.taskDetail!.task_comment!.files![indexPath.row].file_path!
 //            path = path.stringByRemovingPercentEncoding!
-            path = path.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-            web.url = NSURL(string: path)
+            path = path.addingPercentEscapes(using: String.Encoding.utf8)!
+            web.url = URL(string: path)
             self.navigationController?.pushViewController(web, animated: true)
         }
     }
@@ -415,7 +439,7 @@ extension TaskDetailViewController : UICollectionViewDelegate
 //MARK: UICollectionViewDataSource
 extension TaskDetailViewController : UICollectionViewDataSource
 {
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
+    func numberOfSections(in collectionView: UICollectionView) -> Int
     {
         if dataSource.taskDetail?.task_status == "accepted"
         {
@@ -425,8 +449,8 @@ extension TaskDetailViewController : UICollectionViewDataSource
         }
     }
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        let cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "UICollectionReusableView", forIndexPath: indexPath)
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "UICollectionReusableView", for: indexPath)
         if kind == UICollectionElementKindSectionHeader {
             if indexPath.section == 1 && indexPath.row == 0
             {
@@ -438,7 +462,7 @@ extension TaskDetailViewController : UICollectionViewDataSource
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         if section == 0
         {
@@ -450,21 +474,21 @@ extension TaskDetailViewController : UICollectionViewDataSource
         }
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         if indexPath.section == 0 {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("TaskResultTopCell", forIndexPath: indexPath) as! TaskResultTopCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TaskResultTopCell", for: indexPath) as! TaskResultTopCell
             cell.update(self.dataSource.taskDetail!)
             return cell
         }else if indexPath.section == 1{
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCollectionCell", forIndexPath: indexPath) as! ImageCollectionCell
-            cell.deleteBtn.hidden = true
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCollectionCell", for: indexPath) as! ImageCollectionCell
+            cell.deleteBtn.isHidden = true
             cell.updatePhoto(dataSource.taskDetail!.task_comment!.photos![indexPath.row])
             return cell
         }else
         {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("FileCollectionCell", forIndexPath: indexPath) as! FileCollectionCell
-            cell.deleteBtn.hidden = true
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FileCollectionCell", for: indexPath) as! FileCollectionCell
+            cell.deleteBtn.isHidden = true
             cell.updateFile(dataSource.taskDetail!.task_comment!.files![indexPath.row])
             return cell
         }
@@ -474,7 +498,7 @@ extension TaskDetailViewController : UICollectionViewDataSource
 //MARK: UICollectionViewDelegateFlowLayout
 extension TaskDetailViewController : UICollectionViewDelegateFlowLayout
 {
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
         if indexPath.section == 0
         {
@@ -487,7 +511,7 @@ extension TaskDetailViewController : UICollectionViewDelegateFlowLayout
         }
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets
     {
         if section == 0
         {
@@ -496,27 +520,27 @@ extension TaskDetailViewController : UICollectionViewDelegateFlowLayout
         return UIEdgeInsetsMake(10, 10, 10, 10)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat
     {
         return 10
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat
     {
         return 0
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize
     {
         if section == 1 || section == 2
         {
             return CGSize(width: GetSWidth(), height: 1)
         }
-        return CGSizeZero
+        return CGSize.zero
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize
     {
-        return CGSizeMake(GetSWidth(), 0)
+        return CGSize(width: GetSWidth(), height: 0)
     }
 }

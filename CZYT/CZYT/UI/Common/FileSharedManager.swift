@@ -41,96 +41,90 @@ class FileSharedManager: NSObject {
         return singleTon!
     }
     
-    var queue = dispatch_queue_create("file_shared_manager", DISPATCH_QUEUE_SERIAL)
+    var queue = DispatchQueue(label: "file_shared_manager", attributes: [])
     
-    private func createPath(path:String)
+    fileprivate func createPath(_ path:String)
     {
-        if (!NSFileManager.defaultManager().fileExistsAtPath(path))
+        if (!FileManager.default.fileExists(atPath: path))
         {
-            let _ = try? NSFileManager.defaultManager().createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil)
+            let _ = try? FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
         }
     }
     
-    func wirteToFile(url:NSURL, callback:((b:Bool, msg:String?)->Void)?)
+    func getDirByUrl(_ url:URL)->String?
     {
-        dispatch_async(queue) { 
-            var fileName = url.absoluteString.componentsSeparatedByString("/").last
-            if fileName == nil
+        var fileName = url.absoluteString.components(separatedBy: "/").last
+        if fileName == nil
+        {
+            return nil
+        }
+        fileName = fileName!.removingPercentEncoding
+        if fileName!.contains(".txt") || fileName!.contains(".TXT") {
+            return FileSharedManager.PATH_SHARED_TXT
+        }else if fileName!.contains(".doc") || fileName!.contains(".DOC")
+        {
+            return FileSharedManager.PATH_SHARED_DOC
+        }else if fileName!.contains(".ppt") || fileName!.contains(".PPT")
+        {
+            return FileSharedManager.PATH_SHARED_PPT
+        }else if fileName!.contains(".xls") || fileName!.contains(".XLS")
+        {
+            return FileSharedManager.PATH_SHARED_XLS
+        }else if fileName!.contains(".pdf") || fileName!.contains(".PDF")
+        {
+            return FileSharedManager.PATH_SHARED_PDF
+        }else if fileName!.contains(".apk") || fileName!.contains(".APK")
+        {
+            return FileSharedManager.PATH_SHARED_APK
+        }else{
+            return FileSharedManager.PATH_SHARED_OTHER
+        }
+    }
+    
+    func wirteToFile(_ url:URL, callback:((_ b:Bool, _ msg:String?)->Void)?)
+    {
+        queue.async {
+            let dir = self.getDirByUrl(url)
+            var fileName = url.absoluteString.components(separatedBy: "/").last
+            if fileName == nil || dir == nil
             {
                 return
             }
-            fileName = fileName!.stringByRemovingPercentEncoding
+            fileName = fileName!.removingPercentEncoding
+            self.createPath(dir!)
+            let path = dir! + fileName!
             do{
-            
-                if fileName!.contain(subStr: "txt") || fileName!.contain(subStr: "TXT") {
-                    self.createPath(FileSharedManager.PATH_SHARED_TXT)
-                    let path = FileSharedManager.PATH_SHARED_TXT + fileName!
-                    let data = NSData(contentsOfURL: url)
-                    try data?.writeToFile(path, options: NSDataWritingOptions.AtomicWrite)
-                }else if fileName!.contain(subStr: ".doc") || fileName!.contain(subStr: ".DOC")
-                {
-                    self.createPath(FileSharedManager.PATH_SHARED_DOC)
-                    let path = FileSharedManager.PATH_SHARED_DOC + fileName!
-                    let data = NSData(contentsOfURL: url)
-                    try data?.writeToFile(path, options: NSDataWritingOptions.AtomicWrite)
-                }else if fileName!.contain(subStr: ".ppt") || fileName!.contain(subStr: ".PPT")
-                {
-                    self.createPath(FileSharedManager.PATH_SHARED_PPT)
-                    let path = FileSharedManager.PATH_SHARED_PPT + fileName!
-                    let data = NSData(contentsOfURL: url)
-                    try data?.writeToFile(path, options: NSDataWritingOptions.AtomicWrite)
-                }else if fileName!.contain(subStr: ".xls") || fileName!.contain(subStr: ".XLS")
-                {
-                    self.createPath(FileSharedManager.PATH_SHARED_XLS)
-                    let path = FileSharedManager.PATH_SHARED_XLS + fileName!
-                    let data = NSData(contentsOfURL: url)
-                    try data?.writeToFile(path, options: NSDataWritingOptions.AtomicWrite)
-                }else if fileName!.contain(subStr: ".pdf") || fileName!.contain(subStr: ".PDF")
-                {
-                    self.createPath(FileSharedManager.PATH_SHARED_PDF)
-                    let path = FileSharedManager.PATH_SHARED_PDF + fileName!
-                    let data = NSData(contentsOfURL: url)
-                    try data?.writeToFile(path, options: NSDataWritingOptions.AtomicWrite)
-                }else if fileName!.contain(subStr: ".apk") || fileName!.contain(subStr: ".APK")
-                {
-                    self.createPath(FileSharedManager.PATH_SHARED_APK)
-                    let path = FileSharedManager.PATH_SHARED_APK + fileName!
-                    let data = NSData(contentsOfURL: url)
-                    try data?.writeToFile(path, options: NSDataWritingOptions.AtomicWrite)
-                }else{
-                    self.createPath(FileSharedManager.PATH_SHARED_OTHER)
-                    let path = FileSharedManager.PATH_SHARED_OTHER + fileName!
-                    let data = NSData(contentsOfURL: url)
-                    try data?.writeToFile(path, options: NSDataWritingOptions.AtomicWrite)
-                }
-                dispatch_async(dispatch_get_main_queue(), {
+                let data = try? Data(contentsOf: url)
+                try data?.write(to: URL(fileURLWithPath: path), options: NSData.WritingOptions.atomicWrite)
+                DispatchQueue.main.async(execute: {
                     if callback != nil
                     {
-                        callback!(b: true, msg: "")
+                        callback!(true, "")
                     }
                 })
-            }
-            catch{
+            }catch{
                 if callback != nil
                 {
-                    callback!(b: false, msg:"write to file failure")
+                    callback!(false, "write to file failure")
                 }
             }
         }
     }
     
-    func getFileAtPath(path:String)->[DocumentFile]
+    func getFileAtPath(_ path:String)->[DocumentFile]
     {
         var files = [DocumentFile]()
         do{
-            let array = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(path)
+            let array = try FileManager.default.contentsOfDirectory(atPath: path)
             for name in array
             {
-                let info = try? NSFileManager.defaultManager().attributesOfItemAtPath(path + name)
+                let info = try? FileManager.default.attributesOfItem(atPath: path + name)
                 var size = 0
                 if info != nil
                 {
-                    size = info!["NSFileSize"] as! Int
+                    size = info![FileAttributeKey.size] as! Int
+                    //                    size = info!["NSFileSize"] as! Int
+                    
                 }
                 let file = DocumentFile()
                 file.name = name

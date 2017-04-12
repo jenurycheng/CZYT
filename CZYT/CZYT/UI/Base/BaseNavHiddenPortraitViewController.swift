@@ -21,8 +21,8 @@ class BaseNavHiddenPortraitViewController: BaseNavHiddenViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return .Portrait
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        return .portrait
     }
 
     /*

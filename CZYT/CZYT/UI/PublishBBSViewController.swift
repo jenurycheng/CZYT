@@ -29,12 +29,12 @@ class PublishBBSViewController: BasePortraitViewController {
         
         titleTextField.layer.cornerRadius = 5
         titleTextField.layer.borderWidth = 1
-        titleTextField.layer.borderColor = ThemeManager.current().backgroundColor.CGColor
-        titleTextField.addTarget(self, action: #selector(PublishBBSViewController.endEdit), forControlEvents: .EditingDidEndOnExit)
+        titleTextField.layer.borderColor = ThemeManager.current().backgroundColor.cgColor
+        titleTextField.addTarget(self, action: #selector(PublishBBSViewController.endEdit), for: .editingDidEndOnExit)
         
         contentTextView.layer.cornerRadius = 5
         contentTextView.layer.borderWidth = 1
-        contentTextView.layer.borderColor = ThemeManager.current().backgroundColor.CGColor
+        contentTextView.layer.borderColor = ThemeManager.current().backgroundColor.cgColor
         
         publishBtn.backgroundColor = ThemeManager.current().mainColor
         publishBtn.layer.cornerRadius = 5
@@ -47,8 +47,8 @@ class PublishBBSViewController: BasePortraitViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func backItemBarClicked(item: UIBarButtonItem) {
-        if self.contentTextView.isFirstResponder() || self.titleTextField.isFirstResponder()
+    override func backItemBarClicked(_ item: UIBarButtonItem) {
+        if self.contentTextView.isFirstResponder || self.titleTextField.isFirstResponder
         {
             self.endEdit()
         }else{
@@ -65,23 +65,23 @@ class PublishBBSViewController: BasePortraitViewController {
     {
         if Helper.isStringEmpty(titleTextField.text)
         {
-            MBProgressHUD.showMessag("输入任务标题", toView: self.view, showTimeSec: 1)
+            MBProgressHUD.showMessag("输入任务标题", to: self.view, showTimeSec: 1)
             return
         }
         if Helper.isStringEmpty(contentTextView.text)
         {
-            MBProgressHUD.showMessag("输入任务内容", toView: self.view, showTimeSec: 1)
+            MBProgressHUD.showMessag("输入任务内容", to: self.view, showTimeSec: 1)
             return
         }
         
         self.view.showHud()
         dataSource.publishBBS(titleTextField.text!, content: contentTextView.text, success: { 
             self.view.dismiss()
-            MBProgressHUD.showSuccess("发布成功，后台审核中", toView: self.view.window)
-            self.navigationController?.popViewControllerAnimated(true)
+            MBProgressHUD.showSuccess("发布成功，后台审核中", to: self.view.window)
+            self.navigationController?.popViewController(animated: true)
             }) { (error) in
                 self.view.dismiss()
-                MBProgressHUD.showError("发布失败", toView: self.view)
+                MBProgressHUD.showError("发布失败", to: self.view)
         }
     }
 

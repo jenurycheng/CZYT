@@ -18,7 +18,7 @@ class WorkStatusDetailViewController: BaseDetailViewController {
         self.title = "动态消息"
         self.loadData()
         if UserInfo.sharedInstance.adviceEnabled() && !hiddenItem{
-            let assignItem = UIBarButtonItem(title: "批示", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ProjectWorkDetailViewController_New.assignBtnClicked))
+            let assignItem = UIBarButtonItem(title: "批示", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ProjectWorkDetailViewController_New.assignBtnClicked))
             self.navigationItem.rightBarButtonItem = assignItem
         }
         
@@ -31,7 +31,7 @@ class WorkStatusDetailViewController: BaseDetailViewController {
             return
         }
         
-        let list = ApproveListViewController()
+        let list = PublishApproveViewController()
         list.id = dataSource?.id
         list.type = "2"
         self.navigationController?.pushViewController(list, animated: true)

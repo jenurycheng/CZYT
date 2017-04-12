@@ -22,12 +22,12 @@ class MainViewController: BasePortraitViewController {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        UserInfo.sharedInstance.addObserver(self, forKeyPath: "isLogin", options: .New, context: nil)
+        UserInfo.sharedInstance.addObserver(self, forKeyPath: "isLogin", options: .new, context: nil)
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        UserInfo.sharedInstance.addObserver(self, forKeyPath: "isLogin", options: .New, context: nil)
+        UserInfo.sharedInstance.addObserver(self, forKeyPath: "isLogin", options: .new, context: nil)
     }
     
     override func viewDidLoad() {
@@ -40,7 +40,7 @@ class MainViewController: BasePortraitViewController {
             let user = UserLoginViewController()
 //            user.pushToVC = UserInfoViewController(nibName: "UserInfoViewController", bundle: nil)
             let newNav = UINavigationController(rootViewController: user)
-            nav?.presentViewController(newNav, animated: true, completion: {
+            nav?.present(newNav, animated: true, completion: {
             })
         }
         
@@ -54,14 +54,14 @@ class MainViewController: BasePortraitViewController {
                                                 chatViewController, userViewController]
         self.addChildViewController(tabBarViewController)
         self.view.addSubview(tabBarViewController.view)
-        tabBarViewController.view.frame = CGRectMake(0, 0, GetSWidth(), GetSHeight()-64)
+        tabBarViewController.view.frame = CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64)
         
-        tabBar = TabBar(frame: CGRectMake(0, GetSHeight() - 49 - 64, GetSWidth(), 49))
+        tabBar = TabBar(frame: CGRect(x: 0, y: GetSHeight() - 49 - 64, width: GetSWidth(), height: 49))
         tabBar.delegate = self
 //        self.view.addSubview(tabBar)
         
 //        let leftItem = UIBarButtonItem(customView: UIImageView(image: UIImage(named: "home_user")))
-        let userItem = UIBarButtonItem(image: UIImage(named: "home_user"), style: .Plain, target: self, action: #selector(MainViewController.userItemClicked))
+        let userItem = UIBarButtonItem(image: UIImage(named: "home_user"), style: .plain, target: self, action: #selector(MainViewController.userItemClicked))
         self.navigationItem.rightBarButtonItem = userItem
         
         self.title = "成资合作"
@@ -70,7 +70,7 @@ class MainViewController: BasePortraitViewController {
         
         var dic = Dictionary<String, AnyObject>()
         dic.updateValue(ThemeManager.current().whiteFontColor, forKey: NSForegroundColorAttributeName)
-        dic.updateValue(UIFont.systemFontOfSize(22), forKey: NSFontAttributeName)
+        dic.updateValue(UIFont.systemFont(ofSize: 22), forKey: NSFontAttributeName)
         self.navigationController?.navigationBar.titleTextAttributes = dic
     }
     
@@ -78,7 +78,7 @@ class MainViewController: BasePortraitViewController {
         UserInfo.sharedInstance.removeObserver(self, forKeyPath: "isLogin")
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath != nil && keyPath == "isLogin"
         {
             if UserInfo.sharedInstance.isLogin
@@ -94,7 +94,7 @@ class MainViewController: BasePortraitViewController {
             let user = UserLoginViewController()
             user.pushToVC = UserInfoViewController(nibName: "UserInfoViewController", bundle: nil)
             let newNav = UINavigationController(rootViewController: user)
-            self.navigationController?.presentViewController(newNav, animated: true, completion: nil)
+            self.navigationController?.present(newNav, animated: true, completion: nil)
             return
         }
         let task = UserInfoViewController(nibName: "UserInfoViewController", bundle: nil)
@@ -104,7 +104,7 @@ class MainViewController: BasePortraitViewController {
     func connectRM()
     {
         
-        RCIM.sharedRCIM().connectWithToken(UserInfo.sharedInstance.token, success: { (userId) -> Void in
+        RCIM.shared().connect(withToken: UserInfo.sharedInstance.token, success: { (userId) -> Void in
             print("登陆成功。当前登录的用户ID：\(userId)")
             self.homeViewController.getUnreadMsg()
             }, error: { (status) -> Void in
@@ -114,18 +114,18 @@ class MainViewController: BasePortraitViewController {
                 //如果设置了token有效期并且token过期，请重新请求您的服务器获取新的token
                 //如果没有设置token有效期却提示token错误，请检查您客户端和服务器的appkey是否匹配，还有检查您获取token的流程。
                 print("token错误")
-                DispatchAfter(10, queue: dispatch_get_main_queue(), block: { 
+                DispatchAfter(10, queue: DispatchQueue.main, block: { 
                     UserDataSource().getToken({ (result) in
                         UserInfo.sharedInstance.token = result
                         self.connectRM()
                     }) { (error) in
-                        MBProgressHUD.showMessag(error.msg, toView: self.view, showTimeSec: 1)
+                        MBProgressHUD.showMessag(error.msg, to: self.view, showTimeSec: 1)
                     }
                 })
         })
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         
@@ -135,7 +135,7 @@ class MainViewController: BasePortraitViewController {
         self.navigationController?.navigationBar.titleTextAttributes = dic
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
 //        var dic = Dictionary<String, AnyObject>()
@@ -156,7 +156,7 @@ class MainViewController: BasePortraitViewController {
         userViewController.title = "我的"
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
@@ -170,7 +170,7 @@ class MainViewController: BasePortraitViewController {
 extension MainViewController : TabBarDelegate
 {
     
-    func tabBarClickedIndex(tabBar: TabBar, index: Int) {
+    func tabBarClickedIndex(_ tabBar: TabBar, index: Int) {
         tabBarViewController.showIndex(index)
         self.title = ["成资合作", "督办", "会话", "我的"][index]
     }

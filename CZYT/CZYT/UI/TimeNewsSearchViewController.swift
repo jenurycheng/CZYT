@@ -15,7 +15,7 @@ class TimeNewsSearchViewController: BaseSearchViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "时政新闻"
-        self.tableView.registerNib(UINib(nibName: "TimeNewsCell", bundle: nil), forCellReuseIdentifier: "TimeNewsCell")
+        self.tableView.register(UINib(nibName: "TimeNewsCell", bundle: nil), forCellReuseIdentifier: "TimeNewsCell")
         // Do any additional setup after loading the view.
     }
     
@@ -64,18 +64,18 @@ class TimeNewsSearchViewController: BaseSearchViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return TimeNewsCell.cellHeight(lDataSource.leaderActivity[indexPath.row])
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TimeNewsCell") as! TimeNewsCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TimeNewsCell") as! TimeNewsCell
         cell.update(lDataSource.leaderActivity[indexPath.row])
         return cell
         
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detail = TimeNewsDetailViewController()
         detail.id = lDataSource.leaderActivity[indexPath.row].id!
         self.navigationController?.pushViewController(detail, animated: true)

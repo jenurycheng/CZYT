@@ -14,18 +14,18 @@ class BBSCommentChildCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         contentLabel.textColor = ThemeManager.current().grayFontColor
-        self.selectionStyle = .None
+        self.selectionStyle = .none
         // Initialization code
     }
     
-    func update(c:BBSComment)
+    func update(_ c:BBSComment)
     {
         let name = c.publish_user_name == nil ? "" : c.publish_user_name!
         let attributeText = NSMutableAttributedString(string: "")
-        attributeText.appendAttributeString(name, color: ThemeManager.current().blueColor, font: UIFont.systemFontOfSize(13))
+        attributeText.appendAttributeString(name, color: ThemeManager.current().blueColor, font: UIFont.systemFont(ofSize: 13))
         if !Helper.isStringEmpty(c.receiver_user_name) {
-            attributeText.appendAttributeString(": ", color: ThemeManager.current().blueColor, font: UIFont.systemFontOfSize(13))
-            attributeText.appendAttributeString(c.content!, color: UIColor.blackColor(), font: UIFont.systemFontOfSize(13))
+            attributeText.appendAttributeString(": ", color: ThemeManager.current().blueColor, font: UIFont.systemFont(ofSize: 13))
+            attributeText.appendAttributeString(c.content!, color: UIColor.black, font: UIFont.systemFont(ofSize: 13))
         }
         contentLabel.attributedText = attributeText
         
@@ -38,7 +38,7 @@ class BBSCommentChildCell: UITableViewCell {
 //        }
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

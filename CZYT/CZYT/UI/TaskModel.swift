@@ -20,7 +20,7 @@ class PublishTask : NSObject
     var assigns:String?
 }
 
-class Task: Reflect {
+class Task: EVObject {
     var task_id:String?
     var task_title:String?
     var task_content:String?
@@ -49,7 +49,7 @@ class Task: Reflect {
     var assignees:[TaskAssign]?
 }
 
-class TaskAssign : Reflect
+class TaskAssign : EVObject
 {
     var assigner_user_id:String?
     var assigner_user_name:String?
@@ -64,7 +64,7 @@ class TaskAssign : Reflect
     
 }
 
-class TaskDetail : Reflect
+class TaskDetail : EVObject
 {
     var task_id:String?
     var task_title:String?
@@ -90,7 +90,7 @@ class TaskDetail : Reflect
     var task_comment:TaskResult?
 }
 
-class TaskResult : Reflect
+class TaskResult : EVObject
 {
     var taskcomment_content:String?
     var taskcomment_user_id:String?
@@ -100,27 +100,104 @@ class TaskResult : Reflect
     var files:[TaskFile]?
 }
 
-class TaskPhoto : Reflect
+class TaskPhoto : EVObject
 {
     var photo_path:String?
     var photo_thumbnail_path:String?
 }
 
-class TaskFile : Reflect
+class TaskFile : EVObject
 {
     var file_path:String?
     var file_name:String?
     var file_type:String?
 }
 
-class Approve : Reflect
+class Approve : EVObject
 {
     var advice_id:String?
     var advice_content:String?
     var advice_type:String?
+    var advice_ref_name:String?
     var advice_ref_id:String?
+    var advice_type_name:String?
     var publish_user_id:String?
     var publish_user_name:String?
     var publish_user_logo_path:String?
     var publish_date:String?
+    var assignees:[ApproveAssigns]?
+    
+    func getAssignees()->String
+    {
+        if assignees == nil || assignees!.count == 0 {
+            return ""
+        }
+        var str = ""
+        for i in 0 ..< assignees!.count
+        {
+            if i < assignees!.count - 1
+            {
+                str = str + assignees![i].assignee_user_name! + ","
+            }else{
+                str = str + assignees![i].assignee_user_name!
+            }
+        }
+        return str
+    }
+}
+
+class ApproveAssigns : EVObject
+{
+    var assignee_user_id:String?
+    var assignee_user_name:String?
+    var assignee_user_logo_path:String?
+    
+    var assigner_user_id:String?
+    var assigner_user_name:String?
+    var assigner_user_logo_path:String?
+    var assign_date:String?
+}
+
+class ApproveComment : EVObject
+{
+    var comment_content:String?
+    var comment_date:String?
+    var comment_user_id:String?
+    var comment_user_name:String?
+    var comment_user_logo_path:String?
+}
+
+class ApproveDetail : EVObject
+{
+    var advice_id:String?
+    var advice_content:String?
+    var advice_type:String?
+    var advice_ref_name:String?
+    var advice_ref_id:String?
+    var advice_type_name:String?
+    var publish_user_id:String?
+    var publish_user_name:String?
+    var publish_user_logo_path:String?
+    var publish_date:String?
+    
+    var assign:[ApproveAssigns]?
+    var comments:[ApproveComment]?
+    
+    func getAssignees()->String
+    {
+        if assign == nil || assign!.count == 0 {
+            return ""
+        }
+        var str = ""
+        for i in 0 ..< assign!.count
+        {
+            if i < assign!.count - 1
+            {
+                str = str + assign![i].assignee_user_name! + ","
+            }else{
+                str = str + assign![i].assignee_user_name!
+            }
+        }
+        return str
+    }
 }

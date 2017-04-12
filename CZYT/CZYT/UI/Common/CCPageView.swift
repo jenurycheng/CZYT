@@ -10,9 +10,9 @@ import UIKit
 
 @objc protocol CCPageViewDelegate : NSObjectProtocol
 {
-    func pageCountForPageView(page:CCPageView)->Int
-    func pageViewForIndex(page:CCPageView, index:Int)->UIView
-    optional func pageClickedAtIndex(page:CCPageView, index:Int)
+    func pageCountForPageView(_ page:CCPageView)->Int
+    func pageViewForIndex(_ page:CCPageView, index:Int)->UIView
+    @objc optional func pageClickedAtIndex(_ page:CCPageView, index:Int)
 }
 
 class CCPageView: UIView, UIGestureRecognizerDelegate {
@@ -28,8 +28,8 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
     var viewArray:Array<UIView>!
     var pageContainer:UIView!
     var pageControl:UIPageControl!
-    var timer:NSTimer!
-    var duration:NSTimeInterval = 4
+    var timer:Timer!
+    var duration:TimeInterval = 4
     var edge:CGFloat = 1.0
     
     var curPage:Int! = 0
@@ -66,9 +66,9 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
         pageContainer = UIView(frame: self.bounds)
         self.addSubview(pageContainer)
         
-        pageControl = UIPageControl(frame: CGRectMake(0, self.frame.size.height-15, self.frame.size.width, 15))
+        pageControl = UIPageControl(frame: CGRect(x: 0, y: self.frame.size.height-15, width: self.frame.size.width, height: 15))
         pageControl.numberOfPages = pageCount
-        pageControl.pageIndicatorTintColor = UIColor.whiteColor()
+        pageControl.pageIndicatorTintColor = UIColor.white
         pageControl.currentPageIndicatorTintColor = ThemeManager.current().mainColor
         self.addSubview(pageControl)
         
@@ -81,22 +81,22 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
             timer.invalidate()
             timer = nil
         }
-        timer = NSTimer.scheduledTimerWithTimeInterval(duration, target: self, selector: #selector(CCPageView.timeOut(_:)), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(CCPageView.timeOut(_:)), userInfo: nil, repeats: true)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(CCPageView.tapped(_:)))
         self.addGestureRecognizer(tap)
     }
     
     var startPoint:CGPoint?
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool
     {
-        startPoint = touch.locationInView(self)
+        startPoint = touch.location(in: self)
         print("true")
         return true
     }
     
-    override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
-        let p = gestureRecognizer.locationInView(self)
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        let p = gestureRecognizer.location(in: self)
         if abs(startPoint!.x - p.x) > abs(startPoint!.y - p.y)
         {
             return true
@@ -121,7 +121,7 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
         }
         if timer == nil
         {
-            timer = NSTimer.scheduledTimerWithTimeInterval(duration, target: self, selector: #selector(CCPageView.timeOut(_:)), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(CCPageView.timeOut(_:)), userInfo: nil, repeats: true)
         }
     }
     
@@ -133,17 +133,17 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
         }
     }
     
-    func tapped(tap:UITapGestureRecognizer){
+    func tapped(_ tap:UITapGestureRecognizer){
         if delegate != nil && pageCount > 0 && viewArray[curPage].frame.origin.x == 0
         {
-            if delegate!.respondsToSelector(#selector(CCPageViewDelegate.pageClickedAtIndex(_:index:)))
+            if delegate!.responds(to: #selector(CCPageViewDelegate.pageClickedAtIndex(_:index:)))
             {
                 self.delegate!.pageClickedAtIndex!(self, index: self.curPage)
             }
         }
     }
     
-    func timeOut(timer:NSTimer)
+    func timeOut(_ timer:Timer)
     {
         if delegate == nil || pageCount == 0 || pageCount == 1
         {
@@ -152,56 +152,56 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
         
         let nextPage = (curPage+1)%pageCount
         let nextView = viewArray[nextPage]
-        nextView.frame = CGRectMake(pageContainer.frame.size.width, 0, self.frame.size.width, self.frame.size.height)
+        nextView.frame = CGRect(x: pageContainer.frame.size.width, y: 0, width: self.frame.size.width, height: self.frame.size.height)
         self.scrollToNext(1.2)
     }
     
-    func panned(pan:UIPanGestureRecognizer){
+    func panned(_ pan:UIPanGestureRecognizer){
         
         if pageCount == 0
         {
             return
         }
-        if pan.state == UIGestureRecognizerState.Began
+        if pan.state == UIGestureRecognizerState.began
         {
             if timer != nil
             {
                 timer.invalidate()
                 timer = nil
             }
-            let date = NSDate()
+            let date = Date()
             beginTime = date.timeIntervalSince1970
         }
         
-        let p = pan.translationInView(self)
+        let p = pan.translation(in: self)
       //  print(String(p.x) + "===" + String(p.y))
         
-        if pan.state == UIGestureRecognizerState.Changed
+        if pan.state == UIGestureRecognizerState.changed
         {
             if p.x < 0
             {
                 let nextPage = (curPage+1)%pageCount
                 let nextView = viewArray[nextPage]
                 
-                pageContainer.bringSubviewToFront(nextView)
-                nextView.frame = CGRectMake(self.frame.size.width+p.x, 0, self.frame.size.width, self.frame.size.height)
+                pageContainer.bringSubview(toFront: nextView)
+                nextView.frame = CGRect(x: self.frame.size.width+p.x, y: 0, width: self.frame.size.width, height: self.frame.size.height)
                 
                 let curView = viewArray[curPage]
-                curView.frame = CGRectMake(p.x/edge, 0, self.frame.size.width, self.frame.size.height)
+                curView.frame = CGRect(x: p.x/edge, y: 0, width: self.frame.size.width, height: self.frame.size.height)
             }else if p.x > 0
             {
                 let prePage = (pageCount+curPage-1)%pageCount
                 let preView = viewArray[prePage]
                 
-                pageContainer.bringSubviewToFront(preView)
-                preView.frame = CGRectMake(p.x-self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)
+                pageContainer.bringSubview(toFront: preView)
+                preView.frame = CGRect(x: p.x-self.frame.size.width, y: 0, width: self.frame.size.width, height: self.frame.size.height)
                 
                 let curView = viewArray[curPage]
-                curView.frame = CGRectMake(p.x/edge, 0, self.frame.size.width, self.frame.size.height)
+                curView.frame = CGRect(x: p.x/edge, y: 0, width: self.frame.size.width, height: self.frame.size.height)
             }
         }
         
-        if pan.state == UIGestureRecognizerState.Ended
+        if pan.state == UIGestureRecognizerState.ended
         {
             //print("end")
             if timer != nil
@@ -209,8 +209,8 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
                 timer.invalidate()
                 timer = nil
             }
-            timer = NSTimer.scheduledTimerWithTimeInterval(duration, target: self, selector: #selector(CCPageView.timeOut(_:)), userInfo: nil, repeats: true)
-            let date = NSDate()
+            timer = Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(CCPageView.timeOut(_:)), userInfo: nil, repeats: true)
+            let date = Date()
             let endTime = date.timeIntervalSince1970
             let time = endTime-beginTime
             if p.x < -50
@@ -237,15 +237,15 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
         let nextPage = (curPage+1)%pageCount
         let nextView = viewArray[nextPage]
         
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
-            curView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
+            curView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
             if !curView.isEqual(nextView)
             {
-                nextView.frame = CGRectMake(self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)
+                nextView.frame = CGRect(x: self.frame.size.width, y: 0, width: self.frame.size.width, height: self.frame.size.height)
             }
-            }) { (b:Bool) -> Void in
-                self.pageContainer.bringSubviewToFront(curView)
-        }
+            }, completion: { (b:Bool) -> Void in
+                self.pageContainer.bringSubview(toFront: curView)
+        }) 
     }
     
     func restoreToLeft(){
@@ -253,22 +253,22 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
         let prePage = (pageCount+curPage-1)%pageCount
         let preView = viewArray[prePage]
         
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
-            curView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
+            curView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
             if !curView.isEqual(preView)
             {
-                preView.frame = CGRectMake(-self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)
+                preView.frame = CGRect(x: -self.frame.size.width, y: 0, width: self.frame.size.width, height: self.frame.size.height)
             }
-            }) { (b:Bool) -> Void in
-                self.pageContainer.bringSubviewToFront(curView)
-        }
+            }, completion: { (b:Bool) -> Void in
+                self.pageContainer.bringSubview(toFront: curView)
+        }) 
     }
     
-    func scrollToNext(time:Double){
+    func scrollToNext(_ time:Double){
         let curView = viewArray[curPage]
         let nextPage = (curPage+1)%pageCount
         let nextView = viewArray[nextPage]
-        pageContainer.bringSubviewToFront(nextView)
+        pageContainer.bringSubview(toFront: nextView)
         var base:Double! = 1.0
         if time >= 0.3 && time < 2
         {
@@ -279,17 +279,17 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
             base = 0.3
         }
         let dur = base * Double(nextView.frame.origin.x/nextView.frame.size.width)
-        UIView.animateWithDuration(Double(dur), animations: { () -> Void in
-            curView.frame = CGRectMake(-self.frame.size.width/self.edge, 0, self.frame.size.width, self.frame.size.height)
-            nextView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
-        }) { (b:Bool) -> Void in
-            curView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
-            self.pageContainer.bringSubviewToFront(nextView)
+        UIView.animate(withDuration: Double(dur), animations: { () -> Void in
+            curView.frame = CGRect(x: -self.frame.size.width/self.edge, y: 0, width: self.frame.size.width, height: self.frame.size.height)
+            nextView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
+        }, completion: { (b:Bool) -> Void in
+            curView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
+            self.pageContainer.bringSubview(toFront: nextView)
             self.curPage = nextPage
-        }
+        }) 
     }
     
-    func scrollToPrevious(time:Double){
+    func scrollToPrevious(_ time:Double){
         let curView = viewArray[curPage]
         let prePage = (pageCount+curPage-1)%pageCount
         let preView = viewArray[prePage]
@@ -302,16 +302,16 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
         {
             base = 0.3
         }
-        pageContainer.bringSubviewToFront(preView)
+        pageContainer.bringSubview(toFront: preView)
         let dur = base * Double(-preView.frame.origin.x/curView.frame.size.width)
-        UIView.animateWithDuration(Double(dur), animations: { () -> Void in
-            curView.frame = CGRectMake(self.frame.size.width/self.edge, 0, self.frame.size.width, self.frame.size.height)
-            preView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
-        }) { (b:Bool) -> Void in
-            curView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
-            self.pageContainer.bringSubviewToFront(preView)
+        UIView.animate(withDuration: Double(dur), animations: { () -> Void in
+            curView.frame = CGRect(x: self.frame.size.width/self.edge, y: 0, width: self.frame.size.width, height: self.frame.size.height)
+            preView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
+        }, completion: { (b:Bool) -> Void in
+            curView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
+            self.pageContainer.bringSubview(toFront: preView)
             self.curPage = prePage
-        }
+        }) 
     }
     
     func loadData(){
@@ -322,7 +322,7 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
             {
                 v.removeFromSuperview()
             }
-            viewArray.removeAll(keepCapacity: false)
+            viewArray.removeAll(keepingCapacity: false)
             pageCount = delegate!.pageCountForPageView(self)
             pageControl.numberOfPages = pageCount
             for i in 0 ..< pageCount
@@ -334,9 +334,9 @@ class CCPageView: UIView, UIGestureRecognizerDelegate {
             }
             if pageCount > 0
             {
-                pageContainer.bringSubviewToFront(viewArray[0])
+                pageContainer.bringSubview(toFront: viewArray[0])
             }
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (Int64)(3 * NSEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double((Int64)(3 * NSEC_PER_SEC)) / Double(NSEC_PER_SEC)) { () -> Void in
                 self.startAnimate()
             }
         }

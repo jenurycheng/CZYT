@@ -15,7 +15,7 @@ class ChatListViewController: RCConversationListViewController {
         self.conversationListTableView.frame = CGRect(x: 0, y: 64, width: GetSWidth(), height: GetSHeight()-64)
         self.title = "会话"
         self.automaticallyAdjustsScrollViewInsets = false
-        self.conversationListTableView.separatorStyle = .SingleLine
+        self.conversationListTableView.separatorStyle = .singleLine
         
         //设置需要显示哪些类型的会话
         self.setDisplayConversationTypes([RCConversationType.ConversationType_PRIVATE.rawValue,
@@ -30,44 +30,44 @@ class ChatListViewController: RCConversationListViewController {
     }
     
     //重写RCConversationListViewController的onSelectedTableRow事件
-    override func onSelectedTableRow(conversationModelType: RCConversationModelType, conversationModel model: RCConversationModel!, atIndexPath indexPath: NSIndexPath!) {
+    override func onSelectedTableRow(_ conversationModelType: RCConversationModelType, conversationModel model: RCConversationModel!, at indexPath: IndexPath!) {
         //打开会话界面
         if model.conversationType == .ConversationType_GROUP {
             
             let chat = GroupConversationViewController(conversationType: model.conversationType, targetId: model.targetId)
-            chat.title = model.conversationTitle
-            self.navigationController?.pushViewController(chat, animated: true)
+            chat?.title = model.conversationTitle
+            self.navigationController?.pushViewController(chat!, animated: true)
         }else if model.conversationType == .ConversationType_PRIVATE{
             let chat = PrivateConversationViewController(conversationType: model.conversationType, targetId: model.targetId)
-            chat.title = model.conversationTitle
-            self.navigationController?.pushViewController(chat, animated: true)
+            chat?.title = model.conversationTitle
+            self.navigationController?.pushViewController(chat!, animated: true)
         }
     }
     
-    func removeCell(id:String?)
+    func removeCell(_ id:String?)
     {
         if Helper.isStringEmpty(id)
         {
             return
         }
-        RCIMClient.sharedRCIMClient().removeConversation(.ConversationType_GROUP, targetId: id)
+        RCIMClient.shared().remove(.ConversationType_GROUP, targetId: id)
         self.refreshConversationTableViewIfNeeded()
     }
     
-    override func didDeleteConversationCell(model: RCConversationModel!) {
+    override func didDeleteConversationCell(_ model: RCConversationModel!) {
         super.didDeleteConversationCell(model)
         if self.conversationListDataSource.count == 0 {
-            self.conversationListTableView.separatorStyle = .None
+            self.conversationListTableView.separatorStyle = .none
         }else{
-            self.conversationListTableView.separatorStyle = .SingleLine
+            self.conversationListTableView.separatorStyle = .singleLine
         }
     }
     
-    override func willReloadTableData(dataSource: NSMutableArray!) -> NSMutableArray! {
+    override func willReloadTableData(_ dataSource: NSMutableArray!) -> NSMutableArray! {
         if dataSource.count == 0 {
-            self.conversationListTableView.separatorStyle = .None
+            self.conversationListTableView.separatorStyle = .none
         }else{
-            self.conversationListTableView.separatorStyle = .SingleLine
+            self.conversationListTableView.separatorStyle = .singleLine
         }
         return super.willReloadTableData(dataSource)
     }

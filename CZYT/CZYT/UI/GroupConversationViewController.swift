@@ -16,30 +16,30 @@ class GroupConversationViewController: RCConversationViewController {
     
         if conversationType == RCConversationType.ConversationType_GROUP
         {
-            let groupItem = UIBarButtonItem(image: UIImage(named: "group_detail"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(GroupConversationViewController.groupItemClicked))
+            let groupItem = UIBarButtonItem(image: UIImage(named: "group_detail"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(GroupConversationViewController.groupItemClicked))
             self.navigationItem.rightBarButtonItem = groupItem
         }
         // Do any additional setup after loading the view.
-        let backItemBar =  UIBarButtonItem(image: UIImage(named: "backbar"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(BaseNavViewController.backItemBarClicked(_:)))
+        let backItemBar =  UIBarButtonItem(image: UIImage(named: "backbar"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(BaseNavViewController.backItemBarClicked(_:)))
         self.navigationItem.leftBarButtonItem = backItemBar
         
-        self.chatSessionInputBarControl.pluginBoardView.removeItemAtIndex(2)
+        self.chatSessionInputBarControl.pluginBoardView.removeItem(at: 2)
     }
     
-    override func didTapCellPortrait(userId: String!) {
+    override func didTapCellPortrait(_ userId: String!) {
         if userId == UserInfo.sharedInstance.id
         {
             return
         }
         let chat = PrivateConversationViewController(conversationType: .ConversationType_PRIVATE, targetId: userId)
         UserDataSource().getUserDetail(userId, success: { (result) in
-            chat.title = result.nickname
+            chat?.title = result.nickname
         }) { (error) in
         }
-        self.navigationController?.pushViewController(chat, animated: true)
+        self.navigationController?.pushViewController(chat!, animated: true)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if self.targetId != nil {
             ChatDataSource().queryGroupDetail(self.targetId!, success: { (result) in
@@ -50,8 +50,8 @@ class GroupConversationViewController: RCConversationViewController {
         }
     }
     
-    func backItemBarClicked(item:UIBarButtonItem){
-        self.navigationController?.popViewControllerAnimated(true)
+    func backItemBarClicked(_ item:UIBarButtonItem){
+        self.navigationController?.popViewController(animated: true)
     }
     
     func groupItemClicked()
@@ -66,12 +66,12 @@ class GroupConversationViewController: RCConversationViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return .Portrait
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        return .portrait
     }
     
-    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
-        return UIInterfaceOrientation.Portrait
+    override var preferredInterfaceOrientationForPresentation : UIInterfaceOrientation {
+        return UIInterfaceOrientation.portrait
     }
     
 

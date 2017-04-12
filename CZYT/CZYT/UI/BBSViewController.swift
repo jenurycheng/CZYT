@@ -20,12 +20,12 @@ class BBSViewController: BasePortraitViewController {
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64))
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 50
         self.view.addSubview(tableView)
-        tableView.registerNib(UINib(nibName: "BBSCell", bundle: nil), forCellReuseIdentifier: "BBSCell")
-        tableView.registerNib(UINib(nibName: "BBSCell_New", bundle: nil), forCellReuseIdentifier: "BBSCell_New")
+        tableView.register(UINib(nibName: "BBSCell", bundle: nil), forCellReuseIdentifier: "BBSCell")
+        tableView.register(UINib(nibName: "BBSCell_New", bundle: nil), forCellReuseIdentifier: "BBSCell_New")
         
         unowned let weakSelf = self
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { 
@@ -38,7 +38,7 @@ class BBSViewController: BasePortraitViewController {
         
         self.loadData()
         
-        let add = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(BBSViewController.addClicked))
+        let add = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(BBSViewController.addClicked))
         self.navigationItem.rightBarButtonItem = add
         // Do any additional setup after loading the view.
     }
@@ -88,11 +88,11 @@ class BBSViewController: BasePortraitViewController {
 
 extension BBSViewController : UITableViewDelegate, UITableViewDataSource
 {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.bbs.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        let detail = BBSDetailViewController(nibName: "BBSDetailViewController", bundle: nil)
 //        detail.id = dataSource.bbs[indexPath.row].id!
 //        self.navigationController?.pushViewController(detail, animated: true)
@@ -101,13 +101,14 @@ extension BBSViewController : UITableViewDelegate, UITableViewDataSource
         self.navigationController?.pushViewController(detail, animated: true)
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return BBSCell.cellHeight(dataSource.bbs[indexPath.row])
         return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("BBSCell_New") as! BBSCell_New
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BBSCell_New") as! BBSCell_New
+        cell.titleLabel.numberOfLines = 0
         cell.update(dataSource.bbs[indexPath.row])
         return cell
     }

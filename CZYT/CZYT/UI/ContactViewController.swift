@@ -63,7 +63,7 @@ class ContactViewController: BasePortraitViewController {
 
 extension ContactViewController : DepartmentListViewDelegate
 {
-    func departmentTreeSelected(depart: DepartmentTree) {
+    func departmentTreeSelected(_ depart: DepartmentTree) {
         sideView.hide()
         contactView.update(depart)
     }

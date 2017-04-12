@@ -80,7 +80,7 @@ class TaskNotifyViewController: BaseActivityViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detail = TaskNotifyDetailViewController()
         detail.id = tDataSource.notify[indexPath.row].id!
         self.navigationController?.pushViewController(detail, animated: true)

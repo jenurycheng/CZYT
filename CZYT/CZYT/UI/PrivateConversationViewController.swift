@@ -14,14 +14,14 @@ class PrivateConversationViewController: RCConversationViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let backItemBar =  UIBarButtonItem(image: UIImage(named: "backbar"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(BaseNavViewController.backItemBarClicked(_:)))
+        let backItemBar =  UIBarButtonItem(image: UIImage(named: "backbar"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(BaseNavViewController.backItemBarClicked(_:)))
         self.navigationItem.leftBarButtonItem = backItemBar
         
-        self.chatSessionInputBarControl.pluginBoardView.removeItemAtIndex(2)
+        self.chatSessionInputBarControl.pluginBoardView.removeItem(at: 2)
     }
     
-    func backItemBarClicked(item:UIBarButtonItem){
-        self.navigationController?.popViewControllerAnimated(true)
+    func backItemBarClicked(_ item:UIBarButtonItem){
+        self.navigationController?.popViewController(animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,11 +29,11 @@ class PrivateConversationViewController: RCConversationViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return .Portrait
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        return .portrait
     }
     
-    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
-        return UIInterfaceOrientation.Portrait
+    override var preferredInterfaceOrientationForPresentation : UIInterfaceOrientation {
+        return UIInterfaceOrientation.portrait
     }
 }

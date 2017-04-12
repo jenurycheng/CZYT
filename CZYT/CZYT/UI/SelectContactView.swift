@@ -70,7 +70,7 @@ class SelectContactView: UIView {
 
 extension SelectContactView : DepartmentListViewDelegate
 {
-    func departmentTreeSelected(depart: DepartmentTree) {
+    func departmentTreeSelected(_ depart: DepartmentTree) {
         sideView.hide()
         contactView.update(depart)
     }

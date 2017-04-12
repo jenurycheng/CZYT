@@ -17,49 +17,49 @@ extension NetWorkHandle
         static var Address_GetBBSCommentList = "ExchangeCommentList?"
         static var Address_GetBBSAddComment = "ExchangeCommentAdd?"
         
-        class RequestAddBBS : Reflect
+        class RequestAddBBS : EVObject
         {
             var title:String?
             var summary:String?
             var content:String?
         }
         
-        class func addBBS(request:RequestAddBBS?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_AddBBS, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func addBBS(_ request:RequestAddBBS?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_AddBBS, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestGetBBSList : Reflect
+        class RequestGetBBSList : EVObject
         {
             var classify = ""
             var offset:String?
             var row_count:String?
         }
         
-        class func getBBSList(request:RequestGetBBSList?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetBBSList, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getBBSList(_ request:RequestGetBBSList?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetBBSList, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestBBSDetail : Reflect
+        class RequestBBSDetail : EVObject
         {
             var id:String?
         }
         
-        class func getBBSDetail(request:RequestBBSDetail?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetBBSDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getBBSDetail(_ request:RequestBBSDetail?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetBBSDetail, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestBBSCommentList : Reflect
+        class RequestBBSCommentList : EVObject
         {
             var exchange_id:String?
             var offset:String?
             var row_count:String?
         }
         
-        class func getBBSCommentList(request:RequestBBSCommentList?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetBBSCommentList, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getBBSCommentList(_ request:RequestBBSCommentList?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetBBSCommentList, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestAddBBSComment : Reflect
+        class RequestAddBBSComment : EVObject
         {
             var exchange_id:String?
             var content:String = ""
@@ -68,8 +68,8 @@ extension NetWorkHandle
             var parent_comment_id:String?
         }
         
-        class func addBBSComment(request:RequestAddBBSComment?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetBBSAddComment, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func addBBSComment(_ request:RequestAddBBSComment?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetBBSAddComment, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
     }
 

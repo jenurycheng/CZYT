@@ -15,16 +15,16 @@ class TaskResultTopCell: UICollectionViewCell {
     @IBOutlet weak var timeLabel:UILabel!
     @IBOutlet weak var contentLabel:UILabel!
     
-    class func cellSize(content:String?)->CGSize
+    class func cellSize(_ content:String?)->CGSize
     {
         if content == nil {
             return CGSize(width: GetSWidth(), height: 60 + 0 + 20 + 10 + 20)
         }
-        let height = Helper.getTextSize(content!, font: UIFont.systemFontOfSize(14), size: CGSize(width: GetSWidth()-20, height: CGFloat.max)).height
+        let height = Helper.getTextSize(content!, font: UIFont.systemFont(ofSize: 14), size: CGSize(width: GetSWidth()-20, height: CGFloat.greatestFiniteMagnitude)).height
         return CGSize(width: GetSWidth(), height: 60 + height + 20 + 10 + 20)
     }
     
-    func update(result:TaskDetail)
+    func update(_ result:TaskDetail)
     {
         if result.task_status! == "accepted"//待接受
         {

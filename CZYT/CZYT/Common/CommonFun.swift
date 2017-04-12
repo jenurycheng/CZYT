@@ -14,20 +14,20 @@ var ISDebug = true
 let ISSDPrint = true
 let ISCCPrint = true
 
-func SDPrint(str:Any...) {
+func SDPrint(_ str:Any...) {
     if ISSDPrint && ISDebug {
         debugPrint("sd:", str)
     }
 }
 
-func CCPrint(str:Any...) {
+func CCPrint(_ str:Any...) {
     
     if ISCCPrint && ISDebug {
         debugPrint("cc:", str)
     }
 }
 
-func GetLocalizedStr(key:String, isLocalizable:Bool = true, comment:String = "") -> String {
+func GetLocalizedStr(_ key:String, isLocalizable:Bool = true, comment:String = "") -> String {
     
     if isLocalizable {
         return NSLocalizedString(key, comment: comment)
@@ -36,23 +36,23 @@ func GetLocalizedStr(key:String, isLocalizable:Bool = true, comment:String = "")
 }
 
 func GetSWidth()->CGFloat {
-    return UIScreen.mainScreen().bounds.size.width
+    return UIScreen.main.bounds.size.width
 }
 
 func GetSHeight()->CGFloat {
-    return UIScreen.mainScreen().bounds.size.height
+    return UIScreen.main.bounds.size.height
 }
 
-func GetLineView(frame:CGRect, color:UIColor = Helper.parseColor(0xE0E0E0FF))->UIView
+func GetLineView(_ frame:CGRect, color:UIColor = Helper.parseColor(0xE0E0E0FF))->UIView
 {
     let line = UIView(frame: frame)
     line.backgroundColor = color
     return line
 }
 
-func DispatchAfter(sec:Float, queue:dispatch_queue_t, block:dispatch_block_t)
+func DispatchAfter(_ sec:Float, queue:DispatchQueue, block:@escaping ()->())
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Float(NSEC_PER_SEC) * sec)), queue, block)
+    queue.asyncAfter(deadline: DispatchTime.now() + Double(Int64(Float(NSEC_PER_SEC) * sec)) / Double(NSEC_PER_SEC), execute: block)
 }
 
 

@@ -13,7 +13,7 @@ class BBSDataSource: NSObject {
     var bbs = [BBS]()
     var pageSize = 10
     
-    func publishBBS(title:String, content:String?, success:(() -> Void), failure:((error:HttpResponseData)->Void))
+    func publishBBS(_ title:String, content:String?, success:@escaping (() -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let r = NetWorkHandle.NetworkHandleBBS.RequestAddBBS()
         r.title = title
@@ -23,12 +23,12 @@ class BBSDataSource: NSObject {
             {
                 success()
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
-    func getBBSList(isFirst:Bool, success:((result:[BBS]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getBBSList(_ isFirst:Bool, success:@escaping ((_ result:[BBS]) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetworkHandleBBS.RequestGetBBSList()
         request.classify = ""
@@ -47,24 +47,24 @@ class BBSDataSource: NSObject {
                 {
                     for dic in ar!
                     {
-                        let r = BBS.parse(dict: dic)
+                        let r = BBS(dictionary: dic)
                         rs.append(r)
                     }
                 }
-                self.bbs.appendContentsOf(rs)
+                self.bbs.append(contentsOf: rs)
                 if isFirst
                 {
                     self.bbs = rs
                 }
-                success(result: rs)
+                success(rs)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
     var bbsDetail:BBSDetail?
-    func getBBSDetail(id:String, success:((result:BBSDetail) -> Void), failure:((error:HttpResponseData)->Void))
+    func getBBSDetail(_ id:String, success:@escaping ((_ result:BBSDetail) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetworkHandleBBS.RequestBBSDetail()
         request.id = id
@@ -74,20 +74,20 @@ class BBSDataSource: NSObject {
                 let dic = data.data as? NSDictionary
                 if dic != nil
                 {
-                    let bbs = BBSDetail.parse(dict: dic!)
+                    let bbs = BBSDetail(dictionary: dic!)
                     self.bbsDetail = bbs
-                    success(result: bbs)
+                    success(bbs)
                 }else{
-                    failure(error: data)
+                    failure(data)
                 }
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
     var bbsComment = [BBSComment]()
-    func getBBSComment(isFirst:Bool, id:String, success:((result:[BBSComment]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getBBSComment(_ isFirst:Bool, id:String, success:@escaping ((_ result:[BBSComment]) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetworkHandleBBS.RequestBBSCommentList()
         request.offset = "\(self.bbsComment.count)"
@@ -106,23 +106,23 @@ class BBSDataSource: NSObject {
                 {
                     for dic in ar!
                     {
-                        let r = BBSComment.parse(dict: dic)
+                        let r = BBSComment(dictionary: dic)
                         rs.append(r)
                     }
                 }
-                self.bbsComment.appendContentsOf(rs)
+                self.bbsComment.append(contentsOf: rs)
                 if isFirst
                 {
                     self.bbsComment = rs
                 }
-                success(result: rs)
+                success(rs)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
-    func addBBSComment(id:String, content:String, userId:String, replyUserId:String?, parent_comment_id:String?, success:((result:BBSComment) -> Void), failure:((error:HttpResponseData)->Void))
+    func addBBSComment(_ id:String, content:String, userId:String, replyUserId:String?, parent_comment_id:String?, success:@escaping ((_ result:BBSComment) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetworkHandleBBS.RequestAddBBSComment()
         request.exchange_id = id
@@ -133,10 +133,10 @@ class BBSDataSource: NSObject {
         NetWorkHandle.NetworkHandleBBS.addBBSComment(request) { (data) in
             if data.isSuccess()
             {
-                let c = BBSComment.parse(dict: data.data as! NSDictionary)
-                success(result: c)
+                let c = BBSComment(dictionary: data.data as! NSDictionary)
+                success(c)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }

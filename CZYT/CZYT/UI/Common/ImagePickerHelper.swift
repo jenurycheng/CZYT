@@ -10,11 +10,11 @@ import UIKit
 
 class ImagePickerHelper: NSObject, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    var callback:((images:NSArray)->Void)?
+    var callback:((_ images:NSArray)->Void)?
     var parentVC:UIViewController?
     var picker:UIImagePickerController?
     
-    func show(vc:UIViewController, callback:((images:NSArray)->Void))
+    func show(_ vc:UIViewController, callback:@escaping ((_ images:NSArray)->Void))
     {
         self.parentVC = vc
         self.callback = callback
@@ -23,10 +23,10 @@ class ImagePickerHelper: NSObject, UIActionSheetDelegate, UIImagePickerControlle
         picker!.view.backgroundColor = ThemeManager.current().backgroundColor
         
         let actionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "拍照", "相册")
-        actionSheet.showInView(parentVC!.view)
+        actionSheet.show(in: parentVC!.view)
     }
     
-    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+    func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
         print(buttonIndex)
         
         if buttonIndex == 1
@@ -42,41 +42,41 @@ class ImagePickerHelper: NSObject, UIActionSheetDelegate, UIImagePickerControlle
     
     func selectFromPhoto()
     {
-        picker?.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        picker?.sourceType = UIImagePickerControllerSourceType.photoLibrary
         picker?.delegate = self;
         picker?.allowsEditing = true
         
-        parentVC?.presentViewController(picker!, animated: true, completion: nil)
+        parentVC?.present(picker!, animated: true, completion: nil)
     }
     
     func selectFromCamera()
     {
-        picker?.sourceType = UIImagePickerControllerSourceType.Camera
+        picker?.sourceType = UIImagePickerControllerSourceType.camera
         picker?.delegate = self;
         picker?.allowsEditing = true
         
-        parentVC?.presentViewController(picker!, animated: true, completion: nil)
+        parentVC?.present(picker!, animated: true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject])
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
-        picker.dismissViewControllerAnimated(true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
         print(info)
         let image = info[UIImagePickerControllerEditedImage]
         if callback != nil
         {
-            callback!(images: NSArray(object: image!))
+            callback!(NSArray(object: image!))
         }
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        print(String(image.size.width) + "===" + String(image.size.height))
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        picker.dismiss(animated: true, completion: nil)
+        print(String(describing: image.size.width) + "===" + String(describing: image.size.height))
 
     }
 
-    func imagePickerControllerDidCancel(picker: UIImagePickerController)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
     {
-        picker.dismissViewControllerAnimated(true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
     }
 }

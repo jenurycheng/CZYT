@@ -91,6 +91,10 @@
 		C420283D1DE33132005E134B /* PublishTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C420283B1DE33132005E134B /* PublishTaskViewController.xib */; };
 		C420283F1DE344F0005E134B /* SelectContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C420283E1DE344F0005E134B /* SelectContactViewController.swift */; };
 		C42028421DE34DA5005E134B /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42028411DE34DA5005E134B /* DatePickerDialog.swift */; };
+		C42810431E9D1B1B00CF0730 /* MyPublishTaskViewControllerTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42810411E9D1B1B00CF0730 /* MyPublishTaskViewControllerTemp.swift */; };
+		C42810441E9D1B1B00CF0730 /* MyTaskViewControllerTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42810421E9D1B1B00CF0730 /* MyTaskViewControllerTemp.swift */; };
+		C42810461E9D1BE500CF0730 /* MyApproveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42810451E9D1BE500CF0730 /* MyApproveViewController.swift */; };
+		C42810481E9D1BF400CF0730 /* MyPublishApproveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42810471E9D1BF400CF0730 /* MyPublishApproveViewController.swift */; };
 		C4292BBB1DE9691400A18B5A /* SelectContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4292BBA1DE9691400A18B5A /* SelectContactView.swift */; };
 		C42BEAEE1E55E11700063B8E /* FlowLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42BEAED1E55E11700063B8E /* FlowLayoutView.swift */; };
 		C43005911DDB3C5600AC6077 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43005901DDB3C5600AC6077 /* ChatModel.swift */; };
@@ -147,6 +151,7 @@
 		C450C9771DD376160052B18E /* WebLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C9761DD376160052B18E /* WebLinkViewController.swift */; };
 		C450C9791DD377CB0052B18E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C9781DD377CB0052B18E /* WebViewController.swift */; };
 		C450C97C1DD37D760052B18E /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450C97B1DD37D760052B18E /* NetworkErrorView.swift */; };
+		C4600B4C1E9E5CAD00BCB096 /* ApproveDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4600B4B1E9E5CAD00BCB096 /* ApproveDetailViewController.swift */; };
 		C4623CD41DF84877001ED1EE /* AreaStatusActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4623CD31DF84877001ED1EE /* AreaStatusActivityViewController.swift */; };
 		C4623CD61DF84894001ED1EE /* DepartStatusActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4623CD51DF84894001ED1EE /* DepartStatusActivityViewController.swift */; };
 		C47CEB7D1DD9D5EE0078DA21 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47CEB7B1DD9D5EE0078DA21 /* UserInfoViewController.swift */; };
@@ -200,14 +205,6 @@
 		C487349D1DCF0A2C00C9B0C0 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C48734881DCF0A2C00C9B0C0 /* UIScrollView+MJExtension.m */; };
 		C487349E1DCF0A2C00C9B0C0 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = C487348A1DCF0A2C00C9B0C0 /* UIScrollView+MJRefresh.m */; };
 		C487349F1DCF0A2C00C9B0C0 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C487348C1DCF0A2C00C9B0C0 /* UIView+MJExtension.m */; };
-		C48734AD1DCF0A3A00C9B0C0 /* Reflect+ArcFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734A21DCF0A3A00C9B0C0 /* Reflect+ArcFile.swift */; };
-		C48734AE1DCF0A3A00C9B0C0 /* Reflect+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734A41DCF0A3A00C9B0C0 /* Reflect+Parse.swift */; };
-		C48734AF1DCF0A3A00C9B0C0 /* Reflect+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734A61DCF0A3A00C9B0C0 /* Reflect+Convert.swift */; };
-		C48734B01DCF0A3A00C9B0C0 /* Reflect+Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734A81DCF0A3A00C9B0C0 /* Reflect+Class.swift */; };
-		C48734B11DCF0A3A00C9B0C0 /* Reflect+Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734A91DCF0A3A00C9B0C0 /* Reflect+Other.swift */; };
-		C48734B21DCF0A3A00C9B0C0 /* Reflect+Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734AA1DCF0A3A00C9B0C0 /* Reflect+Property.swift */; };
-		C48734B31DCF0A3A00C9B0C0 /* Reflect+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734AB1DCF0A3A00C9B0C0 /* Reflect+Type.swift */; };
-		C48734B41DCF0A3A00C9B0C0 /* Reflect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48734AC1DCF0A3A00C9B0C0 /* Reflect.swift */; };
 		C48734BB1DCF0A4900C9B0C0 /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = C48734B71DCF0A4900C9B0C0 /* MBProgressHUD+Add.m */; };
 		C48734BC1DCF0A4900C9B0C0 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C48734B81DCF0A4900C9B0C0 /* MBProgressHUD.bundle */; };
 		C48734BD1DCF0A4900C9B0C0 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C48734BA1DCF0A4900C9B0C0 /* MBProgressHUD.m */; };
@@ -259,6 +256,11 @@
 		C4936D0E1DFBC80800C07F0D /* TimeNewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4936D0D1DFBC80800C07F0D /* TimeNewsDetailViewController.swift */; };
 		C4A7B38B1E8957B600891AE7 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A7B38A1E8957B600891AE7 /* Utils.m */; };
 		C4A7B38E1E895F4E00891AE7 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = C4A7B38C1E895F4E00891AE7 /* pinyin.c */; };
+		C4AAD4AE1E97CA4900C2B028 /* EVArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AAD4A91E97CA4900C2B028 /* EVArrayExtension.swift */; };
+		C4AAD4AF1E97CA4900C2B028 /* EVObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AAD4AA1E97CA4900C2B028 /* EVObject.swift */; };
+		C4AAD4B01E97CA4900C2B028 /* EVReflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AAD4AB1E97CA4900C2B028 /* EVReflectable.swift */; };
+		C4AAD4B11E97CA4900C2B028 /* EVReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AAD4AC1E97CA4900C2B028 /* EVReflection.swift */; };
+		C4AAD4B21E97CA4900C2B028 /* EVWorkaroundHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AAD4AD1E97CA4900C2B028 /* EVWorkaroundHelpers.swift */; };
 		C4AFA4381E8AA3FA00D61A52 /* ProjectWorkDetailViewController_New.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AFA4371E8AA3FA00D61A52 /* ProjectWorkDetailViewController_New.swift */; };
 		C4AFA43A1E8AA53900D61A52 /* ProjectBasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AFA4391E8AA53900D61A52 /* ProjectBasicView.swift */; };
 		C4AFA43C1E8AA54D00D61A52 /* ProjectTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AFA43B1E8AA54D00D61A52 /* ProjectTimeView.swift */; };
@@ -361,7 +363,7 @@
 		C41167DE1E2FBEC7006C9540 /* FileCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCollectionCell.swift; sourceTree = "<group>"; };
 		C41167DF1E2FBEC7006C9540 /* FileCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileCollectionCell.xib; sourceTree = "<group>"; };
 		C41167E21E2FC5C5006C9540 /* WebShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebShowViewController.swift; sourceTree = "<group>"; };
-		C41243911DDF20CC0005058C /* ContactDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDataSource.swift; sourceTree = "<group>"; };
+		C41243911DDF20CC0005058C /* ContactDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ContactDataSource.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C41243931DDF42ED0005058C /* CCSideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCSideView.swift; sourceTree = "<group>"; };
 		C41243951DDF4A540005058C /* DepartmentListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentListView.swift; sourceTree = "<group>"; };
 		C41243971DDF4A6A0005058C /* ContactListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactListView.swift; sourceTree = "<group>"; };
@@ -369,16 +371,16 @@
 		C4138C641DE17F38004964B0 /* AddGroupUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddGroupUserViewController.xib; sourceTree = "<group>"; };
 		C4138C691DE1A79C004964B0 /* libUMessage_Sdk_1.2.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.2.6.a; sourceTree = "<group>"; };
 		C4138C6A1DE1A79C004964B0 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
-		C4138C6D1DE1EC34004964B0 /* TaskDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDataSource.swift; sourceTree = "<group>"; };
-		C4138C701DE1F235004964B0 /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		C4138C6D1DE1EC34004964B0 /* TaskDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TaskDataSource.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C4138C701DE1F235004964B0 /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TaskModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C4138C721DE1F580004964B0 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
-		C4190C481DD6F27B00B38A7A /* NetworkHandleUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHandleUser.swift; sourceTree = "<group>"; };
-		C4190C4B1DD6F48300B38A7A /* UserDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataSource.swift; sourceTree = "<group>"; };
-		C4190C4E1DD6F6FF00B38A7A /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
-		C4190C501DD6FB3100B38A7A /* NetworkHandleBBS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHandleBBS.swift; sourceTree = "<group>"; };
+		C4190C481DD6F27B00B38A7A /* NetworkHandleUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NetworkHandleUser.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C4190C4B1DD6F48300B38A7A /* UserDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserDataSource.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C4190C4E1DD6F6FF00B38A7A /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserInfo.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C4190C501DD6FB3100B38A7A /* NetworkHandleBBS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NetworkHandleBBS.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C4190C541DD6FBEC00B38A7A /* BBSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSViewController.swift; sourceTree = "<group>"; };
-		C4190C561DD6FBFE00B38A7A /* BBSDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSDataSource.swift; sourceTree = "<group>"; };
-		C4190C591DD6FC5500B38A7A /* BBSModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSModel.swift; sourceTree = "<group>"; };
+		C4190C561DD6FBFE00B38A7A /* BBSDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BBSDataSource.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C4190C591DD6FC5500B38A7A /* BBSModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BBSModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C4190C5B1DD6FEDD00B38A7A /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C4190C5D1DD6FF3C00B38A7A /* CCTabTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCTabTitleView.swift; sourceTree = "<group>"; };
 		C4190C5F1DD7046300B38A7A /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
@@ -407,9 +409,13 @@
 		C420283B1DE33132005E134B /* PublishTaskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishTaskViewController.xib; sourceTree = "<group>"; };
 		C420283E1DE344F0005E134B /* SelectContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectContactViewController.swift; sourceTree = "<group>"; };
 		C42028411DE34DA5005E134B /* DatePickerDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerDialog.swift; sourceTree = "<group>"; };
+		C42810411E9D1B1B00CF0730 /* MyPublishTaskViewControllerTemp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPublishTaskViewControllerTemp.swift; sourceTree = "<group>"; };
+		C42810421E9D1B1B00CF0730 /* MyTaskViewControllerTemp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTaskViewControllerTemp.swift; sourceTree = "<group>"; };
+		C42810451E9D1BE500CF0730 /* MyApproveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyApproveViewController.swift; sourceTree = "<group>"; };
+		C42810471E9D1BF400CF0730 /* MyPublishApproveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPublishApproveViewController.swift; sourceTree = "<group>"; };
 		C4292BBA1DE9691400A18B5A /* SelectContactView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectContactView.swift; sourceTree = "<group>"; };
 		C42BEAED1E55E11700063B8E /* FlowLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowLayoutView.swift; sourceTree = "<group>"; };
-		C43005901DDB3C5600AC6077 /* ChatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		C43005901DDB3C5600AC6077 /* ChatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C43005931DDB5ABA00AC6077 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		C43005941DDB5ABA00AC6077 /* CreateGroupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGroupViewController.xib; sourceTree = "<group>"; };
 		C434EC991E2FB28E009648B6 /* BaseSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseSearchViewController.swift; sourceTree = "<group>"; };
@@ -453,8 +459,8 @@
 		C444A2B41E34E46E0027E6B7 /* TaskNotifySearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskNotifySearchViewController.swift; sourceTree = "<group>"; };
 		C444C9791E8BF328001FD47A /* ProjectItemTimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectItemTimeCell.swift; sourceTree = "<group>"; };
 		C444C97A1E8BF328001FD47A /* ProjectItemTimeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectItemTimeCell.xib; sourceTree = "<group>"; };
-		C450C9581DD350600052B18E /* ActivityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
-		C450C95B1DD350BB0052B18E /* LeaderActivityDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderActivityDataSource.swift; sourceTree = "<group>"; };
+		C450C9581DD350600052B18E /* ActivityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ActivityModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C450C95B1DD350BB0052B18E /* LeaderActivityDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LeaderActivityDataSource.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C450C95E1DD3531D0052B18E /* UIView+HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+HUD.swift"; sourceTree = "<group>"; };
 		C450C9601DD3549E0052B18E /* UIImageView+GM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+GM.swift"; sourceTree = "<group>"; };
 		C450C9621DD35CFC0052B18E /* BaseActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseActivityViewController.swift; sourceTree = "<group>"; };
@@ -464,13 +470,14 @@
 		C450C9761DD376160052B18E /* WebLinkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebLinkViewController.swift; sourceTree = "<group>"; };
 		C450C9781DD377CB0052B18E /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		C450C97B1DD37D760052B18E /* NetworkErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
+		C4600B4B1E9E5CAD00BCB096 /* ApproveDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproveDetailViewController.swift; sourceTree = "<group>"; };
 		C4623CD31DF84877001ED1EE /* AreaStatusActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaStatusActivityViewController.swift; sourceTree = "<group>"; };
 		C4623CD51DF84894001ED1EE /* DepartStatusActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartStatusActivityViewController.swift; sourceTree = "<group>"; };
 		C47CEB7B1DD9D5EE0078DA21 /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		C47CEB7C1DD9D5EE0078DA21 /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoViewController.xib; sourceTree = "<group>"; };
-		C47CEB811DD9F6860078DA21 /* NetWorkHandleChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkHandleChat.swift; sourceTree = "<group>"; };
-		C47CEB831DDA016E0078DA21 /* ChatDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDataSource.swift; sourceTree = "<group>"; };
-		C47CEB851DDA0F820078DA21 /* NetWorkHandleTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkHandleTask.swift; sourceTree = "<group>"; };
+		C47CEB811DD9F6860078DA21 /* NetWorkHandleChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NetWorkHandleChat.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C47CEB831DDA016E0078DA21 /* ChatDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatDataSource.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C47CEB851DDA0F820078DA21 /* NetWorkHandleTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NetWorkHandleTask.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C482F07F1DE9F2A700B9342A /* ConditionBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionBar.swift; sourceTree = "<group>"; };
 		C48734001DCF093E00C9B0C0 /* CZYT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CZYT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48734031DCF093E00C9B0C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -561,14 +568,6 @@
 		C487348A1DCF0A2C00C9B0C0 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		C487348B1DCF0A2C00C9B0C0 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		C487348C1DCF0A2C00C9B0C0 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
-		C48734A21DCF0A3A00C9B0C0 /* Reflect+ArcFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reflect+ArcFile.swift"; sourceTree = "<group>"; };
-		C48734A41DCF0A3A00C9B0C0 /* Reflect+Parse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reflect+Parse.swift"; sourceTree = "<group>"; };
-		C48734A61DCF0A3A00C9B0C0 /* Reflect+Convert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reflect+Convert.swift"; sourceTree = "<group>"; };
-		C48734A81DCF0A3A00C9B0C0 /* Reflect+Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reflect+Class.swift"; sourceTree = "<group>"; };
-		C48734A91DCF0A3A00C9B0C0 /* Reflect+Other.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reflect+Other.swift"; sourceTree = "<group>"; };
-		C48734AA1DCF0A3A00C9B0C0 /* Reflect+Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reflect+Property.swift"; sourceTree = "<group>"; };
-		C48734AB1DCF0A3A00C9B0C0 /* Reflect+Type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reflect+Type.swift"; sourceTree = "<group>"; };
-		C48734AC1DCF0A3A00C9B0C0 /* Reflect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reflect.swift; sourceTree = "<group>"; };
 		C48734B61DCF0A4900C9B0C0 /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
 		C48734B71DCF0A4900C9B0C0 /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
 		C48734B81DCF0A4900C9B0C0 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
@@ -581,7 +580,7 @@
 		C48734C81DCF13A600C9B0C0 /* NetWorkCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkCache.swift; sourceTree = "<group>"; };
 		C48734CA1DCF14BF00C9B0C0 /* CommonFun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonFun.swift; sourceTree = "<group>"; };
 		C48734CB1DCF14BF00C9B0C0 /* Consts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
-		C48734CE1DCF176C00C9B0C0 /* NetWorkHandleApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkHandleApp.swift; sourceTree = "<group>"; };
+		C48734CE1DCF176C00C9B0C0 /* NetWorkHandleApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NetWorkHandleApp.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C48734D01DCF1E5B00C9B0C0 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		C48734D41DCF224000C9B0C0 /* BaseNavHiddenPortraitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavHiddenPortraitViewController.swift; sourceTree = "<group>"; };
 		C48734D51DCF224000C9B0C0 /* BaseNavHiddenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavHiddenViewController.swift; sourceTree = "<group>"; };
@@ -614,6 +613,7 @@
 		C48AC2E21E88040B00EDDE07 /* BBSCell_New.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSCell_New.swift; sourceTree = "<group>"; };
 		C48AC2E31E88040B00EDDE07 /* BBSCell_New.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSCell_New.xib; sourceTree = "<group>"; };
 		C48AC2E61E88096800EDDE07 /* BBSDetailViewController_New.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSDetailViewController_New.swift; sourceTree = "<group>"; };
+		C48ED9DE1E97D4D700FF60FE /* CZYT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CZYT.entitlements; sourceTree = "<group>"; };
 		C491E9691DD21797005586C7 /* LeaderActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderActivityViewController.swift; sourceTree = "<group>"; };
 		C491E96B1DD217BF005586C7 /* LeaderActivityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderActivityCell.swift; sourceTree = "<group>"; };
 		C491E96C1DD217BF005586C7 /* LeaderActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeaderActivityCell.xib; sourceTree = "<group>"; };
@@ -628,6 +628,11 @@
 		C4A7B38A1E8957B600891AE7 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		C4A7B38C1E895F4E00891AE7 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
 		C4A7B38D1E895F4E00891AE7 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
+		C4AAD4A91E97CA4900C2B028 /* EVArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EVArrayExtension.swift; sourceTree = "<group>"; };
+		C4AAD4AA1E97CA4900C2B028 /* EVObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EVObject.swift; sourceTree = "<group>"; };
+		C4AAD4AB1E97CA4900C2B028 /* EVReflectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EVReflectable.swift; sourceTree = "<group>"; };
+		C4AAD4AC1E97CA4900C2B028 /* EVReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = EVReflection.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C4AAD4AD1E97CA4900C2B028 /* EVWorkaroundHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EVWorkaroundHelpers.swift; sourceTree = "<group>"; };
 		C4AFA4371E8AA3FA00D61A52 /* ProjectWorkDetailViewController_New.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectWorkDetailViewController_New.swift; sourceTree = "<group>"; };
 		C4AFA4391E8AA53900D61A52 /* ProjectBasicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectBasicView.swift; sourceTree = "<group>"; };
 		C4AFA43B1E8AA54D00D61A52 /* ProjectTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTimeView.swift; sourceTree = "<group>"; };
@@ -1086,6 +1091,8 @@
 				C42028351DE317E8005E134B /* Cell */,
 				C4138C6F1DE1F22A004964B0 /* Model */,
 				C47CEB881DDA11290078DA21 /* DataSource */,
+				C42810411E9D1B1B00CF0730 /* MyPublishTaskViewControllerTemp.swift */,
+				C42810421E9D1B1B00CF0730 /* MyTaskViewControllerTemp.swift */,
 				C4138C721DE1F580004964B0 /* TaskViewController.swift */,
 				C42028311DE314C5005E134B /* MyTaskViewController.swift */,
 				C42028331DE314D4005E134B /* MyPublishTaskViewController.swift */,
@@ -1106,6 +1113,9 @@
 				C487560F1E93DABD0060BAE3 /* ApproveListViewController.swift */,
 				C48756131E93E1A10060BAE3 /* PublishApproveViewController.swift */,
 				C48756141E93E1A10060BAE3 /* PublishApproveViewController.xib */,
+				C42810451E9D1BE500CF0730 /* MyApproveViewController.swift */,
+				C42810471E9D1BF400CF0730 /* MyPublishApproveViewController.swift */,
+				C4600B4B1E9E5CAD00BCB096 /* ApproveDetailViewController.swift */,
 			);
 			name = Task;
 			sourceTree = "<group>";
@@ -1137,6 +1147,7 @@
 		C48734021DCF093E00C9B0C0 /* CZYT */ = {
 			isa = PBXGroup;
 			children = (
+				C48ED9DE1E97D4D700FF60FE /* CZYT.entitlements */,
 				C43643901DD0C248003C91D8 /* Frameworks */,
 				C48734181DCF096E00C9B0C0 /* Depends */,
 				C48734171DCF096E00C9B0C0 /* Common */,
@@ -1205,13 +1216,13 @@
 		C48734181DCF096E00C9B0C0 /* Depends */ = {
 			isa = PBXGroup;
 			children = (
+				C4AAD4A81E97CA4900C2B028 /* EVReflection */,
 				C48AC2C31E87D8C300EDDE07 /* UMSocial */,
 				C4E669C31DEC82D800DD35EC /* MJPhotoBrowser */,
 				C40B0B671DE47F5A001F966E /* DNImagePicker */,
 				C4138C681DE1A79C004964B0 /* UMessage_Sdk_1.2.6 */,
 				C436434F1DD0C118003C91D8 /* Rong_Cloud_iOS_IMKit_SDK_v2_7_3_stable */,
 				C48734B51DCF0A4900C9B0C0 /* MBProgressHUD */,
-				C48734A01DCF0A3A00C9B0C0 /* Reflect */,
 				C48734601DCF0A2C00C9B0C0 /* MJRefresh */,
 				C48734311DCF0A1F00C9B0C0 /* SDWebImage */,
 				C48734191DCF09B400C9B0C0 /* AFNetworking_3_0 */,
@@ -1368,53 +1379,6 @@
 				C48734821DCF0A2C00C9B0C0 /* MJRefreshStateHeader.m */,
 			);
 			path = Header;
-			sourceTree = "<group>";
-		};
-		C48734A01DCF0A3A00C9B0C0 /* Reflect */ = {
-			isa = PBXGroup;
-			children = (
-				C48734A11DCF0A3A00C9B0C0 /* Coding */,
-				C48734A31DCF0A3A00C9B0C0 /* Dict2Model */,
-				C48734A51DCF0A3A00C9B0C0 /* Model2Dict */,
-				C48734A71DCF0A3A00C9B0C0 /* Reflect */,
-				C48734AC1DCF0A3A00C9B0C0 /* Reflect.swift */,
-			);
-			path = Reflect;
-			sourceTree = "<group>";
-		};
-		C48734A11DCF0A3A00C9B0C0 /* Coding */ = {
-			isa = PBXGroup;
-			children = (
-				C48734A21DCF0A3A00C9B0C0 /* Reflect+ArcFile.swift */,
-			);
-			path = Coding;
-			sourceTree = "<group>";
-		};
-		C48734A31DCF0A3A00C9B0C0 /* Dict2Model */ = {
-			isa = PBXGroup;
-			children = (
-				C48734A41DCF0A3A00C9B0C0 /* Reflect+Parse.swift */,
-			);
-			path = Dict2Model;
-			sourceTree = "<group>";
-		};
-		C48734A51DCF0A3A00C9B0C0 /* Model2Dict */ = {
-			isa = PBXGroup;
-			children = (
-				C48734A61DCF0A3A00C9B0C0 /* Reflect+Convert.swift */,
-			);
-			path = Model2Dict;
-			sourceTree = "<group>";
-		};
-		C48734A71DCF0A3A00C9B0C0 /* Reflect */ = {
-			isa = PBXGroup;
-			children = (
-				C48734A81DCF0A3A00C9B0C0 /* Reflect+Class.swift */,
-				C48734A91DCF0A3A00C9B0C0 /* Reflect+Other.swift */,
-				C48734AA1DCF0A3A00C9B0C0 /* Reflect+Property.swift */,
-				C48734AB1DCF0A3A00C9B0C0 /* Reflect+Type.swift */,
-			);
-			path = Reflect;
 			sourceTree = "<group>";
 		};
 		C48734B51DCF0A4900C9B0C0 /* MBProgressHUD */ = {
@@ -1587,6 +1551,18 @@
 			name = LeaderActivity;
 			sourceTree = "<group>";
 		};
+		C4AAD4A81E97CA4900C2B028 /* EVReflection */ = {
+			isa = PBXGroup;
+			children = (
+				C4AAD4A91E97CA4900C2B028 /* EVArrayExtension.swift */,
+				C4AAD4AA1E97CA4900C2B028 /* EVObject.swift */,
+				C4AAD4AB1E97CA4900C2B028 /* EVReflectable.swift */,
+				C4AAD4AC1E97CA4900C2B028 /* EVReflection.swift */,
+				C4AAD4AD1E97CA4900C2B028 /* EVWorkaroundHelpers.swift */,
+			);
+			path = EVReflection;
+			sourceTree = "<group>";
+		};
 		C4BC6A501DD4A86800DA19B2 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1677,7 +1653,7 @@
 					C48733FF1DCF093E00C9B0C0 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 26JVMY8BXV;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1774,6 +1750,7 @@
 			files = (
 				C487345D1DCF0A1F00C9B0C0 /* UIImageView+HighlightedWebCache.m in Sources */,
 				C47CEB7D1DD9D5EE0078DA21 /* UserInfoViewController.swift in Sources */,
+				C4AAD4B01E97CA4900C2B028 /* EVReflectable.swift in Sources */,
 				C4C783B01DDDD2A200B50693 /* GroupConversationViewController.swift in Sources */,
 				C48734951DCF0A2C00C9B0C0 /* MJRefreshBackGifFooter.m in Sources */,
 				C4E669D31DEC82D800DD35EC /* MJPhotoBrowser.m in Sources */,
@@ -1805,6 +1782,7 @@
 				C450C9751DD373030052B18E /* ProjectWorkActivityViewController.swift in Sources */,
 				C4E669D61DEC82D800DD35EC /* MJPhotoToolbar.m in Sources */,
 				C450C95F1DD3531D0052B18E /* UIView+HUD.swift in Sources */,
+				C4AAD4B11E97CA4900C2B028 /* EVReflection.swift in Sources */,
 				C40B0B9F1DE47F5A001F966E /* DNAssetsViewCell.m in Sources */,
 				C4936D041DFBC55400C07F0D /* DepartStatusDetailViewController.swift in Sources */,
 				C40A6E411E59EB190024E737 /* PolicyFileCell.swift in Sources */,
@@ -1818,11 +1796,12 @@
 				C48734971DCF0A2C00C9B0C0 /* MJRefreshBackStateFooter.m in Sources */,
 				C487349D1DCF0A2C00C9B0C0 /* UIScrollView+MJExtension.m in Sources */,
 				C444A2B51E34E46E0027E6B7 /* TaskNotifySearchViewController.swift in Sources */,
+				C4600B4C1E9E5CAD00BCB096 /* ApproveDetailViewController.swift in Sources */,
 				C487348E1DCF0A2C00C9B0C0 /* MJRefreshBackFooter.m in Sources */,
 				C40B0BA21DE47F5A001F966E /* DNFullImageButton.m in Sources */,
 				C42028341DE314D4005E134B /* MyPublishTaskViewController.swift in Sources */,
-				C48734B41DCF0A3A00C9B0C0 /* Reflect.swift in Sources */,
 				C4EDA4581E67046B003B9C79 /* PublishBBSViewController.swift in Sources */,
+				C4AAD4B21E97CA4900C2B028 /* EVWorkaroundHelpers.swift in Sources */,
 				C41243941DDF42ED0005058C /* CCSideView.swift in Sources */,
 				C4E669D51DEC82D800DD35EC /* MJPhotoProgressView.m in Sources */,
 				C4190C491DD6F27B00B38A7A /* NetworkHandleUser.swift in Sources */,
@@ -1832,10 +1811,10 @@
 				C40B0B931DE47F5A001F966E /* DNAsset.m in Sources */,
 				C487342C1DCF09B400C9B0C0 /* AFURLSessionManager.m in Sources */,
 				C450C9791DD377CB0052B18E /* WebViewController.swift in Sources */,
+				C42810431E9D1B1B00CF0730 /* MyPublishTaskViewControllerTemp.swift in Sources */,
 				C420283C1DE33132005E134B /* PublishTaskViewController.swift in Sources */,
 				C41167DD1E2FBCB2006C9540 /* SelectFileViewController.swift in Sources */,
 				C48734291DCF09B400C9B0C0 /* AFSecurityPolicy.m in Sources */,
-				C48734AD1DCF0A3A00C9B0C0 /* Reflect+ArcFile.swift in Sources */,
 				C40B0B641DE46ADF001F966E /* TaskDetailViewController.swift in Sources */,
 				C4190C791DD778D200B38A7A /* BBSCommentCell.swift in Sources */,
 				C40B0BA31DE47F5A001F966E /* DNSendButton.m in Sources */,
@@ -1850,7 +1829,7 @@
 				C4AFA43A1E8AA53900D61A52 /* ProjectBasicView.swift in Sources */,
 				C40B0BA41DE47F5A001F966E /* DNTapDetectingImageView.m in Sources */,
 				C4BC6A5D1DD4BB0A00DA19B2 /* UserNotLoginViewController.swift in Sources */,
-				C48734B21DCF0A3A00C9B0C0 /* Reflect+Property.swift in Sources */,
+				C42810461E9D1BE500CF0730 /* MyApproveViewController.swift in Sources */,
 				C48734531DCF0A1F00C9B0C0 /* SDWebImageCompat.m in Sources */,
 				C48734931DCF0A2C00C9B0C0 /* MJRefreshAutoNormalFooter.m in Sources */,
 				C41167E31E2FC5C5006C9540 /* WebShowViewController.swift in Sources */,
@@ -1858,6 +1837,7 @@
 				C48734BD1DCF0A4900C9B0C0 /* MBProgressHUD.m in Sources */,
 				C4AFA4491E8AB22300D61A52 /* ProjectItemCell3.swift in Sources */,
 				C450C9691DD3610B0052B18E /* FileActivityViewController.swift in Sources */,
+				C4AAD4AF1E97CA4900C2B028 /* EVObject.swift in Sources */,
 				C48734CD1DCF14BF00C9B0C0 /* Consts.swift in Sources */,
 				C48734581DCF0A1F00C9B0C0 /* SDWebImagePrefetcher.m in Sources */,
 				C4936D0A1DFBC78400C07F0D /* WorkStatusDetailViewController.swift in Sources */,
@@ -1872,7 +1852,6 @@
 				C482F0801DE9F2A700B9342A /* ConditionBar.swift in Sources */,
 				C40B0B951DE47F5A001F966E /* DNImagePickerController.m in Sources */,
 				C4190C4C1DD6F48300B38A7A /* UserDataSource.swift in Sources */,
-				C48734AF1DCF0A3A00C9B0C0 /* Reflect+Convert.swift in Sources */,
 				C4E669D71DEC82D800DD35EC /* MJPhotoView.m in Sources */,
 				C40B0BA91DE47FA3001F966E /* SubmitTaskViewController.swift in Sources */,
 				C48734DF1DCF224000C9B0C0 /* BaseViewController.swift in Sources */,
@@ -1898,13 +1877,11 @@
 				C4936D0E1DFBC80800C07F0D /* TimeNewsDetailViewController.swift in Sources */,
 				C40B0B9A1DE47F5A001F966E /* UIColor+Hex.m in Sources */,
 				C4936D0C1DFBC7C500C07F0D /* PolicyFileDetailViewController.swift in Sources */,
-				C48734B01DCF0A3A00C9B0C0 /* Reflect+Class.swift in Sources */,
 				C48734DA1DCF224000C9B0C0 /* BaseNavHiddenPortraitViewController.swift in Sources */,
 				C4AFA4411E8AB1F700D61A52 /* ProjectItemCell1.swift in Sources */,
 				C4190C5E1DD6FF3C00B38A7A /* CCTabTitleView.swift in Sources */,
 				C41167D11E2FB4C3006C9540 /* TimeNewsSearchViewController.swift in Sources */,
 				C40B0BAE1DE4834B001F966E /* ImageCollectionCell.swift in Sources */,
-				C48734B31DCF0A3A00C9B0C0 /* Reflect+Type.swift in Sources */,
 				C4190C6F1DD7664900B38A7A /* BBSCell.swift in Sources */,
 				C4BC6A571DD4AFEF00DA19B2 /* NSMutableAttributedString+Utils.swift in Sources */,
 				C4AFA43C1E8AA54D00D61A52 /* ProjectTimeView.swift in Sources */,
@@ -1930,7 +1907,6 @@
 				C48734C61DCF0DA900C9B0C0 /* Theme.swift in Sources */,
 				C48734591DCF0A1F00C9B0C0 /* UIButton+WebCache.m in Sources */,
 				C4E03C551E325E1300FBEE0D /* HomeCell2.swift in Sources */,
-				C48734B11DCF0A3A00C9B0C0 /* Reflect+Other.swift in Sources */,
 				C42028321DE314C5005E134B /* MyTaskViewController.swift in Sources */,
 				C48734F21DCF3A2500C9B0C0 /* HomeCell.swift in Sources */,
 				C48734521DCF0A1F00C9B0C0 /* SDImageCache.m in Sources */,
@@ -1941,19 +1917,21 @@
 				C41243961DDF4A540005058C /* DepartmentListView.swift in Sources */,
 				C40B0BA01DE47F5A001F966E /* DNBadgeLabel.m in Sources */,
 				C4E03C4F1E31E66600FBEE0D /* PolicyFileSearchViewController.swift in Sources */,
+				C42810441E9D1B1B00CF0730 /* MyTaskViewControllerTemp.swift in Sources */,
 				C42028421DE34DA5005E134B /* DatePickerDialog.swift in Sources */,
 				C444A2B31E34E4610027E6B7 /* TaskNotifyDetailViewController.swift in Sources */,
 				C4190C731DD76DD700B38A7A /* BBSDetailViewController.swift in Sources */,
 				C42BEAEE1E55E11700063B8E /* FlowLayoutView.swift in Sources */,
 				C4AFA4381E8AA3FA00D61A52 /* ProjectWorkDetailViewController_New.swift in Sources */,
+				C42810481E9D1BF400CF0730 /* MyPublishApproveViewController.swift in Sources */,
 				C491E96D1DD217BF005586C7 /* LeaderActivityCell.swift in Sources */,
 				C487342B1DCF09B400C9B0C0 /* AFURLResponseSerialization.m in Sources */,
 				C48734901DCF0A2C00C9B0C0 /* MJRefreshFooter.m in Sources */,
-				C48734AE1DCF0A3A00C9B0C0 /* Reflect+Parse.swift in Sources */,
 				C40B0B991DE47F5A001F966E /* NSURL+DNIMagePickerUrlEqual.m in Sources */,
 				C4B09E141E8D3D1200B9CEEC /* BBSCommentChildCell.swift in Sources */,
 				C450C9611DD3549E0052B18E /* UIImageView+GM.swift in Sources */,
 				C487349E1DCF0A2C00C9B0C0 /* UIScrollView+MJRefresh.m in Sources */,
+				C4AAD4AE1E97CA4900C2B028 /* EVArrayExtension.swift in Sources */,
 				C419A9781DE5ECC300E4DFD5 /* TaskResultTopCell.swift in Sources */,
 				C4138C6E1DE1EC34004964B0 /* TaskDataSource.swift in Sources */,
 				C4190C621DD7046B00B38A7A /* GroupViewController.swift in Sources */,
@@ -2112,6 +2090,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = CZYT/CZYT.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: chao chen (385H963A8V)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: chao chen (385H963A8V)";
 				ENABLE_BITCODE = NO;
@@ -2137,8 +2116,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cn.yumutech.unity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4d8733f7-e451-4d1e-b756-9d7f388f7ec3";
+				PROVISIONING_PROFILE_SPECIFIER = czyt_dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "./CZYT/CZYT-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -2147,6 +2127,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = CZYT/CZYT.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: chao chen (385H963A8V)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: chao chen (385H963A8V)";
 				ENABLE_BITCODE = NO;
@@ -2172,8 +2153,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cn.yumutech.unity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4d8733f7-e451-4d1e-b756-9d7f388f7ec3";
+				PROVISIONING_PROFILE_SPECIFIER = czyt_dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "./CZYT/CZYT-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

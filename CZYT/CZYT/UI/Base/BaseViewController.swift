@@ -22,17 +22,17 @@ class BaseViewController: UIViewController {
         CCPrint("deinit")
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let navHidden = self.isKindOfClass(BaseNavHiddenViewController.classForCoder())
+        let navHidden = self.isKind(of: BaseNavHiddenViewController.classForCoder())
         if navHidden == true && BaseViewController.NavHidden == true {
             self.navigationController?.navigationBar.alpha = 0
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        let hidden = self.isKindOfClass(BaseNavHiddenViewController.classForCoder())
+        let hidden = self.isKind(of: BaseNavHiddenViewController.classForCoder())
         BaseViewController.NavHidden = hidden
     }
 

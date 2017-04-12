@@ -21,7 +21,7 @@ class WebViewController: BasePortraitViewController {
         {
             url = ""
         }
-        let r = NSURLRequest(URL: NSURL(string: url!)!)
+        let r = URLRequest(url: URL(string: url!)!)
         webView.loadRequest(r)
         // Do any additional setup after loading the view.
     }

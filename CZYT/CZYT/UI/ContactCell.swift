@@ -19,7 +19,7 @@ class ContactCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        checkedImageView.hidden = true
+        checkedImageView.isHidden = true
         // Initialization code
     }
     
@@ -34,9 +34,9 @@ class ContactCell: UITableViewCell {
         return  50
     }
     
-    func setChecked(b:Bool)
+    func setChecked(_ b:Bool)
     {
-        checkedImageView.hidden = false
+        checkedImageView.isHidden = false
         if b
         {
             checkedImageView.image = UIImage(named: "user_selected")
@@ -45,7 +45,7 @@ class ContactCell: UITableViewCell {
         }
     }
 
-    func updateUserInfo(u:UserInfo, showMobile:Bool = true)
+    func updateUserInfo(_ u:UserInfo, showMobile:Bool = true)
     {
         let name = u.nickname == nil ? "" : u.nickname!
         titleLabel.text = name
@@ -60,7 +60,7 @@ class ContactCell: UITableViewCell {
         headerImageView.gm_setImageWithUrlString(u.logo_path, title: u.nickname, completedBlock: nil)
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

@@ -40,159 +40,159 @@ extension NetWorkHandle
         
         static var Address_CheckAppUpdate = "CheckLatestVersion"
 
-        class RequestHomeActivity : Reflect
+        class RequestHomeActivity : EVObject
         {
             var offset:String?  //0开始
             var row_count:String?
         }
-        class func getHomeActivity(request:RequestHomeActivity?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetHomeActivity, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getHomeActivity(_ request:RequestHomeActivity?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetHomeActivity, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestLeaderActivity : Reflect
+        class RequestLeaderActivity : EVObject
         {
             var classify:String?//省级，资阳，成都
             var offset:String?  //0开始
             var row_count:String?
             var key:String?
         }
-        class func getLeaderActivity(request:RequestLeaderActivity?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetLeaderActivity, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getLeaderActivity(_ request:RequestLeaderActivity?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetLeaderActivity, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
             
         }
         
-        class RequestLeaderActivityDetail : Reflect
+        class RequestLeaderActivityDetail : EVObject
         {
             var id:String?
         }
         
-        class func getLeaderActivityDetail(request:RequestLeaderActivityDetail?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetLeaderActivityDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getLeaderActivityDetail(_ request:RequestLeaderActivityDetail?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetLeaderActivityDetail, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestFileActivity : Reflect
+        class RequestFileActivity : EVObject
         {
             var classify:String?//省级，资阳，成都
             var offset:String?  //0开始
             var row_count:String?
             var key:String?
         }
-        class func getFileActivity(request:RequestFileActivity?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetFileActivity, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getFileActivity(_ request:RequestFileActivity?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetFileActivity, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestFileActivityDetail : Reflect
+        class RequestFileActivityDetail : EVObject
         {
             var id:String?
         }
         
-        class func getFileActivityDetail(request:RequestFileActivityDetail?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetFileActivityDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getFileActivityDetail(_ request:RequestFileActivityDetail?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetFileActivityDetail, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestWorkStatusActivity : Reflect
+        class RequestWorkStatusActivity : EVObject
         {
             var classify:String?//省级，资阳，成都
             var offset:String?  //0开始
             var row_count:String?
             var key:String?
         }
-        class func getWorkStatusActivity(request:RequestWorkStatusActivity?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetWorkStatusActivity, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getWorkStatusActivity(_ request:RequestWorkStatusActivity?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetWorkStatusActivity, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestWorkStatusActivityDetail : Reflect
+        class RequestWorkStatusActivityDetail : EVObject
         {
             var id:String?
         }
         
-        class func getWorkStatusActivityDetail(request:RequestWorkStatusActivityDetail?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetWorkStatusActivityDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getWorkStatusActivityDetail(_ request:RequestWorkStatusActivityDetail?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetWorkStatusActivityDetail, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestAreaStatusActivity : Reflect
+        class RequestAreaStatusActivity : EVObject
         {
             var offset:String?  //0开始
             var row_count:String?
         }
         
-        class func getAreaStatusActivity(request:RequestAreaStatusActivity?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetAreaStatusActivity, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getAreaStatusActivity(_ request:RequestAreaStatusActivity?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetAreaStatusActivity, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestAreaStatusActivityDetail : Reflect
+        class RequestAreaStatusActivityDetail : EVObject
         {
             var id:String?
         }
         
-        class func getAreaStatusActivityDetail(request:RequestAreaStatusActivityDetail?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetAreaStatusActivityDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getAreaStatusActivityDetail(_ request:RequestAreaStatusActivityDetail?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetAreaStatusActivityDetail, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestDepartStatusActivity : Reflect
+        class RequestDepartStatusActivity : EVObject
         {
             var offset:String?  //0开始
             var row_count:String?
         }
         
-        class func getDepartStatusActivity(request:RequestDepartStatusActivity?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetDepartStatusActivity, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getDepartStatusActivity(_ request:RequestDepartStatusActivity?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetDepartStatusActivity, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestDepartStatusActivityDetail : Reflect
+        class RequestDepartStatusActivityDetail : EVObject
         {
             var id:String?
         }
         
-        class func getDepartStatusActivityDetail(request:RequestDepartStatusActivityDetail?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetDepartStatusActivityDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getDepartStatusActivityDetail(_ request:RequestDepartStatusActivityDetail?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetDepartStatusActivityDetail, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestProjectWorkActivity : Reflect
+        class RequestProjectWorkActivity : EVObject
         {
             var classify:String?//省级，资阳，成都, 县区，中央
             var offset:String?  //0开始
             var row_count:String?
             var key:String?
         }
-        class func getProjectWorkActivity(request:RequestProjectWorkActivity?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetProjectWorkActivity, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getProjectWorkActivity(_ request:RequestProjectWorkActivity?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetProjectWorkActivity, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestProjectWorkActivityDetail : Reflect
+        class RequestProjectWorkActivityDetail : EVObject
         {
             var id:String?
         }
         
-        class func getProjectWorkActivityDetail(request:RequestProjectWorkActivityDetail?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetProjectWorkActivityDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getProjectWorkActivityDetail(_ request:RequestProjectWorkActivityDetail?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetProjectWorkActivityDetail, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestWebLink : Reflect
+        class RequestWebLink : EVObject
         {
             
         }
         
-        class func getWebLink(request:RequestWebLink?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetWebLink, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getWebLink(_ request:RequestWebLink?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetWebLink, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestModuleType : Reflect
+        class RequestModuleType : EVObject
         {
             var classify:String?//LeaderActivity,PolicyFile,WorkStatus,ProjectWork,Exchange,TaskNotification
         }
         
-        class func getModuleType(request:RequestModuleType?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetModuleType, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: true)
+        class func getModuleType(_ request:RequestModuleType?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetModuleType, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestCheckAppUpdate : Reflect
+        class RequestCheckAppUpdate : EVObject
         {
             var os:String = "IOS"
         }
         
-        class func checkAppUpdate(request:RequestCheckAppUpdate?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_CheckAppUpdate, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: true)
+        class func checkAppUpdate(_ request:RequestCheckAppUpdate?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_CheckAppUpdate, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: true)
         }
     }
 }

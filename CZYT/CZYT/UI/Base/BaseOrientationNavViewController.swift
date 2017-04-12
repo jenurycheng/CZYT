@@ -15,14 +15,14 @@ class BaseOrientationNavViewController: UINavigationController, UINavigationCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if respondsToSelector(Selector("interactivePopGestureRecognizer")) {
+        if responds(to: Selector("interactivePopGestureRecognizer")) {
             interactivePopGestureRecognizer?.delegate = self
             delegate = self
         }
         // Do any additional setup after loading the view.
     }
     
-    override func pushViewController(viewController: UIViewController, animated: Bool) {
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         super.pushViewController(viewController, animated: animated)
     }
     
@@ -31,24 +31,24 @@ class BaseOrientationNavViewController: UINavigationController, UINavigationCont
         // Dispose of any resources that can be recreated.
     }
     
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return self.canSideBack
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
         
-        return self.viewControllers.last!.supportedInterfaceOrientations()
+        return self.viewControllers.last!.supportedInterfaceOrientations
     }
     
-    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
-        return self.viewControllers.last!.preferredInterfaceOrientationForPresentation()
+    override var preferredInterfaceOrientationForPresentation : UIInterfaceOrientation {
+        return self.viewControllers.last!.preferredInterfaceOrientationForPresentation
     }
     
-    override func shouldAutorotate() -> Bool {
-        return self.viewControllers.last!.shouldAutorotate()
+    override var shouldAutorotate : Bool {
+        return self.viewControllers.last!.shouldAutorotate
     }
     
-    func navigationController(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool) {
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if self.viewControllers.count == 1 {
             self.canSideBack = false
         }else{

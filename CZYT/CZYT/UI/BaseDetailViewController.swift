@@ -40,21 +40,21 @@ class BaseDetailViewController: BasePortraitViewController {
 //        titleLabel.font = UIFont.systemFontOfSize(15)
         titleLabel.font = UIFont(name: "Helvetica-Bold", size: 16)
         titleLabel.numberOfLines = 2
-        titleLabel.textAlignment = .Center
-        titleLabel.lineBreakMode = .ByCharWrapping
+        titleLabel.textAlignment = .center
+        titleLabel.lineBreakMode = .byCharWrapping
         titleLabel.adjustsFontSizeToFitWidth = true
         topView.addSubview(titleLabel)
         
         sourceLabel = UILabel(frame: CGRect(x: 0, y: 40, width: topView.frame.width/2, height: 30))
         sourceLabel.text = "来源:"
-        sourceLabel.font = UIFont.systemFontOfSize(12)
+        sourceLabel.font = UIFont.systemFont(ofSize: 12)
         sourceLabel.textColor = ThemeManager.current().darkGrayFontColor
         topView.addSubview(sourceLabel)
         
         timeLabel = UILabel(frame: CGRect(x: topView.frame.width/2, y: 40, width: topView.frame.width/2, height: 30))
-        timeLabel.textAlignment = .Right
+        timeLabel.textAlignment = .right
         timeLabel.text = ""
-        timeLabel.font = UIFont.systemFontOfSize(12)
+        timeLabel.font = UIFont.systemFont(ofSize: 12)
         timeLabel.textColor = ThemeManager.current().darkGrayFontColor
         topView.addSubview(timeLabel)
         
@@ -63,7 +63,7 @@ class BaseDetailViewController: BasePortraitViewController {
         topView.addSubview(line)
         
         let script = "var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=\(GetSWidth()*2)px'); document.getElementsByTagName('head')[0].appendChild(meta);"
-        let wks = WKUserScript(source: script, injectionTime: .AtDocumentEnd, forMainFrameOnly: true)
+        let wks = WKUserScript(source: script, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         let ctrl = WKUserContentController()
         ctrl.addUserScript(wks)
         
@@ -72,17 +72,17 @@ class BaseDetailViewController: BasePortraitViewController {
         
         webView = WKWebView(frame: CGRect(x: 5, y: 70, width: GetSWidth()-10, height: GetSHeight()-70-64), configuration: config)
         webView.navigationDelegate = self
-        webView.scrollView.scrollEnabled = false
+        webView.scrollView.isScrollEnabled = false
         scrollView.addSubview(webView)
         
         zoomOutBtn = UIButton(frame: CGRect(x: 0, y: GetSHeight()-100-64, width: 40, height: 40))
         zoomOutBtn.backgroundColor = ThemeManager.current().backgroundColor
-        zoomOutBtn.setTitle("+", forState: .Normal)
-        zoomOutBtn.addTarget(self, action: #selector(BaseDetailViewController.zoomOutBtnClicked), forControlEvents: .TouchUpInside)
+        zoomOutBtn.setTitle("+", for: UIControlState())
+        zoomOutBtn.addTarget(self, action: #selector(BaseDetailViewController.zoomOutBtnClicked), for: .touchUpInside)
 //        self.view.addSubview(zoomOutBtn)
         
         zoomInBtn = UIButton(frame: CGRect(x: 0, y: zoomOutBtn.frame.origin.y + zoomOutBtn.frame.height, width: 40, height: 40))
-        zoomInBtn.setTitle("-", forState: .Normal)
+        zoomInBtn.setTitle("-", for: UIControlState())
         zoomInBtn.backgroundColor = ThemeManager.current().backgroundColor
 //        self.view.addSubview(zoomInBtn)
         // Do any additional setup after loading the view.
@@ -92,11 +92,11 @@ class BaseDetailViewController: BasePortraitViewController {
     func zoomOutBtnClicked()
     {
         scale = scale * 1.1
-        let trans = CGAffineTransformMakeScale(scale, scale)
+        let trans = CGAffineTransform(scaleX: scale, y: scale)
         webView.transform = trans
         
         let size = scrollView.contentSize
-        scrollView.contentSize = CGSizeMake(size.width * 1.1, size.height * 1.1)
+        scrollView.contentSize = CGSize(width: size.width * 1.1, height: size.height * 1.1)
     }
     
     func zoomInBtnClicked()
@@ -104,7 +104,7 @@ class BaseDetailViewController: BasePortraitViewController {
         
     }
     
-    func update(data:LeaderActivityDetail?)
+    func update(_ data:LeaderActivityDetail?)
     {
         if data == nil
         {
@@ -114,9 +114,9 @@ class BaseDetailViewController: BasePortraitViewController {
         titleLabel.text = dataSource!.title
         
         let attribute = NSMutableAttributedString(string: "")
-        attribute.appendAttributeString("来源:", color: ThemeManager.current().darkGrayFontColor, font: UIFont.systemFontOfSize(12))
+        attribute.appendAttributeString("来源:", color: ThemeManager.current().darkGrayFontColor, font: UIFont.systemFont(ofSize: 12))
         let source = dataSource!.original ?? ""
-        attribute.appendAttributeString(source, color: UIColor.orangeColor(), font: UIFont.systemFontOfSize(12))
+        attribute.appendAttributeString(source, color: UIColor.orange, font: UIFont.systemFont(ofSize: 12))
         sourceLabel.attributedText = attribute
         timeLabel.text = dataSource!.publish_date
         let data = dataSource?.content//.replacingOccurrencesOfString("width: 1000px", withString: "width: \(GetSWidth()*2)px")
@@ -131,8 +131,8 @@ class BaseDetailViewController: BasePortraitViewController {
 
 extension BaseDetailViewController : WKNavigationDelegate
 {
-    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
-        DispatchAfter(0.2, queue: dispatch_get_main_queue()) { 
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        DispatchAfter(0.2, queue: DispatchQueue.main) { 
             self.webView.frame = CGRect(x: 5, y: 70, width: GetSWidth()-10, height: self.webView.scrollView.contentSize.height)
             let height = self.webView.frame.height + 100 > GetSHeight() ? self.webView.frame.height + 100 : GetSHeight()
             self.scrollView.contentSize = CGSize(width: GetSWidth(), height: height)

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -15,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfl-V5-zCD">
-                        <rect key="frame" x="68" y="0.0" width="244" height="95.5"/>
+                        <rect key="frame" x="68" y="8" width="244" height="79.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -46,22 +50,18 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="kHt-es-nPM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="0Lz-BW-Xw0"/>
-                    <constraint firstAttribute="bottom" secondItem="bfl-V5-zCD" secondAttribute="bottom" id="9yY-DU-R6V"/>
+                    <constraint firstItem="bfl-V5-zCD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Czo-fj-HI8"/>
                     <constraint firstItem="kHt-es-nPM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="E7R-WS-4Xc"/>
                     <constraint firstAttribute="bottom" secondItem="sBf-Db-XdF" secondAttribute="bottom" id="EY6-Kg-igv"/>
-                    <constraint firstItem="bfl-V5-zCD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Ebb-bE-ww3"/>
                     <constraint firstAttribute="trailing" secondItem="ny2-tS-4m6" secondAttribute="trailing" id="Jc7-mf-mW5"/>
-                    <constraint firstAttribute="trailing" secondItem="bfl-V5-zCD" secondAttribute="trailing" constant="8" id="QNn-C7-r7M"/>
+                    <constraint firstItem="bfl-V5-zCD" firstAttribute="leading" secondItem="sBf-Db-XdF" secondAttribute="trailing" constant="9" id="PzW-xv-T9q"/>
                     <constraint firstAttribute="bottom" secondItem="kHt-es-nPM" secondAttribute="bottom" constant="10" id="Qid-x7-gZc"/>
                     <constraint firstItem="ny2-tS-4m6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="XkQ-Ah-Cl0"/>
-                    <constraint firstItem="bfl-V5-zCD" firstAttribute="leading" secondItem="kHt-es-nPM" secondAttribute="trailing" constant="10" id="ZFh-cO-ITz"/>
-                    <constraint firstAttribute="trailing" secondItem="bfl-V5-zCD" secondAttribute="trailing" constant="8" id="c23-Mw-rf0"/>
                     <constraint firstItem="sBf-Db-XdF" firstAttribute="leading" secondItem="kHt-es-nPM" secondAttribute="trailing" id="ePJ-zF-wf7"/>
-                    <constraint firstItem="kHt-es-nPM" firstAttribute="centerY" secondItem="bfl-V5-zCD" secondAttribute="centerY" id="f3T-2e-QYt"/>
-                    <constraint firstAttribute="bottom" secondItem="bfl-V5-zCD" secondAttribute="bottom" id="gty-bg-q5P"/>
                     <constraint firstItem="sBf-Db-XdF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="idw-D8-3wD"/>
+                    <constraint firstAttribute="bottom" secondItem="bfl-V5-zCD" secondAttribute="bottom" constant="8" id="nvx-HB-VtY"/>
                     <constraint firstAttribute="bottom" secondItem="ny2-tS-4m6" secondAttribute="bottom" id="pPd-Vb-sec"/>
-                    <constraint firstItem="bfl-V5-zCD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="sYh-Md-E7n"/>
+                    <constraint firstAttribute="trailing" secondItem="bfl-V5-zCD" secondAttribute="trailing" constant="8" id="urh-zr-gvf"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

@@ -54,8 +54,8 @@ class ProjectWorkDetailViewController_New: BasePortraitViewController {
 //        titleLabel.font = UIFont.systemFontOfSize(15)
         titleLabel.font = UIFont(name: "Helvetica-Bold", size: 16)
         titleLabel.numberOfLines = 2
-        titleLabel.lineBreakMode = .ByCharWrapping
-        titleLabel.textAlignment = .Center
+        titleLabel.lineBreakMode = .byCharWrapping
+        titleLabel.textAlignment = .center
         topView.addSubview(titleLabel)
         
         progressBgView = UIView(frame: CGRect(x: 0, y: 40, width: topView.frame.width, height: 15))
@@ -65,13 +65,13 @@ class ProjectWorkDetailViewController_New: BasePortraitViewController {
         topView.addSubview(progressBgView)
         
         progressView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: progressBgView.frame.height))
-        progressView.backgroundColor = UIColor.greenColor()
+        progressView.backgroundColor = UIColor.green
         progressBgView.addSubview(progressView)
         
         progressLabel = UILabel(frame: progressBgView.bounds)
         progressLabel.textColor = ThemeManager.current().grayFontColor
         progressLabel.text = "已完成:"
-        progressLabel.font = UIFont.systemFontOfSize(13)
+        progressLabel.font = UIFont.systemFont(ofSize: 13)
         progressBgView.addSubview(progressLabel)
         
         let line = UIView(frame: CGRect(x: 0, y: topView.frame.height-1, width: GetSWidth(), height: 1))
@@ -79,7 +79,7 @@ class ProjectWorkDetailViewController_New: BasePortraitViewController {
         topView.addSubview(line)
         
         let script = "var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=\(GetSWidth()*2)px'); document.getElementsByTagName('head')[0].appendChild(meta);"
-        let wks = WKUserScript(source: script, injectionTime: .AtDocumentEnd, forMainFrameOnly: true)
+        let wks = WKUserScript(source: script, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         let ctrl = WKUserContentController()
         ctrl.addUserScript(wks)
         
@@ -91,20 +91,20 @@ class ProjectWorkDetailViewController_New: BasePortraitViewController {
         scrollView.addSubview(btnView)
         let width = (GetSWidth()-40)/3
         basicBtn = UIButton(frame: CGRect(x: 10, y: 7, width: width, height: 31))
-        basicBtn.setTitle("基本情况", forState: .Normal)
-        basicBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
-        basicBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
-        basicBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController_New.btnClicked(_:)), forControlEvents: .TouchUpInside)
+        basicBtn.setTitle("基本情况", for: UIControlState())
+        basicBtn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        basicBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, for: UIControlState())
+        basicBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController_New.btnClicked(_:)), for: .touchUpInside)
         btnArray.append(basicBtn)
         btnView.addSubview(basicBtn)
         
         progressBtn = UIButton(frame: CGRect(x: width+20, y: 7, width: width, height: 31))
-        progressBtn.setTitle("推进情况", forState: .Normal)
-        progressBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
-        progressBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
+        progressBtn.setTitle("推进情况", for: UIControlState())
+        progressBtn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        progressBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, for: UIControlState())
         btnView.addSubview(progressBtn)
         btnArray.append(progressBtn)
-        progressBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController_New.btnClicked(_:)), forControlEvents: .TouchUpInside)
+        progressBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController_New.btnClicked(_:)), for: .touchUpInside)
         
 //        problemBtn = UIButton(frame: CGRect(x: width*2+30, y: 7, width: width, height: 31))
 //        problemBtn.setTitle("存在问题", forState: .Normal)
@@ -115,12 +115,12 @@ class ProjectWorkDetailViewController_New: BasePortraitViewController {
 //        problemBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController_New.btnClicked(_:)), forControlEvents: .TouchUpInside)
         
         requireBtn = UIButton(frame: CGRect(x: width*2+30, y: 7, width: width, height: 31))
-        requireBtn.setTitle("下步打算", forState: .Normal)
-        requireBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
-        requireBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
+        requireBtn.setTitle("下步打算", for: UIControlState())
+        requireBtn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        requireBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, for: UIControlState())
         btnView.addSubview(requireBtn)
         btnArray.append(requireBtn)
-        requireBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController_New.btnClicked(_:)), forControlEvents: .TouchUpInside)
+        requireBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController_New.btnClicked(_:)), for: .touchUpInside)
         
         contentView = UIView(frame: CGRect(x: 0, y: 105, width: GetSWidth(), height: GetSHeight()-105-64))
         scrollView.addSubview(contentView)
@@ -134,18 +134,18 @@ class ProjectWorkDetailViewController_New: BasePortraitViewController {
         projectNextView = ProjectNextView(frame: contentView.bounds)
         contentView.addSubview(projectNextView)
         
-        contentView.bringSubviewToFront(projectBasicView)
+        contentView.bringSubview(toFront: projectBasicView)
         
         sourceLabel = UILabel(frame: CGRect(x: 10, y: -100, width: scrollView.frame.width/2-10, height: 20))
         sourceLabel.text = "来源:"
-        sourceLabel.font = UIFont.systemFontOfSize(12)
+        sourceLabel.font = UIFont.systemFont(ofSize: 12)
         sourceLabel.textColor = ThemeManager.current().darkGrayFontColor
         scrollView.addSubview(sourceLabel)
         
         timeLabel = UILabel(frame: CGRect(x: scrollView.frame.width/2, y: -100, width: scrollView.frame.width/2-10, height: 20))
         timeLabel.text = ""
-        timeLabel.font = UIFont.systemFontOfSize(12)
-        timeLabel.textAlignment = .Right
+        timeLabel.font = UIFont.systemFont(ofSize: 12)
+        timeLabel.textAlignment = .right
         timeLabel.textColor = ThemeManager.current().darkGrayFontColor
         scrollView.addSubview(timeLabel)
         
@@ -156,13 +156,13 @@ class ProjectWorkDetailViewController_New: BasePortraitViewController {
             btn.layer.cornerRadius = btn.frame.height/2;
             btn.layer.masksToBounds = true
             btn.backgroundColor = ThemeManager.current().foregroundColor
-            btn.setTitleColor(ThemeManager.current().grayFontColor, forState: .Normal)
+            btn.setTitleColor(ThemeManager.current().grayFontColor, for: UIControlState())
         }
         
         self.btnClicked(basicBtn)
         
         if UserInfo.sharedInstance.adviceEnabled() && !hiddenItem{
-            let assignItem = UIBarButtonItem(title: "批示", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ProjectWorkDetailViewController_New.assignBtnClicked))
+            let assignItem = UIBarButtonItem(title: "批示", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ProjectWorkDetailViewController_New.assignBtnClicked))
             self.navigationItem.rightBarButtonItem = assignItem
         }
         
@@ -175,37 +175,37 @@ class ProjectWorkDetailViewController_New: BasePortraitViewController {
             return
         }
         
-        let list = ApproveListViewController()
+        let list = PublishApproveViewController()
         list.id = dataSource?.id
         list.type = "1"
         self.navigationController?.pushViewController(list, animated: true)
     }
     
-    func btnClicked(btn:UIButton)
+    func btnClicked(_ btn:UIButton)
     {
         for b in btnArray {
             if btn.isEqual(b)
             {
                 b.backgroundColor = ThemeManager.current().mainColor
-                b.setTitleColor(ThemeManager.current().whiteFontColor, forState: .Normal)
+                b.setTitleColor(ThemeManager.current().whiteFontColor, for: UIControlState())
             }else{
                 b.backgroundColor = ThemeManager.current().foregroundColor
-                b.setTitleColor(ThemeManager.current().grayFontColor, forState: .Normal)
+                b.setTitleColor(ThemeManager.current().grayFontColor, for: UIControlState())
             }
         }
         if dataSource == nil {
             return
         }
         
-        let index = btnArray.indexOf(btn)
+        let index = btnArray.index(of: btn)
         if index == 0 {
-            contentView.bringSubviewToFront(projectBasicView)
+            contentView.bringSubview(toFront: projectBasicView)
         }else if index == 1
         {
-            contentView.bringSubviewToFront(projectTimeView)
+            contentView.bringSubview(toFront: projectTimeView)
         }else if index == 2
         {
-            contentView.bringSubviewToFront(projectNextView)
+            contentView.bringSubview(toFront: projectNextView)
         }else if index == 3
         {
             
@@ -226,7 +226,7 @@ class ProjectWorkDetailViewController_New: BasePortraitViewController {
         }
     }
     
-    func update(data:ProjectWorkDetail?)
+    func update(_ data:ProjectWorkDetail?)
     {
         if data == nil
         {
@@ -248,7 +248,7 @@ class ProjectWorkDetailViewController_New: BasePortraitViewController {
         if dataSource?.progress != nil {
             let num = Float(dataSource!.progress!)
             progressLabel.text = "已完成：\(num!)%"
-            UIView.animateWithDuration(1, animations: {
+            UIView.animate(withDuration: 1, animations: {
                 self.progressView.frame = CGRect(x: 0, y: 0, width: self.progressBgView.frame.width*CGFloat(num!/100), height: self.progressView.frame.height)
             })
             

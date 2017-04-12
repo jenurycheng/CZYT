@@ -10,7 +10,7 @@ import UIKit
 
 extension NSMutableAttributedString
 {
-    func appendAttributeString(string:String, color:UIColor, font:UIFont, lineSpacing:CGFloat? = nil)
+    func appendAttributeString(_ string:String, color:UIColor, font:UIFont, lineSpacing:CGFloat? = nil)
     {
         let newString = NSMutableAttributedString(string: string)
         let newLength = string.characters.count
@@ -24,7 +24,7 @@ extension NSMutableAttributedString
             newString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, newString.length))
         }
         
-        self.appendAttributedString(newString)
+        self.append(newString)
         
         
     }

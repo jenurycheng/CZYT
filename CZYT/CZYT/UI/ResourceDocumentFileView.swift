@@ -48,8 +48,8 @@ class ResourceDocumentFileView: UIView {
         {
             if noDataView == nil
             {
-                noDataView = NoDataView(frame: CGRectMake(0, -64, self.frame.size.width, self.frame.size.height+64), imageName: "data_error", hintText: "没有发现文档")
-                noDataView?.backgroundColor = UIColor.whiteColor()
+                noDataView = NoDataView(frame: CGRect(x: 0, y: -64, width: self.frame.size.width, height: self.frame.size.height+64), imageName: "data_error", hintText: "没有发现文档")
+                noDataView?.backgroundColor = UIColor.white
             }
             self.addSubview(noDataView!)
             
@@ -69,44 +69,44 @@ class ResourceDocumentFileView: UIView {
         tableView = UITableView(frame: self.bounds)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
         self.addSubview(tableView)
     }
 }
 
 extension ResourceDocumentFileView : UITableViewDelegate, UITableViewDataSource
 {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return dataSource.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource[section].files!.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         ResourceDocumentFileView.selectedPath = dataSource[indexPath.section].files![indexPath.row].path
-        let nav = UIApplication.sharedApplication().keyWindow?.rootViewController as? UINavigationController
-        nav?.popViewControllerAnimated(true)
+        let nav = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController
+        nav?.popViewController(animated: true)
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return dataSource[section].typeName
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: nil)
-        cell.textLabel?.font = UIFont.systemFontOfSize(14)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: nil)
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
         cell.textLabel?.textColor = ThemeManager.current().darkGrayFontColor
-        cell.detailTextLabel?.font = UIFont.systemFontOfSize(13)
+        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 13)
         cell.detailTextLabel?.textColor = ThemeManager.current().grayFontColor
         let f = dataSource[indexPath.section].files![indexPath.row]
         cell.textLabel?.text = f.name
@@ -123,22 +123,22 @@ extension ResourceDocumentFileView : UITableViewDelegate, UITableViewDataSource
         return cell
     }
     
-    func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return "删除"
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let file = dataSource[indexPath.section].files![indexPath.row]
-        let h = MBProgressHUD.showMessag("删除中", toView: self)
-        dispatch_async(dispatch_get_global_queue(0, 0)) { 
+        let h = MBProgressHUD.showMessag("删除中", to: self)
+        DispatchQueue.global().async {
             do{
-                try NSFileManager.defaultManager().removeItemAtPath(file.path!)
+                try FileManager.default.removeItem(atPath: file.path!)
                 
             }catch{
                 
             }
-            dispatch_async(dispatch_get_main_queue(), { 
-                h.hide(true)
+            DispatchQueue.main.async(execute: { 
+                h?.hide(true)
                 self.reloadData()
             })
             

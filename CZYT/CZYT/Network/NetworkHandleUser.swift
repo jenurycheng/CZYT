@@ -19,76 +19,76 @@ extension NetWorkHandle {
         static var Address_UpdatePushToken = "DeviceToken"
         static var Address_UpdateUserPhoto = "UpdateUserPhoto"
         
-        class RequestUserValidCode : Reflect
+        class RequestUserValidCode : EVObject
         {
             var mobile:String?
         }
-        class func getValidCode(request:RequestUserValidCode?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetValidCode, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getValidCode(_ request:RequestUserValidCode?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetValidCode, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestUserLogin : Reflect
+        class RequestUserLogin : EVObject
         {
             var mobile:String?
             var validcode:String?
         }
         
-        class func login(request:RequestUserLogin?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_Login, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func login(_ request:RequestUserLogin?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_Login, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestGetToken : Reflect
+        class RequestGetToken : EVObject
         {
             
         }
         
-        class func getToken(request:RequestGetToken?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetToken, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getToken(_ request:RequestGetToken?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetToken, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestGetDepartmentList : Reflect
+        class RequestGetDepartmentList : EVObject
         {
             
         }
-        class func getDepartmentList(request:RequestGetDepartmentList?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetDepartmentList, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getDepartmentList(_ request:RequestGetDepartmentList?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetDepartmentList, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestGetContactList : Reflect
+        class RequestGetContactList : EVObject
         {
             var dept_id:String?
         }
         
-        class func getContactList(request:RequestGetContactList?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetContactList, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getContactList(_ request:RequestGetContactList?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetContactList, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestGetUserDetail : Reflect
+        class RequestGetUserDetail : EVObject
         {
             var id:String?
         }
         
-        class func getUserDetail(request:RequestGetUserDetail?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_GetUserDetail, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func getUserDetail(_ request:RequestGetUserDetail?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_GetUserDetail, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestUpdatePushToken : Reflect
+        class RequestUpdatePushToken : EVObject
         {
             var device_token_type:String = "IOS"
             var device_token:String?
         }
         
-        class func updatePushToken(request:RequestUpdatePushToken?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_UpdatePushToken, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func updatePushToken(_ request:RequestUpdatePushToken?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_UpdatePushToken, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
         
-        class RequestUpdateUserPhoto : Reflect
+        class RequestUpdateUserPhoto : EVObject
         {
             var photo_suffix:String?
             var photo_content:String?
         }
-        class func updateUserPhoto(request:RequestUpdateUserPhoto?, finish:((HttpResponseData)->Void)) {
-            NetWorkHandle.PublicNetWorkAccess(Address_UpdateUserPhoto, accessType: HttpRequestType.POST, param: request?.toDict(), complete: finish, useCache: false)
+        class func updateUserPhoto(_ request:RequestUpdateUserPhoto?, finish:@escaping ((HttpResponseData)->Void)) {
+            NetWorkHandle.PublicNetWorkAccess(Address_UpdateUserPhoto, accessType: HttpRequestType.POST, param: request?.toDictionary(), complete: finish, useCache: false)
         }
     }
 }

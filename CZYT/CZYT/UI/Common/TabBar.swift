@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TabBarDelegate : NSObjectProtocol {
-    func tabBarClickedIndex(tabBar:TabBar, index:Int)
+    func tabBarClickedIndex(_ tabBar:TabBar, index:Int)
 }
 
 class TabBar: UIView {
@@ -38,34 +38,34 @@ class TabBar: UIView {
         let width = self.frame.size.width / 4
         let height = self.frame.size.height
         
-        mainBtn = TabBarButton(frame: CGRectMake(0, 0, width, height), text: "首页", icon: "home_main", selectedIcon: "home_main_h")
-        doneBtn = TabBarButton(frame: CGRectMake(width * 1, 0, width, height), text: "督办", icon: "home_done", selectedIcon: "home_done_h")
-        chatBtn = TabBarButton(frame: CGRectMake(width * 2, 0, width, height), text: "会话", icon: "home_chat", selectedIcon: "home_chat_h")
-        userBtn = TabBarButton(frame: CGRectMake(width * 3, 0, width, height), text: "我的", icon: "home_user", selectedIcon: "home_user_h")
+        mainBtn = TabBarButton(frame: CGRect(x: 0, y: 0, width: width, height: height), text: "首页", icon: "home_main", selectedIcon: "home_main_h")
+        doneBtn = TabBarButton(frame: CGRect(x: width * 1, y: 0, width: width, height: height), text: "督办", icon: "home_done", selectedIcon: "home_done_h")
+        chatBtn = TabBarButton(frame: CGRect(x: width * 2, y: 0, width: width, height: height), text: "会话", icon: "home_chat", selectedIcon: "home_chat_h")
+        userBtn = TabBarButton(frame: CGRect(x: width * 3, y: 0, width: width, height: height), text: "我的", icon: "home_user", selectedIcon: "home_user_h")
         
         mainBtn.tag = 0
         doneBtn.tag = 1
         chatBtn.tag = 2
         userBtn.tag = 3
         
-        mainBtn.addTarget(self, action: #selector(TabBar.btnClicked(_:)), forControlEvents: .TouchUpInside)
-        doneBtn.addTarget(self, action: #selector(TabBar.btnClicked(_:)), forControlEvents: .TouchUpInside)
-        chatBtn.addTarget(self, action: #selector(TabBar.btnClicked(_:)), forControlEvents: .TouchUpInside)
-        userBtn.addTarget(self, action: #selector(TabBar.btnClicked(_:)), forControlEvents: .TouchUpInside)
+        mainBtn.addTarget(self, action: #selector(TabBar.btnClicked(_:)), for: .touchUpInside)
+        doneBtn.addTarget(self, action: #selector(TabBar.btnClicked(_:)), for: .touchUpInside)
+        chatBtn.addTarget(self, action: #selector(TabBar.btnClicked(_:)), for: .touchUpInside)
+        userBtn.addTarget(self, action: #selector(TabBar.btnClicked(_:)), for: .touchUpInside)
      
         self.addSubview(mainBtn)
         self.addSubview(doneBtn)
         self.addSubview(chatBtn)
         self.addSubview(userBtn)
         
-        let topline = UIView(frame: CGRectMake(0, 0, self.frame.size.width, 1))
+        let topline = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: 1))
         topline.backgroundColor = ThemeManager.current().backgroundColor
         self.addSubview(topline)
         
         self.selectedBtn(mainBtn)
     }
     
-    func btnClicked(btn:TabBarButton)
+    func btnClicked(_ btn:TabBarButton)
     {
         let tag = btn.tag
         if delegate != nil {
@@ -74,7 +74,7 @@ class TabBar: UIView {
         self.selectedBtn(btn)
     }
     
-    func selectedBtn(btn:TabBarButton)
+    func selectedBtn(_ btn:TabBarButton)
     {
         if selectedBtn != nil{
             selectedBtn?.nameLabel.textColor = ThemeManager.current().grayFontColor
@@ -119,16 +119,16 @@ class TabBarButton : UIButton
     
     func initButton()
     {
-        iconImageView = UIImageView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height-20))
-        iconImageView.contentMode = .Center
+        iconImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height-20))
+        iconImageView.contentMode = .center
         iconImageView.image = UIImage(named: icon!)
         self.addSubview(iconImageView)
         
-        nameLabel = UILabel(frame: CGRectMake(0, self.frame.size.height - 20, self.frame.size.width, 20))
-        nameLabel.textAlignment = NSTextAlignment.Center
+        nameLabel = UILabel(frame: CGRect(x: 0, y: self.frame.size.height - 20, width: self.frame.size.width, height: 20))
+        nameLabel.textAlignment = NSTextAlignment.center
         nameLabel.textColor = ThemeManager.current().darkGrayFontColor
         nameLabel.text = text
-        nameLabel.font = UIFont.systemFontOfSize(14)
+        nameLabel.font = UIFont.systemFont(ofSize: 14)
         self.addSubview(nameLabel)
     }
 }

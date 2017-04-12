@@ -65,56 +65,57 @@ class NetWorkHandle: NSObject {
         var data:NSDictionary?
     }
     
-    class func getParam(p:[String:AnyObject]?)->NSMutableDictionary
+    class func getParam(_ p:[String:AnyObject]?)->NSMutableDictionary
     {
         let param = NSMutableDictionary()
         
         var user = [String:AnyObject]()
-        user["account"] = UserInfo.sharedInstance.id
-        user["session"] = UserInfo.sharedInstance.session
+        user["account"] = UserInfo.sharedInstance.id as AnyObject
+        user["session"] = UserInfo.sharedInstance.session as AnyObject
         
-        param.setObject(user, forKey: "user")
+        param.setObject(user, forKey: "user" as NSCopying)
         
         if p != nil
         {
-            param.setObject(p!, forKey: "data")
+            param.setObject(p!, forKey: "data" as NSCopying)
         }
         
         var paramString = Helper.resultToJsonString(param)
-        paramString = paramString.replacingOccurrencesOfString("\\n", withString: "\n")
-        let resultDic = NSMutableDictionary(object: paramString, forKey: "req")
+        paramString = paramString.replacingOccurrences(of: "\\n", with: "\n")
+        let resultDic = NSMutableDictionary(object: paramString, forKey: "req" as NSCopying)
         
         return resultDic
     }
     
-    class func getParamString(param:NSMutableDictionary?)->String
+    class func getParamString(_ param:NSMutableDictionary?)->String
     {
         var paramString = ""
         if param != nil
         {
             for key in param!.allKeys
             {
-                if key.isEqual(param!.allKeys.last)
+                if (key as AnyObject).isEqual(param!.allKeys.last)
                 {
-                    paramString += "\(key)=\(param!.objectForKey(key)!)"
+                    paramString += "\(key)=\(param!.object(forKey: key)!)"
                 }else{
-                    paramString += "\(key)=\(param!.objectForKey(key)!)&"
+                    paramString += "\(key)=\(param!.object(forKey: key)!)&"
                 }
             }
         }
         return paramString
     }
     
-    class func PublicNetWorkAccess(url:String,accessType:HttpRequestType,param:[String:AnyObject]?,complete:((HttpResponseData)->Void), useCache:Bool = false){
+    class func PublicNetWorkAccess(_ url:String,accessType:HttpRequestType,param:NSDictionary?,complete:@escaping ((HttpResponseData)->Void), useCache:Bool = false){
         
-        func parseSuccess(data:AnyObject)
+        func parseSuccess(_ data:AnyObject)
         {
             var dic:[String : AnyObject]? = nil
-            if data.isKindOfClass(NSData) {
-                dic = try! NSJSONSerialization.JSONObjectWithData(data as! NSData, options: NSJSONReadingOptions.MutableContainers) as? [String : AnyObject]
-            }else{
+            
+//            if data.isKind(of: ) {
+//                dic = try! JSONSerialization.jsonObject(with: data as! Data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String : AnyObject]
+//            }else{
                 dic = data as? [String : AnyObject]
-            }
+//            }
             print(Helper.resultToJsonString(dic))
             var statusDic = dic![HttpResponseData.KEY_STATUS] as? [String : AnyObject]
             var code = statusDic![HttpResponseData.KEY_CODE] as? String
@@ -134,19 +135,19 @@ class NetWorkHandle: NSObject {
             complete(HttpResponseData(code: code, msg: msg, data: data))
         }
         
-        func parseFailure(operation:NSURLSessionDataTask?, error:NSError)
+        func parseFailure(_ operation:URLSessionDataTask?, error:NSError)
         {
             CCPrint(error)
             complete(HttpResponseData(code: HttpResponseData.CODE_SERVER_ERROR, msg: "服务器错误", data: nil))
         }
         
         if useCache {
-            let data = NetWorkCache.getTodayCache(url, param: param)
+            let data = NetWorkCache.getTodayCache(url, param: param as? [String : AnyObject])
             if data != nil {
                 CCPrint("有效当天缓存")
                 //延迟0.3s，避免界面未生成
-                DispatchAfter(0.3, queue: dispatch_get_main_queue(), block: {
-                    parseSuccess(data!)
+                DispatchAfter(0.3, queue: DispatchQueue.main, block: {
+                    parseSuccess(data! as AnyObject)
                 })
                 
                 return
@@ -157,16 +158,16 @@ class NetWorkHandle: NSObject {
         {
             if useCache
             {
-                let data = NetWorkCache.getCache(url, param: param)
+                let data = NetWorkCache.getCache(url, param: param as? [String : AnyObject])
                 if data != nil {
                     CCPrint("有效历史缓存")
-                    DispatchAfter(0.3, queue: dispatch_get_main_queue(), block: {
-                        parseSuccess(data!)
+                    DispatchAfter(0.3, queue: DispatchQueue.main, block: {
+                        parseSuccess(data! as AnyObject)
                     })
                     return
                 }
             }
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 0.5)), dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(Double(NSEC_PER_SEC) * 0.5)) / Double(NSEC_PER_SEC), execute: { () -> Void in
                 complete(HttpResponseData(code: HttpResponseData.CODE_NETWORK_ERROR, msg: "网络异常", data: nil))
             })
             return
@@ -175,7 +176,7 @@ class NetWorkHandle: NSObject {
         let manager:AFHTTPSessionManager = AFHTTPSessionManager.managerSwift() as! AFHTTPSessionManager
         manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
         
-        let paramDic:NSMutableDictionary? = self.getParam(param)
+        let paramDic:NSMutableDictionary? = self.getParam(param as? [String : AnyObject])
         
 //        let paramString = self.getParamString(paramDic)
         
@@ -183,41 +184,41 @@ class NetWorkHandle: NSObject {
         
         switch accessType{
         case HttpRequestType.POST:
-            manager.POST(ServerAddress + url, parameters: paramDic, progress: { (progress) in
+            manager.post(ServerAddress + url, parameters: paramDic, progress: { (progress) in
                 
                 }, success: { (task, result) in
-                    parseSuccess(result!)
+                    parseSuccess(result! as AnyObject)
                     if useCache
                     {
-                        let data = try? NSJSONSerialization.dataWithJSONObject(result!, options: .PrettyPrinted)
+                        let data = try? JSONSerialization.data(withJSONObject: result!, options: .prettyPrinted)
                         if data != nil
                         {
                             //保存历史缓存
-                            NetWorkCache.addCache(url, param: param, data: data)
+                            NetWorkCache.addCache(url, param: param as? [String : AnyObject], data: data)
                             //保存当天缓存
-                            NetWorkCache.addTodayCache(url, param: param, data: data)
+                            NetWorkCache.addTodayCache(url, param: param as? [String : AnyObject], data: data)
                         }
                     }
                 }, failure: { (task, error) in
                     parseFailure(task, error: error)
-            })
+            } as? (URLSessionDataTask?, Error) -> Void)
         case HttpRequestType.GET:
-            manager.GET(ServerAddress + url, parameters: paramDic, progress: { (progress) in
+            manager.get(ServerAddress + url, parameters: paramDic, progress: { (progress) in
                 
                 }, success: { (task, result) in
-                    parseSuccess(result!)
+                    parseSuccess(result! as AnyObject)
                     
-                    let data = try? NSJSONSerialization.dataWithJSONObject(result!, options: .PrettyPrinted)
+                    let data = try? JSONSerialization.data(withJSONObject: result!, options: .prettyPrinted)
                     if data != nil
                     {
                         //保存历史缓存
-                        NetWorkCache.addCache(url, param: param, data: data)
+                        NetWorkCache.addCache(url, param: param as? [String : AnyObject], data: data)
                         //保存当天缓存
-                        NetWorkCache.addTodayCache(url, param: param, data: data)
+                        NetWorkCache.addTodayCache(url, param: param as? [String : AnyObject], data: data)
                     }
                 }, failure: { (task, error) in
                     parseFailure(task, error: error)
-            })
+            } as? (URLSessionDataTask?, Error) -> Void)
         }
     }
 }

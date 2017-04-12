@@ -9,9 +9,33 @@
 import UIKit
 import Foundation
 import SystemConfiguration.CaptiveNetwork
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
 
-let screen_width = UIScreen.mainScreen().bounds.size.width
-let screen_height = UIScreen.mainScreen().bounds.size.height
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
+
+let screen_width = UIScreen.main.bounds.size.width
+let screen_height = UIScreen.main.bounds.size.height
 let max_length = max(screen_width, screen_height)
 
 var IS_IPHONE_4:Bool = (max_length == 480.0)
@@ -31,25 +55,25 @@ class hotElementInfo{
 
 class Helper: NSObject {
 
-    class func scaleLogic(origion:CGFloat)->CGFloat
+    class func scaleLogic(_ origion:CGFloat)->CGFloat
     {
         return origion/SIZE_SCALE
     }
     
-    class func scale(origion:CGFloat)->CGFloat
+    class func scale(_ origion:CGFloat)->CGFloat
     {
         return origion/SIZE_SCALE/2
     }
     
-    class func getTextSize(text:String, font:UIFont, size:CGSize)->CGSize
+    class func getTextSize(_ text:String, font:UIFont, size:CGSize)->CGSize
     {
         let attributes = [NSFontAttributeName: font]
-        let option = NSStringDrawingOptions.UsesLineFragmentOrigin
-        let rect:CGRect = text.boundingRectWithSize(size, options: option, attributes: attributes, context: nil)
+        let option = NSStringDrawingOptions.usesLineFragmentOrigin
+        let rect:CGRect = text.boundingRect(with: size, options: option, attributes: attributes, context: nil)
         return rect.size;
     }
     
-    class func parseColor(color:Int64)->UIColor{
+    class func parseColor(_ color:Int64)->UIColor{
         let r = (color&0xFF000000) >> 24
         let g = (color&0x00FF0000) >> 16
         let b = (color&0x0000FF00) >> 8
@@ -69,7 +93,7 @@ class Helper: NSObject {
         return UIColor(red: r, green: g, blue: b, alpha: 1)
     }
     
-    static func isStringEmpty(string:String?)->Bool
+    static func isStringEmpty(_ string:String?)->Bool
     {
         if string == nil || string?.characters.count == 0
         {
@@ -84,10 +108,10 @@ class Helper: NSObject {
         return manager!.isReachable
     }
 
-    static func imageToBase64(image:UIImage)->String
+    static func imageToBase64(_ image:UIImage)->String
     {
-        let imageData:NSData = UIImageJPEGRepresentation(image, 0.7)!
-        return imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithCarriageReturn)
+        let imageData:Data = UIImageJPEGRepresentation(image, 0.7)!
+        return imageData.base64EncodedString(options: NSData.Base64EncodingOptions.endLineWithCarriageReturn)
     }
     
     class func getSSID()->String
@@ -120,105 +144,105 @@ class Helper: NSObject {
         return ""
     }
     
-    static func getIPAddresses() -> String? {
-        var addresses = [String]()
-        
-        // Get list of all interfaces on the local machine:
-        var ifaddr : UnsafeMutablePointer<ifaddrs> = nil
-        if getifaddrs(&ifaddr) == 0 {
-            
-            // For each interface ...
-            var ptr = ifaddr
-            while ptr != nil {
-                defer { ptr = ptr.memory.ifa_next }
-                
-                let flags = Int32(ptr.memory.ifa_flags)
-                var addr = ptr.memory.ifa_addr.memory
-                
-                // Check for running IPv4, IPv6 interfaces. Skip the loopback interface.
-                if (flags & (IFF_UP|IFF_RUNNING|IFF_LOOPBACK)) == (IFF_UP|IFF_RUNNING) {
-                    if addr.sa_family == UInt8(AF_INET) || addr.sa_family == UInt8(AF_INET6) {
-                        
-                        // Convert interface address to a human readable string:
-                        var hostname = [CChar](count: Int(NI_MAXHOST), repeatedValue: 0)
-                        if (getnameinfo(&addr, socklen_t(addr.sa_len), &hostname, socklen_t(hostname.count),
-                            nil, socklen_t(0), NI_NUMERICHOST) == 0) {
-                            if let address = String.fromCString(hostname) {
-                                addresses.append(address)
-                            }
-                        }
-                    }
-                }
-            }
-            freeifaddrs(ifaddr)
-        }
-        
-        return addresses.count > 0 ? addresses[0] : nil
-        
-    }
+//    static func getIPAddresses() -> String? {
+//        var addresses = [String]()
+//        
+//        // Get list of all interfaces on the local machine:
+//        var ifaddr : UnsafeMutablePointer<ifaddrs>? = nil
+//        if getifaddrs(&ifaddr) == 0 {
+//            
+//            // For each interface ...
+//            var ptr = ifaddr
+//            while ptr != nil {
+//                defer { ptr = ptr?.pointee.ifa_next }
+//                
+//                let flags = Int32(ptr?.pointee.ifa_flags)
+//                var addr = ptr?.pointee.ifa_addr.pointee
+//                
+//                // Check for running IPv4, IPv6 interfaces. Skip the loopback interface.
+//                if (flags & (IFF_UP|IFF_RUNNING|IFF_LOOPBACK)) == (IFF_UP|IFF_RUNNING) {
+//                    if addr.sa_family == UInt8(AF_INET) || addr.sa_family == UInt8(AF_INET6) {
+//                        
+//                        // Convert interface address to a human readable string:
+//                        var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+//                        if (getnameinfo(&addr, socklen_t(addr.sa_len), &hostname, socklen_t(hostname.count),
+//                            nil, socklen_t(0), NI_NUMERICHOST) == 0) {
+//                            if let address = String(validatingUTF8: hostname) {
+//                                addresses.append(address)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            freeifaddrs(ifaddr)
+//        }
+//        
+//        return addresses.count > 0 ? addresses[0] : nil
+//        
+//    }
     
-    static func getLocalIpAddress()->String?
-    {
-        var localIp:String? = nil
-        var addrs:UnsafeMutablePointer<ifaddrs> = nil
-        if getifaddrs(&addrs) == 0
-        {
-            var cursor = addrs
-            while cursor != nil {
-                if cursor.memory.ifa_addr.memory.sa_family == UInt8(AF_INET) && (Int32(cursor.memory.ifa_flags)&IFF_LOOPBACK) == 0{
-                    let addrin:UnsafeMutablePointer<sockaddr_in> = UnsafeMutablePointer<sockaddr_in>(cursor.memory.ifa_addr)
-                    localIp = String(UTF8String: inet_ntoa(addrin.memory.sin_addr))
-//                    break
-                }
-                cursor = cursor.memory.ifa_next
-            }
-            freeifaddrs(addrs)
-        }
-        return localIp
-    }
+//    static func getLocalIpAddress()->String?
+//    {
+//        var localIp:String? = nil
+//        var addrs:UnsafeMutablePointer<ifaddrs>? = nil
+//        if getifaddrs(&addrs) == 0
+//        {
+//            var cursor = addrs
+//            while cursor != nil {
+//                if cursor?.pointee.ifa_addr.pointee.sa_family == UInt8(AF_INET) && (Int32(cursor.pointee.ifa_flags)&IFF_LOOPBACK) == 0{
+//                    let addrin:UnsafeMutablePointer<sockaddr_in> = UnsafeMutablePointer<sockaddr_in>(cursor!.pointee.ifa_addr)
+//                    localIp = String(validatingUTF8: inet_ntoa(addrin.pointee.sin_addr))
+////                    break
+//                }
+//                cursor = cursor?.pointee.ifa_next
+//            }
+//            freeifaddrs(addrs)
+//        }
+//        return localIp
+//    }
+//    
+//    static func getOuterIpAddress()->String?
+//    {
+//        let host = CFHostCreateWithName(nil,"www.baidu.com" as CFString).takeRetainedValue()
+//        CFHostStartInfoResolution(host, .addresses, nil)
+//        var success: DarwinBoolean = false
+//        if let addresses = CFHostGetAddressing(host, &success)?.takeUnretainedValue() as NSArray?,
+//            let theAddress = addresses.firstObject as? Data {
+//            var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+//            if getnameinfo((theAddress as NSData).bytes.bindMemory(to: sockaddr.self, capacity: theAddress.count), socklen_t(theAddress.count),
+//                           &hostname, socklen_t(hostname.count), nil, 0, NI_NUMERICHOST) == 0 {
+//                if let numAddress = String(validatingUTF8: hostname) {
+//                    print(numAddress)
+//                    return numAddress
+//                }
+//            }
+//        }
+//        return nil
+//    }
     
-    static func getOuterIpAddress()->String?
+    static func formatDate(_ date:Date, format:String)->String
     {
-        let host = CFHostCreateWithName(nil,"www.baidu.com").takeRetainedValue()
-        CFHostStartInfoResolution(host, .Addresses, nil)
-        var success: DarwinBoolean = false
-        if let addresses = CFHostGetAddressing(host, &success)?.takeUnretainedValue() as NSArray?,
-            let theAddress = addresses.firstObject as? NSData {
-            var hostname = [CChar](count: Int(NI_MAXHOST), repeatedValue: 0)
-            if getnameinfo(UnsafePointer(theAddress.bytes), socklen_t(theAddress.length),
-                           &hostname, socklen_t(hostname.count), nil, 0, NI_NUMERICHOST) == 0 {
-                if let numAddress = String.fromCString(hostname) {
-                    print(numAddress)
-                    return numAddress
-                }
-            }
-        }
-        return nil
-    }
-    
-    static func formatDate(date:NSDate, format:String)->String
-    {
-        let f = NSDateFormatter()
+        let f = DateFormatter()
         f.dateFormat = format
-        return f.stringFromDate(date)
+        return f.string(from: date)
     }
     
-    static func formatDateString(dateString:String, fromFormat:String, toFormat:String)->String
+    static func formatDateString(_ dateString:String, fromFormat:String, toFormat:String)->String
     {
         
-        let f = NSDateFormatter()
+        let f = DateFormatter()
         f.dateFormat = fromFormat
-        let date = f.dateFromString(dateString)
+        let date = f.date(from: dateString)
         f.dateFormat = toFormat
         if date != nil
         {
-            return f.stringFromDate(date!)
+            return f.string(from: date!)
         }else{
             return ""
         }
     }
     
-    static func resizeImage(image:UIImage, toSize:CGSize)->UIImage
+    static func resizeImage(_ image:UIImage, toSize:CGSize)->UIImage
     {
         var size = toSize
         if size.width == 0
@@ -230,45 +254,45 @@ class Helper: NSObject {
             size.height = 10
         }
         UIGraphicsBeginImageContext(size);
-        image.drawInRect(CGRectMake(0, 0, size.width, size.height))
+        image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         return scaledImage!;
     }
     
-    static func gradientImage(frame:CGRect)->UIImage
+    static func gradientImage(_ frame:CGRect)->UIImage
     {
         return Helper.imageWithGradientColors([Helper.randColor(), Helper.randColor()], frame: frame)
     }
     
-    static func imageWithGradientColors(colors:Array<UIColor>, frame:CGRect)->UIImage
+    static func imageWithGradientColors(_ colors:Array<UIColor>, frame:CGRect)->UIImage
     {
         var array:Array<CGColor> = Array<CGColor>()
         for c in colors
         {
-            array.append(c.CGColor)
+            array.append(c.cgColor)
         }
         
         UIGraphicsBeginImageContextWithOptions(frame.size, true, 1)
         let context = UIGraphicsGetCurrentContext()
-        CGContextSaveGState(context!)
-        let colorSpace = CGColorGetColorSpace(array.last!)
-        let gradient = CGGradientCreateWithColors(colorSpace, array, nil)
-        let start = CGPointMake(0, frame.size.height)
-        let end = CGPointMake(frame.size.width, 0)
-        CGContextDrawLinearGradient(context!, gradient!, start, end, [.DrawsBeforeStartLocation, .DrawsAfterEndLocation])
+        context!.saveGState()
+        let colorSpace = array.last!.colorSpace
+        let gradient = CGGradient(colorsSpace: colorSpace, colors: array as CFArray, locations: nil)
+        let start = CGPoint(x: 0, y: frame.size.height)
+        let end = CGPoint(x: frame.size.width, y: 0)
+        context!.drawLinearGradient(gradient!, start: start, end: end, options: [.drawsBeforeStartLocation, .drawsAfterEndLocation])
         let image = UIGraphicsGetImageFromCurrentImageContext()
-        CGContextRestoreGState(context!)
+        context!.restoreGState()
         UIGraphicsEndImageContext()
         
         return image!
     }
 
-    static func imageWithColor(color:UIColor!, size:CGSize, isRetain:Bool = false)->UIImage {
+    static func imageWithColor(_ color:UIColor!, size:CGSize, isRetain:Bool = false)->UIImage {
         
-        let rect:CGRect = CGRectMake(0, 0, size.width, size.height)
+        let rect:CGRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         if isRetain {
-            UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.mainScreen().scale)
+            UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.main.scale)
         }
         else {
             UIGraphicsBeginImageContext(rect.size)
@@ -277,15 +301,15 @@ class Helper: NSObject {
         // UIGraphicsBeginImageContextWithOptions(rect.size, true, UIScreen.mainScreen().scale)
         
         let context = UIGraphicsGetCurrentContext()
-        CGContextSetFillColorWithColor(context!, color.CGColor)
-        CGContextFillRect(context!, rect)
+        context!.setFillColor(color.cgColor)
+        context!.fill(rect)
         let image:UIImage! = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         return image
     }
 
-    static func imageWithLoading(size:CGSize, str:String="Loading") -> UIImage {
+    static func imageWithLoading(_ size:CGSize, str:String="Loading") -> UIImage {
         
 //        let rect = CGRectMake(0, 0, size.width, size.height)
 //        let label:UILabel = UILabel(frame: rect)
@@ -305,7 +329,7 @@ class Helper: NSObject {
 //        UIGraphicsEndImageContext()
 //        return image
         
-        var rect = CGRectMake(0, 0, size.width, size.height)
+        var rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         
         if rect.width == 0
         {
@@ -322,19 +346,19 @@ class Helper: NSObject {
         let imageView = UIImageView(frame: rect)
         imageView.backgroundColor = ThemeManager.current().backgroundColor
 //        imageView.image = Helper.resizeImage(img!, toSize: CGSizeMake(minValue/2, minValue/2 / img!.size.width * img!.size.height))
-        imageView.contentMode = UIViewContentMode.Center
+        imageView.contentMode = UIViewContentMode.center
         
-        UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.mainScreen().scale)
-        imageView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.main.scale)
+        imageView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image:UIImage! = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
         
     }
     
-    static func imageWithString(str:String?, size:CGSize)->UIImage {
+    static func imageWithString(_ str:String?, size:CGSize)->UIImage {
         
-        var rect = CGRectMake(0, 0, size.width, size.height)
+        var rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         if rect.width == 0
         {
             rect.size.width = 10
@@ -346,15 +370,15 @@ class Helper: NSObject {
         let label:UILabel = UILabel(frame: rect)
         label.backgroundColor = Helper.parseColor(0xdbdbdbff)
         label.textColor = Helper.parseColor(0xa0a0a0ff)
-        label.textAlignment = NSTextAlignment.Center
-        label.font = UIFont.systemFontOfSize(size.height/3.9)
+        label.textAlignment = NSTextAlignment.center
+        label.font = UIFont.systemFont(ofSize: size.height/3.9)
         if nil != str && str?.characters.count > 0 {
-            let index = str?.startIndex.advancedBy(1)
-            let showOneChar = str?.substringToIndex(index!)
+            let index = str?.characters.index((str?.startIndex)!, offsetBy: 1)
+            let showOneChar = str?.substring(to: index!)
             label.text = showOneChar
         }
-        UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.mainScreen().scale)
-        label.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.main.scale)
+        label.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image:UIImage! = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
@@ -362,28 +386,28 @@ class Helper: NSObject {
 
     class func getBundleDisplayName() -> String {
         
-        let appName = NSLocalizedString("CFBundleDisplayName", tableName: "InfoPlist", bundle: NSBundle.mainBundle(), value: "", comment: "")
+        let appName = NSLocalizedString("CFBundleDisplayName", tableName: "InfoPlist", bundle: Bundle.main, value: "", comment: "")
         return appName
     }
     
-    class func resultToJsonString(result:Any?)->String
+    class func resultToJsonString(_ result:Any?)->String
     {
-        let data = try? NSJSONSerialization.dataWithJSONObject(result as! AnyObject, options: NSJSONWritingOptions.PrettyPrinted)
-        let string = String(data: data!, encoding: NSUTF8StringEncoding)
+        let data = try? JSONSerialization.data(withJSONObject: result as! AnyObject, options: JSONSerialization.WritingOptions.prettyPrinted)
+        let string = String(data: data!, encoding: String.Encoding.utf8)
         return string!
     }
     
     class func getMD5Code(sourceString string:String)->String{
-        let str = string.cStringUsingEncoding(NSUTF8StringEncoding)
-        let strLen = CUnsignedInt(string.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+        let str = string.cString(using: String.Encoding.utf8)
+        let strLen = CUnsignedInt(string.lengthOfBytes(using: String.Encoding.utf8))
         let digestLen = Int(CC_MD5_DIGEST_LENGTH)
-        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
+        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
         CC_MD5(str!, strLen, result)
         let hash = NSMutableString()
         for i in 0 ..< digestLen {
             hash.appendFormat("%02x", result[i])
         }
-        result.destroy()
+        result.deinitialize()
         return String(format: hash as String)
     }
 }

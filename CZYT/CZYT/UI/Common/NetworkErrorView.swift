@@ -20,7 +20,7 @@ class NetworkErrorView: UIView {
     var hintLabel:UILabel!
     var hintDetailLabel:UILabel!
     
-    init(frame: CGRect, callback:(()->Void), isAutoRemove:Bool = true) {
+    init(frame: CGRect, callback:@escaping (()->Void), isAutoRemove:Bool = true) {
         super.init(frame: frame)
         self.callback = callback
         self.isAutoRemove = isAutoRemove
@@ -35,35 +35,35 @@ class NetworkErrorView: UIView {
         
         self.backgroundColor = ThemeManager.current().backgroundColor
         
-        let centerView = UIView(frame: CGRectMake(0, 0, self.frame.size.width, Helper.scale(700)))
-        centerView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2)
+        let centerView = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: Helper.scale(700)))
+        centerView.center = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2)
         self.addSubview(centerView)
         
-        imageView = UIImageView(frame: CGRectMake(centerView.frame.size.width/2-Helper.scale(200), 0, Helper.scale(400), Helper.scale(400)))
+        imageView = UIImageView(frame: CGRect(x: centerView.frame.size.width/2-Helper.scale(200), y: 0, width: Helper.scale(400), height: Helper.scale(400)))
         imageView.image = UIImage(named: "wifi_error")
         centerView.addSubview(imageView)
         
-        hintLabel = UILabel(frame: CGRectMake(0, Helper.scale(400), centerView.frame.size.width, 20))
-        hintLabel.textAlignment = NSTextAlignment.Center
+        hintLabel = UILabel(frame: CGRect(x: 0, y: Helper.scale(400), width: centerView.frame.size.width, height: 20))
+        hintLabel.textAlignment = NSTextAlignment.center
         hintLabel.text = "网络未连接"
         hintLabel.textColor = ThemeManager.current().darkGrayFontColor
-        hintLabel.font = UIFont.systemFontOfSize(18)
+        hintLabel.font = UIFont.systemFont(ofSize: 18)
         centerView.addSubview(hintLabel)
         
-        hintDetailLabel = UILabel(frame: CGRectMake(0, Helper.scale(400) + 20, centerView.frame.size.width, 50))
-        hintDetailLabel.textAlignment = NSTextAlignment.Center
+        hintDetailLabel = UILabel(frame: CGRect(x: 0, y: Helper.scale(400) + 20, width: centerView.frame.size.width, height: 50))
+        hintDetailLabel.textAlignment = NSTextAlignment.center
         hintDetailLabel.textColor = ThemeManager.current().grayFontColor
         hintDetailLabel.text = "请检查网络连接, 再点击屏幕刷新"
         hintDetailLabel.numberOfLines = 2
-        hintDetailLabel.font = UIFont.systemFontOfSize(13)
+        hintDetailLabel.font = UIFont.systemFont(ofSize: 13)
         centerView.addSubview(hintDetailLabel)
         
         retryBtn = UIButton(frame: self.bounds)
         self.addSubview(retryBtn)
-        retryBtn.addTarget(self, action: #selector(NetworkErrorView.retryBtnClicked), forControlEvents: UIControlEvents.TouchUpInside)
+        retryBtn.addTarget(self, action: #selector(NetworkErrorView.retryBtnClicked), for: UIControlEvents.touchUpInside)
     }
     
-    func update(data:HttpResponseData)
+    func update(_ data:HttpResponseData)
     {
         if data.code == HttpResponseData.CODE_SERVER_ERROR {
             imageView.image = UIImage(named: "data_error")
@@ -72,7 +72,7 @@ class NetworkErrorView: UIView {
         }
     }
     
-    class func show(parentView:UIView, data:HttpResponseData, callback:(()->Void))
+    class func show(_ parentView:UIView, data:HttpResponseData, callback:@escaping (()->Void))
     {
         let tag = 0x562
         var view = parentView.viewWithTag(tag) as? NetworkErrorView

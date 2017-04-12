@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BBS: Reflect {
+class BBS: EVObject {
     var comment_count:String?
     var summary:String?
     var id:String?
@@ -29,7 +29,7 @@ class BBS: Reflect {
     }
 }
 
-class BBSDetail : Reflect
+class BBSDetail : EVObject
 {
     var id:String?
     var title:String?
@@ -52,7 +52,7 @@ class BBSDetail : Reflect
     
 }
 
-class BBSComment : Reflect
+class BBSComment : EVObject
 {
     func getContent()->String?
     {

@@ -26,8 +26,8 @@ class BaseSearchViewController: BasePortraitViewController {
         tableView = UITableView(frame: CGRect(x: 0, y: 40, width: GetSWidth(), height: GetSHeight()-64-40))
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.registerNib(UINib(nibName: "LeaderActivityCell", bundle: nil), forCellReuseIdentifier: "LeaderActivityCell")
-        tableView.separatorStyle = .None
+        tableView.register(UINib(nibName: "LeaderActivityCell", bundle: nil), forCellReuseIdentifier: "LeaderActivityCell")
+        tableView.separatorStyle = .none
         self.view.addSubview(tableView)
         unowned let weakSelf = self
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
@@ -59,24 +59,24 @@ class BaseSearchViewController: BasePortraitViewController {
 
 extension BaseSearchViewController : UITableViewDelegate, UITableViewDataSource
 {
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.searchBar.resignFirstResponder()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return LeaderActivityCell.cellHeight(dataSource[indexPath.row])
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("LeaderActivityCell") as! LeaderActivityCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LeaderActivityCell") as! LeaderActivityCell
         cell.update(dataSource[indexPath.row])
         return cell
     }
@@ -84,7 +84,7 @@ extension BaseSearchViewController : UITableViewDelegate, UITableViewDataSource
 
 extension BaseSearchViewController : UISearchBarDelegate
 {
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if searchBar.text != nil
         {
@@ -95,7 +95,7 @@ extension BaseSearchViewController : UISearchBarDelegate
         self.loadData()
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         self.searchText = searchText
         if searchText == ""

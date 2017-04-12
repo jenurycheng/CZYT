@@ -20,16 +20,16 @@ class LaunchAdverScreen: UIView {
     var imageView:UIImageView!
     var closeBtn:UIButton!
     var bottomImageView:UIImageView!
-    var timer:NSTimer?
+    var timer:Timer?
     
     static var single:LaunchAdverScreen?
     
     class func show()
     {
         if single == nil {
-            single = LaunchAdverScreen(frame: UIScreen.mainScreen().bounds)
+            single = LaunchAdverScreen(frame: UIScreen.main.bounds)
         }
-        let w = UIApplication.sharedApplication().delegate?.window
+        let w = UIApplication.shared.delegate?.window
         
         if w != nil
         {
@@ -45,7 +45,7 @@ class LaunchAdverScreen: UIView {
     
     static let showTime = 3
     var count = LaunchAdverScreen.showTime
-    func timeout(t:NSTimer)
+    func timeout(_ t:Timer)
     {
         count = count - 1
         if count == 0
@@ -54,7 +54,7 @@ class LaunchAdverScreen: UIView {
             self.timer = nil
             self.close(true)
         }
-        closeBtn.setTitle("跳过 \(count)", forState: .Normal)
+        closeBtn.setTitle("跳过 \(count)", for: UIControlState())
     }
     
     override init(frame: CGRect) {
@@ -69,22 +69,22 @@ class LaunchAdverScreen: UIView {
     func initView()
     {
         imageView = UIImageView(frame: self.bounds)
-        imageView.contentMode = .ScaleAspectFill
+        imageView.contentMode = .scaleAspectFill
         self.addSubview(imageView)
         
         closeBtn = UIButton(frame: CGRect(x: self.frame.width - 80, y: 20, width: 60, height: 30))
-        closeBtn.setTitle("跳过", forState: .Normal)
-        closeBtn.setTitleColor(ThemeManager.current().whiteFontColor, forState: .Normal)
+        closeBtn.setTitle("跳过", for: UIControlState())
+        closeBtn.setTitleColor(ThemeManager.current().whiteFontColor, for: UIControlState())
         closeBtn.backgroundColor = Helper.parseColor(0x000000A0)
-        closeBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
+        closeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         closeBtn.layer.cornerRadius = 5
         closeBtn.layer.masksToBounds = true
-        closeBtn.addTarget(self, action: #selector(LaunchAdverScreen.close), forControlEvents: .TouchUpInside)
-        closeBtn.hidden = true
+        closeBtn.addTarget(self, action: #selector(LaunchAdverScreen.close), for: .touchUpInside)
+        closeBtn.isHidden = true
 //        self.addSubview(closeBtn)
         
         bottomImageView = UIImageView(frame: CGRect(x: 0, y: self.frame.height - (GetSWidth() / 320 * 71), width: GetSWidth(), height: GetSWidth() / 320 * 71))
-        bottomImageView.hidden = true
+        bottomImageView.isHidden = true
         bottomImageView.image = UIImage(named: "launch_bottom")
         self.addSubview(bottomImageView)
     }
@@ -92,24 +92,24 @@ class LaunchAdverScreen: UIView {
     func loadImage()
     {
         count = LaunchAdverScreen.showTime
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LaunchAdverScreen.timeout(_:)), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(LaunchAdverScreen.timeout(_:)), userInfo: nil, repeats: true)
         
         let imageName = "launch"
         self.imageView.image = UIImage(named: imageName)
     }
     
-    func close(animate:Bool = true)
+    func close(_ animate:Bool = true)
     {
         if animate
         {
-            UIView.animateWithDuration(0.2, animations: {
+            UIView.animate(withDuration: 0.2, animations: {
                 self.alpha = 0
-                self.transform = CGAffineTransformMakeScale(1.1, 1.1)
-            }) { (b) in
+                self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            }, completion: { (b) in
                 self.removeFromSuperview()
                 self.alpha = 1
-                self.transform = CGAffineTransformMakeScale(1.0, 1.0)
-            }
+                self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }) 
         }else{
             self.removeFromSuperview()
         }

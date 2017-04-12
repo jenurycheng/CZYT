@@ -58,8 +58,8 @@ class BaseActivityViewController: BasePortraitViewController {
         }
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.registerNib(UINib(nibName: "LeaderActivityCell", bundle: nil), forCellReuseIdentifier: "LeaderActivityCell")
-        tableView.separatorStyle = .None
+        tableView.register(UINib(nibName: "LeaderActivityCell", bundle: nil), forCellReuseIdentifier: "LeaderActivityCell")
+        tableView.separatorStyle = .none
         self.view.addSubview(tableView)
         unowned let weakSelf = self
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
@@ -71,7 +71,7 @@ class BaseActivityViewController: BasePortraitViewController {
         
         self.loadData()
         
-        let searchItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(BaseActivityViewController.search))
+        let searchItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(BaseActivityViewController.search))
         self.navigationItem.rightBarButtonItem = searchItem
         // Do any additional setup after loading the view.
     }
@@ -82,26 +82,26 @@ class BaseActivityViewController: BasePortraitViewController {
     }
     
     var btns = [UIButton]()
-    func setCondition(conditions:[String])
+    func setCondition(_ conditions:[String])
     {
         self.conditions = conditions
         self.conditionView.setDatas(conditions)
 //        searchBar.frame = CGRectMake(0, conditionView.frame.origin.y + conditionView.frame.height + 5, GetSWidth(), 40)
-        tableView.frame = CGRectMake(0, conditionView.frame.origin.y + conditionView.frame.height, GetSWidth(), GetSHeight() - conditionView.frame.origin.y - conditionView.frame.height-20)
+        tableView.frame = CGRect(x: 0, y: conditionView.frame.origin.y + conditionView.frame.height, width: GetSWidth(), height: GetSHeight() - conditionView.frame.origin.y - conditionView.frame.height-20)
 //        self.conditionBar.loadView()
     }
     
-    func btnClicked(btn:UIButton)
+    func btnClicked(_ btn:UIButton)
     {
         for b in btns
         {
             if !b.isEqual(btn)
             {
-                b.selected = false
+                b.isSelected = false
             }
         }
-        btn.selected = !btn.selected
-        classify = btn.selected ? btn.titleLabel!.text! : ""
+        btn.isSelected = !btn.isSelected
+        classify = btn.isSelected ? btn.titleLabel!.text! : ""
         self.loadData()
     }
     
@@ -123,22 +123,22 @@ class BaseActivityViewController: BasePortraitViewController {
 
 extension BaseActivityViewController : ConditionBarDelegate
 {
-    func titleForConditionBar(conditionBar:ConditionBar)->String
+    func titleForConditionBar(_ conditionBar:ConditionBar)->String
     {
         return conditionTitle
     }
     
-    func textsForConditionBar(conditionBar:ConditionBar)->[String]
+    func textsForConditionBar(_ conditionBar:ConditionBar)->[String]
     {
         return self.conditions
     }
     
-    func selectedIndexForConditionBar(conditionBar:ConditionBar)->Int    //返回－1:全部
+    func selectedIndexForConditionBar(_ conditionBar:ConditionBar)->Int    //返回－1:全部
     {
         return 0
     }
     
-    func didSelectedConditionBar(conditionBar:ConditionBar, index:Int)
+    func didSelectedConditionBar(_ conditionBar:ConditionBar, index:Int)
     {
         if index == -1
         {
@@ -152,24 +152,24 @@ extension BaseActivityViewController : ConditionBarDelegate
 
 extension BaseActivityViewController : UITableViewDelegate, UITableViewDataSource
 {
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.searchBar.resignFirstResponder()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return LeaderActivityCell.cellHeight(dataSource[indexPath.row])
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("LeaderActivityCell") as! LeaderActivityCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LeaderActivityCell") as! LeaderActivityCell
         cell.update(dataSource[indexPath.row])
         return cell
     }
@@ -177,7 +177,7 @@ extension BaseActivityViewController : UITableViewDelegate, UITableViewDataSourc
 
 extension BaseActivityViewController : UISearchBarDelegate
 {
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if searchBar.text != nil
         {
@@ -188,7 +188,7 @@ extension BaseActivityViewController : UISearchBarDelegate
         self.loadData()
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         self.searchText = searchText
         if searchText == ""
@@ -201,7 +201,7 @@ extension BaseActivityViewController : UISearchBarDelegate
 
 extension BaseActivityViewController : FlowLayoutViewDelegate
 {
-    func flowLayoutViewClickedBtn(view: FlowLayoutView, btn: UIButton, text: String) {
+    func flowLayoutViewClickedBtn(_ view: FlowLayoutView, btn: UIButton, text: String) {
 //        if text == "推荐"
 //        {
 //            self.classify = ""

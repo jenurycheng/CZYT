@@ -19,8 +19,8 @@ class WebLinkViewController: BasePortraitViewController {
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64))
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.separatorStyle = .None
-        tableView.backgroundColor = UIColor.clearColor()
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor.clear
         self.view.addSubview(tableView)
         
         self.view.showHud()
@@ -41,27 +41,27 @@ class WebLinkViewController: BasePortraitViewController {
 
 extension WebLinkViewController : UITableViewDelegate, UITableViewDataSource
 {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.webLinks.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let web = WebViewController()
         web.url = dataSource.webLinks[indexPath.row].href
         web.title = dataSource.webLinks[indexPath.row].title
         self.navigationController?.pushViewController(web, animated: true)
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .Value1, reuseIdentifier: nil)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.imageView?.image = UIImage(named: "link_small")
-        cell.textLabel?.font = UIFont.systemFontOfSize(15)
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
         cell.textLabel?.text = dataSource.webLinks[indexPath.row].title
-        cell.accessoryType = .DisclosureIndicator
+        cell.accessoryType = .disclosureIndicator
         let line = GetLineView(CGRect(x: 10, y: 49, width: GetSWidth(), height: 1))
         cell.addSubview(line)
         return cell

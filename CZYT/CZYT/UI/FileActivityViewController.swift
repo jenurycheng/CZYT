@@ -16,7 +16,7 @@ class FileActivityViewController: BaseActivityViewController {
         super.viewDidLoad()
         self.title = "政策文件"
         
-        tableView.registerNib(UINib(nibName: "PolicyFileCell", bundle: nil), forCellReuseIdentifier: "PolicyFileCell")
+        tableView.register(UINib(nibName: "PolicyFileCell", bundle: nil), forCellReuseIdentifier: "PolicyFileCell")
         // Do any additional setup after loading the view.
     }
     
@@ -102,17 +102,17 @@ class FileActivityViewController: BaseActivityViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return PolicyFileCell.cellHeight()
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("PolicyFileCell") as! PolicyFileCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PolicyFileCell") as! PolicyFileCell
         cell.update(lDataSource.fileActivity[indexPath.row])
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detail = PolicyFileDetailViewController()
         detail.id = lDataSource.fileActivity[indexPath.row].id!
         self.navigationController?.pushViewController(detail, animated: true)

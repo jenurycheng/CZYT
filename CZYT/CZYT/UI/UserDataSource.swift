@@ -10,7 +10,7 @@ import UIKit
 
 class UserDataSource: NSObject {
     
-    func getValideCode(tel:String, success:((result:String) -> Void), failure:((error:HttpResponseData)->Void))
+    func getValideCode(_ tel:String, success:@escaping ((_ result:String) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleUser.RequestUserValidCode()
         request.mobile = tel
@@ -18,14 +18,14 @@ class UserDataSource: NSObject {
         NetWorkHandle.NetWorkHandleUser.getValidCode(request) { (data) in
             if data.isSuccess()
             {
-                success(result: data.msg)
+                success(data.msg)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
-    func login(tel:String, code:String, success:((result:UserInfo) -> Void), failure:((error:HttpResponseData)->Void))
+    func login(_ tel:String, code:String, success:@escaping ((_ result:UserInfo) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleUser.RequestUserLogin()
         request.mobile = tel
@@ -37,18 +37,18 @@ class UserDataSource: NSObject {
                 let dic = data.data as? NSDictionary
                 if dic != nil
                 {
-                    let ui = UserInfo.parse(dict: dic!)
-                    success(result: ui)
+                    let ui = UserInfo(dictionary: dic!)
+                    success(ui)
                 }else{
-                    failure(error: data)
+                    failure(data)
                 }
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
-    func getUserDetail(id:String, success:((result:UserInfo) -> Void), failure:((error:HttpResponseData)->Void))
+    func getUserDetail(_ id:String, success:@escaping ((_ result:UserInfo) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleUser.RequestGetUserDetail()
         request.id = id
@@ -57,8 +57,8 @@ class UserDataSource: NSObject {
             {
                 if data.data as? NSDictionary != nil
                 {
-                    let ui = UserInfo.parse(dict: data.data  as! NSDictionary)
-                    success(result: ui)
+                    let ui = UserInfo(dictionary: data.data  as! NSDictionary)
+                    success(ui)
                 }else{
                 
                 }
@@ -68,39 +68,39 @@ class UserDataSource: NSObject {
         }
     }
     
-    func getToken(success:((result:String) -> Void), failure:((error:HttpResponseData)->Void))
+    func getToken(_ success:@escaping ((_ result:String) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         NetWorkHandle.NetWorkHandleUser.getToken(nil) { (data) in
             if data.isSuccess()
             {
                 if data.data as? NSDictionary != nil
                 {
-                    let token = (data.data as! NSDictionary).objectForKey("token") as! String
-                    success(result: token)
+                    let token = (data.data as! NSDictionary).object(forKey: "token") as! String
+                    success(token)
                 }else{
-                    failure(error: data)
+                    failure(data)
                 }
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
-    func updateUserToken(token:String, success:((result:String) -> Void), failure:((error:HttpResponseData)->Void))
+    func updateUserToken(_ token:String, success:@escaping ((_ result:String) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleUser.RequestUpdatePushToken()
         request.device_token = token
         NetWorkHandle.NetWorkHandleUser.updatePushToken(request) { (data) in
             if data.isSuccess()
             {
-                success(result: data.msg)
+                success(data.msg)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
-    func updateUserPhoto(image:UIImage, success:((result:UserInfo) -> Void), failure:((error:HttpResponseData)->Void))
+    func updateUserPhoto(_ image:UIImage, success:@escaping ((_ result:UserInfo) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleUser.RequestUpdateUserPhoto()
         request.photo_suffix = ".jpg"
@@ -108,10 +108,10 @@ class UserDataSource: NSObject {
         NetWorkHandle.NetWorkHandleUser.updateUserPhoto(request) { (data) in
             if data.isSuccess()
             {
-                let user = UserInfo.parse(dict: data.data as! NSDictionary)
-                success(result: user)
+                let user = UserInfo(dictionary: data.data as! NSDictionary)
+                success(user)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }

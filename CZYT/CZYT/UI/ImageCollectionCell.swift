@@ -10,7 +10,7 @@ import UIKit
 import Photos
 
 protocol ImageCollectionCellDelegate : NSObjectProtocol {
-    func deleteBtnClicked(cell:ImageCollectionCell)
+    func deleteBtnClicked(_ cell:ImageCollectionCell)
 }
 
 class ImageCollectionCell: UICollectionViewCell {
@@ -39,12 +39,12 @@ class ImageCollectionCell: UICollectionViewCell {
         }
     }
 
-    func updateView(r:UIImage)
+    func updateView(_ r:UIImage)
     {
         imageView.image = r
     }
     
-    func updatePhoto(photo:TaskPhoto)
+    func updatePhoto(_ photo:TaskPhoto)
     {
         imageView.gm_setImageWithUrlString(photo.photo_path, title: "", completedBlock: nil)
     }

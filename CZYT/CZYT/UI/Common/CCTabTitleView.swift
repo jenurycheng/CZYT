@@ -14,8 +14,8 @@ import Foundation
 protocol CCTabTitleViewDelegate: NSObjectProtocol
 {
     func titleCount()->Int!
-    func titleForPosition(pos:NSInteger)->String!
-    func titleViewIndexDidSelected(titleView:CCTabTitleView, index:Int)
+    func titleForPosition(_ pos:NSInteger)->String!
+    func titleViewIndexDidSelected(_ titleView:CCTabTitleView, index:Int)
 }
 
 class CCTabTitleView: UIView {
@@ -27,7 +27,7 @@ class CCTabTitleView: UIView {
     }
     
     var font:UIFont?
-    var textArray:Array<String!>!
+    var textArray:Array<String?>!
     var viewArray:Array<UIView>!
     
     var leftSpacing:CGFloat!
@@ -60,7 +60,7 @@ class CCTabTitleView: UIView {
         curPos = 0
     }
     
-    func setDelegate(delegate:CCTabTitleViewDelegate){
+    func setDelegate(_ delegate:CCTabTitleViewDelegate){
         self.delegate = delegate
         self.reloadView()
     }
@@ -71,8 +71,8 @@ class CCTabTitleView: UIView {
         {
             i.removeFromSuperview()
         }
-        textArray.removeAll(keepCapacity: false)
-        btnArray.removeAll(keepCapacity: false)
+        textArray.removeAll(keepingCapacity: false)
+        btnArray.removeAll(keepingCapacity: false)
     }
     
     func reloadView(){
@@ -96,22 +96,22 @@ class CCTabTitleView: UIView {
             {
                 let text:String? = delegate!.titleForPosition(i)
                 textArray.append(text)
-                let btn:UIButton! = UIButton(frame: CGRectMake(leftSpacing+width*CGFloat(i), 0, width, self.frame.size.height-2))
-                btn.setTitle(text, forState: UIControlState.Normal)
-                btn.setTitleColor(selectTextColor, forState: UIControlState.Normal)
-                btn.titleLabel?.font = UIFont.systemFontOfSize(14)
+                let btn:UIButton! = UIButton(frame: CGRect(x: leftSpacing+width*CGFloat(i), y: 0, width: width, height: self.frame.size.height-2))
+                btn.setTitle(text, for: UIControlState())
+                btn.setTitleColor(selectTextColor, for: UIControlState())
+                btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
                 if font != nil
                 {
                     btn.titleLabel?.font = font
                 }
                 self.addSubview(btn)
                 btnArray.append(btn)
-                btn.addTarget(self, action: #selector(CCTabTitleView.btnClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+                btn.addTarget(self, action: #selector(CCTabTitleView.btnClicked(_:)), for: UIControlEvents.touchUpInside)
                 if i == 0
                 {
-                    btn.setTitleColor(selectTextColor, forState: UIControlState.Normal)
+                    btn.setTitleColor(selectTextColor, for: UIControlState())
                 }else{
-                    btn.setTitleColor(normalTextColor, forState: UIControlState.Normal)
+                    btn.setTitleColor(normalTextColor, for: UIControlState())
                 }
             }
         }
@@ -126,21 +126,21 @@ class CCTabTitleView: UIView {
             bio = 0.2
         }
         
-        let line = GetLineView(CGRectMake(0, 39.5, GetSWidth(), 0.5))
+        let line = GetLineView(CGRect(x: 0, y: 39.5, width: GetSWidth(), height: 0.5))
         self.addSubview(line)
-        line.hidden = self.spacingLineHidden
+        line.isHidden = self.spacingLineHidden
         
         let lineHeight:CGFloat = 2
-        lineView = UIView(frame: CGRectMake(leftSpacing, self.frame.size.height-lineHeight, width, lineHeight))
-        blueLineView = UIView(frame: CGRectMake(width*bio, 0, width*(1-bio*2), lineHeight))
+        lineView = UIView(frame: CGRect(x: leftSpacing, y: self.frame.size.height-lineHeight, width: width, height: lineHeight))
+        blueLineView = UIView(frame: CGRect(x: width*bio, y: 0, width: width*(1-bio*2), height: lineHeight))
         blueLineView.backgroundColor = selectTextColor
         lineView.addSubview(blueLineView)
         self.addSubview(lineView)
-        lineView.hidden = count == 0 ? true : false
+        lineView.isHidden = count == 0 ? true : false
     }
     
-    func btnClicked(btn:UIButton){
-        if delegate == nil || !delegate!.respondsToSelector(Selector("titleViewIndexDidSelected:index:"))
+    func btnClicked(_ btn:UIButton){
+        if delegate == nil || !delegate!.responds(to: Selector("titleViewIndexDidSelected:index:"))
         {
             return
         }
@@ -155,7 +155,7 @@ class CCTabTitleView: UIView {
         }
     }
     
-    func updateLine(f:CGFloat){
+    func updateLine(_ f:CGFloat){
         curPos = f
         var frame = lineView.frame
         frame.origin.x = leftSpacing+(self.frame.size.width-leftSpacing-rightSpacing)*f
@@ -170,9 +170,9 @@ class CCTabTitleView: UIView {
             let btn = btnArray[i]
             if i == num
             {
-                btn.setTitleColor(selectTextColor, forState: UIControlState.Normal)
+                btn.setTitleColor(selectTextColor, for: UIControlState())
             }else{
-                btn.setTitleColor(normalTextColor, forState: UIControlState.Normal)
+                btn.setTitleColor(normalTextColor, for: UIControlState())
             }
         }
     }

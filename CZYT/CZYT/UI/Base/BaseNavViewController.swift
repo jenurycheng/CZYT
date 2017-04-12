@@ -16,12 +16,12 @@ class BaseNavViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        backItemBar =  UIBarButtonItem(image: UIImage(named: "backbar"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(BaseNavViewController.backItemBarClicked(_:)))
+        backItemBar =  UIBarButtonItem(image: UIImage(named: "backbar"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(BaseNavViewController.backItemBarClicked(_:)))
         self.navigationItem.leftBarButtonItem = backItemBar
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
 
@@ -30,8 +30,8 @@ class BaseNavViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func backItemBarClicked(item:UIBarButtonItem){
-        self.navigationController?.popViewControllerAnimated(true)
+    func backItemBarClicked(_ item:UIBarButtonItem){
+        self.navigationController?.popViewController(animated: true)
     }
     
     /*

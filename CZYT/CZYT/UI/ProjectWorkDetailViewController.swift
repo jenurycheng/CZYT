@@ -50,8 +50,8 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
 //        titleLabel.font = UIFont.systemFontOfSize(15)
         titleLabel.font = UIFont(name: "Helvetica-Bold", size: 16)
         titleLabel.numberOfLines = 2
-        titleLabel.lineBreakMode = .ByCharWrapping
-        titleLabel.textAlignment = .Center
+        titleLabel.lineBreakMode = .byCharWrapping
+        titleLabel.textAlignment = .center
         topView.addSubview(titleLabel)
         
         let line = UIView(frame: CGRect(x: 0, y: topView.frame.height-1, width: GetSWidth(), height: 1))
@@ -59,7 +59,7 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         topView.addSubview(line)
         
         let script = "var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=\(GetSWidth()*2)px'); document.getElementsByTagName('head')[0].appendChild(meta);"
-        let wks = WKUserScript(source: script, injectionTime: .AtDocumentEnd, forMainFrameOnly: true)
+        let wks = WKUserScript(source: script, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         let ctrl = WKUserContentController()
         ctrl.addUserScript(wks)
         
@@ -71,52 +71,52 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         scrollView.addSubview(btnView)
         let width = (GetSWidth()-50)/4
         basicBtn = UIButton(frame: CGRect(x: 10, y: 7, width: width, height: 31))
-        basicBtn.setTitle("基本情况", forState: .Normal)
-        basicBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
-        basicBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
-        basicBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController.btnClicked(_:)), forControlEvents: .TouchUpInside)
+        basicBtn.setTitle("基本情况", for: UIControlState())
+        basicBtn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        basicBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, for: UIControlState())
+        basicBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController.btnClicked(_:)), for: .touchUpInside)
         btnArray.append(basicBtn)
         btnView.addSubview(basicBtn)
         
         progressBtn = UIButton(frame: CGRect(x: width+20, y: 7, width: width, height: 31))
-        progressBtn.setTitle("推进情况", forState: .Normal)
-        progressBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
-        progressBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
+        progressBtn.setTitle("推进情况", for: UIControlState())
+        progressBtn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        progressBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, for: UIControlState())
         btnView.addSubview(progressBtn)
         btnArray.append(progressBtn)
-        progressBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController.btnClicked(_:)), forControlEvents: .TouchUpInside)
+        progressBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController.btnClicked(_:)), for: .touchUpInside)
         
         problemBtn = UIButton(frame: CGRect(x: width*2+30, y: 7, width: width, height: 31))
-        problemBtn.setTitle("存在问题", forState: .Normal)
-        problemBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
-        problemBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
+        problemBtn.setTitle("存在问题", for: UIControlState())
+        problemBtn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        problemBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, for: UIControlState())
         btnView.addSubview(problemBtn)
         btnArray.append(problemBtn)
-        problemBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController.btnClicked(_:)), forControlEvents: .TouchUpInside)
+        problemBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController.btnClicked(_:)), for: .touchUpInside)
         
         requireBtn = UIButton(frame: CGRect(x: width*3+40, y: 7, width: width, height: 31))
-        requireBtn.setTitle("下步打算", forState: .Normal)
-        requireBtn.titleLabel?.font = UIFont.systemFontOfSize(13)
-        requireBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, forState: .Normal)
+        requireBtn.setTitle("下步打算", for: UIControlState())
+        requireBtn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        requireBtn.setTitleColor(ThemeManager.current().darkGrayFontColor, for: UIControlState())
         btnView.addSubview(requireBtn)
         btnArray.append(requireBtn)
-        requireBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController.btnClicked(_:)), forControlEvents: .TouchUpInside)
+        requireBtn.addTarget(self, action: #selector(ProjectWorkDetailViewController.btnClicked(_:)), for: .touchUpInside)
         
         webView = WKWebView(frame: CGRect(x: 5, y: 85, width: GetSWidth()-10, height: 10), configuration: config)
         webView.navigationDelegate = self
-        webView.scrollView.scrollEnabled = false
+        webView.scrollView.isScrollEnabled = false
         scrollView.addSubview(webView)
         
         sourceLabel = UILabel(frame: CGRect(x: 10, y: -100, width: scrollView.frame.width/2-10, height: 20))
         sourceLabel.text = "来源:"
-        sourceLabel.font = UIFont.systemFontOfSize(12)
+        sourceLabel.font = UIFont.systemFont(ofSize: 12)
         sourceLabel.textColor = ThemeManager.current().darkGrayFontColor
         scrollView.addSubview(sourceLabel)
         
         timeLabel = UILabel(frame: CGRect(x: scrollView.frame.width/2, y: -100, width: scrollView.frame.width/2-10, height: 20))
         timeLabel.text = ""
-        timeLabel.font = UIFont.systemFontOfSize(12)
-        timeLabel.textAlignment = .Right
+        timeLabel.font = UIFont.systemFont(ofSize: 12)
+        timeLabel.textAlignment = .right
         timeLabel.textColor = ThemeManager.current().darkGrayFontColor
         scrollView.addSubview(timeLabel)
         
@@ -127,13 +127,13 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
             btn.layer.cornerRadius = btn.frame.height/2;
             btn.layer.masksToBounds = true
             btn.backgroundColor = ThemeManager.current().foregroundColor
-            btn.setTitleColor(ThemeManager.current().grayFontColor, forState: .Normal)
+            btn.setTitleColor(ThemeManager.current().grayFontColor, for: UIControlState())
         }
         
         self.btnClicked(basicBtn)
         
         if !hiddenItem {
-            let assignItem = UIBarButtonItem(title: "批示", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ProjectWorkDetailViewController.assignBtnClicked))
+            let assignItem = UIBarButtonItem(title: "批示", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ProjectWorkDetailViewController.assignBtnClicked))
             self.navigationItem.rightBarButtonItem = assignItem
         }
         
@@ -150,16 +150,16 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         self.navigationController?.pushViewController(publish, animated: true)
     }
     
-    func btnClicked(btn:UIButton)
+    func btnClicked(_ btn:UIButton)
     {
         for b in btnArray {
             if btn.isEqual(b)
             {
                 b.backgroundColor = ThemeManager.current().mainColor
-                b.setTitleColor(ThemeManager.current().whiteFontColor, forState: .Normal)
+                b.setTitleColor(ThemeManager.current().whiteFontColor, for: UIControlState())
             }else{
                 b.backgroundColor = ThemeManager.current().foregroundColor
-                b.setTitleColor(ThemeManager.current().grayFontColor, forState: .Normal)
+                b.setTitleColor(ThemeManager.current().grayFontColor, for: UIControlState())
             }
         }
         if dataSource == nil {
@@ -167,15 +167,15 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         }
         
         webView.frame = CGRect(x: 5, y: 85, width: GetSWidth()-10, height: 10)
-        let index = btnArray.indexOf(btn)
-        sourceLabel.hidden = true
-        timeLabel.hidden = true
+        let index = btnArray.index(of: btn)
+        sourceLabel.isHidden = true
+        timeLabel.isHidden = true
         if index == 0 {
             if dataSource?.basic != nil
             {
                 webView.loadHTMLString(dataSource!.basic!, baseURL: nil)
-                sourceLabel.hidden = false
-                timeLabel.hidden = false
+                sourceLabel.isHidden = false
+                timeLabel.isHidden = false
             }
         }else if index == 1
         {
@@ -212,7 +212,7 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
         }
     }
     
-    func update(data:LeaderActivityDetail?)
+    func update(_ data:LeaderActivityDetail?)
     {
         if data == nil
         {
@@ -254,8 +254,8 @@ class ProjectWorkDetailViewController: BasePortraitViewController {
 
 extension ProjectWorkDetailViewController : WKNavigationDelegate
 {
-    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
-        DispatchAfter(0.2, queue: dispatch_get_main_queue()) {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        DispatchAfter(0.2, queue: DispatchQueue.main) {
             self.webView.frame = CGRect(x: 5, y: 85, width: GetSWidth()-10, height: self.webView.scrollView.contentSize.height)
             self.sourceLabel.frame = CGRect(x: 10, y: self.webView.frame.origin.y + self.webView.frame.height + 20, width: self.scrollView.frame.width/2-10, height: 20)
             self.timeLabel.frame = CGRect(x: self.scrollView.frame.width/2, y: self.webView.frame.origin.y + self.webView.frame.height + 20, width: self.scrollView.frame.width/2-10, height: 20)

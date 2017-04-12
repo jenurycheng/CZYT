@@ -12,25 +12,23 @@ import UIKit
 
 class KeyboardInputView: UIView {
     
+    static var singleTon:KeyboardInputView?
+    class func shareInstance()->KeyboardInputView
+    {
+        if singleTon == nil {
+            singleTon = KeyboardInputView()
+        }
+        return singleTon!
+    }
+    
     var inputTextView:UITextField!
     var submitBtn:UIButton!
     var centerView:UIView!
     
-    var block:((text:String)->Void)?
-    
-    class func shareInstance()->KeyboardInputView{
-        struct Singleton{
-            static var predicate:dispatch_once_t = 0
-            static var instance:KeyboardInputView? = nil
-        }
-        dispatch_once(&Singleton.predicate) { () -> Void in
-            Singleton.instance = KeyboardInputView()
-        }
-        return Singleton.instance!
-    }
+    var block:((_ text:String)->Void)?
     
     init(){
-        super.init(frame: UIScreen.mainScreen().bounds)
+        super.init(frame: UIScreen.main.bounds)
         self.initView();
         
     }
@@ -40,49 +38,49 @@ class KeyboardInputView: UIView {
     }
     
     deinit{
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardDidShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardDidHideNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardDidChangeFrameNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardDidChangeFrame, object: nil)
     }
     
     func initView(){
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(KeyboardInputView.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(KeyboardInputView.keyboardShow(_:)), name:UIKeyboardDidShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(KeyboardInputView.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(KeyboardInputView.keyboardHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(KeyboardInputView.keyboardChangeFrame(_:)), name: UIKeyboardDidChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyboardInputView.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyboardInputView.keyboardShow(_:)), name:NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyboardInputView.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyboardInputView.keyboardHide(_:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyboardInputView.keyboardChangeFrame(_:)), name: NSNotification.Name.UIKeyboardDidChangeFrame, object: nil)
         
         self.backgroundColor = UIColor(white: 0, alpha: 0.3)
         
-        centerView = UIView(frame: CGRectMake(0, UIScreen.mainScreen().bounds.size.height, UIScreen.mainScreen().bounds.size.width, 40))
-        centerView.backgroundColor = UIColor.whiteColor()
+        centerView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: 40))
+        centerView.backgroundColor = UIColor.white
         self.addSubview(centerView)
         
-        inputTextView = UITextField(frame: CGRectMake(5, 5, centerView.frame.size.width-70, 30))
+        inputTextView = UITextField(frame: CGRect(x: 5, y: 5, width: centerView.frame.size.width-70, height: 30))
         inputTextView.placeholder = "输入评论内容"
         inputTextView.layer.cornerRadius = 5
-        inputTextView.clearButtonMode = UITextFieldViewMode.WhileEditing
+        inputTextView.clearButtonMode = UITextFieldViewMode.whileEditing
         inputTextView.layer.masksToBounds = true
-        inputTextView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        inputTextView.layer.borderColor = UIColor.lightGray.cgColor
         inputTextView.layer.borderWidth = 0.5
-        inputTextView.font = UIFont.systemFontOfSize(15)
+        inputTextView.font = UIFont.systemFont(ofSize: 15)
         centerView.addSubview(inputTextView)
         
-        inputTextView.leftView = UIView(frame: CGRectMake(0, 0, 10, inputTextView.frame.size.height))
-        inputTextView.leftViewMode = UITextFieldViewMode.Always
+        inputTextView.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: inputTextView.frame.size.height))
+        inputTextView.leftViewMode = UITextFieldViewMode.always
         
-        submitBtn = UIButton(frame: CGRectMake(centerView.frame.size.width-60, 5, 55, 30))
+        submitBtn = UIButton(frame: CGRect(x: centerView.frame.size.width-60, y: 5, width: 55, height: 30))
         submitBtn.backgroundColor = Helper.parseColor(0x2B97EDFF)
-        submitBtn.setTitle("确定", forState: UIControlState.Normal)
-        submitBtn.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        submitBtn.titleLabel?.font = UIFont.systemFontOfSize(Helper.scale(58))
+        submitBtn.setTitle("确定", for: UIControlState())
+        submitBtn.setTitleColor(UIColor.white, for: UIControlState())
+        submitBtn.titleLabel?.font = UIFont.systemFont(ofSize: Helper.scale(58))
         submitBtn.layer.cornerRadius = 3
         submitBtn.layer.masksToBounds = true
         centerView.addSubview(submitBtn)
-        submitBtn.addTarget(self, action: #selector(KeyboardInputView.okBtnClicked), forControlEvents: UIControlEvents.TouchUpInside)
+        submitBtn.addTarget(self, action: #selector(KeyboardInputView.okBtnClicked), for: UIControlEvents.touchUpInside)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(KeyboardInputView.tapped(_:)))
         self.addGestureRecognizer(tap)
@@ -91,7 +89,7 @@ class KeyboardInputView: UIView {
     func okBtnClicked(){
         if inputTextView.text != nil || inputTextView.text != ""
         {
-            block!(text: inputTextView.text!)
+            block!(inputTextView.text!)
         }
     }
     
@@ -99,55 +97,55 @@ class KeyboardInputView: UIView {
         self.hide()
     }
     
-    func tapped(tap:UITapGestureRecognizer)
+    func tapped(_ tap:UITapGestureRecognizer)
     {
         self.hide()
     }
     
     func hide(){
         inputTextView.resignFirstResponder()
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
             self.alpha = 0
-            }) { (finish) -> Void in
+            }, completion: { (finish) -> Void in
                 self.removeFromSuperview()
                 self.alpha = 1
-        }
+        }) 
     }
     
-    func keyboardWillShow(notify:NSNotification)
+    func keyboardWillShow(_ notify:Notification)
     {
         
     }
     
-    func keyboardShow(notify:NSNotification)
+    func keyboardShow(_ notify:Notification)
     {
         
     }
     
-    func keyboardWillHide(notify:NSNotification)
+    func keyboardWillHide(_ notify:Notification)
     {
-        centerView.frame = CGRectMake(0, UIScreen.mainScreen().bounds.size.height, UIScreen.mainScreen().bounds.size.width, centerView.frame.size.height)
+        centerView.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: centerView.frame.size.height)
     }
     
-    func keyboardHide(notify:NSNotification)
+    func keyboardHide(_ notify:Notification)
     {
         
     }
     
-    func keyboardChangeFrame(notify:NSNotification)
+    func keyboardChangeFrame(_ notify:Notification)
     {
         let userInfo = notify.userInfo as! NSDictionary
-        let keyboardF = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue;
-        print(keyboardF.origin.y)
-        UIView.animateWithDuration(0.1) { () -> Void in
-            self.centerView.frame = CGRectMake(0, keyboardF.origin.y - self.centerView.frame.size.height, keyboardF.size.width, self.centerView.frame.size.height)
-        }
+        let keyboardF = (userInfo[UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue;
+        print(keyboardF?.origin.y)
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            self.centerView.frame = CGRect(x: 0, y: (keyboardF?.origin.y)! - self.centerView.frame.size.height, width: (keyboardF?.size.width)!, height: self.centerView.frame.size.height)
+        })
     }
     
-    func show(block:((text:String)->Void)){
+    func show(_ block:@escaping ((_ text:String)->Void)){
 //        inputTextView.text = ""
         self.block = block
-        UIApplication.sharedApplication().delegate!.window!?.addSubview(self)
+        UIApplication.shared.delegate!.window!?.addSubview(self)
         inputTextView.becomeFirstResponder()
     }
     

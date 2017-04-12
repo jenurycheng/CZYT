@@ -20,7 +20,7 @@ class TimeNewsCell: UITableViewCell {
     @IBOutlet weak var contentBgView:UIView!
     
     
-    static func cellHeight(info:LeaderActivity)->CGFloat
+    static func cellHeight(_ info:LeaderActivity)->CGFloat
     {
         let baseHeight:CGFloat = 90
         var imageHeight:CGFloat = 0
@@ -32,7 +32,7 @@ class TimeNewsCell: UITableViewCell {
         }
         var textHeight:CGFloat = 0
         if !Helper.isStringEmpty(info.summary) {
-            textHeight = Helper.getTextSize(info.summary!, font: UIFont.systemFontOfSize(13), size: CGSizeMake(GetSWidth() - 40, CGFloat.max)).height + 20
+            textHeight = Helper.getTextSize(info.summary!, font: UIFont.systemFont(ofSize: 13), size: CGSize(width: GetSWidth() - 40, height: CGFloat.greatestFiniteMagnitude)).height + 20
         }
         return baseHeight + imageHeight + textHeight
     }
@@ -41,7 +41,7 @@ class TimeNewsCell: UITableViewCell {
         super.awakeFromNib()
         
         self.contentView.backgroundColor = ThemeManager.current().backgroundColor
-        self.selectionStyle = .None
+        self.selectionStyle = .none
         self.clipsToBounds = true
         contentLabel.textColor = ThemeManager.current().grayFontColor
         sourceLabel.textColor = ThemeManager.current().lightGrayFontColor
@@ -51,7 +51,7 @@ class TimeNewsCell: UITableViewCell {
         // Initialization code
     }
     
-    func update(info:LeaderActivity)
+    func update(_ info:LeaderActivity)
     {
         titleLabel.text = info.title
         if Helper.isStringEmpty(info.logo_path) {
@@ -63,7 +63,7 @@ class TimeNewsCell: UITableViewCell {
         
         var textHeight:CGFloat = 0
         if !Helper.isStringEmpty(info.summary) {
-            textHeight = Helper.getTextSize(info.summary!, font: UIFont.systemFontOfSize(13), size: CGSizeMake(GetSWidth() - 40, CGFloat.max)).height + 20
+            textHeight = Helper.getTextSize(info.summary!, font: UIFont.systemFont(ofSize: 13), size: CGSize(width: GetSWidth() - 40, height: CGFloat.greatestFiniteMagnitude)).height + 20
         }
         contentTextHeight.constant = textHeight
         contentLabel.text = info.summary
@@ -71,7 +71,7 @@ class TimeNewsCell: UITableViewCell {
         timeLabel.text = info.publish_date
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

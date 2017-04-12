@@ -20,9 +20,9 @@ class UserInfoViewController: BasePortraitViewController {
     var dataSource = UserDataSource()
     
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        UserInfo.sharedInstance.addObserver(self, forKeyPath: "isLogin", options: .New, context: nil)
+        UserInfo.sharedInstance.addObserver(self, forKeyPath: "isLogin", options: .new, context: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,11 +35,11 @@ class UserInfoViewController: BasePortraitViewController {
         self.title  = "个人信息"
         tableView!.delegate = self
         tableView!.dataSource = self
-        tableView!.separatorStyle = .None
+        tableView!.separatorStyle = .none
         
         logoutBtn!.layer.cornerRadius = 5
         logoutBtn!.layer.masksToBounds = true
-        logoutBtn!.titleLabel?.font = UIFont.systemFontOfSize(17)
+        logoutBtn!.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         
         headerBtn!.layer.cornerRadius = 35
         headerBtn!.layer.masksToBounds = true
@@ -52,7 +52,7 @@ class UserInfoViewController: BasePortraitViewController {
     {
         self.nameLabel!.text = UserInfo.sharedInstance.nickname
         if !Helper.isStringEmpty(UserInfo.sharedInstance.logo_path) {
-            self.headerBtn!.sd_setImageWithURL(NSURL(string: UserInfo.sharedInstance.logo_path!), forState: .Normal, placeholderImage: UIImage(named: "user_header_default"))
+            self.headerBtn!.sd_setImage(with: URL(string: UserInfo.sharedInstance.logo_path!), for: UIControlState(), placeholderImage: UIImage(named: "user_header_default"))
         }
     }
     
@@ -74,10 +74,10 @@ class UserInfoViewController: BasePortraitViewController {
             weakSelf.dataSource.updateUserPhoto(image, success: { (result) in
                 UserInfo.sharedInstance.logo_path = result.logo_path
                 let info = RCUserInfo(userId: UserInfo.sharedInstance.id, name: UserInfo.sharedInstance.nickname, portrait: result.logo_path)
-                RCIM.sharedRCIM().refreshUserInfoCache(info, withUserId: UserInfo.sharedInstance.id)
+                RCIM.shared().refreshUserInfoCache(info, withUserId: UserInfo.sharedInstance.id)
                 weakSelf.updateInfo()
                 }, failure: { (error) in
-                    MBProgressHUD.showError(error.msg, toView: self.view)
+                    MBProgressHUD.showError(error.msg, to: self.view)
             })
         })
     }
@@ -94,15 +94,15 @@ class UserInfoViewController: BasePortraitViewController {
         
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "isLogin" {
             if UserInfo.sharedInstance.isLogin {
                 self.title = "个人信息"
                 self.nameLabel?.text = UserInfo.sharedInstance.nickname
                 if !Helper.isStringEmpty(UserInfo.sharedInstance.logo_path) {
-                    self.headerBtn?.sd_setImageWithURL(NSURL(string: UserInfo.sharedInstance.logo_path!), forState: .Normal, placeholderImage: UIImage(named: "user_header_default"))
+                    self.headerBtn?.sd_setImage(with: URL(string: UserInfo.sharedInstance.logo_path!), for: UIControlState(), placeholderImage: UIImage(named: "user_header_default"))
                 }
-                self.navigationController?.popViewControllerAnimated(true)
+                self.navigationController?.popViewController(animated: true)
             }
         }
     }
@@ -115,22 +115,22 @@ class UserInfoViewController: BasePortraitViewController {
 
 extension UserInfoViewController : UITableViewDelegate, UITableViewDataSource
 {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0
         {
             self.view.window?.showHud()
-            SDImageCache.sharedImageCache().clearMemory()
-            SDImageCache.sharedImageCache().cleanDisk()
-            SDImageCache.sharedImageCache().clearDiskOnCompletion({ () -> Void in
-                dispatch_async(dispatch_get_global_queue(0, 0), {
-                    NetWorkCache.clearCache()
-                })
+            SDImageCache.shared().clearMemory()
+            SDImageCache.shared().cleanDisk()
+            SDImageCache.shared().clearDisk(onCompletion: { () -> Void in
                 self.tableView!.reloadData()
                 self.view.window?.dismiss()
+                DispatchQueue.global().async {
+                    NetWorkCache.clearCache()
+                }
             })
         }else if indexPath.row == 1
         {
@@ -138,14 +138,14 @@ extension UserInfoViewController : UITableViewDelegate, UITableViewDataSource
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .Value1, reuseIdentifier: "")
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: "")
         cell.textLabel?.text = ["清除缓存"][indexPath.row]
-        cell.textLabel?.font = UIFont.systemFontOfSize(15)
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
         cell.textLabel?.textColor = ThemeManager.current().darkGrayFontColor
         let line = GetLineView(CGRect(x: 0, y: 49, width: GetSWidth(), height: 1))
         cell.addSubview(line)
@@ -153,10 +153,10 @@ extension UserInfoViewController : UITableViewDelegate, UITableViewDataSource
         
         if indexPath.row == 0
         {
-            let cache:Double = Double(String(format: "%.1f", Double(SDImageCache.sharedImageCache().getSize())/1024.0/1024.0))!
+            let cache:Double = Double(String(format: "%.1f", Double(SDImageCache.shared().getSize())/1024.0/1024.0))!
             cell.detailTextLabel?.text = "\(cache)MB"
             cell.detailTextLabel?.textColor = ThemeManager.current().grayFontColor
-            cell.detailTextLabel?.font = UIFont.systemFontOfSize(13)
+            cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 13)
         }else{
             
         }
@@ -167,7 +167,7 @@ extension UserInfoViewController : UITableViewDelegate, UITableViewDataSource
 
 extension UserInfoViewController : UIAlertViewDelegate
 {
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         if alertView.tag == 100
         {
             if buttonIndex == 1
@@ -185,7 +185,7 @@ extension UserInfoViewController : UIAlertViewDelegate
                 {
                     let nav = self.navigationController
                     let newNav = UINavigationController(rootViewController: loginViewController!)
-                    nav?.presentViewController(newNav, animated: true, completion: {
+                    nav?.present(newNav, animated: true, completion: {
                     })
                 }
                 

@@ -10,7 +10,7 @@ import UIKit
 
 class SelectContactViewController: BasePortraitViewController {
     
-    var callback:((selectedIds:[String])->Void)?
+    var callback:((_ selectedIds:[String])->Void)?
 
     var okBtn:UIButton!
     
@@ -24,22 +24,22 @@ class SelectContactViewController: BasePortraitViewController {
         selectContactView = SelectContactView(frame: CGRect(x: 0, y: 0, width: GetSWidth(), height: GetSHeight()-64-50), selectMode:true, departmentID: DepartmentTree.rootDepartmentID)
 //        selectContactView.contactView.maxSelectCount = 2
 //        selectContactView.contactView.showMaxCountText = "最多可以选择一个主办人和协办人"
-        selectContactView.contactView.selectedIds.appendContentsOf(self.selectedIds)
+        selectContactView.contactView.selectedIds.append(contentsOf: self.selectedIds)
         self.view.addSubview(selectContactView)
         
         okBtn = UIButton(frame: CGRect(x: 10, y: GetSHeight()-64-45, width: GetSWidth()-20, height: 40))
         okBtn.backgroundColor = ThemeManager.current().mainColor
-        okBtn.setTitle("确定", forState: .Normal)
-        okBtn.titleLabel?.font = UIFont.systemFontOfSize(14)
-        okBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        okBtn.setTitle("确定", for: UIControlState())
+        okBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        okBtn.setTitleColor(UIColor.white, for: UIControlState())
         okBtn.layer.cornerRadius = 5
         okBtn.layer.masksToBounds = true
-        okBtn.addTarget(self, action: #selector(SelectContactViewController.okBtnClicked), forControlEvents: .TouchUpInside)
+        okBtn.addTarget(self, action: #selector(SelectContactViewController.okBtnClicked), for: .touchUpInside)
         self.view.addSubview(okBtn)
         // Do any additional setup after loading the view.
     }
     
-    func addCallback(callback:((selectedIds:[String])->Void)?)
+    func addCallback(_ callback:((_ selectedIds:[String])->Void)?)
     {
         self.callback = callback
     }
@@ -48,14 +48,14 @@ class SelectContactViewController: BasePortraitViewController {
     {
         if selectContactView.contactView.selectedIds.count == 0
         {
-            MBProgressHUD.showMessag("至少选择一位主办人", toView: self.view, showTimeSec: 1)
+            MBProgressHUD.showMessag("至少选择一位主办人", to: self.view, showTimeSec: 1)
             return
         }
         if callback != nil
         {
-            callback!(selectedIds:selectContactView.contactView.selectedIds)
+            callback!(selectContactView.contactView.selectedIds)
         }
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func didReceiveMemoryWarning() {

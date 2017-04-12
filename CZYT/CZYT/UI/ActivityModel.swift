@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LeaderActivity: Reflect {
+class LeaderActivity: EVObject {
     var summary:String?
     var id:String?
     var classify:String?
@@ -21,13 +21,13 @@ class LeaderActivity: Reflect {
     var progress:String?
 }
 
-class LeaderType : Reflect
+class LeaderType : EVObject
 {
     var key:String?
     var value:String?
 }
 
-class LeaderActivityDetail: Reflect {
+class LeaderActivityDetail: EVObject {
     var summary:String?
     var id:String?
     var classify:String?
@@ -43,9 +43,10 @@ class LeaderActivityDetail: Reflect {
     var requirement:String?
     var promotion:String?
     var problem:String?
+    var share_url:String?
 }
 
-class ProjectWorkDetail : Reflect
+class ProjectWorkDetail : EVObject
 {
     var summary:String?
     var id:String?
@@ -93,7 +94,7 @@ class ProjectWorkDetail : Reflect
     var projectwork_promotion_m12_isshow:String?
 }
 
-class WebLink : Reflect
+class WebLink : EVObject
 {
     var title:String?
     var href:String?

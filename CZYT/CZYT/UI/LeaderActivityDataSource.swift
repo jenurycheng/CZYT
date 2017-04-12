@@ -19,7 +19,7 @@ class LeaderActivityDataSource: NSObject {
     
     var pageSize = 10
     
-    func getModelType(type:String, success:((result:[LeaderType]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getModelType(_ type:String, success:@escaping ((_ result:[LeaderType]) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestModuleType()
         request.classify = type
@@ -33,20 +33,20 @@ class LeaderActivityDataSource: NSObject {
                 {
                     for dic in ar!
                     {
-                        let r = LeaderType.parse(dict: dic)
+                        let r = LeaderType(dictionary: dic)
                         rs.append(r)
                     }
                 }
                 
-                success(result: rs)
+                success(rs)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
     var homeActivity = [LeaderActivity]()
-    func getHomeActivity(success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getHomeActivity(_ success:@escaping ((_ result:[LeaderActivity]) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestHomeActivity()
         request.row_count = "\(pageSize)"
@@ -61,22 +61,22 @@ class LeaderActivityDataSource: NSObject {
                 {
                     for dic in ar!
                     {
-                        let r = LeaderActivity.parse(dict: dic)
+                        let r = LeaderActivity(dictionary: dic)
                         rs.append(r)
                     }
                 }
-                self.homeActivity.appendContentsOf(rs)
+                self.homeActivity.append(contentsOf: rs)
 
-                success(result: rs)
+                success(rs)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
     
     var leaderActivity = [LeaderActivity]()
-    func getLeaderActivity(isFirst:Bool, classify:String, key:String? = nil, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getLeaderActivity(_ isFirst:Bool, classify:String, key:String? = nil, success:@escaping ((_ result:[LeaderActivity]) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestLeaderActivity()
         request.classify = classify
@@ -96,24 +96,24 @@ class LeaderActivityDataSource: NSObject {
                 {
                     for dic in ar!
                     {
-                        let r = LeaderActivity.parse(dict: dic)
+                        let r = LeaderActivity(dictionary: dic)
                         rs.append(r)
                     }
                 }
-                self.leaderActivity.appendContentsOf(rs)
+                self.leaderActivity.append(contentsOf: rs)
                 if isFirst
                 {
                     self.leaderActivity = rs
                 }
-                success(result: rs)
+                success(rs)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
     var leaderActivityDetail:LeaderActivityDetail?
-    func getLeaderActivityDetail(id:String, success:((result:LeaderActivityDetail) -> Void), failure:((error:HttpResponseData)->Void))
+    func getLeaderActivityDetail(_ id:String, success:@escaping ((_ result:LeaderActivityDetail) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestLeaderActivityDetail()
         request.id = id
@@ -123,20 +123,20 @@ class LeaderActivityDataSource: NSObject {
                 let r = data.data as? NSDictionary
                 if r != nil
                 {
-                    let d = LeaderActivityDetail.parse(dict: r!)
+                    let d = LeaderActivityDetail(dictionary: r!)
                     self.leaderActivityDetail = d
-                    success(result: d)
+                    success(d)
                 }else{
-                    failure(error: data)
+                    failure(data)
                 }
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
     var fileActivity = [LeaderActivity]()
-    func getFileActivity(isFirst:Bool, classify:String, key:String? = nil, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getFileActivity(_ isFirst:Bool, classify:String, key:String? = nil, success:@escaping ((_ result:[LeaderActivity]) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestFileActivity()
         request.classify = classify
@@ -156,24 +156,24 @@ class LeaderActivityDataSource: NSObject {
                 {
                     for dic in ar!
                     {
-                        let r = LeaderActivity.parse(dict: dic)
+                        let r = LeaderActivity(dictionary: dic)
                         rs.append(r)
                     }
                 }
-                self.fileActivity.appendContentsOf(rs)
+                self.fileActivity.append(contentsOf: rs)
                 if isFirst
                 {
                     self.fileActivity = rs
                 }
-                success(result: rs)
+                success(rs)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
     var fileActivityDetail:LeaderActivityDetail?
-    func getFileActivityDetail(id:String, success:((result:LeaderActivityDetail) -> Void), failure:((error:HttpResponseData)->Void))
+    func getFileActivityDetail(_ id:String, success:@escaping ((_ result:LeaderActivityDetail) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestFileActivityDetail()
         request.id = id
@@ -183,20 +183,20 @@ class LeaderActivityDataSource: NSObject {
                 let r = data.data as? NSDictionary
                 if r != nil
                 {
-                    let d = LeaderActivityDetail.parse(dict: r!)
+                    let d = LeaderActivityDetail(dictionary: r!)
                     self.fileActivityDetail = d
-                    success(result: d)
+                    success(d)
                 }else{
-                    failure(error: data)
+                    failure(data)
                 }
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
     var workStatusActivity = [LeaderActivity]()
-    func getWorkStatusActivity(isFirst:Bool, classify:String, key:String? = nil, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getWorkStatusActivity(_ isFirst:Bool, classify:String, key:String? = nil, success:@escaping ((_ result:[LeaderActivity]) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestWorkStatusActivity()
         request.classify = classify
@@ -216,24 +216,24 @@ class LeaderActivityDataSource: NSObject {
                 {
                     for dic in ar!
                     {
-                        let r = LeaderActivity.parse(dict: dic)
+                        let r = LeaderActivity(dictionary: dic)
                         rs.append(r)
                     }
                 }
-                self.workStatusActivity.appendContentsOf(rs)
+                self.workStatusActivity.append(contentsOf: rs)
                 if isFirst
                 {
                     self.workStatusActivity = rs
                 }
-                success(result: rs)
+                success(rs)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
     var workStatusActivityDetail:LeaderActivityDetail?
-    func getWorkStatusActivityDetail(id:String, success:((result:LeaderActivityDetail) -> Void), failure:((error:HttpResponseData)->Void))
+    func getWorkStatusActivityDetail(_ id:String, success:@escaping ((_ result:LeaderActivityDetail) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestWorkStatusActivityDetail()
         request.id = id
@@ -243,20 +243,20 @@ class LeaderActivityDataSource: NSObject {
                 let r = data.data as? NSDictionary
                 if r != nil
                 {
-                    let d = LeaderActivityDetail.parse(dict: r!)
+                    let d = LeaderActivityDetail(dictionary: r!)
                     self.workStatusActivityDetail = d
-                    success(result: d)
+                    success(d)
                 }else{
-                    failure(error: data)
+                    failure(data)
                 }
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
     var areaStatusActivity = [LeaderActivity]()
-    func getAreaStatusActivity(isFirst:Bool, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getAreaStatusActivity(_ isFirst:Bool, success:@escaping ((_ result:[LeaderActivity]) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestAreaStatusActivity()
         request.offset = "\(self.areaStatusActivity.count)"
@@ -274,24 +274,24 @@ class LeaderActivityDataSource: NSObject {
                 {
                     for dic in ar!
                     {
-                        let r = LeaderActivity.parse(dict: dic)
+                        let r = LeaderActivity(dictionary: dic)
                         rs.append(r)
                     }
                 }
-                self.areaStatusActivity.appendContentsOf(rs)
+                self.areaStatusActivity.append(contentsOf: rs)
                 if isFirst
                 {
                     self.areaStatusActivity = rs
                 }
-                success(result: rs)
+                success(rs)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
     var areaActivityDetail:LeaderActivityDetail?
-    func getAreaActivityDetail(id:String, success:((result:LeaderActivityDetail) -> Void), failure:((error:HttpResponseData)->Void))
+    func getAreaActivityDetail(_ id:String, success:@escaping ((_ result:LeaderActivityDetail) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestAreaStatusActivityDetail()
         request.id = id
@@ -301,20 +301,20 @@ class LeaderActivityDataSource: NSObject {
                 let r = data.data as? NSDictionary
                 if r != nil
                 {
-                    let d = LeaderActivityDetail.parse(dict: r!)
+                    let d = LeaderActivityDetail(dictionary: r!)
                     self.areaActivityDetail = d
-                    success(result: d)
+                    success(d)
                 }else{
-                    failure(error: data)
+                    failure(data)
                 }
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
     var departStatusActivity = [LeaderActivity]()
-    func getDepartStatusActivity(isFirst:Bool, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getDepartStatusActivity(_ isFirst:Bool, success:@escaping ((_ result:[LeaderActivity]) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestDepartStatusActivity()
         request.offset = "\(self.departStatusActivity.count)"
@@ -332,24 +332,24 @@ class LeaderActivityDataSource: NSObject {
                 {
                     for dic in ar!
                     {
-                        let r = LeaderActivity.parse(dict: dic)
+                        let r = LeaderActivity(dictionary: dic)
                         rs.append(r)
                     }
                 }
-                self.departStatusActivity.appendContentsOf(rs)
+                self.departStatusActivity.append(contentsOf: rs)
                 if isFirst
                 {
                     self.departStatusActivity = rs
                 }
-                success(result: rs)
+                success(rs)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
     var departActivityDetail:LeaderActivityDetail?
-    func getDepartActivityDetail(id:String, success:((result:LeaderActivityDetail) -> Void), failure:((error:HttpResponseData)->Void))
+    func getDepartActivityDetail(_ id:String, success:@escaping ((_ result:LeaderActivityDetail) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestDepartStatusActivityDetail()
         request.id = id
@@ -359,20 +359,20 @@ class LeaderActivityDataSource: NSObject {
                 let r = data.data as? NSDictionary
                 if r != nil
                 {
-                    let d = LeaderActivityDetail.parse(dict: r!)
+                    let d = LeaderActivityDetail(dictionary: r!)
                     self.departActivityDetail = d
-                    success(result: d)
+                    success(d)
                 }else{
-                    failure(error: data)
+                    failure(data)
                 }
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
     var projectWorkActivity = [LeaderActivity]()
-    func getProjectWorkActivity(isFirst:Bool, classify:String, key:String? = nil, success:((result:[LeaderActivity]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getProjectWorkActivity(_ isFirst:Bool, classify:String, key:String? = nil, success:@escaping ((_ result:[LeaderActivity]) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestProjectWorkActivity()
         request.classify = classify
@@ -392,24 +392,24 @@ class LeaderActivityDataSource: NSObject {
                 {
                     for dic in ar!
                     {
-                        let r = LeaderActivity.parse(dict: dic)
+                        let r = LeaderActivity(dictionary: dic)
                         rs.append(r)
                     }
                 }
-                self.projectWorkActivity.appendContentsOf(rs)
+                self.projectWorkActivity.append(contentsOf: rs)
                 if isFirst
                 {
                     self.projectWorkActivity = rs
                 }
-                success(result: rs)
+                success(rs)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
     var projectWorkActivityDetail:ProjectWorkDetail?
-    func getProjectWorkActivityDetail(id:String, success:((result:ProjectWorkDetail) -> Void), failure:((error:HttpResponseData)->Void))
+    func getProjectWorkActivityDetail(_ id:String, success:@escaping ((_ result:ProjectWorkDetail) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestProjectWorkActivityDetail()
         request.id = id
@@ -419,20 +419,20 @@ class LeaderActivityDataSource: NSObject {
                 let r = data.data as? NSDictionary
                 if r != nil
                 {
-                    let d = ProjectWorkDetail.parse(dict: r!)
+                    let d = ProjectWorkDetail(dictionary: r!)
                     self.projectWorkActivityDetail = d
-                    success(result: d)
+                    success(d)
                 }else{
-                    failure(error: data)
+                    failure(data)
                 }
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
     
     var webLinks = [WebLink]()
-    func getWebLink(success:((result:[WebLink]) -> Void), failure:((error:HttpResponseData)->Void))
+    func getWebLink(_ success:@escaping ((_ result:[WebLink]) -> Void), failure:@escaping ((_ error:HttpResponseData)->Void))
     {
         let request = NetWorkHandle.NetWorkHandleApp.RequestWebLink()
         NetWorkHandle.NetWorkHandleApp.getWebLink(request) { (data) in
@@ -444,15 +444,15 @@ class LeaderActivityDataSource: NSObject {
                 {
                     for dic in ar!
                     {
-                        let r = WebLink.parse(dict: dic)
+                        let r = WebLink(dictionary: dic)
                         rs.append(r)
                     }
                 }
                 self.webLinks = rs
                 
-                success(result: rs)
+                success(rs)
             }else{
-                failure(error: data)
+                failure(data)
             }
         }
     }
